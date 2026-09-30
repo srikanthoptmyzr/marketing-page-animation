@@ -2,7 +2,7 @@
 
 **Repo:** `Optmyzr-Engineering/marketing-website` · **branch** `main` · **commit** `c9ac095442e6126f90ebcd75e6dfac6bbed97c6c` (2026-09-28)
 **Checkout:** `~/Documents/marketing-website` (blobless sparse clone; raster/video blobs excluded). **Read-only — never edit, commit, push or build into it.**
-**Date mined:** 2026-09-29. This file covers playbook steps 1–3 and 7 of `README.md` section 12.
+**Date mined:** 2026-09-29. This file covers playbook steps 1–3 and 7 of `docs/project-notes.md` section 12.
 
 ## 1. Top-level map
 
