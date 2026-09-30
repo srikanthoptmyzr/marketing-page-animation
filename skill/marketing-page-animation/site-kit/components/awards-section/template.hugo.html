@@ -1,0 +1,38 @@
+<section class="c-awards-section px-lr py-[64px] md:py-[48px] mt-[2%] awards-bg" >
+  <div class="max-w-1440 mx-auto lg:mt-[90px]">
+    <div class="mx-auto pb-20">
+      <h1 data-scroll="fade-slide" class="font-fontFamilyHeadlinesDmSans text-mobileHeadlinesH3 md:text-desktopHeadlinesH2
+        font-bold text-left md:text-center leading-mobileLineHeight5xl md:leading-desktopLineHeight5xl tracking-mobileLetterSpacingMedium md:tracking-desktopLetterSpacingXl  mb-[48px]">{{.heading}} 
+      </h1>
+
+      <div class="grid grid-cols-2 gap-[12px] md:gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
+        {{range .awards}}
+        <!-- Global Search Awards Card -->
+        <div class="rounded-lg overflow-hidden border border-solid border-[#E8E8E8]">
+          <div class="p-[16px] md:p-[24px] bg-black" style="background-image: url('/images/homepage/awards-frame.webp'); background-size: cover; background-position: center;" >
+            <div class="flex items-center">
+              <div class="flex justify-between w-full items-center">
+                <img src="{{.image}}" alt="awards badge" class="w-16 md:w-[103px]">
+                <img src="/images/homepage/awards-badge-2.png" alt="awards badge" class="h-8">
+              </div>
+            </div>
+          </div>
+          <div class="p-[16px] md:p-[24px] bg-surface-dark-lighter h-[180px] md:h-auto lg:h-[227px] xl:!h-[100%] ">
+            <h3 class="font-fontFamilyHeadlinesDmSans text-mobileHeadlinesH4 md:text-desktopHeadlinesH4 font-bold tracking-mobileLetterSpacingLarge md:tracking-desktopLetterSpacingMedium leading-mobileLineHeight2xl md:leading-desktopLineHeight2xl">{{.award_title}}</h3>
+            <div class="flex flex-col">
+              <hr class="my-[12px] md:my-[16px]">
+              <div class="flex flex-wrap gap-2">
+                {{range $index, $year := .years}}
+                <span class="text-colorSurfaceDarkNormal text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 leading-desktopLineHeightSmall md:leading-desktopLineHeightMedium tracking-desktopLetterSpacingXxl">
+                  {{if ne $index 0}}• {{end}}{{$year}}
+                </span>
+                {{end}}
+              </div>
+            </div>
+          </div>
+        </div>
+        {{end}}
+      </div>
+    </div> 
+  </div>  
+</section>

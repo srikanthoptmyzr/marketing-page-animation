@@ -1,0 +1,87 @@
+<section class="c-features-section w-full overflow-x-hidden py-[61px] lg:py-[48px]">
+  <div class="container mx-auto px-4 lg:px-12 max-w-1440 relative">
+    <!-- Heading -->
+    <div class="w-full mb-10 md:mb-16">
+      <h2 class="text-mobileHeadlinesH4 xss:text-mobileHeadlinesH3 md:text-desktopHeadlinesH3 tracking-tight font-dm xl:px-0
+        font-bold text-left md:text-center">{{ .heading }}</h2>
+    </div>
+
+    <!-- Feature rows -->
+    <div class="flex flex-col gap-10 md:gap-20 lg:gap-28 max-w-[1140px] mx-auto">
+      {{ range $index, $element := .features }}
+      {{ $isEven := eq (mod $index 2) 0 }}
+      <div class="feature-row relative flex flex-col md:flex-row md:items-center gap-6 lg:gap-10
+        border border-solid border-[#E8E8E8] rounded-lg bg-white p-6
+        md:border-0 md:rounded-none md:bg-transparent md:p-0">
+
+        <!-- Text half -->
+        <div class="text-half w-full md:w-1/2 order-1 flex flex-col {{ if $isEven }}md:order-1 md:pr-6 lg:pr-10{{ else }}md:order-2 md:pl-6 lg:pl-10{{ end }}"
+          data-scroll="{{ if $isEven }}slide-left{{ else }}slide-right{{ end }}" data-scroll-duration="0.7" data-scroll-trigger=".feature-row">
+          <h3 class="text-desktopSubHeadingsP3 lg:text-desktopHeadlinesH4 font-dm font-bold
+            tracking-mobileLetterSpacingLarge leading-[112%] mb-[10px]">{{ .feature_title }}</h3>
+          <div class="text-mobileBodyB5 md:text-desktopSubHeadingsP4 text-neutral-700 xl:w-11/12 mb-[12px] md:mb-6">{{ .subtext | markdownify }}</div>
+
+          {{ if .deliveryOptions }}
+          <p class="text-xs text-neutral-500 mb-4">{{ i18n "alert_delivery_options" }}</p>
+          <img src="/images/homepage/features-f1-img.png" class="w-7/12 mb-5" alt="">
+          {{ end }}
+
+          {{ if (and .benefit_1 .benefit_2 .benefit_3) }}
+          <div class="flex flex-col gap-2 mb-[16px]">
+            <!-- Benefit 1 -->
+            <div class="flex items-baseline space-x-2">
+              <svg class="shrink-0 w-[10%] sm:w-auto translate-y-[4px] sm:translate-y-0" width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.42142 9.16353L6.02725 7.78999C5.91183 7.67471 5.7876 7.61568 5.65454 7.61291C5.52163 7.61027 5.39475 7.6693 5.27392 7.78999C5.15322 7.91082 5.09288 8.03985 5.09288 8.17707C5.09288 8.3143 5.15322 8.44332 5.27392 8.56416L6.95663 10.2469C7.09343 10.3835 7.24836 10.4519 7.42142 10.4519C7.59447 10.4519 7.7494 10.3835 7.88621 10.2469L11.71 6.42311C11.8252 6.3077 11.8843 6.17999 11.887 6.03999C11.8897 5.90013 11.8307 5.76978 11.71 5.64895C11.5891 5.52825 11.4636 5.46791 11.3333 5.46791C11.203 5.46791 11.0775 5.52825 10.9566 5.64895L7.42142 9.16353ZM8.50142 15.5833C7.46197 15.5833 6.48135 15.386 5.55954 14.9912C4.63774 14.5965 3.83093 14.0534 3.13913 13.3619C2.44732 12.6703 1.90392 11.8639 1.50892 10.9425C1.11406 10.0211 0.916626 9.04075 0.916626 8.00145C0.916626 6.94812 1.11399 5.96402 1.50871 5.04916C1.90343 4.13429 2.44656 3.33096 3.13808 2.63916C3.82961 1.94735 4.63607 1.40395 5.55746 1.00895C6.47885 0.614087 7.4592 0.416656 8.4985 0.416656C9.55183 0.416656 10.5359 0.614017 11.4508 1.00874C12.3657 1.40346 13.169 1.94659 13.8608 2.63811C14.5526 3.32964 15.096 4.13263 15.491 5.04707C15.8859 5.96152 16.0833 6.94534 16.0833 7.99853C16.0833 9.03798 15.8859 10.0186 15.4912 10.9404C15.0965 11.8622 14.5534 12.669 13.8618 13.3608C13.1703 14.0526 12.3673 14.596 11.4529 14.991C10.5384 15.3859 9.55461 15.5833 8.50142 15.5833Z" fill="#14880C"/>
+              </svg>
+              <span class="text-gray-700 text-desktopSubHeadingsP7 xl:text-base">{{ .benefit_1 }}</span>
+            </div>
+            <!-- Benefit 2 -->
+            <div class="flex items-baseline space-x-2">
+              <svg class="shrink-0 w-[10%] sm:w-auto translate-y-[4px] sm:translate-y-0" width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.42142 9.16353L6.02725 7.78999C5.91183 7.67471 5.7876 7.61568 5.65454 7.61291C5.52163 7.61027 5.39475 7.6693 5.27392 7.78999C5.15322 7.91082 5.09288 8.03985 5.09288 8.17707C5.09288 8.3143 5.15322 8.44332 5.27392 8.56416L6.95663 10.2469C7.09343 10.3835 7.24836 10.4519 7.42142 10.4519C7.59447 10.4519 7.7494 10.3835 7.88621 10.2469L11.71 6.42311C11.8252 6.3077 11.8843 6.17999 11.887 6.03999C11.8897 5.90013 11.8307 5.76978 11.71 5.64895C11.5891 5.52825 11.4636 5.46791 11.3333 5.46791C11.203 5.46791 11.0775 5.52825 10.9566 5.64895L7.42142 9.16353ZM8.50142 15.5833C7.46197 15.5833 6.48135 15.386 5.55954 14.9912C4.63774 14.5965 3.83093 14.0534 3.13913 13.3619C2.44732 12.6703 1.90392 11.8639 1.50892 10.9425C1.11406 10.0211 0.916626 9.04075 0.916626 8.00145C0.916626 6.94812 1.11399 5.96402 1.50871 5.04916C1.90343 4.13429 2.44656 3.33096 3.13808 2.63916C3.82961 1.94735 4.63607 1.40395 5.55746 1.00895C6.47885 0.614087 7.4592 0.416656 8.4985 0.416656C9.55183 0.416656 10.5359 0.614017 11.4508 1.00874C12.3657 1.40346 13.169 1.94659 13.8608 2.63811C14.5526 3.32964 15.096 4.13263 15.491 5.04707C15.8859 5.96152 16.0833 6.94534 16.0833 7.99853C16.0833 9.03798 15.8859 10.0186 15.4912 10.9404C15.0965 11.8622 14.5534 12.669 13.8618 13.3608C13.1703 14.0526 12.3673 14.596 11.4529 14.991C10.5384 15.3859 9.55461 15.5833 8.50142 15.5833Z" fill="#14880C"/>
+              </svg>
+              <span class="text-gray-700 text-desktopSubHeadingsP7 xl:text-base">{{ .benefit_2 }}</span>
+            </div>
+            <!-- Benefit 3 -->
+            <div class="flex items-baseline space-x-2">
+              <svg class="shrink-0 w-[10%] sm:w-auto translate-y-[4px] sm:translate-y-0" width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.42142 9.16353L6.02725 7.78999C5.91183 7.67471 5.7876 7.61568 5.65454 7.61291C5.52163 7.61027 5.39475 7.6693 5.27392 7.78999C5.15322 7.91082 5.09288 8.03985 5.09288 8.17707C5.09288 8.3143 5.15322 8.44332 5.27392 8.56416L6.95663 10.2469C7.09343 10.3835 7.24836 10.4519 7.42142 10.4519C7.59447 10.4519 7.7494 10.3835 7.88621 10.2469L11.71 6.42311C11.8252 6.3077 11.8843 6.17999 11.887 6.03999C11.8897 5.90013 11.8307 5.76978 11.71 5.64895C11.5891 5.52825 11.4636 5.46791 11.3333 5.46791C11.203 5.46791 11.0775 5.52825 10.9566 5.64895L7.42142 9.16353ZM8.50142 15.5833C7.46197 15.5833 6.48135 15.386 5.55954 14.9912C4.63774 14.5965 3.83093 14.0534 3.13913 13.3619C2.44732 12.6703 1.90392 11.8639 1.50892 10.9425C1.11406 10.0211 0.916626 9.04075 0.916626 8.00145C0.916626 6.94812 1.11399 5.96402 1.50871 5.04916C1.90343 4.13429 2.44656 3.33096 3.13808 2.63916C3.82961 1.94735 4.63607 1.40395 5.55746 1.00895C6.47885 0.614087 7.4592 0.416656 8.4985 0.416656C9.55183 0.416656 10.5359 0.614017 11.4508 1.00874C12.3657 1.40346 13.169 1.94659 13.8608 2.63811C14.5526 3.32964 15.096 4.13263 15.491 5.04707C15.8859 5.96152 16.0833 6.94534 16.0833 7.99853C16.0833 9.03798 15.8859 10.0186 15.4912 10.9404C15.0965 11.8622 14.5534 12.669 13.8618 13.3608C13.1703 14.0526 12.3673 14.596 11.4529 14.991C10.5384 15.3859 9.55461 15.5833 8.50142 15.5833Z" fill="#14880C"/>
+              </svg>
+              <span class="text-gray-700 text-desktopSubHeadingsP7 xl:text-base">{{ .benefit_3 }}</span>
+            </div>
+          </div>
+          {{ end }}
+
+          {{ if .anchor_text }}
+          <a href="{{ .url }}" class="inline-flex w-fit items-center gap-2 px-6 py-3 mt-1 bg-teal-dark rounded-lg
+            text-mobileBodyB5 md:text-base font-semibold text-colorSurfaceLightWhite hover:bg-colorPrimaryTealNormalHover">
+            {{ .anchor_text }}
+            <svg width="8" height="11" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.83346 6.03176L2.4933 0.691706C2.36979 0.568097 2.20492 0.5 2.02911 0.5C1.85331 0.5 1.68843 0.568097 1.56492 0.691706L1.17166 1.08487C0.915757 1.34107 0.915757 1.75745 1.17166 2.01326L5.65591 6.49751L1.16668 10.9867C1.04317 11.1104 0.974976 11.2751 0.974976 11.4508C0.974976 11.6267 1.04317 11.7915 1.16668 11.9152L1.55995 12.3083C1.68356 12.4319 1.84833 12.5 2.02414 12.5C2.19994 12.5 2.36482 12.4319 2.48833 12.3083L7.83346 6.96336C7.95726 6.83936 8.02526 6.6738 8.02487 6.4978C8.02526 6.32112 7.95726 6.15566 7.83346 6.03176Z" fill="white"/>
+            </svg>
+          </a>
+          {{ end }}
+        </div>
+
+        <!-- Image half -->
+        <div class="image-half w-full md:w-1/2 order-2 {{ if $isEven }}md:order-2{{ else }}md:order-1{{ end }}"
+          data-scroll="{{ if $isEven }}slide-right{{ else }}slide-left{{ end }}" data-scroll-duration="0.7" data-scroll-trigger=".feature-row">
+          <div class="bg-surface-dark-lighter rounded-lg overflow-hidden md:border md:border-solid md:border-[#E8E8E8] p-4 flex items-center justify-center min-h-[220px] md:min-h-[340px] lg:h-[400px]">
+            {{ $resolvedPath := partial "functions/resolve-image-path.html" .image }}
+            {{ $image := resources.Get (strings.TrimPrefix "/" $resolvedPath) }}
+            {{ if $image }}
+              {{ if eq $image.MediaType.SubType "svg" }}
+              <img src="{{ $image.RelPermalink }}" alt="{{ .feature_title }}" class="object-contain w-full max-h-[280px] md:max-h-full">
+              {{ else }}
+              {{ partial "image.html" (dict "src" $image.RelPermalink "alt" .feature_title "class" "object-contain w-full max-h-[280px] md:max-h-full") }}
+              {{ end }}
+            {{ else }}
+              {{ partial "image.html" (dict "src" .image "alt" .feature_title "class" "object-contain w-full max-h-[280px] md:max-h-full") }}
+            {{ end }}
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>

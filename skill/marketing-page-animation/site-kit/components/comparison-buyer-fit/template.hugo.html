@@ -1,0 +1,38 @@
+{{- $tocId := anchorize .heading -}}
+<!-- "Which tool fits which buyer" — two "choose X if" decision checklists on white; Optmyzr card teal-bordered -->
+<section class="c-comparison-buyer-fit mx-auto py-[24px] md:py-[40px] bg-white scroll-mt-[120px]"{{ with $tocId }} id="{{ . }}"{{ end }}>
+  <div class="w-full mx-auto">
+    <div class="mb-[24px] md:mb-[32px]">
+      <h2 class="font-dm text-mobileHeadlinesH3 md:text-desktopHeadlinesH3 font-bold text-left
+        text-colorSurfaceDarkDarkActive tracking-desktopLetterSpacingMedium">{{ .heading }}</h2>
+      {{ with .subtitle }}
+      <p class="mt-[8px] text-mobileBodyB3 md:text-desktopSubHeadingsP4 text-colorSurfaceDarkNormalActive
+        leading-desktopLineHeightXxl">{{ . }}</p>
+      {{ end }}
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-[20px] lg:gap-[24px]">
+      {{ range $i, $card := slice .optmyzr .competitor }}
+      <div class="bg-colorSurfaceLightWhiteHover border {{ if eq $i 0 }}border-colorPrimaryTealNormal{{ else }}border-colorSurfaceLightWhiteActive{{ end }}
+        rounded-[12px] p-[24px] xl:p-[32px]">
+        <h3 class="font-dm text-mobileHeadlinesH5 md:text-desktopHeadlinesH5 font-bold
+          tracking-desktopLetterSpacingSmall text-colorSurfaceDarkDarkActive">{{ $card.title }}</h3>
+        {{ with $card.subtitle }}
+        <p class="mt-[6px] text-mobileBodyB3 md:text-desktopSubHeadingsP4 font-medium
+          text-colorSurfaceDarkNormalActive">{{ . }}</p>
+        {{ end }}
+        <hr class="my-[20px] md:my-[24px] border-t {{ if eq $i 0 }}border-colorPrimaryTealNormal{{ else }}border-colorSurfaceLightWhiteActive{{ end }}">
+        <ul class="space-y-[16px]">
+          {{ range $card.criteria }}
+          <li class="flex items-start">
+            <img src="/images/comparison/check-circle-teal.svg" width="20" height="20"
+              class="flex-shrink-0 mt-[1px] w-[18px] h-[18px] md:w-[20px] md:h-[20px]" alt="" loading="lazy">
+            <p class="ml-[12px] leading-desktopLineHeightXxl text-desktopSubHeadingsP5
+              md:text-desktopSubHeadingsP4 font-medium text-colorSurfaceDarkDarkActive">{{ .text }}</p>
+          </li>
+          {{ end }}
+        </ul>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>

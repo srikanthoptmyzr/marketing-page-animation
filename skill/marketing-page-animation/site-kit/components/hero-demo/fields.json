@@ -1,0 +1,71 @@
+{
+ "component": "hero-demo",
+ "source": "component-library/components/hero-demo/",
+ "fields": {
+  "alt": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Peak ace",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "g2Quote": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": ">-",
+   "inputType": "textarea",
+   "localization": "unlisted"
+  },
+  "g2Rating": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "4.5",
+   "inputType": "number",
+   "localization": "unlisted"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "The PPC platform that puts marketers back in control",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "image": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/images/demo-request/g2-large.png",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "partnerLogos": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "partnersKicker": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Paid media and digital marketing teams use Optmyzr",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "requestDemoDesc": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": ">-",
+   "inputType": "textarea",
+   "localization": "unlisted"
+  },
+  "trustedPartnerTitle": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Paid media and digital marketing teams use Optmyzr",
+   "inputType": "text",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

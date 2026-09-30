@@ -1,0 +1,15 @@
+<section class="c-hero-contact lg:flex px-lr bg-surface-dark-lighter relative">
+  <div class="absolute inset-0 z-0 overflow-hidden">
+    <picture>
+      <source media="(min-width: 769px)" srcset="/images/contact-us/hero-bg.webp">
+      <img src="/images/contact-us/mobile-bg.webp" alt="Contact Us background" class="w-full h-full object-cover" fetchpriority="high">
+    </picture>
+  </div>
+
+  <div class="relative z-10 text-center max-w-1440 mx-auto flex flex-col items-center py-[48px] md:py-[75px]">
+    <h1 class="font-dm text-mobileHeadlinesH2 md:text-desktopHeadlinesH1 font-bold mb-[24px] md:mb-[16px] tracking-desktopLetterSpacingXs
+      leading-mobileLineHeight6xl md:leading-desktopLineHeight6xl text-center">{{.heading}}</h1>
+    <p class="text-surface-dark-active text-mobileBodyB2 md:text-desktopSubHeadingsP2 mb-[24px] leading-mobileLineHeight3xl
+      md:leading-desktopLineHeightXxl tracking-desktopLetterSpacingXxl w-full md:w-[65%] text-center">{{.hero_description}}</p>
+  </div>
+</section>

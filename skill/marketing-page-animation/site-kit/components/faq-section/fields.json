@@ -1,0 +1,64 @@
+{
+ "component": "faq-section",
+ "source": "component-library/components/faq-section/",
+ "fields": {
+  "addExtraBottomPadding": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "true",
+   "inputType": "checkbox",
+   "localization": "unlisted"
+  },
+  "answer": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "With Optmyzr, you can manage Sponsored Brands, Sponsored Products and Sponsored Display in Amazon Advertising.",
+   "inputType": "html",
+   "localization": "translatable"
+  },
+  "emitFaqSchema": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "false",
+   "inputType": "checkbox",
+   "localization": "unlisted"
+  },
+  "faq_title": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "PPC FAQ",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "faqs": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "translatable"
+  },
+  "headingLevel": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "h1",
+   "inputType": "select",
+   "localization": "unlisted"
+  },
+  "question": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "What Amazon PPC campaign types does Optmyzr support?",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "startClosed": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "false",
+   "inputType": "checkbox",
+   "localization": "unlisted"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

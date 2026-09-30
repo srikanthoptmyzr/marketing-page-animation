@@ -1,0 +1,36 @@
+{
+ "component": "demo-benefits",
+ "source": "component-library/components/demo-benefits/",
+ "fields": {
+  "benefit_desc": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": ">-",
+   "inputType": "textarea",
+   "localization": "unlisted"
+  },
+  "benefit_title": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Who benefits from an Optmyzr demo?",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "demoBenefits": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "image": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/forestry/benefit-1.webp",
+   "inputType": "image",
+   "localization": "skip"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

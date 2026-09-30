@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Sale Day Command Center</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+/* ===========================================================================
+   Sale Day Command Center — product-UI reconstruction
+   Every colour below was measured from the reference screenshot, not chosen.
+   Geometry is authored at the reference's own 1794x877 and scaled as a whole,
+   so proportions cannot drift.
+   =========================================================================== */
+:root{
+  --bg:#F8FAFB; --card:#FFFFFF; --bd:#E9EDF0; --bd-2:#EEF1F4;
+  --ink:#0B1220; --ink-2:#3A4250; --mut:#8A919C; --mut-2:#6F7681;
+  --t-green:#E9FBF0; --t-amber:#FEF8E6; --t-blue:#F2F9FB;
+  --green:#16B85A; --green-d:#1E9E57; --green-pale:#ABE9BF; --green-line:#5BC98B;
+  --pill-bg:#C7F6DF; --pill-tx:#2F8F63;
+  --amber:#F0A41C; --amber-tx:#C98A1F; --amber-pale:#FBE3B0; --amber-line:#EFBB5C;
+  --red:#EB595A; --blue:#2F6BE0; --blue-d:#206ACE; --blue-l:#448FEE;
+  --blue-pale:#88C9EA; --blue-mid:#3F8DDC; --track:#E2E7EF;
+  --g-amber:#FEAA02; --g-green:#22AC5E; --g-red:#EB595A;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:#EDF1F4;font-family:Inter,"Segoe UI",Roboto,system-ui,-apple-system,sans-serif}
+.sdc-fit{width:100%;overflow:hidden}
+.sdc-frame{
+  width:1794px;height:877px;transform-origin:0 0;position:relative;
+  background:var(--bg);color:var(--ink);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+.sdc-frame::after{content:"";position:absolute;inset:0;pointer-events:none;
+  box-shadow:inset 0 0 0 1px rgba(15,25,45,.06)}
+
+/* ---------- entrance ---------- */
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.an{opacity:0;animation:rise .5s cubic-bezier(.22,.7,.3,1) forwards}
+
+/* ---------- header ---------- */
+.hd{padding:16px 22px 0}
+.hd h1{margin:0;font-size:21px;font-weight:700;letter-spacing:-.2px;color:#12161C}
+.hd p{margin:5px 0 0;font-size:13.5px;color:var(--mut)}
+.hd-dots{display:inline-flex;gap:5px;margin-left:9px;vertical-align:3px}
+.hd-dots i{width:3px;height:3px;border-radius:50%;background:#B9BFC7;display:block}
+
+/* ---------- controls ---------- */
+.ct{display:flex;align-items:flex-start;padding:14px 22px 0;background:#fff}
+.ct-wrap{background:#fff;width:100%;display:flex;align-items:flex-start;padding-bottom:16px}
+.sel{border:1px solid #D9DEE4;border-radius:9px;padding:9px 13px;font-size:13.5px;
+  display:flex;align-items:center;gap:26px;background:#fff;color:var(--ink-2);min-width:172px;
+  box-shadow:0 1px 1px rgba(16,24,40,.03)}
+.sel b{font-weight:600;color:#1A202A}
+.sel .cv{color:#39404B;font-weight:500}
+.cap{font-size:11.5px;color:var(--mut);margin:5px 0 0 3px}
+.ct-g{margin-right:14px}
+.ct-r{margin-left:auto;text-align:right;padding-top:2px}
+.ct-r .l1{font-size:13px;color:var(--ink-2)}
+.ct-r .l1 b{font-weight:700;color:#12161C}
+.ct-r .l2{font-size:12px;color:var(--mut);margin-top:3px}
+.rf{color:var(--blue);font-weight:600;display:inline-flex;align-items:center;gap:5px;margin-left:12px}
+.rf svg{display:block}
+@keyframes spin{to{transform:rotate(360deg)}}
+.rf-i{transform-origin:50% 50%}
+.rf:hover .rf-i{animation:spin .9s linear infinite}
+
+/* ---------- generic card ---------- */
+.card{background:var(--card);border:1px solid var(--bd);border-radius:11px}
+.pad{padding:0 22px}
+
+/* ---------- status row ---------- */
+.st{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-top:9px}
+.st .c{border-radius:11px;border:1px solid var(--bd);padding:15px 17px;height:86px;position:relative;
+  display:flex;flex-direction:column;justify-content:center;background:#fff}
+.st .c.g{background:var(--t-green);border-color:#D8F2E3}
+.st .c.a{background:var(--t-amber);border-color:#F6E7C2}
+.st .t{font-size:13.5px;color:var(--ink-2);display:flex;align-items:center;gap:6px}
+.st .s{font-size:13.5px;font-weight:600;color:#1B222C;margin-top:7px}
+.st .big{position:absolute;right:18px;top:50%;transform:translateY(-50%);
+  font-size:27px;font-weight:700;letter-spacing:-.4px}
+.st .big small{font-size:14px;font-weight:600;opacity:.85}
+.st .ic{position:absolute;right:18px;top:15px}
+.i-info{width:14px;height:14px;flex:none;opacity:.55}
+.amber-t{color:#B8860B}
+.amber-s{color:var(--amber-tx);font-size:12.5px;font-weight:400;margin-top:4px}
+.bars{display:flex;gap:3px;align-items:center}
+.bars i{display:block;width:21px;height:13px;border-radius:2px;background:var(--track)}
+.bars i.on{background:var(--blue-mid)}
+.bars i.mid{background:var(--blue-pale)}
+@keyframes shim{0%,100%{opacity:.45}50%{opacity:1}}
+.bars i.on:nth-child(1){animation:shim 2.4s ease-in-out infinite}
+.bars i.on:nth-child(5){animation:shim 2.4s ease-in-out .8s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,172,94,.5)}70%{box-shadow:0 0 0 7px rgba(34,172,94,0)}100%{box-shadow:0 0 0 0 rgba(34,172,94,0)}}
+.dot-live{width:9px;height:9px;border-radius:50%;background:#4DB44F;display:inline-block;
+  animation:pulse 2s ease-out infinite}
+
+/* ---------- google ads band ---------- */
+.band{background:var(--t-blue);border:1px solid #E2EFF3;border-radius:11px;margin-top:11px;
+  padding:13px 20px;display:flex;align-items:center}
+.band h2{margin:0;font-size:15px;font-weight:700;color:#12161C}
+.band p{margin:4px 0 0;font-size:13px;color:var(--mut-2)}
+.band .r{margin-left:auto;display:flex;align-items:center;gap:9px;font-size:13.5px;
+  font-weight:600;color:#1B222C}
+
+/* ---------- metrics ---------- */
+.mx{margin-top:11px;padding:15px 0 8px}
+.mx-h{display:flex;align-items:center;gap:8px;padding:0 20px 11px;font-size:15px;font-weight:700}
+.mx-h .g{width:9px;height:9px;border-radius:50%;background:var(--green);
+  animation:pulse 2s ease-out infinite}
+.mx-h .cols{margin-left:auto;color:var(--blue);opacity:.8}
+.mx-g{display:grid;grid-template-columns:repeat(7,1fr);position:relative}
+.mt{padding:0 16px;border-left:1px solid var(--bd-2);position:relative;min-width:0}
+.mt:first-child{border-left:0}
+.mt .lb{display:flex;align-items:center;gap:7px;font-size:13.5px;color:var(--ink-2)}
+.mt .vl{font-size:29px;font-weight:700;letter-spacing:-1px;margin-top:7px;color:#0D131C;
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+.mt .dl{font-size:12.5px;font-weight:600;margin-top:3px;display:flex;align-items:center;gap:3px;
+  color:var(--green-d);justify-content:flex-end}
+.mt .dl span{font-size:9px;line-height:1}
+.mt .dl.a{color:var(--amber-tx)}
+.mt .dl.d{color:var(--green-d)}
+.spark{display:block;width:100%;height:36px;margin-top:6px}
+.pager{position:absolute;right:6px;top:50%;transform:translateY(-50%);display:flex;
+  flex-direction:column;gap:7px}
+.pager b{width:23px;height:23px;border-radius:50%;background:#EAF1FC;color:var(--blue);
+  display:grid;place-items:center;font-size:12px;font-weight:700;cursor:pointer;
+  border:1px solid #DCE7F8}
+.pager b:hover{background:#DCE7F8}
+
+/* ---------- bottom ---------- */
+.bt{display:grid;grid-template-columns:1fr 1.02fr 1.02fr;gap:11px;margin-top:9px}
+.bt .c{padding:17px 20px;position:relative}
+.bt h3{margin:0;font-size:15px;font-weight:700;color:#12161C}
+.edit{position:absolute;right:20px;top:17px;color:var(--blue);font-size:13px;font-weight:600;
+  display:inline-flex;align-items:center;gap:5px}
+.money{font-size:36px;font-weight:700;letter-spacing:-1.2px;margin-top:22px;color:#0D131C;
+  font-variant-numeric:tabular-nums}
+.money+.sub{font-size:13.5px;color:var(--mut-2);margin-top:4px}
+.note{display:flex;gap:8px;font-size:11.5px;line-height:1.5;color:var(--mut);margin-top:26px}
+.note svg{flex:none;margin-top:1px;opacity:.6}
+.bt .c.cons{display:grid;grid-template-rows:auto 1fr}
+.cons-b{display:flex;align-items:center;gap:14px;margin-top:6px}
+.donut{position:relative;width:186px;height:186px;flex:none}
+.donut>svg.ring-svg{display:block;transform:rotate(-90deg)}
+.face svg{display:block}   /* must NOT inherit the ring's rotation */
+.face{position:absolute;inset:0;display:grid;place-items:center}
+.kv{flex:1;text-align:center}
+.kv .v{font-size:19px;font-weight:700;color:#12161C;font-variant-numeric:tabular-nums}
+.kv .k{font-size:12.5px;color:var(--mut-2);margin-top:2px}
+.kv .row+.row{margin-top:17px}
+.lg{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink-2);margin-top:6px}
+.lg i{width:9px;height:9px;border-radius:50%;background:var(--blue-d)}
+.pill{position:absolute;right:20px;top:17px;background:var(--pill-bg);color:var(--pill-tx);
+  font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:999px}
+.gauge{display:grid;place-items:center;margin-top:4px}
+.pace{text-align:center;font-size:13.5px;color:var(--ink-2);margin-top:2px}
+.pace b{color:#12161C;font-weight:700}
+
+/* ---------- hourly trends (clipped by the frame, as in the reference) ---------- */
+.tr{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:9px}
+.tr .c{padding:15px 20px;height:96px}
+.tr h3{margin:0;font-size:15px;font-weight:700}
+.tr .r{position:absolute;right:20px;top:15px;text-align:right}
+.tr .r .a{color:var(--blue);font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:5px}
+.tr .r .b{font-size:11.5px;color:var(--mut);margin-top:3px}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .an{opacity:1;transform:none}
+}
+</style>
+
+<div class="sdc-fit"><div class="sdc-frame" id="frame">
+
+  <!-- header -->
+  <div class="hd an" style="animation-delay:.02s">
+    <h1>Sale Day Command Center<span class="hd-dots"><i></i><i></i><i></i></span></h1>
+    <p>Monitor spend, performance, and feed health in real time on your sale days</p>
+  </div>
+
+  <!-- controls -->
+  <div class="ct an" style="animation-delay:.06s"><div class="ct-wrap">
+    <div class="ct-g">
+      <div class="sel"><span><b>Date:</b> <span class="cv">08 Dec 2025</span></span>
+        <svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1l4.5 4.5L10 1" stroke="#7A828D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="cap">Today</div>
+    </div>
+    <div class="ct-g">
+      <div class="sel"><span><b>Comparison Date:</b> <span class="cv">08 Dec 2024</span></span>
+        <svg width="11" height="7" viewBox="0 0 11 7" fill="none"><path d="M1 1l4.5 4.5L10 1" stroke="#7A828D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="cap">Same Day Last Year</div>
+    </div>
+    <div class="ct-r">
+      <div class="l1">Auto-refreshing data in <b id="cd">29:55</b>
+        <span class="rf"><svg class="rf-i" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M14 8a6 6 0 1 1-1.8-4.3M14 1.5V5h-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Refresh</span></div>
+      <div class="l2">Last refreshed at 08:59 PM (GMT-06:00)</div>
+    </div>
+  </div></div>
+
+  <div class="pad">
+    <!-- status cards -->
+    <div class="st">
+      <div class="c g an" style="animation-delay:.10s">
+        <div class="t">Budget Status</div>
+        <div class="s">Number of budgets exhausted</div>
+        <div class="big" style="color:var(--green)"><span id="bex">0</span><small>/29</small></div>
+      </div>
+      <div class="c a an" style="animation-delay:.14s">
+        <div class="t">Performance Drops
+          <svg class="i-info" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.6" stroke="#B08A2E" stroke-width="1.3"/><path d="M8 7.2v4M8 4.9v.1" stroke="#B08A2E" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="s amber-t"><b style="color:#C4870C">1</b> campaign needs review</div>
+        <div class="amber-s">Conversion rate down 14% (Home &amp; Garden)</div>
+        <div class="ic">
+          <svg width="27" height="24" viewBox="0 0 28 24" fill="none">
+            <path d="M2 22V9M9 22V3M16 22v-8M23 22V6" stroke="#F0A41C" stroke-width="2.6" stroke-linecap="round"/>
+            <path d="M1.5 6.5L8 1l7 6 7-4.5" stroke="#F0A41C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>
+          </svg>
+        </div>
+      </div>
+      <div class="c an" style="animation-delay:.18s">
+        <div class="t">Website Status
+          <svg class="i-info" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.6" stroke="#9AA1AB" stroke-width="1.3"/><path d="M8 7.2v4M8 4.9v.1" stroke="#9AA1AB" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="s" style="display:flex;align-items:center;gap:9px;margin-top:9px">
+          <span class="bars"><i class="on"></i><i class="mid"></i><i></i><i></i><i class="on"></i></span>
+          <span style="font-weight:500;color:var(--ink-2)">is Live</span>
+        </div>
+        <div class="ic" style="top:50%;transform:translateY(-50%)">
+          <svg width="27" height="27" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="12" stroke="#22AC5E" stroke-width="1.9"/>
+            <path d="M8.4 14.3l3.8 3.8L20 9.8" stroke="#22AC5E" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="c an" style="animation-delay:.22s">
+        <div class="t">Live Sessions <span class="dot-live"></span></div>
+        <div class="s" style="font-weight:500;color:var(--ink-2);display:flex;align-items:center;gap:6px">Realtime hourly count
+          <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M5 3h6v6" stroke="#6F7681" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="big" id="sess">0</div>
+      </div>
+    </div>
+
+    <!-- google ads band -->
+    <div class="band an" style="animation-delay:.26s">
+      <div>
+        <h2>Google Ads Performance</h2>
+        <p>Monitor campaign health, budgets, and top performers</p>
+      </div>
+      <div class="r">
+        <svg width="19" height="19" viewBox="0 0 20 20" fill="none"><rect x="1.6" y="2.8" width="16.8" height="14.4" rx="2" stroke="#2F6BE0" stroke-width="1.5"/><path d="M7.4 2.8v14.4" stroke="#2F6BE0" stroke-width="1.5"/></svg>
+        Campaigns Included: All
+        <svg width="9" height="14" viewBox="0 0 10 16" fill="none"><path d="M2 2l6 6-6 6" stroke="#1B222C" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+
+    <!-- performance metrics -->
+    <div class="card mx an" style="animation-delay:.30s">
+      <div class="mx-h">Performance Metrics <span class="g"></span>
+        <span class="cols"><svg width="19" height="19" viewBox="0 0 20 20" fill="none"><rect x="1.6" y="2.8" width="16.8" height="14.4" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7.4 2.8v14.4M12.6 2.8v14.4" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </div>
+      <div class="mx-g" id="mxg"></div>
+      <div class="pager"><b>&#8249;</b><b>&#8250;</b></div>
+    </div>
+
+    <!-- bottom row -->
+    <div class="bt">
+      <div class="c card an" style="animation-delay:.34s">
+        <h3>Budget Overview</h3>
+        <span class="edit"><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M11 2.2l2.8 2.8L5 13.8 1.8 14.2l.4-3.2z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>Edit</span>
+        <div class="money" id="tgt">$0</div>
+        <div class="sub">Target Budget</div>
+        <div class="note">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.6" stroke="#9AA1AB" stroke-width="1.2"/><path d="M8 7.2v4M8 4.9v.1" stroke="#9AA1AB" stroke-width="1.4" stroke-linecap="round"/></svg>
+          <span>Your budget consumption for the day will be compared to the &lsquo;Target budget&rsquo;. The Target Budget here is used ONLY for pacing calculation on this dashboard and does NOT affect ad serving.</span>
+        </div>
+      </div>
+
+      <div class="c card cons an" style="animation-delay:.38s">
+        <h3>Budget Consumption Today</h3>
+        <div>
+          <div class="cons-b">
+            <div class="donut">
+              <svg class="ring-svg" viewBox="0 0 120 120" width="186" height="186">
+                <circle cx="60" cy="60" r="48" fill="none" stroke="var(--track)" stroke-width="23"/>
+                <circle id="ring" cx="60" cy="60" r="48" fill="none" stroke="url(#bg1)" stroke-width="23"
+                        stroke-dasharray="0 301.6" stroke-linecap="butt"/>
+                <defs><linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#448FEE"/><stop offset=".55" stop-color="#206ACE"/>
+                  <stop offset="1" stop-color="#1F63C2"/></linearGradient></defs>
+              </svg>
+              <div class="face">
+                <svg width="44" height="44" viewBox="0 0 44 44">
+                  <rect x="5" y="5" width="34" height="34" rx="9.5" fill="#FFCE3D"/>
+                  <circle cx="16.2" cy="18.4" r="2.6" fill="#33302B"/>
+                  <circle cx="27.8" cy="18.4" r="2.6" fill="#33302B"/>
+                  <path d="M15 26.6a7.4 7.4 0 0 0 14 0" fill="none" stroke="#33302B"
+                        stroke-width="2.7" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+            <div class="kv">
+              <div class="row"><div class="v" id="cs">$0</div><div class="k">Current Spend</div></div>
+              <div class="row"><div class="v" id="rb">$0</div><div class="k">Remaining Budget</div></div>
+              <div class="row"><div class="v" id="rh">07:40:00</div><div class="k">Remaining Hours</div></div>
+            </div>
+          </div>
+          <div class="lg"><i></i>Spend</div>
+        </div>
+      </div>
+
+      <div class="c card an" style="animation-delay:.42s">
+        <h3>Budget Pacing Today</h3>
+        <span class="pill">On Track</span>
+        <div class="gauge">
+          <svg width="215" height="122" viewBox="0 0 220 124">
+            <path d="M18 112a92 92 0 0 1 43-77.7" stroke="var(--g-amber)" stroke-width="27" fill="none"/>
+            <path d="M64.5 32.6A92 92 0 0 1 128 22.2" stroke="var(--g-green)" stroke-width="27" fill="none"/>
+            <path d="M131.6 23A92 92 0 0 1 202 112" stroke="var(--g-red)" stroke-width="27" fill="none"/>
+            <g id="ndl" style="transform-origin:110px 112px">
+              <line x1="110" y1="112" x2="110" y2="30" stroke="#16181C" stroke-width="3.1" stroke-linecap="round"/>
+              <circle cx="110" cy="112" r="7.5" fill="#16181C"/>
+            </g>
+          </svg>
+        </div>
+        <div class="pace">Pacing to spend <b id="pc">0%</b> of target budget.</div>
+        <div class="note" style="margin-top:14px">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.6" stroke="#9AA1AB" stroke-width="1.2"/><path d="M8 7.2v4M8 4.9v.1" stroke="#9AA1AB" stroke-width="1.4" stroke-linecap="round"/></svg>
+          <span>Calculated by assuming even distribution of budget spent throughout the day, based on the number of hours passed and the amount already spent.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- hourly trends, clipped by the frame exactly as in the reference -->
+    <div class="tr">
+      <div class="c card an" style="animation-delay:.46s;position:relative">
+        <h3>Hourly Trend for Clicks</h3>
+        <div class="r"><span class="a"><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M14 8a6 6 0 1 1-1.8-4.3M14 1.5V5h-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Refresh</span>
+          <div class="b">Last refreshed at 08:59 PM (GMT-06:00)</div></div>
+      </div>
+      <div class="c card an" style="animation-delay:.50s;position:relative">
+        <h3>Hourly Trend for Cost</h3>
+        <div class="r"><span class="a"><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M14 8a6 6 0 1 1-1.8-4.3M14 1.5V5h-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Refresh</span>
+          <div class="b">Last refreshed at 08:59 PM (GMT-06:00)</div></div>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<script>
+(function(){
+  "use strict";
+  var RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* Replay: the data animation re-runs after this dwell, so someone arriving mid-cycle still
+     sees it. The cards stay mounted - re-running their entrance every loop reads as a glitch.
+     Set LOOP to false for a single play. */
+  var LOOP = true, DWELL = 5000, CYCLE = 2300;
+
+  /* ---- scale the fixed-geometry frame to whatever width it is given ---- */
+  var fit = document.querySelector(".sdc-fit"), fr = document.getElementById("frame");
+  function scale(){
+    var s = fit.clientWidth / 1794;
+    fr.style.transform = "scale(" + s + ")";
+    fit.style.height = Math.round(877 * s) + "px";
+  }
+  scale();
+  (window.ResizeObserver ? new ResizeObserver(scale).observe(fit) : addEventListener("resize", scale));
+
+  /* ---- metric tiles ---- */
+  var M = [
+    {k:"Impressions", v:2416890, fmt:"int",   d:"27%", dir:"up", tone:"",  ic:"search"},
+    {k:"Clicks",      v:28394,   fmt:"int",   d:"32%", dir:"up", tone:"",  ic:"mouse"},
+    {k:"Cost",        v:68120,   fmt:"usd",   d:"12%", dir:"up", tone:"a", ic:"cost"},
+    {k:"Conversions", v:612,     fmt:"int",   d:"46%", dir:"up", tone:"",  ic:"target"},
+    {k:"Conv Val",    v:214760,  fmt:"usd",   d:"52%", dir:"up", tone:"",  ic:"target"},
+    {k:"ROAS",        v:315,     fmt:"pct",   d:"36%", dir:"up", tone:"",  ic:"dollar"},
+    {k:"Cost / Conv.",v:111,     fmt:"usd",   d:"23%", dir:"dn", tone:"",  ic:"costconv"}
+  ];
+  var ICON = {
+    search:'<circle cx="8" cy="8" r="5.2" stroke="currentColor" stroke-width="1.5"/><path d="M12 12l3.2 3.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>',
+    mouse:'<rect x="5" y="1.8" width="8" height="13" rx="4" stroke="currentColor" stroke-width="1.5"/><path d="M9 4.8v2.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>',
+    cost:'<circle cx="8.6" cy="8.6" r="5.6" stroke="currentColor" stroke-width="1.5"/><path d="M8.6 5.6v6M6.9 7.1h3.1a1.5 1.5 0 0 1 0 3H7.2a1.5 1.5 0 0 0 0 3h3.1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>',
+    target:'<circle cx="9" cy="9" r="6.4" stroke="currentColor" stroke-width="1.5"/><circle cx="9" cy="9" r="2.4" stroke="currentColor" stroke-width="1.5"/>',
+    dollar:'<circle cx="9" cy="9" r="6.4" stroke="currentColor" stroke-width="1.5"/><path d="M9 5.4v7.2M7.3 7.1h2.9a1.35 1.35 0 0 1 0 2.7H7.8a1.35 1.35 0 0 0 0 2.7h2.9" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>',
+    costconv:'<circle cx="8.6" cy="8.6" r="5.6" stroke="currentColor" stroke-width="1.5"/><path d="M8.6 5.6v6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M13.4 13.4l2.4 2.4M15.8 13.4l-2.4 2.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>'
+  };
+  /* Sparkline shapes traced from the reference: a low, slightly noisy run that lifts at the end.
+     Cost is the one amber series; Cost/Conv trends down. */
+  var SHAPES = [
+    [14,15,13,16,14,17,15,20,18,26,24,31,29,34],
+    [16,14,17,15,19,17,22,20,27,24,30,28,33,31],
+    [18,17,19,18,21,20,23,22,26,24,28,26,30,29],
+    [15,17,14,18,16,21,19,24,22,28,26,32,30,35],
+    [13,16,14,18,16,20,19,24,22,29,27,33,31,36],
+    [17,15,18,16,20,18,23,21,26,24,29,27,32,30],
+    [33,31,32,29,30,27,28,25,26,22,23,19,20,17]
+  ];
+  function money(n){ return "$" + n.toLocaleString("en-US"); }
+  function fmt(v, f){
+    if (f === "usd") return money(Math.round(v));
+    if (f === "pct") return Math.round(v) + "%";
+    return Math.round(v).toLocaleString("en-US");
+  }
+  function spark(i, tone){
+    var d = SHAPES[i], W = 128, H = 36, step = W / (d.length - 1), mx = 40;
+    var pts = d.map(function(y, j){ return [j*step, H - (y/mx)*H*0.82 - 2]; });
+    var line = pts.map(function(p, j){ return (j ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1); }).join(" ");
+    var area = line + " L" + W + " " + H + " L0 " + H + " Z";
+    var stroke = tone === "a" ? "var(--amber-line)" : "var(--green-line)";
+    var fill   = tone === "a" ? "var(--amber-pale)" : "var(--green-pale)";
+    return '<svg class="spark" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none">'
+      + '<path d="'+area+'" fill="'+fill+'" opacity="0" class="sk-a"/>'
+      + '<path d="'+line+'" fill="none" stroke="'+stroke+'" stroke-width="1.8" '
+      + 'stroke-linecap="round" stroke-linejoin="round" class="sk-l"/></svg>';
+  }
+  var g = document.getElementById("mxg");
+  g.innerHTML = M.map(function(m, i){
+    var arrow = '<span>' + (m.dir === "up" ? "&#9650;" : "&#9660;") + '</span>';
+    return '<div class="mt">'
+      + '<div class="lb"><svg width="17" height="17" viewBox="0 0 18 18" fill="none" style="color:#6B7482">'+ICON[m.ic]+'</svg>'+m.k+'</div>'
+      + '<div class="vl" data-v="'+m.v+'" data-f="'+m.fmt+'">'+fmt(0, m.fmt)+'</div>'
+      + '<div class="dl '+(m.tone==="a"?"a":"")+'">'+arrow+m.d+'</div>'
+      + spark(i, m.tone) + '</div>';
+  }).join("");
+
+  /* ---- animation helpers ---- */
+  function ease(t){ return 1 - Math.pow(1 - t, 3); }
+  function countTo(el, to, f, ms, delay, done){
+    if (RM){ el.textContent = fmt(to, f); if (done) done(); return; }
+    setTimeout(function(){
+      var t0 = performance.now();
+      (function step(now){
+        var p = Math.min(1, (now - t0) / ms);
+        el.textContent = fmt(to * ease(p), f);
+        if (p < 1) requestAnimationFrame(step); else if (done) done();
+      })(t0);
+    }, delay);
+  }
+
+  function resetVisuals(){
+    [].forEach.call(g.querySelectorAll(".vl"), function(el){
+      el.textContent = fmt(0, el.dataset.f);
+    });
+    [].forEach.call(g.querySelectorAll(".sk-l"), function(p){
+      p.style.transition = "none";
+      p.style.strokeDashoffset = p.getTotalLength();
+    });
+    [].forEach.call(g.querySelectorAll(".sk-a"), function(a){
+      a.style.transition = "none"; a.style.opacity = 0;
+    });
+    ["bex","tgt","cs","rb"].forEach(function(id){
+      var e = document.getElementById(id);
+      e.textContent = id === "bex" ? "0" : "$0";
+    });
+    document.getElementById("sess").textContent = "0";
+    var ring = document.getElementById("ring");
+    ring.style.transition = "none";
+    ring.setAttribute("stroke-dasharray", "0 301.6");
+    var ndl = document.getElementById("ndl");
+    ndl.style.transition = "none";
+    ndl.style.transform = "rotate(-88deg)";
+    document.getElementById("pc").textContent = "0%";
+    if (liveTimer){ clearInterval(liveTimer); liveTimer = null; }
+
+    /* Commit the reset before run() re-attaches transitions. Without an explicit read the
+       browser coalesces "transition:none + new value" with the next frame's "transition:X +
+       target value" into one recalc, the zero state is never painted, and the donut and needle
+       simply stay where they were - the counters replay and the charts do not. Reading a
+       computed value forces the flush, and it must be read from each animated element. */
+    [].concat(
+      [].slice.call(g.querySelectorAll(".sk-l")),
+      [].slice.call(g.querySelectorAll(".sk-a")),
+      [ring, ndl]
+    ).forEach(function(el){ void getComputedStyle(el).opacity; });
+    void g.offsetWidth;
+  }
+
+  function run(){
+    /* metric values */
+    [].forEach.call(g.querySelectorAll(".vl"), function(el, i){
+      countTo(el, +el.dataset.v, el.dataset.f, 1100, 380 + i*70);
+    });
+    /* sparklines draw */
+    [].forEach.call(g.querySelectorAll(".sk-l"), function(p, i){
+      var L = p.getTotalLength();
+      p.style.strokeDasharray = L; p.style.strokeDashoffset = RM ? 0 : L;
+      if (RM) return;
+      p.style.transition = "stroke-dashoffset .9s cubic-bezier(.3,.7,.3,1) " + (0.45 + i*0.07) + "s";
+      requestAnimationFrame(function(){ p.style.strokeDashoffset = 0; });
+    });
+    [].forEach.call(g.querySelectorAll(".sk-a"), function(a, i){
+      if (RM){ a.style.opacity = 1; return; }
+      a.style.transition = "opacity .7s ease " + (0.7 + i*0.07) + "s";
+      requestAnimationFrame(function(){ a.style.opacity = 1; });
+    });
+    /* status figures */
+    countTo(document.getElementById("bex"), 2, "int", 700, 300);
+    countTo(document.getElementById("sess"), 52317, "int", 1300, 320, startLiveTicker);
+    countTo(document.getElementById("tgt"), 100000, "usd", 1100, 620);
+    countTo(document.getElementById("cs"), 68120, "usd", 1200, 700);
+    countTo(document.getElementById("rb"), 31880, "usd", 1200, 780);
+    /* donut sweep: 68.12% of the target */
+    var C = 2 * Math.PI * 48, pctv = 0.6812, ring = document.getElementById("ring");
+    if (RM){ ring.setAttribute("stroke-dasharray", (C*pctv) + " " + C); }
+    else {
+      ring.style.transition = "stroke-dasharray 1.25s cubic-bezier(.25,.75,.3,1) .62s";
+      requestAnimationFrame(function(){ ring.setAttribute("stroke-dasharray", (C*pctv) + " " + C); });
+    }
+    /* gauge needle: 101% of target, mapped across the 180-degree sweep */
+    var ndl = document.getElementById("ndl"), deg = (1.01 / 1.6) * 180 - 90;
+    if (RM) ndl.style.transform = "rotate(" + deg + "deg)";
+    else {
+      ndl.style.transform = "rotate(-88deg)";
+      ndl.style.transition = "transform 1.35s cubic-bezier(.3,1.45,.45,1) .75s";
+      requestAnimationFrame(function(){ ndl.style.transform = "rotate(" + deg + "deg)"; });
+    }
+    var pc = document.getElementById("pc");
+    if (RM) pc.textContent = "101%";
+    else setTimeout(function(){
+      var t0 = performance.now();
+      (function s(n){ var p = Math.min(1,(n-t0)/900);
+        pc.textContent = Math.round(101*ease(p)) + "%"; if (p<1) requestAnimationFrame(s); })(t0);
+    }, 780);
+  }
+
+  /* countdown + a live session count that keeps ticking, like the real dashboard */
+  var secs = 29*60 + 55, cd = document.getElementById("cd");
+  setInterval(function(){
+    secs = secs > 0 ? secs - 1 : 29*60 + 59;
+    cd.textContent = String(Math.floor(secs/60)).padStart(2,"0") + ":" + String(secs%60).padStart(2,"0");
+  }, 1000);
+
+  /* Realtime hourly count. Starts only after the count-up finishes: two writers on one
+     element is how a number appears to jump backwards. */
+  var liveTimer = null;
+  function startLiveTicker(){
+    if (RM || liveTimer) return;
+    var sess = 52317, se = document.getElementById("sess");
+    liveTimer = setInterval(function(){
+      sess += Math.floor(Math.random() * 26) - 8;      /* drifts up, as a live count does */
+      se.textContent = sess.toLocaleString("en-US");
+    }, 2600);
+  }
+
+  /* ---- play on view, then replay on a loop ---- */
+  var started = false, loopTimer = null, onScreen = false;
+
+  function cycle(){
+    run();
+    if (!LOOP || RM) return;
+    loopTimer = setTimeout(function(){
+      if (!onScreen || document.hidden){ loopTimer = null; return; }   /* resume on return */
+      resetVisuals();
+      requestAnimationFrame(cycle);
+    }, CYCLE + DWELL);
+  }
+  function begin(){
+    if (started) return;
+    started = true;
+    cycle();
+  }
+  /* A loop that keeps running off-screen or in a hidden tab burns battery for nobody, and the
+     counters drift out of step with the countdown. Stop, and pick up on return. */
+  function resume(){
+    if (started && onScreen && !document.hidden && !loopTimer && LOOP && !RM){
+      resetVisuals(); requestAnimationFrame(cycle);
+    }
+  }
+  document.addEventListener("visibilitychange", resume);
+
+  if ("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        onScreen = e.isIntersecting;
+        if (onScreen) begin(); else if (loopTimer){ clearTimeout(loopTimer); loopTimer = null; }
+        if (onScreen) resume();
+      });
+    }, {threshold:.25});
+    io.observe(fr);
+    requestAnimationFrame(function(){
+      var r = fr.getBoundingClientRect();
+      if (r.top < innerHeight && r.bottom > 0){ onScreen = true; begin(); }
+    });
+  } else { onScreen = true; begin(); }
+})();
+</script>
+</html>

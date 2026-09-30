@@ -1,0 +1,18 @@
+workspace/*
+!workspace/.gitkeep
+**/.private/
+*.mp4
+*.mov
+.DS_Store
+node_modules/
+**/analysis/
+**/input/
+**/originals.json
+marketing-pages/
+__pycache__/
+
+# local editor/session state
+.claude/settings.local.json
+
+# superseded chrome captures
+*.stale-*.html.bak

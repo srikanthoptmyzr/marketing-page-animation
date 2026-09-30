@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Scene player demo</title>
+<link rel="stylesheet" href="../scene-player.css">
+<style>
+:root{--product-bg:#fff;--product-surface:#f5f6f8;--product-text:#1c2330;--product-muted:#667085;--product-border:#e3e6ec;--product-accent:#2f6df6;--product-ok:#12805c;font-family:system-ui,sans-serif}
+body{margin:0;padding:24px;background:#eef0f4;color:var(--product-text)}
+h1{font-size:1rem} section{max-width:760px;margin:0 auto 60px}
+.pu-demo{container-type:inline-size;margin:0;background:var(--product-bg);border:1px solid var(--product-border);border-radius:12px;padding:16px;font-size:clamp(11px,2.2cqw,15px)}
+.pu-stage{position:relative;min-block-size:26em;display:flex;flex-direction:column;gap:.75em}
+.pu-bar{display:flex;gap:.5em;align-items:center;padding-block-end:.5em;border-block-end:1px solid var(--product-border)}
+.pu-dotmark{inline-size:.9em;block-size:.9em;border-radius:50%;background:var(--product-accent)}
+.pu-chat{display:flex;flex-direction:column;gap:.75em}
+.pu-msg{padding:.7em .9em;border-radius:.8em;max-inline-size:90%}
+.pu-msg p{margin:0}
+.pu-user{align-self:flex-end;background:var(--product-accent);color:#fff}
+.pu-bot{background:var(--product-surface);display:flex;flex-direction:column;gap:.6em}
+.pu-loading{display:flex;gap:.3em;padding:.5em .9em}
+.pu-dot{inline-size:.5em;block-size:.5em;border-radius:50%;background:var(--product-muted)}
+.pu-metric{display:flex;flex-wrap:wrap;gap:.3em .8em;align-items:baseline;padding:.6em;border:1px solid var(--product-border);border-radius:.6em;background:#fff}
+.pu-label{color:var(--product-muted)} .pu-value{font-size:1.6em;font-variant-numeric:tabular-nums} .pu-delta{color:var(--product-ok);font-variant-numeric:tabular-nums}
+.pu-spark{inline-size:6em;block-size:1.6em;color:var(--product-ok);margin-inline-start:auto}
+.pu-rec{background:#fff;border:1px solid var(--product-border);border-radius:.6em;padding:.7em;display:flex;flex-direction:column;gap:.4em}
+.pu-rec h4,.pu-rec p{margin:0}
+.pu-chg{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5em;padding:.4em .6em;background:var(--product-surface);border-radius:.4em}
+.pu-appr{display:flex;flex-wrap:wrap;gap:.5em}
+.pu-appr button,.pu-composer button{padding:.45em .9em;border-radius:.5em;border:1px solid var(--product-accent);background:var(--product-accent);color:#fff;font:inherit}
+.pu-appr .pu-alt{background:#fff;color:var(--product-accent)}
+.pu-appr [data-hover]{filter:none;outline:2px solid #9db8fb}
+.pu-appr [data-disabled]{opacity:.5}
+.pu-ok{display:flex;align-items:center;gap:.5em;color:var(--product-ok);font-weight:600}
+.pu-note{position:absolute;inset-block-start:0;inset-inline-end:0;background:#1c2330;color:#fff;padding:.5em .8em;border-radius:.5em}
+.pu-composer{display:flex;gap:.5em;align-items:center;margin-block-start:auto;border:1px solid var(--product-border);border-radius:.7em;padding:.4em .5em .4em .8em}
+.pu-input{flex:1;color:var(--product-muted)}
+.pu-ctl{display:flex;gap:.5em;margin-block-start:.75em}
+.pu-ctl button{font:inherit;padding:.3em .7em}
+</style></head>
+<body>
+<h1>Scene player demo (synthetic content only)</h1>
+<section id="a">
+<figure class="product-ui pu-demo" data-scene="demo-a" data-final-state="approved" data-loop="2" data-scene-config='{"states":[{"id":"initial","visible":["composer"]},{"id":"asked","visible":["composer","q1"]},{"id":"loading","visible":["q1","load"]},{"id":"answered","visible":["q1","a1","m1"]},{"id":"proposed","visible":["q1","a1","m1","rec","chg","appr"]},{"id":"approved","visible":["q1","a1","m1","rec","chg","ok","note"],"final":true}],"timeline":[{"id":"t1","at":400,"do":"type","target":"composer","source":"q1"},{"id":"t2","after":"t1","delay":300,"do":"click","target":"composer.send"},{"id":"t3","after":"t2","do":"enter-state","state":"asked"},{"id":"t4","after":"t3","delay":200,"do":"enter-state","state":"loading"},{"id":"t5","after":"t4","delay":1000,"do":"enter-state","state":"answered"},{"id":"t6","with":"t5","delay":100,"do":"stream","target":"a1","unit":"word","duration":1400},{"id":"t7","after":"t6","do":"count","target":"m1"},{"id":"t8","after":"t7","delay":400,"do":"enter-state","state":"proposed"},{"id":"t9","after":"t8","delay":700,"do":"cursor-moves","to":"appr.confirm","duration":700},{"id":"t10","after":"t9","do":"click","target":"appr.confirm"},{"id":"t11","after":"t10","do":"enter-state","state":"approved"},{"id":"t12","after":"t11","delay":3000,"do":"loop","count":2}]}'>
+  <div class="pu-stage" aria-hidden="true">
+    <div class="pu-bar"><span class="pu-dotmark"></span><strong>Atlas Assistant</strong></div>
+    <div class="pu-chat" data-target="chat">
+      <div class="pu-msg pu-user" data-target="q1"><p data-text data-content="q1">Which campaigns should I scale this week?</p></div>
+      <div class="pu-loading" data-target="load" data-hidden><span class="pu-dot"></span><span class="pu-dot"></span><span class="pu-dot"></span></div>
+      <div class="pu-msg pu-bot" data-target="a1">
+        <p data-text data-content="a1">Two campaigns are ready to scale. Here is the strongest one, based on the last fourteen days.</p>
+        <div class="pu-metric" data-target="m1">
+          <span class="pu-label">Conversions</span>
+          <strong class="pu-value"><span data-count-to="1240" data-count-from="0">1,240</span></strong>
+          <span class="pu-delta" data-changed>+<span data-count-to="18" data-count-from="0">18</span>%</span>
+          <svg class="pu-spark" viewBox="0 0 100 24" aria-hidden="true"><path data-draw d="M2 20 L20 16 L40 18 L60 9 L80 11 L98 3" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        </div>
+        <div class="pu-rec" data-target="rec">
+          <h4 data-text>Increase budget</h4>
+          <p data-text>Strong return with room to grow.</p>
+          <div class="pu-chg" data-target="chg" data-key><span>Riverbend Shoes | Search</span><span>50 <b>&rarr;</b> 65</span></div>
+          <div class="pu-appr" data-target="appr" data-hidden>
+            <button type="button" tabindex="-1" data-target="appr.confirm">Approve</button>
+            <button type="button" tabindex="-1" class="pu-alt" data-alt>Not now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pu-ok" data-target="ok">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path data-draw d="M4 12 L10 18 L20 6" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>
+      <span data-text>Budget updated</span>
+    </div>
+    <div class="pu-note" data-target="note"><span data-text>Change applied to 1 campaign</span></div>
+    <div class="pu-composer" data-target="composer" data-hidden>
+      <span class="pu-input" data-input>Ask anything about your accounts</span>
+      <button type="button" tabindex="-1" data-target="composer.send">Send</button>
+    </div>
+    <span class="pu-cursor" data-target="cur" data-hidden><svg width="18" height="18" viewBox="0 0 18 18"><path d="M2 1 L2 14 L5.5 11 L8 16 L10 15 L7.5 10 L12 10 Z" fill="#111" stroke="#fff"/></svg></span>
+  </div>
+  <figcaption class="pu-sr-only">A user asks which campaigns to scale. The assistant answers with a conversions metric and a proposed budget increase, and the user approves it.</figcaption>
+  <div class="pu-ctl">
+    <button type="button" data-action="toggle" aria-pressed="false">Play / pause</button>
+    <button type="button" data-action="replay">Replay</button>
+    <button type="button" data-action="prev">Previous</button>
+    <button type="button" data-action="next">Next</button>
+  </div>
+</figure></section>
+<section id="b">
+<figure class="product-ui pu-demo" data-scene="demo-b" data-final-state="approved" data-scene-config='{"states":[{"id":"initial","visible":["composer"]},{"id":"asked","visible":["composer","q1"]},{"id":"loading","visible":["q1","load"]},{"id":"answered","visible":["q1","a1","m1"]},{"id":"proposed","visible":["q1","a1","m1","rec","chg","appr"]},{"id":"approved","visible":["q1","a1","m1","rec","chg","ok","note"],"final":true}],"timeline":[{"id":"s1","at":400,"do":"user-types","target":"composer","source":"q1","cps":26},{"id":"s1h","after":"s1","delay":100,"do":"hide","target":"composer"},{"id":"s2","after":"s1","delay":300,"do":"system-processes","target":"load","duration":1000},{"id":"s3","after":"s2","do":"response-streams","target":"a1","unit":"word"},{"id":"s4","after":"s3","delay":100,"do":"data-updates","target":"m1"},{"id":"s5","after":"s3","delay":400,"do":"recommendation-appears","target":"rec"},{"id":"s6","after":"s5","delay":800,"do":"approval-clicked","target":"appr","essential":true},{"id":"s6h","after":"s6","do":"hide","target":"appr"},{"id":"s6c","after":"s6","do":"hide","target":"cur"},{"id":"s7","after":"s6","do":"success-state","target":"ok","essential":true},{"id":"s7n","after":"s7","delay":300,"do":"notification-arrives","target":"note","from":"end"}]}'>
+  <div class="pu-stage" aria-hidden="true">
+    <div class="pu-bar"><span class="pu-dotmark"></span><strong>Atlas Assistant</strong></div>
+    <div class="pu-chat" data-target="chat">
+      <div class="pu-msg pu-user" data-target="q1"><p data-text data-content="q1">Which campaigns should I scale this week?</p></div>
+      <div class="pu-loading" data-target="load" data-hidden><span class="pu-dot"></span><span class="pu-dot"></span><span class="pu-dot"></span></div>
+      <div class="pu-msg pu-bot" data-target="a1">
+        <p data-text data-content="a1">Two campaigns are ready to scale. Here is the strongest one, based on the last fourteen days.</p>
+        <div class="pu-metric" data-target="m1">
+          <span class="pu-label">Conversions</span>
+          <strong class="pu-value"><span data-count-to="1240" data-count-from="0">1,240</span></strong>
+          <span class="pu-delta" data-changed>+<span data-count-to="18" data-count-from="0">18</span>%</span>
+          <svg class="pu-spark" viewBox="0 0 100 24" aria-hidden="true"><path data-draw d="M2 20 L20 16 L40 18 L60 9 L80 11 L98 3" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        </div>
+        <div class="pu-rec" data-target="rec">
+          <h4 data-text>Increase budget</h4>
+          <p data-text>Strong return with room to grow.</p>
+          <div class="pu-chg" data-target="chg" data-key><span>Riverbend Shoes | Search</span><span>50 <b>&rarr;</b> 65</span></div>
+          <div class="pu-appr" data-target="appr" data-hidden>
+            <button type="button" tabindex="-1" data-target="appr.confirm">Approve</button>
+            <button type="button" tabindex="-1" class="pu-alt" data-alt>Not now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pu-ok" data-target="ok">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path data-draw d="M4 12 L10 18 L20 6" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>
+      <span data-text>Budget updated</span>
+    </div>
+    <div class="pu-note" data-target="note"><span data-text>Change applied to 1 campaign</span></div>
+    <div class="pu-composer" data-target="composer" data-hidden>
+      <span class="pu-input" data-input>Ask anything about your accounts</span>
+      <button type="button" tabindex="-1" data-target="composer.send">Send</button>
+    </div>
+    <span class="pu-cursor" data-target="cur" data-hidden><svg width="18" height="18" viewBox="0 0 18 18"><path d="M2 1 L2 14 L5.5 11 L8 16 L10 15 L7.5 10 L12 10 Z" fill="#111" stroke="#fff"/></svg></span>
+  </div>
+  <figcaption class="pu-sr-only">A user asks which campaigns to scale. The assistant answers with a conversions metric and a proposed budget increase, and the user approves it.</figcaption>
+  <div class="pu-ctl">
+    <button type="button" data-action="toggle" aria-pressed="false">Play / pause</button>
+    <button type="button" data-action="replay">Replay</button>
+    <button type="button" data-action="prev">Previous</button>
+    <button type="button" data-action="next">Next</button>
+  </div>
+</figure></section>
+<script src="../scene-player.js"></script>
+</body></html>

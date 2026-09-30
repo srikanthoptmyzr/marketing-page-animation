@@ -1,0 +1,50 @@
+{
+ "component": "comparison-pros-cons",
+ "source": "component-library/components/comparison-pros-cons/",
+ "fields": {
+  "cons": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "cons_text": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Cons:",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "pros": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "pros_text": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Pros:",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "text": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

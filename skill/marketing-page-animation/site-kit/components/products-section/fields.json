@@ -1,0 +1,87 @@
+{
+ "component": "products-section",
+ "source": "component-library/components/products-section/",
+ "fields": {
+  "amazon_card": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "unlisted"
+  },
+  "benefit_1": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Launch and test creatives and audiences",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "benefit_2": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Reliable reporting",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "benefit_3": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "btn_text": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Explore Social Tools",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "btn_url": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "#",
+   "inputType": "url",
+   "localization": "url-prefixed"
+  },
+  "card_title": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Optymzr For Social",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Explore Our Other Paid Media Products",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "image": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/images/homepage/products-section-social.png",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "social_card": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "unlisted"
+  },
+  "subtext": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "The complete toolkit for social media advertising on Facebook/Meta, Instagram, and LinkedIn.",
+   "inputType": "textarea",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [
+  "more"
+ ],
+ "partials": []
+}

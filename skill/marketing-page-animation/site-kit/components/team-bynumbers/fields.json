@@ -1,0 +1,36 @@
+{
+ "component": "team-bynumbers",
+ "source": "component-library/components/team-bynumbers/",
+ "fields": {
+  "card_title": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "103",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "image": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/images/about/team-numbers-1.png",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "stats": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "text": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Optmyzr team members around the world",
+   "inputType": "textarea",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

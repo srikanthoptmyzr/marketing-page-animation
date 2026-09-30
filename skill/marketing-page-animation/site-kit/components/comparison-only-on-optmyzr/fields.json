@@ -1,0 +1,73 @@
+{
+ "component": "comparison-only-on-optmyzr",
+ "source": "component-library/components/comparison-only-on-optmyzr/",
+ "fields": {
+  "description": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": ">-",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Only on Optmyzr",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "icon": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "/images/comparison/check_circle.svg",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "image": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "rows": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "subtitle": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "tile_color": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "orange",
+   "inputType": "select",
+   "localization": "unlisted"
+  },
+  "title": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Amazon Ads \u2014 full support",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "toc_label": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [],
+ "partials": [
+  "image.html"
+ ]
+}

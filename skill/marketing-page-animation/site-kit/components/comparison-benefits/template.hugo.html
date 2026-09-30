@@ -1,0 +1,39 @@
+<section class="c-comparison-benefits px-lr pt-[64px] pb-[48px] md:pt-[96px] md:pb-[96px]   bg-colorSurfaceLightWhiteHover">
+  <div class="mx-auto max-w-1440 flex flex-col md:flex-row justify-between items-center xl:px-[114px]">
+    <div class="w-full md:w-[60%] pr-0 md:pr-8 mb-[20px] md:mb-0 ">
+      <h2 class="text-center md:text-left font-dm
+        text-mobileHeadlinesH3 md:text-desktopHeadlinesH3 
+        lg:tracking-desktopLetterSpacingMedium font-bold mb-[20px] md:mb-[32px] leading-mobileLineHeight5xl tracking-mobileLetterSpacingMedium text-colorSurfaceDarkDarkActive lg:leading-desktopLineHeight4xl">{{.heading}}</h2>
+      <ul class="space-y-4 lg:w-[84%]">
+        {{ range .benefits }}
+        <li class="flex items-start">
+          <div class="flex-shrink-0 mt-1">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.9213 9.40142L5.52713 8.02787C5.41171 7.9126 5.28748 7.85357 5.15442 7.85079C5.0215 7.84815 4.89463 7.90718 4.7738 8.02787C4.6531 8.14871 4.59275 8.27774 4.59275 8.41496C4.59275 8.55218 4.6531 8.68121 4.7738 8.80204L6.4565 10.4847C6.59331 10.6214 6.74824 10.6897 6.9213 10.6897C7.09435 10.6897 7.24928 10.6214 7.38609 10.4847L11.2098 6.661C11.3251 6.54558 11.3841 6.41787 11.3869 6.27787C11.3896 6.13801 11.3305 6.00767 11.2098 5.88683C11.089 5.76614 10.9634 5.70579 10.8332 5.70579C10.7029 5.70579 10.5773 5.76614 10.4565 5.88683L6.9213 9.40142ZM8.0013 15.8212C6.96185 15.8212 5.98123 15.6238 5.05942 15.2291C4.13761 14.8344 3.33081 14.2913 2.639 13.5997C1.9472 12.9082 1.4038 12.1018 1.0088 11.1804C0.613934 10.259 0.416504 9.27864 0.416504 8.23933C0.416504 7.186 0.613865 6.2019 1.00859 5.28704C1.40331 4.37218 1.94643 3.56885 2.63796 2.87704C3.32949 2.18524 4.13595 1.64183 5.05734 1.24683C5.97873 0.851971 6.95907 0.654541 7.99838 0.654541C9.05171 0.654541 10.0358 0.851902 10.9507 1.24662C11.8655 1.64135 12.6689 2.18447 13.3607 2.876C14.0525 3.56753 14.5959 4.37051 14.9909 5.28496C15.3857 6.1994 15.5832 7.18322 15.5832 8.23642C15.5832 9.27586 15.3858 10.2565 14.9911 11.1783C14.5964 12.1001 14.0532 12.9069 13.3617 13.5987C12.6702 14.2905 11.8672 14.8339 10.9528 15.2289C10.0383 15.6238 9.05449 15.8212 8.0013 15.8212Z" fill="#14880C"/>
+            </svg>
+          </div>
+          <p class="ml-2 text-colorSurfaceDarkNormalActive text-desktopSubHeadingsP5 lg:text-desktopSubHeadingsP4">{{ .text }}</p>
+        </li>
+        {{ end }}
+      </ul>
+      <div class="hidden md:flex gap-[20px] mt-4 md:mt-8">
+        {{with .trialBtn}}
+        <a href="{{.url}}" class="rounded-lg font-bold text-desktopSubHeadingsP4 bg-colorPrimaryTealDark hover:bg-colorPrimaryTealNormalHover
+          text-colorSurfaceLightWhite w-[127px] sm:w-[207px] py-3 text-center capitalize">
+          {{.text}}
+        </a>
+        {{end}}
+        {{with .demoBtn}}
+        <a href="{{.url}}" class="rounded-lg font-bold text-desktopSubHeadingsP4 bg-colorPrimaryTealLight hover:bg-colorPrimaryTealLightHover
+          text-colorPrimaryTealDark w-[127px] sm:w-[207px] py-3 text-center capitalize">
+          {{.text}}
+        </a>
+        {{end}}
+      </div>
+    </div>
+
+    <div class="w-full md:w-[40%] relative">
+      <img src="/images/comparison/benefits-illustrations.webp" alt="Comparison illustration" class="w-full"/>
+    </div>  
+  </div>
+</section>

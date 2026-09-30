@@ -1,0 +1,74 @@
+{
+ "component": "comparison-table",
+ "source": "component-library/components/comparison-table/",
+ "fields": {
+  "characteristicLabel": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Characteristic",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "competitors": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "image": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "/images/comparison/alternatives/optmyzr.png",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "name": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Optmyzr",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "rows": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "subtitle": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "table_title": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "tables": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "values": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [
+  "hide_common_features",
+  "highlight_differences"
+ ],
+ "partials": []
+}

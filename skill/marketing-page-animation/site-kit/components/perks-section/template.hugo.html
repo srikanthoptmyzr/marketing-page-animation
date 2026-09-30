@@ -1,0 +1,35 @@
+<section id="perks-and-benefits" class="c-perks-section px-lr py-[64px] lg:py-[96px]">
+    <div class="max-w-1440 mx-auto">
+    <h5 class="font-bold text-mobileHeadlinesH2 md:text-desktopHeadlinesH2 font-dm leading-mobileLineHeight6xl 
+      md:leading-desktopLineHeight5xl md:text-center mb-[32px] tracking-desktopLetterSpacingXl">
+      {{if .perksAndBenefitsTitle}}{{.perksAndBenefitsTitle}}{{end}}
+    </h5>
+        <div class="grid grid-cols-4 md:grid-cols-8 xl:px-[114px] gap-[40px]">
+            {{if .perksAndBenefitsList}}
+                {{range $index,$el := .perksAndBenefitsList}}
+                <div class="col-span-4 text-textonteallight1 pb-6 space-y-[16px]">
+                    {{if $el.image}}
+                    <div class="w-12 h-12 bg-surface-dark-lighter rounded-lg">
+                        <img src="{{$el.image}}" class="w-12 h-12">
+                    </div>
+                    {{else}}
+                    <div class="size-[64px] md:size-[94px] bg-surface-dark-lighter rounded-[12px] grid place-items-center place-content-center">
+                        <span class="text-mobileHeadlinesH1 md:text-desktopHeadlinesH1 leading-desktopLineHeight6xl
+                          font-bold font-dm text-surface-dark-light">{{add $index 1}}</span>
+                    </div>
+                    {{end}}
+                   <p class="text-desktopSubHeadingsP2 md:text-desktopSubHeadingsP1 leading-desktopLineHeightXxl 
+                            md:leading-desktopLineHeight3xl font-semibold tracking-desktopLetterSpacingXxl relative after:content-[''] 
+                            after:absolute after:w-auto after:h-4 after:bg-textonteallight1 lg:w-fit text-surface-dark-dark">
+                      {{$el.perk_title}}
+                    </p>
+                  <p class="text-mobileBodyB2 md:text-desktopSubHeadingsP2 leading-mobileLineHeight3xl 
+                    md:leading-desktopLineHeightXxl tracking-desktopLetterSpacingXxl text-surface-dark-active">
+                    {{$el.perk_description}}
+                  </p>
+                </div>
+                {{end}}
+            {{end}}
+        </div>
+    </div>
+</section>

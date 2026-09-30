@@ -1,0 +1,128 @@
+{{/* Sidekick hero: split grid — copy + buttons left, a live "typing" Slack chat card right.
+     Page-specific component (like the mcp-* set); Tailwind + design tokens for layout/type, one
+     small scoped <style> block for the chat-card animation (the same pattern as mcp-features and
+     animated-images). The hero is NEVER hidden behind JS — reveals are for below-the-fold only. */}}
+
+{{ $slack := `<svg viewBox="0 0 122.8 122.8" aria-hidden="true" class="w-[26px] h-[26px]"><path d="M25.8 77.6c0 7.1-5.8 12.9-12.9 12.9S0 84.7 0 77.6s5.8-12.9 12.9-12.9h12.9v12.9zm6.5 0c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9v32.3c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V77.6z" fill="#E01E5A"/><path d="M45.2 25.8c-7.1 0-12.9-5.8-12.9-12.9S38.1 0 45.2 0s12.9 5.8 12.9 12.9v12.9H45.2zm0 6.5c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9H12.9C5.8 58.1 0 52.3 0 45.2s5.8-12.9 12.9-12.9h32.3z" fill="#36C5F0"/><path d="M97 45.2c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9-5.8 12.9-12.9 12.9H97V45.2zm-6.5 0c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V12.9C64.7 5.8 70.5 0 77.6 0s12.9 5.8 12.9 12.9v32.3z" fill="#2EB67D"/><path d="M77.6 97c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9-12.9-5.8-12.9-12.9V97h12.9zm0-6.5c-7.1 0-12.9-5.8-12.9-12.9s5.8-12.9 12.9-12.9h32.3c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9H77.6z" fill="#ECB22E"/></svg>` }}
+
+<section class="c-sidekick-hero bg-white relative overflow-hidden py-[56px] md:py-[88px] px-lr">
+  <div class="container mx-auto px-4 lg:px-12 max-w-1440">
+    <div class="grid lg:grid-cols-2 gap-[40px] lg:gap-[56px] items-center">
+
+      <!-- Copy -->
+      <div>
+        <div class="inline-flex items-center gap-[14px] bg-white border border-[#CFD9E2] rounded-[14px] py-[12px] px-[18px] shadow-sm mb-[4px]">
+          <span class="inline-flex items-center gap-[9px] font-bold text-[15px]" style="color:#0b0c0d;">{{ $slack | safeHTML }}Slack</span>
+          <span class="w-[24px] h-[24px] rounded-full bg-[#E6F5F6] text-[#05747A] inline-flex items-center justify-center font-bold text-[15px]">+</span>
+          <span class="inline-flex items-center gap-[9px] font-bold text-[15px]" style="color:#0b0c0d;"><img src="/images/slack_sidekick/optmyzr-logo.jpg" alt="Optmyzr" width="26" height="26" class="rounded-[6px]">Optmyzr</span>
+        </div>
+
+        <h1 class="font-dm font-bold text-mobileHeadlinesH2 md:text-[52px] leading-mobileLineHeight5xl md:leading-[1.05] tracking-mobileLetterSpacingMedium md:tracking-[-1.5px] my-[18px]" style="color:#0b0c0d;">{{ .heading }}</h1>
+        <p class="text-mobileBodyB3 md:text-[19px] leading-relaxed max-w-[520px]" style="color:#4F5965;">{{ .subtext }}</p>
+
+        <div class="flex flex-col sm:flex-row flex-wrap gap-[16px] mt-[32px]">
+          {{ with .primaryBtn }}
+          <a href="{{ .url }}" target="_blank" rel="noopener"
+             class="rounded-lg font-dm font-bold text-desktopSubHeadingsP4 text-center text-colorSurfaceLightWhite bg-teal-dark hover:bg-colorPrimaryTealNormalHover py-3 px-6">{{ .text }}</a>
+          {{ end }}
+          {{ with .secondaryBtn }}
+          <a href="{{ .url }}"
+             class="rounded-lg font-dm font-bold text-desktopSubHeadingsP4 text-center text-[#05747A] bg-[#E6F5F6] hover:bg-[#DAF0F1] py-3 px-6">{{ .text }}</a>
+          {{ end }}
+        </div>
+      </div>
+
+      <!-- Live chat mockup card (typewriter).
+           lg:justify-end, NOT justify-center: the card is capped at 480px inside a column that
+           grows past 480px above ~1208px viewport, so centring it left up to 82px of dead space
+           on the right while the copy column sits flush left — measured as a 41px optical
+           left-shift of the whole hero at 1536px. Every other section on this page is symmetric. -->
+      <div class="skh-stage relative flex items-center justify-center lg:justify-end min-h-[320px] lg:min-h-[360px]">
+        <div class="skh-card relative w-full max-w-[480px] bg-white border border-[#CFD9E2] rounded-[16px] py-[20px] px-[22px]">
+          <div class="flex items-center gap-[10px] pb-[14px] mb-[14px] border-b border-[#EEF1F4]">
+            <span class="w-[34px] h-[34px] rounded-[8px] bg-[#E6F5F6] flex items-center justify-center p-[5px]"><img src="/images/slack_sidekick/optmyzr-logo.jpg" alt="" width="34" height="34" class="w-full h-full object-contain"></span>
+            <span class="font-bold text-[14.5px]" style="color:#0b0c0d;">Optmyzr<span class="ml-[6px] text-[10px] font-bold tracking-wide text-white bg-[#4F5965] rounded-[4px] py-[2px] px-[5px] align-middle">APP</span></span>
+          </div>
+          <div class="flex flex-wrap text-[15px] leading-normal min-h-[2.9em]">
+            <span class="text-[#05747A] font-bold mr-[7px]">@Optmyzr</span>
+            <span class="skh-text font-medium" style="color:#2D3A48;"></span>
+            <span class="skh-cursor"></span>
+          </div>
+          <div class="skh-answer mt-[14px] py-[12px] px-[14px] rounded-r-[8px] text-[13.5px] leading-relaxed min-h-[3.4em]" style="color:#2D3A48;"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Chat-card animation internals — kept as a scoped block like mcp-features / animated-images
+     do, since blinking cursors and streamed answers have no Tailwind idiom. */
+  .c-sidekick-hero .skh-stage::before { content: ''; position: absolute; inset: 0;
+    background: radial-gradient(520px 360px at 60% 40%, rgba(6,155,162,0.10), transparent 65%); }
+  .c-sidekick-hero .skh-card { box-shadow: 0 20px 50px rgba(34,36,40,0.10); }
+  .c-sidekick-hero .skh-cursor { display: inline-block; width: 2px; height: 1em;
+    background: #2D3A48; margin-left: 1px; vertical-align: text-bottom;
+    animation: skh-blink 0.8s steps(1) infinite; }
+  .c-sidekick-hero .skh-answer { background: rgba(6,160,63,0.06); border-left: 3px solid #06A03F;
+    opacity: 0; transition: opacity 0.3s; }
+  .c-sidekick-hero .skh-answer.show { opacity: 1; }
+  @keyframes skh-blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .c-sidekick-hero .skh-cursor { animation: none; }
+  }
+</style>
+
+<script>
+  /* Types each prompt after the fixed @Optmyzr mention, reveals the answer, holds, clears, moves
+     on. Under reduced motion the first Q&A renders statically. Parks while the hero is off-screen
+     so an infinite loop never churns text nodes the visitor cannot see. Single-instance component
+     (page-specific), so element lookups are scoped to the one .c-sidekick-hero. */
+  (function () {
+    'use strict';
+    var root = document.querySelector('.c-sidekick-hero');
+    if (!root) return;
+    var textEl = root.querySelector('.skh-text');
+    var ansEl = root.querySelector('.skh-answer');
+    var prompts = {{ .prompts | jsonify | safeJS }};
+    if (!textEl || !ansEl || !prompts || !prompts.length) return;
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) {
+      textEl.textContent = prompts[0].question || '';
+      ansEl.textContent = prompts[0].answer || '';
+      ansEl.classList.add('show');
+      return;
+    }
+    var visible = true;
+    if ('IntersectionObserver' in window) {
+      visible = false;
+      new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }, { threshold: 0 }).observe(root);
+    }
+    var sleep = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
+    (async function cycle() {
+      var i = 0;
+      for (;;) {
+        while (!visible) await sleep(400);
+        var p = prompts[i % prompts.length];
+        var q = p.question || '';
+        for (var c = 1; c <= q.length; c++) {
+          textEl.textContent = q.slice(0, c);
+          await sleep(26 + Math.random() * 28);
+        }
+        await sleep(500);
+        ansEl.textContent = p.answer || '';
+        ansEl.classList.add('show');
+        await sleep(2600);
+        ansEl.classList.remove('show');
+        await sleep(350);
+        for (var d = q.length; d >= 0; d--) {
+          textEl.textContent = q.slice(0, d);
+          await sleep(12);
+        }
+        await sleep(300);
+        i++;
+      }
+    })();
+  })();
+</script>

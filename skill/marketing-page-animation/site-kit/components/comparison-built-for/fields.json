@@ -1,0 +1,94 @@
+{
+ "component": "comparison-built-for",
+ "source": "component-library/components/comparison-built-for/",
+ "fields": {
+  "best_for_1": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Agencies and in-house teams managing multiple accounts that want deep automation, optimization, and reporting across Google, Microsoft, Amazon, and Meta.",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "best_for_2": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Teams looking for a lighter-weight campaign management tool focused on a narrower set of channels and workflows.",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "competitor_logo": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/images/comparison/alternatives/1.png",
+   "inputType": "\"image\"",
+   "localization": "unlisted"
+  },
+  "optmyzr_badge": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Your PPC Partner",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "optmyzr_logo": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/images/comparison/vscard-optmyzr-logo.png",
+   "inputType": "\"image\"",
+   "localization": "unlisted"
+  },
+  "section_heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "What each tool is built for",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "subtitle": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "toc_label": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "What each tool is built for",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "vs_desc_1": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Optmyzr is an award-winning, AI-powered PPC management software trusted by digital marketers worldwide. It offers 80+ cutting-edge tools for insights, optimization, reporting, and automation, supporting Google Ads, Microsoft Ads, Amazon Ads, and Meta.",
+   "inputType": "html",
+   "localization": "translatable"
+  },
+  "vs_desc_2": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Competitor is an AI-powered digital advertising platform designed to help SEM businesses and agencies manage their online ad campaigns. It offers tools for campaign insights and automation across multiple channels. ",
+   "inputType": "html",
+   "localization": "translatable"
+  },
+  "vs_title_1": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "What is Optmyzr?",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "vs_title_2": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "What is Competitor?",
+   "inputType": "text",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [
+  "bestFor"
+ ],
+ "partials": []
+}

@@ -1,0 +1,111 @@
+<section class="c-teams-section pt-10 pb-20 md:pb-48  bg-surface-dark-darker-hover" style="background-image: url('/images/homepage/teams-pattern.png'); background-size: cover; background-position: center;">
+  <div data-scroll="fade-slide" class="container mx-auto">
+    <h1 class="text-mobileHeadlinesH3 md:text-desktopHeadlinesH2 text-left font-dm px-5 leading-mobileLineHeight5xl 
+      md:leading-desktopLineHeight5xl tracking-desktopLetterSpacingXl text-colorSurfaceLightWhite md:text-center font-bold my-[30px] 
+      lg:mb-[58px]"> {{.heading}} </h1>
+    <div class="px-[16px] lg:px-[48px] grid grid-col-1 lg:grid-cols-2 lg:grid-rows-5  gap-[20px]">
+      <!-- PPC & Digital Agencies  -->
+      {{with .card_1}}
+      <div class="w-full inline-block lg:row-span-3 lg:row-start-1 lg:col-start-1 h-full">
+        <div class="bg-surface-dark-dark p-[40px] pb-0 pr-0 border border-surface-dark-active rounded-lg h-full flex flex-col ">
+          <h2 class="text-mobileHeadlinesH4 md:text-desktopHeadlinesH3 font-bold text-colorSurfaceLightWhite font-dm mb-4 
+            tracking-desktopLetterSpacingMedium leading-mobileLineHeight2xl md:leading-desktopLineHeight4xl">
+                {{.card_title}}</h2>
+          <p class="text-[#F9F8F6] text-desktopSubHeadingsP4 leading-desktopLineHeightMedium 
+            tracking-desktopLetterSpacingXxl mb-6 w-11/12">
+                {{.subtext}}</p>
+          <a href="{{.button_url}}" class="bg-teal-dark-active w-[260px] md:w-[204px] text-colorSurfaceLightWhite px-10 py-3 
+                mb-8 text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 font-semibold rounded-xl hover:bg-colorPrimaryTealNormal
+                 text-center inline-flex items-center justify-center gap-[10px]">{{.button_text}}
+                <svg width="8" height="11" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7.83346 6.03176L2.4933 0.691706C2.36979 0.568097 2.20492 0.5 2.02911 0.5C1.85331 0.5 1.68843 0.568097 1.56492 0.691706L1.17166 1.08487C0.915757 1.34107 0.915757 1.75745 1.17166 2.01326L5.65591 6.49751L1.16668 10.9867C1.04317 11.1104 0.974976 11.2751 0.974976 11.4508C0.974976 11.6267 1.04317 11.7915 1.16668 11.9152L1.55995 12.3083C1.68356 12.4319 1.84833 12.5 2.02414 12.5C2.19994 12.5 2.36482 12.4319 2.48833 12.3083L7.83346 6.96336C7.95726 6.83936 8.02526 6.6738 8.02487 6.4978C8.02526 6.32112 7.95726 6.15566 7.83346 6.03176Z" fill="white"/>
+                </svg>
+              </a>
+          <img src="{{.image}}" alt="{{ i18n "teams_alt_agencies" }}" class="mt-auto w-full object-cover rounded-lg max-h-[301px]">
+        </div>
+      </div>
+      {{end}}
+
+      {{with .card_3}}
+      <!-- PPC Freelancers -->
+      <div class="w-full inline-block lg:row-start-4 lg:col-start-1 lg:row-span-2 h-full">
+        <div class="bg-surface-dark-dark p-[40px] flex flex-col md:flex-row pb-0 pr-0 border border-surface-dark-active rounded-lg h-full">
+          <div class="flex justify-between  md:pb-[80px]">
+            <div>
+          <h2 class="text-mobileHeadlinesH4 md:text-desktopHeadlinesH3 font-bold text-colorSurfaceLightWhite font-dm mb-4 
+            tracking-desktopLetterSpacingMedium leading-mobileLineHeight2xl md:leading-desktopLineHeight4xl">
+            {{.card_title}}
+          </h2>
+          <p class="text-[#F9F8F6] text-desktopSubHeadingsP4 leading-desktopLineHeightMedium 
+            tracking-desktopLetterSpacingXxl mb-6 w-11/12">
+            {{.subtext}}
+          </p>
+              <a href="{{.button_url}}" class="bg-teal-dark-active w-[260px] md:w-[204px] text-colorSurfaceLightWhite justify-center px-10 py-3 
+                mb-8 text-desktopSubHeadingsP5 md:text-text-desktopSubHeadingsP4 font-semibold rounded-xl hover:bg-colorPrimaryTealDarkHover
+                 text-center inline-flex items-center gap-[10px]">{{.button_text}}
+
+                <svg width="8" height="11" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7.83346 6.03176L2.4933 0.691706C2.36979 0.568097 2.20492 0.5 2.02911 0.5C1.85331 0.5 1.68843 0.568097 1.56492 0.691706L1.17166 1.08487C0.915757 1.34107 0.915757 1.75745 1.17166 2.01326L5.65591 6.49751L1.16668 10.9867C1.04317 11.1104 0.974976 11.2751 0.974976 11.4508C0.974976 11.6267 1.04317 11.7915 1.16668 11.9152L1.55995 12.3083C1.68356 12.4319 1.84833 12.5 2.02414 12.5C2.19994 12.5 2.36482 12.4319 2.48833 12.3083L7.83346 6.96336C7.95726 6.83936 8.02526 6.6738 8.02487 6.4978C8.02526 6.32112 7.95726 6.15566 7.83346 6.03176Z" fill="white"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <img src="{{.image}}" alt="{{ i18n "teams_alt_freelancers" }}" class="w-auto md:w-[9rem] h-auto object-cover rounded-lg">
+        </div>
+      </div>
+      {{end}}
+
+      {{with .card_2}}
+      <!-- In-House Marketers -->
+      <div class="w-full inline-block lg:row-span-2 lg:row-start-1 lg:col-start-2 h-full">
+        <div class="bg-surface-dark-dark p-[40px] flex flex-col md:flex-row pb-0 pr-0 border border-surface-dark-active rounded-lg h-full">
+          <div class="flex justify-between  md:pb-[80px]">
+            <div>
+          <h2 class="text-mobileHeadlinesH4 md:text-desktopHeadlinesH3 font-bold text-colorSurfaceLightWhite font-dm mb-4 
+            tracking-desktopLetterSpacingMedium leading-mobileLineHeight2xl md:leading-desktopLineHeight4xl">
+            {{.card_title}}
+          </h2>
+          <p class="text-[#F9F8F6] text-desktopSubHeadingsP4 leading-desktopLineHeightMedium 
+            tracking-desktopLetterSpacingXxl mb-6 w-11/12">
+            {{.subtext}}
+          </p>
+              <a href="{{.button_url}}" class="bg-teal-dark-active w-[260px] md:w-[204px] text-colorSurfaceLightWhite px-10 py-3 justify-center
+            mb-8 text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 font-semibold rounded-xl hover:bg-colorPrimaryTealDarkHover
+             text-center inline-flex items-center gap-[10px]">{{.button_text}}
+              <svg width="8" height="11" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.83346 6.03176L2.4933 0.691706C2.36979 0.568097 2.20492 0.5 2.02911 0.5C1.85331 0.5 1.68843 0.568097 1.56492 0.691706L1.17166 1.08487C0.915757 1.34107 0.915757 1.75745 1.17166 2.01326L5.65591 6.49751L1.16668 10.9867C1.04317 11.1104 0.974976 11.2751 0.974976 11.4508C0.974976 11.6267 1.04317 11.7915 1.16668 11.9152L1.55995 12.3083C1.68356 12.4319 1.84833 12.5 2.02414 12.5C2.19994 12.5 2.36482 12.4319 2.48833 12.3083L7.83346 6.96336C7.95726 6.83936 8.02526 6.6738 8.02487 6.4978C8.02526 6.32112 7.95726 6.15566 7.83346 6.03176Z" fill="white"/>
+              </svg>
+          </a>
+            </div>
+          </div>
+          <img src="{{.image}}" alt="{{ i18n "teams_alt_in_house" }}" class="md:w-[8rem] h-auto object-cover object-[38%_75%] rounded-lg">
+        </div>
+      </div>
+      {{end}}
+
+      {{with .card_4}}
+      <!-- Enterprise Teams -->
+      <div class="w-full inline-block lg:row-span-3 lg:row-start-3 lg:col-start-2 h-full">
+        <div class="bg-surface-dark-dark p-[40px] pb-0 pr-0 border border-surface-dark-active rounded-lg h-full flex flex-col ">
+          <h2 class="text-mobileHeadlinesH4 md:text-desktopHeadlinesH3 font-bold text-colorSurfaceLightWhite font-dm mb-4 
+            tracking-desktopLetterSpacingMedium leading-mobileLineHeight2xl md:leading-desktopLineHeight4xl">
+            {{.card_title}}
+          </h2>
+          <p class="text-[#F9F8F6] text-desktopSubHeadingsP4 leading-desktopLineHeightMedium 
+            tracking-desktopLetterSpacingXxl mb-6 w-11/12">
+            {{.subtext}}
+          </p>
+          <a href="{{.button_url}}" class="bg-teal-dark-active w-[260px] md:w-[204px] text-colorSurfaceLightWhite px-10 py-3 justify-center
+            mb-8 text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 font-semibold rounded-xl hover:bg-colorPrimaryTealDarkHover
+             text-center inline-flex items-center gap-[10px]">{{.button_text}}
+              <svg width="8" height="11" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.83346 6.03176L2.4933 0.691706C2.36979 0.568097 2.20492 0.5 2.02911 0.5C1.85331 0.5 1.68843 0.568097 1.56492 0.691706L1.17166 1.08487C0.915757 1.34107 0.915757 1.75745 1.17166 2.01326L5.65591 6.49751L1.16668 10.9867C1.04317 11.1104 0.974976 11.2751 0.974976 11.4508C0.974976 11.6267 1.04317 11.7915 1.16668 11.9152L1.55995 12.3083C1.68356 12.4319 1.84833 12.5 2.02414 12.5C2.19994 12.5 2.36482 12.4319 2.48833 12.3083L7.83346 6.96336C7.95726 6.83936 8.02526 6.6738 8.02487 6.4978C8.02526 6.32112 7.95726 6.15566 7.83346 6.03176Z" fill="white"/>
+              </svg>
+          </a>
+          <img src="{{.image}}" alt="{{ i18n "teams_alt_enterprise" }}" class="mt-auto w-full object-cover rounded-lg max-h-[301px]">
+        </div>
+      </div>
+      {{end}}
+    </div>  
+  </div>
+</section>

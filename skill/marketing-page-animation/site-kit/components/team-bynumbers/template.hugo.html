@@ -1,0 +1,30 @@
+<section class="c-team-bynumbers px-lr pb-[80px]">
+  <div class="container mx-auto max-w-1440">
+    <div class="flex flex-col lg:flex-row gap-[16px] lg:gap-[24px]">
+      {{ range .stats }}
+      <div class="bg-surface-dark-lighter rounded-[12px] border border-[#E8E8E8] flex flex-col
+            py-[16px] md:py-[24px] px-[16px] md:px-[24px] flex-1 relative items-center gap-[12px]">
+        <div class="flex justify-between w-full h-[31px] md:h-[40px]">
+          <h3 class="font-dm font-bold text-mobileHeadlinesH3 md:text-desktopHeadlinesH3 leading-mobileLineHeight5xl 
+            md:leading-desktopLineHeight4xl tracking-desktopLetterSpacingMedium">
+            {{ .card_title }}
+          </h3>
+          <img 
+            src="{{ .image }}"
+            alt=""
+            class="w-auto h-[37px] md:h-[53px] translate-y-[-11px] md:translate-y-[-15px] translate-x-[11px] md:translate-x-[15px]"
+            width="56" height="53"
+            loading="lazy"
+            aria-hidden="true"
+            >
+        </div>
+        <p class="text-surface-dark-active text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 
+          leading-desktopLineHeightSmall md:leading-desktopLineHeightMedium tracking-desktopLetterSpacingXxl w-full">
+          {{ .text }}
+        </p>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+

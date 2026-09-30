@@ -1,0 +1,34 @@
+<section id="speaks-at" class="bg-surface-dark-lighter pt-[48px] md:pt-[60px] pb-[48px] md:pb-[70px] c-conferences-section px-lr">
+  <div class="max-w-1440 mx-auto text-center">
+    <h1 class="text-mobileHeadlinesH3 md:text-desktopHeadlinesH3 leading-mobileLineHeight5xl md:leading-desktopLineHeight4xl 
+      tracking-desktopLetterSpacingMedium font-bold font-dm mb-[20px] lg:mb-[40px] text-center">{{ .heading }}</h1>
+    <div class="flex flex-wrap justify-center mx-auto lg:w-[100%] xl:w-[90%]">
+      {{ $classes := slice 
+          "mr-5 mt-4 lg:mb-[32px] lg:mx-16 w-1/6 lg:w-auto lg:scale-125" 
+          "h-12 mr-5 mt-4 lg:mb-[32px] lg:mx-16 w-1/4 md:mx-auto lg:w-auto lg:scale-125" 
+          "h-12 mr-5 mt-4 lg:mb-[32px] lg:mx-16 w-1/4 md:mx-auto lg:w-auto lg:scale-125" 
+          "h-12 mr-5 mt-4 lg:mb-[32px] lg:mx-16 w-1/4 md:mx-auto lg:w-auto scale-90 lg:scale-125" 
+          "mr-5 mt-4 lg:mb-[32px] lg:mx-16 w-1/4 md:mx-auto lg:w-auto lg:scale-125" 
+          "mr-5 mt-4 lg:mb-[32px] lg:mx-16 w-1/5 lg:w-auto lg:scale-125" 
+          "mr-5 mt-4 lg:mb-[32px] lg:mx-16 w-3/5 lg:w-auto lg:scale-125" 
+          "mr-5 mt-4 lg:mb-[32px] lg:mx-16 w-1/4 lg:w-auto lg:scale-125" 
+          "mr-5 mt-4 lg:mb-[32px] lg:mx-16 w-1/4 lg:w-auto lg:scale-125" 
+          "mr-5 mt-4 lg:mx-16 w-1/12 lg:w-auto lg:scale-125" 
+          "mr-5 mt-4 lg:mx-16 ml-auto lg:w-auto lg:scale-125" 
+          "mt-4 lg:mx-16 ml-auto mr-auto lg:w-auto lg:scale-125"
+      }}
+      {{ $defaultClass := "mr-5 mt-4 lg:mb-[32px] lg:mx-16 w-1/4 md:mx-auto lg:w-auto lg:scale-125" }}
+      {{ $total := len .images }}
+      {{ range $index, $image := .images }}
+        {{ $imageClass := cond (lt $index (len $classes)) (index $classes $index) $defaultClass }}
+        {{ if ge $index (sub $total 3) }}
+          {{ $imageClass = replace $imageClass " lg:mb-[32px]" "" }}
+        {{ end }}
+        <img style="mix-blend-mode: luminosity;" 
+             class="{{ $imageClass }} w-auto max-w-[120px] md:max-w-[150px] h-auto lg:w-auto lg:max-w-none"  
+             src="{{ $image.src }}" alt="">
+      {{ end }}
+    </div>
+  </div>
+</section>
+

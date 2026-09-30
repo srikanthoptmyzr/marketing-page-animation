@@ -1,0 +1,71 @@
+{
+ "component": "labs-cards",
+ "source": "component-library/components/labs-cards/",
+ "fields": {
+  "buttonText": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Launch",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "comingSoonProjects": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": null,
+   "localization": "unlisted"
+  },
+  "image": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "/forestry/rapid-campaign-launcher.webp",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "labTitle": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "See What's New",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "projectLink": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "#",
+   "inputType": "url",
+   "localization": "skip"
+  },
+  "project_description": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": ">-",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "project_title": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Express Campaign Launcher",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "releasedProjects": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "upcomingBtnText": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": null,
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

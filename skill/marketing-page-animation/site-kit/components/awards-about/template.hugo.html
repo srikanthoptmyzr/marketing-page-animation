@@ -1,0 +1,67 @@
+<section class="c-awards-about px-lr py-[64px] md:pb-[116px] awards-about-bg">
+  <div class="max-w-1440 mx-auto lg:mt-[90px]">
+    <div class="mx-auto">
+      <h1 data-scroll="fade-slide" class="font-dm text-mobileHeadlinesH2 md:text-desktopHeadlinesH2 font-bold text-center mb-[48px] 
+        leading-mobileLineHeight6xl md:leading-desktopLineHeight5xl">
+        {{.heading}}
+      </h1>
+
+      <div class="grid grid-cols-1 gap-[20px] md:gap-6 sm:grid-cols-2 md:flex-wrap md:flex md:flex-row md:justify-center px-2 lg:max-w-[1344px]">
+        {{range .awards}}
+        <div class="rounded-lg overflow-hidden border border-solid border-colorSurfaceLightNormal flex flex-col md:basis-1/4 lg:basis-[320px]">
+          <div class="p-[16px] md:p-[24px] bg-black" style="background-image: url('/images/homepage/awards-frame.png'); background-size: cover; background-position: center;">
+            <div class="flex items-center">
+              <div class="flex justify-between w-full items-center max-h-12">
+                <div class="h-full">
+                  <img src="{{.image}}" alt="awards badge" class="max-h-12 w-auto" loading="lazy">
+                </div>
+                <img src="/images/homepage/awards-badge-2.png" alt="awards badge" class="h-8" loading="lazy">
+              </div>
+            </div>
+          </div>
+
+          <div class="px-[24px] pb-[32px] pt-[24px] bg-surface-dark-lighter flex flex-col flex-grow">
+            <h3 class="font-dm text-mobileHeadlinesH4 md:text-desktopHeadlinesH4 font-bold leading-mobileLineHeight2xl 
+              md:leading-desktopLineHeight2xl tracking-desktopLetterSpacingMedium mb-[20px] md:mb-0">{{.award_title}}</h3>
+
+            <div class="flex-grow"></div>
+
+            <div class="mt-auto">
+              <hr class="my-[12px] md:my-[16px]">
+              <div class="flex flex-wrap gap-2">
+                {{range $index, $year := .years}}
+                <span class="text-gray-700 text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4">
+                  <span class="text-gray-700 text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 
+                    leading-desktopLineHeightSmall md:leading-desktopLineHeightMedium tracking-desktopLetterSpacingXl">
+                  {{if ne $index 0}}• {{end}}{{$year}}
+                </span>
+                {{end}}
+              </div>
+            </div>
+          </div>
+        </div>
+        {{end}}
+      </div>
+    </div> 
+  </div>  
+</section>
+
+<style>
+
+.awards-about-bg {
+ background-image: url('/images/homepage/awards-pattern.png');
+ background-size: 54%;
+ background-repeat: no-repeat;
+ background-position: center top;
+}
+
+@media (max-width: 768px) { 
+  .awards-about-bg {
+    background-size: cover;
+    background-size: 113%;
+    background-repeat: no-repeat;
+    background-position: center 10px;
+  }
+}
+
+</style>

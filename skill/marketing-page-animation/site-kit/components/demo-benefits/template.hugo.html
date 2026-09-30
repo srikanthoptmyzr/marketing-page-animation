@@ -1,0 +1,36 @@
+<section id="benefits" class="c-demo-benefits px-lr md:py-[120px] pt-[48px] pb-[130px] md:pb-[220px]">
+  <div class="flex flex-col gap-y-[64px] lg:gap-y-[160px]">
+    {{range $index, $value := .demoBenefits}}
+    {{$isEven := eq (mod $index 2) 0}}
+    <section class="bg-white max-w-1440 mx-auto xl:px-[114px]">
+      <div class="flex flex-col 
+        {{if $isEven}} lg:flex-row 
+        {{else}} lg:flex-row-reverse {{end}} 
+        items-center justify-between md:gap-x-[20px]">
+        <div class="flex flex-col md:basis-1/2 gap-[20px]">
+          <h2 class="font-bold font-dm text-mobileHeadlinesH3 md:text-desktopHeadlinesH3 leading-mobileLineHeight5xl 
+            md:leading-desktopLineHeight4xl w-[80%] tracking-desktopLetterSpacingMedium">{{.benefit_title}}</h2>
+          <p class="text-surface-dark-active text-mobileBodyB2 md:text-desktopSubHeadingsP2 leading-mobileLineHeight3xl 
+            md:leading-desktopLineHeightXxl">{{.benefit_desc}}</p>
+        </div>
+        <div class="flex items-center justify-center w-auto md:basis-1/2 lg:flex-shrink mt-6">
+          {{- $imageResource := resources.Get .image -}}
+          {{- if $imageResource -}}
+            <img src="{{.image}}" 
+                 alt=""
+                 width="{{$imageResource.Width}}" 
+                 height="{{$imageResource.Height}}"
+                 class="h-auto" 
+                 loading="lazy">
+          {{- else -}}
+            <img src="{{.image}}" 
+                 alt=""
+                 class="h-auto" 
+                 loading="lazy">
+          {{- end -}}
+        </div>
+      </div>
+    </section>
+    {{end}}
+  </div>
+</section>

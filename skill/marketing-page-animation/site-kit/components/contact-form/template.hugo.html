@@ -1,0 +1,231 @@
+{{$links := site.Data.links}}
+<section id="contact-form" class="c-contact-form  px-lr pt-[48px] lg:pt-[110px] lg:pb-0">
+  <div class="max-w-1440 mx-auto grid grid-cols-4 lg:flex gap-y-[64px] md:gap-y-16 lg:items-center lg:justify-center lg:gap-[134px] xl:pl-[90px]">
+    <div class="col-span-4 lg:w-1/2 max-w-[550px] md:mx-auto lg:mx-0 text-center text-textonteallight1 lg:text-left lg:bg-textonteal lg:px-10 lg:rounded">
+      <h2 class="text-surface-dark-darker-active text-left font-dm font-bold text-mobileHeadlinesH3 md:text-desktopHeadlinesH3 
+        mb-[40px] leading-mobileLineHeight5xl md:leading-desktopLineHeight4xl tracking-desktopLetterSpacingMedium">{{.form_title}}</h2>
+
+      <form name="contact-form" class="flex flex-col mt-5 lg:mt-4" action="" onsubmit="submitContactForm(event)">
+        <input required type="text" name="name" placeholder="{{ .fullName }}*" class="w-full text-mobileBodyB4 md:text-desktopSubHeadingsP4 leading-normal font-normal border py-[13px] md:py-[15px] px-3 border-[#C5C5C5] outline-none bg-textonteal rounded" autocomplete>
+        <input required type="email" name="email" placeholder="{{ .email }}*" class="w-full text-mobileBodyB4 md:text-desktopSubHeadingsP4 leading-normal font-normal border py-[13px] md:py-[15px] px-3 border-[#C5C5C5] outline-none bg-textonteal rounded mt-[12px] md:mt-[16px]" autocomplete>
+        <div class="inline-block relative w-full mt-[12px] md:mt-[16px]">
+          <select id="reasonToContact" name="reasonToContact" required class="block text-sm text-black appearance-none w-full bg-textonteal border border-[#C5C5C5] px-3 py-4 pr-12 rounded focus:outline-none focus:ring">
+            <option selected disabled value="">{{ .chooseAReasonForReachingUs }}</option>
+            <!-- Options will be populated via JavaScript -->
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-menuchevron">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
+              <path d="M5 7.5L10 12.5L15 7.5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+        <textarea id="message" name="message" rows="7" placeholder="{{.message}}" 
+          class="w-full text-mobileBodyB4 md:text-desktopSubHeadingsP4  leading-normal font-normal border py-4 px-3 border-colorSurfaceLightLightActive outline-none bg-textonteal rounded mt-[12px] md:mt-[16px] lg:min-h-[256px]" style="resize:none"></textarea>
+        <div class="mt-2">
+          <div class="g-recaptcha" data-expired-callback="recaptchaExpired" data-callback="recaptchaSuccess" data-sitekey="6LdiVQ0TAAAAACHQc5A_Q9UFlcV1aOLWmcsae5yb"></div>
+          <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl=en" async defer></script>
+        </div>
+        <button id="contact-form-button" class="bg-teal-dark hover:bg-colorPrimaryTealNormalHover mt-[32px]
+          md:mt-[40px] w-[203px] h-[41px] md:h-[48px] md:w-[210px] text-colorSurfaceLightWhite py-3 
+          text-mobileBodyB4 md:text-desktopSubHeadingsP4 font-semibold rounded-xl text-center inline-flex items-center justify-center gap-[10px] disabled:opacity-50 disabled:cursor-not-allowed">
+          <svg version="1.1" viewBox="0 0 80 80" class="w-4 h-4 mr-2 animate-spin" style="display: none;">
+            <path id="spinner" fill="#fff" d="M40,72C22.4,72,8,57.6,8,40C8,22.4,22.4,8,40,8c17.6,0,32,14.4,32,32c0,1.1-0.9,2-2,2 s-2-0.9-2-2c0-15.4-12.6-28-28-28S12,24.6,12,40s12.6,28,28,28c1.1,0,2,0.9,2,2S41.1,72,40,72z"></path>
+          </svg>
+          <span>{{ .sendMessage }}</span>
+        </button>
+        <input type="reset" class="hidden w-0 h-0">
+        <h5 data-showAfterSubmission class="text-desktopSubHeadingsP4 text-teal font-medium capitalize mt-6" style="display: none;">{{ i18n "submitted_successfully" }}</h5>
+        <h5 data-showAfterRejection class="text-desktopSubHeadingsP4 text-premierRed font-medium capitalize mt-6" style="display: none;">{{ i18n "error_occurred" }}</h5>
+      </form>
+      <!-- Hidden div to store contact form reasons data for JavaScript -->
+      <div id="contactFormReasonsData" class="hidden" 
+           data-reasons='{{ jsonify .contactFormReasonsList }}'
+           data-choose-reason="{{ .chooseAReasonForReachingUs }}"></div>
+    </div>
+    <div class="col-span-4 lg:w-1/2 lg:flex lg:flex-col md:mx-auto lg:mx-0 md:translate-x-[-20px] lg:translate-x-0">
+      <div class="text-left lg:mt-[-60px]">
+        <h1 class="font-dm font-bold text-mobileHeadlinesH3 md:text-desktopHeadlinesH3 leading-mobileLineHeight5xl 
+          md:leading-desktopLineHeight4xl tracking-desktopLetterSpacingMedium text-surface-dark-darker-active mb-[20px]">
+          {{.prefer_email}}
+        </h1>
+
+        <h2 class="leading-desktopLineHeightLarge md:leading-desktopLineHeightXxl text-desktopSubHeadingsP3 
+          md:text-desktopSubHeadingsP2 mb-[8px]">{{ .emailUs }}</h2>
+
+        <a href="mailto:{{ .optmyzrEmail }}" class="text-teal-dark font-medium leading-desktopLineHeightLarge 
+          md:leading-desktopLineHeightXxl text-desktopSubHeadingsP3 md:text-desktopSubHeadingsP2 mb-[56px]">{{ .optmyzrEmail }}</a>
+      </div>
+      <div class="block mt-[32px] md:mt-16 lg:text-left">
+        <h2 class="font-semibold leading-desktopLineHeightLarge md:leading-desktopLineHeightXxl text-desktopSubHeadingsP3
+          md:text-desktopSubHeadingsP2 text-surface-dark-darker-active">{{ .followUs }}</h2>
+      </div>
+      <div class="flex mt-4 items-center justify-between md:justify-start">
+          <a target="_blank" rel="noopener" href="{{$links.twitter}}" class="text-lg font-normal text-textonteallight1 rounded-sm overflow-hidden w-6">
+            <img class="blend-luminosity" loading="lazy" width="24" height="24" src="/images/icons/social_x_black.svg" alt="optmzr twitter" />
+          </a>
+          <a target="_blank" rel="noopener" href="{{$links.linkedin}}" class="ml-4 text-lg font-normal text-textonteallight1 rounded-sm overflow-hidden w-6">
+            <img class="blend-luminosity" loading="lazy" width="24" height="24" src="/images/icons/social_linkedin_black.svg" alt="optmzr linkedin" />
+          </a>
+          <a target="_blank" rel="noopener" href="{{$links.fb}}" class="ml-4 text-lg font-normal text-textonteallight1 rounded-sm overflow-hidden w-6">
+            <img class="blend-luminosity" loading="lazy" width="24" height="24" src="/images/icons/social_fb_black.svg" alt="optmzr facebook" />
+          </a>
+          <a target="_blank" rel="noopener" href="{{$links.youtube}}" class="ml-4 mt-1 text-lg font-normal text-textonteallight1 rounded-sm overflow-hidden w-10">
+            <img class="blend-luminosity" loading="lazy" width="35" height="30" src="/images/icons/social_youtube_black.svg" alt="optmzr youtube" />
+          </a>
+          <a target="_blank" href="https://www.g2.com/products/optmyzr/reviews" class="text-2xl ml-3 text-textonteallight1 font-icon grayscale h-6">
+            <img src="/images/icons/g2.svg" alt="g2 logo" class="h-full" loading="lazy" width="24" height="24">
+          </a>
+          <a target="_blank" href="https://www.capterra.com/p/156308/Optmyzr/" class="text-2xl ml-3 text-textonteallight1 font-icon grayscale h-6">
+            <img src="/images/icons/capterra.svg" alt="capterra logo" class="h-full" loading="lazy" height="24">
+          </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+let selectEl;
+let reasonsData;
+
+function recaptchaExpired() {
+    const submitBtnEl = document.querySelector("#contact-form-button");
+    submitBtnEl.disabled = true;
+    submitBtnEl.style.display = "block";
+    submitBtnEl.querySelector("span").innerText = "{{ .sendMessage }}";
+    document.querySelector("[data-showAfterSubmission]").style.display = "none";
+    document.querySelector("[data-showAfterRejection]").style.display = "none";
+}
+
+function submitContactForm(event) {
+    event.preventDefault();
+    
+    const formEl = document.querySelector("form[name='contact-form']");
+    const name = formEl.querySelector("input[name='name']").value;
+    const email = formEl.querySelector("input[name='email']").value;
+    const message = formEl.querySelector("textarea").value;
+    const reasonToContact = formEl.querySelector("select[name='reasonToContact']").value;
+    const recaptchaResponse = formEl.querySelector("#g-recaptcha-response").value;
+    const submitBtnEl = document.querySelector("#contact-form-button");
+    const svg = submitBtnEl.querySelector("svg");
+    const textInButton = submitBtnEl.querySelector("span");
+    const resetFormBtn = formEl.querySelector("input[type='reset']");
+    
+    svg.style.display = "block";
+    submitBtnEl.disabled = true;
+    textInButton.innerText = "{{ i18n "submitting" }}";
+    
+    sendFormData({name, email, message, reasonToContact, recaptchaResponse})
+        .then(
+            (res) => res.json(), 
+            (err) => {
+                throw new Error();
+            }
+        )
+        .then(data => {
+            if(data.submission) {
+                submitBtnEl.style.display = "none";
+                svg.style.display = "none";
+                formEl.querySelector("[data-showAfterSubmission]").style.display = "block";
+                resetFormBtn.click();
+            } else {
+                throw new Error();
+            }
+        })
+        .catch(e => {
+            submitBtnEl.style.display = "none";
+            svg.style.display = "none";
+            formEl.querySelector("[data-showAfterRejection]").style.display = "block";
+        });
+}
+
+function getSelectValueFromQuery(query) {
+    if (!reasonsData || !Array.isArray(reasonsData)) return "";
+    
+    for (const item of reasonsData) {
+        if (query === urlize(item.value)) {
+            return {
+                value: item.value,
+                msg: item.message || ""
+            };
+        }
+    }
+    
+    return "";
+}
+
+function updateSelectAndTextArea(query) {
+    let msgEl = document.querySelector("#message");
+    if (query) {
+        let result = getSelectValueFromQuery(query);
+        if (result) {
+            selectEl.value = result.value;
+            if (result.msg) {
+                msgEl.value = result.msg;
+            } else {
+                msgEl.value = "";
+            }
+        }
+    }
+}
+
+function urlize(str) {
+    if (!str) return "";
+    return str.toLowerCase()
+        .replace(/\s+/g, '-')
+        .replace(/[^\w\-]+/g, '')
+        .replace(/\-\-+/g, '-')
+        .replace(/^-+/, '')
+        .replace(/-+$/, '');
+}
+
+function initContactForm() {
+    selectEl = document.querySelector("#reasonToContact");
+    const dataElement = document.getElementById("contactFormReasonsData");
+    
+    if (!dataElement || !selectEl) return;
+    
+    try {
+        const reasonsJSON = dataElement.getAttribute("data-reasons");
+        reasonsData = JSON.parse(reasonsJSON);
+        
+        if (reasonsData && Array.isArray(reasonsData)) {
+            while (selectEl.options.length > 1) {
+                selectEl.remove(1);
+            }
+            
+            reasonsData.forEach((reason) => {
+                const option = document.createElement("option");
+                option.value = reason.value;
+                option.textContent = reason.reason_title;
+                option.setAttribute("data-query", urlize(reason.value));
+                option.setAttribute("data-message", reason.message || "");
+                selectEl.appendChild(option);
+            });
+            
+            selectEl.addEventListener("input", function(e) {
+                e.preventDefault();
+                let index = e.target.selectedIndex;
+                let targetQuery = e.target.options[index].dataset.query;
+                updateSelectAndTextArea(targetQuery);
+            });
+            
+            let url = new URL(window.location);
+            let query = url.searchParams.get("query");
+            if (query) {
+                updateSelectAndTextArea(query);
+            }
+        }
+    } catch (error) {
+        console.error("Error initializing contact form:", error);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    initContactForm();
+    
+    const formElement = document.getElementById("contact-form");
+    if (formElement && window.location.search.includes("query=")) {
+        formElement.scrollIntoView(true);
+    }
+});
+</script>

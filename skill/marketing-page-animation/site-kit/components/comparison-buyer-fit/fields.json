@@ -1,0 +1,57 @@
+{
+ "component": "comparison-buyer-fit",
+ "source": "component-library/components/comparison-buyer-fit/",
+ "fields": {
+  "competitor": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "unlisted"
+  },
+  "criteria": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Which tool fits which buyer?",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "optmyzr": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "unlisted"
+  },
+  "subtitle": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "text": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "title": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Choose Optmyzr if\u2026",
+   "inputType": "text",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

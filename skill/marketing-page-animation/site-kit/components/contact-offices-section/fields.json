@@ -1,0 +1,66 @@
+{
+ "component": "contact-offices-section",
+ "source": "component-library/components/contact-offices-section/",
+ "fields": {
+  "first_paragraph": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "San Francisco Bay Area, USA",
+   "inputType": null,
+   "localization": "translatable"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Optmyzr Offices",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "image_one": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "/images/contact-us/office-1.webp",
+   "inputType": null,
+   "localization": "unlisted"
+  },
+  "image_two": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "/images/contact-us/hq.webp",
+   "inputType": null,
+   "localization": "unlisted"
+  },
+  "link_text": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Open in Google Maps",
+   "inputType": null,
+   "localization": "translatable"
+  },
+  "link_url": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "https://goo.gl/maps/xyz",
+   "inputType": null,
+   "localization": "unlisted"
+  },
+  "officeList": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "second_paragraph": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Optmyzr Inc, 282 San Antonio Road, Mountain View CA 94040",
+   "inputType": null,
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [],
+ "partials": [
+  "image.html"
+ ]
+}

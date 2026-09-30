@@ -1,0 +1,92 @@
+{
+ "component": "casestudies",
+ "source": "component-library/components/casestudies/",
+ "fields": {
+  "anchor_text": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "/images/partner-logos/driva-logo.png",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "anchor_url": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/",
+   "inputType": "url",
+   "localization": "url-prefixed"
+  },
+  "boost_item_1": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "boost_item_2": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "boost_item_3": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "casestudies": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "client": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Optmyzr turns PPC teams into powerhouses of efficiency and effectiveness",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "image": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/images/partner-logos/driva-logo.png",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "stat": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "22%",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "subtitle": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Explore how we delivered to our customers",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "text": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "some text here to desc",
+   "inputType": "textarea",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

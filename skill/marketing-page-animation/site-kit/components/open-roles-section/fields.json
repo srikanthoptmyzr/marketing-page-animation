@@ -1,0 +1,25 @@
+{
+ "component": "open-roles-section",
+ "source": "component-library/components/open-roles-section/",
+ "fields": {
+  "openRolesDescription": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": null,
+   "localization": "translatable"
+  },
+  "openRolesTitle": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": null,
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [
+  "currently_no_open_roles",
+  "view_role"
+ ],
+ "partials": []
+}

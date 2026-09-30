@@ -1,0 +1,131 @@
+{
+ "component": "contact-form",
+ "source": "component-library/components/contact-form/",
+ "fields": {
+  "Country": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": null,
+   "localization": "unlisted"
+  },
+  "chatWithUs": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Chat with us!",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "chooseAReasonForReachingUs": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "I'm writing because...",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "contactFormReasonsList": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "email": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Email",
+   "inputType": "email",
+   "localization": "skip"
+  },
+  "emailUs": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Reach us by email:",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "followUs": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Follow Us",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "form_title": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Talk To Optmyzr",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "fullName": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Name",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "message": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Message",
+   "inputType": "textarea",
+   "localization": "unlisted"
+  },
+  "optmyzrEmail": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "support@optmyzr.com",
+   "inputType": "email",
+   "localization": "unlisted"
+  },
+  "ourOfficeLocations": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Optmyzr Offices",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "prefer_email": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Prefer Email?",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "reason_title": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "I want to see a demo of Optmyzr",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "sendMessage": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Send",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "startAConversation": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Start A Conversation",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "value": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Optmyzr Demo",
+   "inputType": "text",
+   "localization": "skip"
+  }
+ },
+ "i18nKeys": [
+  "error_occurred",
+  "submitted_successfully",
+  "submitting"
+ ],
+ "partials": []
+}

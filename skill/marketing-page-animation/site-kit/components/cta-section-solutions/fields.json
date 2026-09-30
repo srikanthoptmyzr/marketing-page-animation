@@ -1,0 +1,71 @@
+{
+ "component": "cta-section-solutions",
+ "source": "component-library/components/cta-section-solutions/",
+ "fields": {
+  "demoBtn": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "url-prefixed"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Heading here",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "left_image": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/images/solutions/sol-cta-left.png",
+   "inputType": "image",
+   "localization": "unlisted"
+  },
+  "product_type": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Search",
+   "inputType": "select",
+   "localization": "skip"
+  },
+  "right_image": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/images/solutions/sol-cta-right.png",
+   "inputType": "image",
+   "localization": "unlisted"
+  },
+  "subtext": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Try Optmyzr for 14 days. No credit card required.",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "text": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Start trial",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "trialBtn": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "unlisted"
+  },
+  "url": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "https://tools.optmyzr.com/info/signup",
+   "inputType": "url",
+   "localization": "url-prefixed"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

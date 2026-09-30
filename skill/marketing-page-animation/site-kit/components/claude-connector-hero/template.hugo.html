@@ -1,0 +1,285 @@
+{{/*
+  claude-connector-hero
+  Centered hero for the Optmyzr PPC connector for Claude, with a silent looping
+  product animation underneath. Every class and id is namespaced `ozcl-` so
+  nothing collides with site styles.
+
+  The animation's styles and script live outside this file:
+    static/websitecss/claude-connector-hero.css
+    static/websitejs/claude-connector-hero.js
+  partials/head.html loads both, fingerprinted, only on pages whose content
+  blocks include this component. Neither file may contain Hugo templating —
+  anything content-driven reaches the script through the markup below.
+*/}}
+
+<section class="c-claude-connector-hero px-4 lg:px-12 pt-[48px] lg:pt-[72px] pb-[40px] lg:pb-[56px] overflow-hidden"
+  style="background-color:#faf9f5;" id="claude-connector-hero">
+  <div class="max-w-1440 mx-auto">
+
+    <div class="ozcl-head">
+      {{ with .eyebrow }}
+      <a class="ozcl-badge" {{ with $.eyebrow_url }}href="{{ . }}" target="_blank" rel="noopener"{{ end }}>
+        <span class="ozcl-badge-dot"></span>
+        {{ . }}
+      </a>
+      {{ end }}
+
+      <h1 class="font-dm font-bold text-mobileHeadlinesH2 md:text-desktopHeadlinesH1 leading-tight tracking-desktopLetterSpacingXs"
+        style="color:#0b0c0d;">{{ .heading }}</h1>
+
+      {{ with .subtext }}
+      <p class="text-mobileBodyB2 md:text-desktopSubHeadingsP2 leading-mobileLineHeight3xl"
+        style="color:#4a4a4a;">{{ . | markdownify }}</p>
+      {{ end }}
+
+      <div class="ozcl-cta">
+        {{ with .primaryBtn }}
+        <a href="{{ .url }}" {{ if hasPrefix .url "http" }}target="_blank" rel="noopener"{{ end }}
+          class="ozcl-btn bg-teal-dark hover:bg-colorPrimaryTealNormalHover text-colorSurfaceLightWhite text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4">{{ .text }}</a>
+        {{ end }}
+        {{ with .secondaryBtn }}
+        <a href="{{ .url }}" {{ if hasPrefix .url "http" }}target="_blank" rel="noopener"{{ end }}
+          class="ozcl-btn bg-teal-light hover:bg-colorPrimaryTealLightHover text-colorSecondaryBlueDarker text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4">{{ .text }}</a>
+        {{ end }}
+      </div>
+
+      {{ with .trustLine }}
+      <p class="ozcl-trust">{{ . }}</p>
+      {{ end }}
+    </div>
+
+    {{ if ne .show_animation false }}
+    {{/* ── Silent looping product animation ──────────────────────────────
+         Every string in the mock UI comes from the content file (see the
+         `animation` object in claude-connector-hero.bookshop.yml) so each
+         locale ships its own demo copy, and CloudCannon editors can change
+         it. The defaults below are the English source strings and only apply
+         to a block that predates the field.
+
+         The script (websitejs/claude-connector-hero.js) reads every value it
+         needs to re-write at runtime off this markup — initial text content
+         and `data-*` attributes — so it stays a plain static asset. ── */}}
+    {{ $a := merge (dict
+      "new_chat"             "New chat"
+      "recents_label"        "Recents"
+      "recent_chats"         (slice "Shopping campaign cleanup" "Q3 budget pacing review" "Brand vs non-brand split" "RSA asset refresh")
+      "connected_label"      "connected"
+      "chat_title"           "Shopping campaign cleanup"
+      "chat_chip"            "Google Ads &middot; Running Shoes"
+      "greeting"             "Ready to optimize some PPC?"
+      "recent_cards"         (slice
+                               (dict "card_title" "Q3 budget pacing review across all accounts" "card_meta" "2 days ago")
+                               (dict "card_title" "Why did Brand CPC spike on Tuesday?"         "card_meta" "4 days ago")
+                               (dict "card_title" "RSA asset refresh for the Trail line"        "card_meta" "Last week"))
+      "prompt"               "Find the search terms wasting spend in my Shopping campaign and add the worst offenders as negative keywords."
+      "composer_placeholder" "Reply to Claude…"
+      "reply_text"           "Six search terms burned **$1,394** with no conversions in the last 30 days. I’ve staged them as negatives — nothing is live until you apply."
+      "preview_label"        "Keyword preview &middot; Human review required"
+      "preview_pill"         "Review before Apply"
+      "staged_label"         "{n} negative keywords staged"
+      "staged_scope"         "Shopping | Running Shoes"
+      "col_term"             "Search term"
+      "col_keyword"          "Negative keyword"
+      "col_match"            "Match"
+      "col_spend"            "Wasted spend"
+      "match_phrase"         "Phrase"
+      "match_exact"          "Exact"
+      "currency_prefix"      "$"
+      "rows"                 (slice
+                               (dict "term" "free running shoes"       "keyword" "free"             "match" "phrase" "spend" 412)
+                               (dict "term" "used trail sneakers"      "keyword" "used"             "match" "exact"  "spend" 286)
+                               (dict "term" "shoe repair near me"      "keyword" "repair"           "match" "exact"  "spend" 203)
+                               (dict "term" "nike air max review"      "keyword" "review"           "match" "phrase" "spend" 178 "uncheck" true)
+                               (dict "term" "kids soccer cleats"       "keyword" "kids soccer cleats" "match" "exact" "spend" 164)
+                               (dict "term" "running shoes size chart" "keyword" "size chart"       "match" "phrase" "spend" 151 "uncheck" true))
+      "pending_status"       "No account changes have been applied yet"
+      "applied_status"       "{n} negatives live · ${sum}/mo blocked"
+      "remove_label"         "Remove selected"
+      "apply_label"          "Apply {n} keywords"
+      "apply_label_one"      "Apply {n} keyword"
+      "applying_label"       "Applying…"
+      "applied_label"        "Applied"
+      "done_title"           "4 negative keywords applied to Shopping | Running Shoes"
+      "done_text"            "Blocking roughly **$1,065/mo** in wasted spend. I skipped the two you unchecked — review and size-chart traffic still reaches your ads."
+      ) (default dict .animation) }}
+    {{ $rows := default slice $a.rows }}
+
+    <div class="ozcl-stage" id="ozcl-stage" role="img" aria-label="{{ default "Animation: a marketer asks Claude to find wasted spend, Optmyzr stages six negative keywords for review, the marketer unchecks two, and applies the rest." .animation_alt }}">
+      <div class="ozcl-scaler" id="ozcl-scaler">
+        {{/* data-nosnippet keeps the invented demo figures out of search
+             snippets. It does not stop indexing — the mock UI is live text so
+             that the animation can mutate it — but it is the one lever that
+             costs nothing visually. */}}
+        <div class="ozcl-frame" id="ozcl-frame" aria-hidden="true" data-nosnippet>
+
+          <aside class="ozcl-side">
+            <div class="ozcl-brand">
+              <svg width="19" height="19" viewBox="0 0 24 24" aria-hidden="true">
+                <g fill="#d97757">
+                  <rect x="11.1" y="1.5" width="1.8" height="21" rx=".9"/>
+                  <rect x="11.1" y="1.5" width="1.8" height="21" rx=".9" transform="rotate(45 12 12)"/>
+                  <rect x="11.1" y="1.5" width="1.8" height="21" rx=".9" transform="rotate(90 12 12)"/>
+                  <rect x="11.1" y="1.5" width="1.8" height="21" rx=".9" transform="rotate(135 12 12)"/>
+                </g>
+              </svg>
+              <b>Claude</b>
+            </div>
+
+            <div class="ozcl-side-new">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="#73716a" stroke-width="2.2" stroke-linecap="round"/></svg>
+              {{ $a.new_chat }}
+            </div>
+
+            <div>
+              <div class="ozcl-side-lbl">{{ $a.recents_label }}</div>
+              <div class="ozcl-side-list">
+                {{ range $i, $chat := (default slice $a.recent_chats) }}
+                <div class="ozcl-side-item{{ if eq $i 0 }} on{{ end }}"{{ if eq $i 0 }} id="ozcl-sideactive"{{ end }}>{{ $chat }}</div>
+                {{ end }}
+              </div>
+            </div>
+
+            <div class="ozcl-conn">
+              <span class="ozcl-dot"></span>
+              <span><b>Optmyzr</b> {{ $a.connected_label }}</span>
+            </div>
+          </aside>
+
+          <div class="ozcl-main">
+            <div class="ozcl-topbar">
+              <div class="ozcl-tbtitle" id="ozcl-tbtitle" data-new-chat="{{ $a.new_chat }}">{{ $a.chat_title }}</div>
+              <span class="ozcl-chip" id="ozcl-tbchip">{{ $a.chat_chip | safeHTML }}</span>
+            </div>
+
+            <div class="ozcl-thread">
+
+              <div class="ozcl-welcome" id="ozcl-welcome">
+                <svg class="ozcl-w-mark" viewBox="0 0 24 24" aria-hidden="true">
+                  <g fill="#d97757">
+                    <rect x="11.2" y="2" width="1.6" height="20" rx=".8"/>
+                    <rect x="11.2" y="2" width="1.6" height="20" rx=".8" transform="rotate(45 12 12)"/>
+                    <rect x="11.2" y="2" width="1.6" height="20" rx=".8" transform="rotate(90 12 12)"/>
+                    <rect x="11.2" y="2" width="1.6" height="20" rx=".8" transform="rotate(135 12 12)"/>
+                  </g>
+                </svg>
+                <div class="ozcl-w-hi">{{ $a.greeting }}</div>
+                <span class="ozcl-w-lbl">{{ $a.recents_label }}</span>
+                <div class="ozcl-w-cards">
+                  {{ range (default slice $a.recent_cards) }}
+                  <div class="ozcl-w-card">
+                    <span class="ozcl-w-t">{{ .card_title }}</span>
+                    <span class="ozcl-w-m">{{ .card_meta }}</span>
+                  </div>
+                  {{ end }}
+                </div>
+              </div>
+
+              <div class="ozcl-u-turn ozcl-rise" id="ozcl-uturn">
+                <div class="ozcl-u-bub" id="ozcl-prompt">{{ $a.prompt }}</div>
+              </div>
+
+              <div class="ozcl-a-turn ozcl-rise" id="ozcl-aturn">
+                <svg class="ozcl-a-mark" viewBox="0 0 24 24" aria-hidden="true">
+                  <g fill="#d97757">
+                    <rect x="11.2" y="2" width="1.6" height="20" rx=".8"/>
+                    <rect x="11.2" y="2" width="1.6" height="20" rx=".8" transform="rotate(45 12 12)"/>
+                    <rect x="11.2" y="2" width="1.6" height="20" rx=".8" transform="rotate(90 12 12)"/>
+                    <rect x="11.2" y="2" width="1.6" height="20" rx=".8" transform="rotate(135 12 12)"/>
+                  </g>
+                </svg>
+                <div class="ozcl-a-body">
+                  <div class="ozcl-dots" id="ozcl-dots"><i></i><i></i><i></i></div>
+
+                  <div class="ozcl-tool ozcl-rise" id="ozcl-tool1">
+                    <span class="ozcl-spin" id="ozcl-sp1"></span>
+                    <svg class="ozcl-tick" id="ozcl-tk1" viewBox="0 0 24 24" fill="none" style="display:none"><path d="M20 6 9 17l-5-5" stroke="#05747a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    optmyzr &middot; search_term_performance
+                  </div>
+
+                  <div class="ozcl-tool ozcl-rise" id="ozcl-tool2">
+                    <span class="ozcl-spin" id="ozcl-sp2"></span>
+                    <svg class="ozcl-tick" id="ozcl-tk2" viewBox="0 0 24 24" fill="none" style="display:none"><path d="M20 6 9 17l-5-5" stroke="#05747a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    optmyzr &middot; check_negative_keyword_blocking
+                  </div>
+
+                  <div class="ozcl-a-text ozcl-rise" id="ozcl-atext">{{ replaceRE `\*\*(.+?)\*\*` `<span class="ozcl-hl">$1</span>` $a.reply_text | safeHTML }}</div>
+
+                  <div class="ozcl-card ozcl-rise" id="ozcl-card">
+                    <div class="ozcl-card-hd">
+                      <span>{{ $a.preview_label | safeHTML }}</span>
+                      <span class="ozcl-pill">{{ $a.preview_pill }}</span>
+                    </div>
+
+                    <div class="ozcl-card-bd">
+                      <div class="ozcl-card-top">
+                        <b>{{ replace $a.staged_label "{n}" (printf `<span id="ozcl-staged">%d</span>` (len $rows)) | safeHTML }}</b>
+                        <span class="ozcl-sub">{{ $a.staged_scope }}</span>
+                      </div>
+
+                      <table class="ozcl-table">
+                        <thead>
+                          <tr>
+                            <th style="width:26px"></th>
+                            <th class="ozcl-c-term">{{ $a.col_term }}</th>
+                            <th>{{ $a.col_keyword }}</th>
+                            <th class="ozcl-c-match" style="width:72px">{{ $a.col_match }}</th>
+                            <th class="ozcl-num" style="width:96px">{{ $a.col_spend }}</th>
+                          </tr>
+                        </thead>
+                        <tbody id="ozcl-tbody">
+                          {{ range $i, $r := $rows }}
+                          <tr data-cost="{{ $r.spend }}"{{ if $r.uncheck }} data-uncheck="1"{{ end }}><td><span class="ozcl-cb"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td><td class="ozcl-c-term">{{ $r.term }}</td><td class="ozcl-kw">{{ $r.keyword }}</td><td class="ozcl-c-match"><span class="ozcl-mt {{ if eq $r.match "exact" }}ozcl-mt-e{{ else }}ozcl-mt-p{{ end }}">{{ if eq $r.match "exact" }}{{ $a.match_exact }}{{ else }}{{ $a.match_phrase }}{{ end }}</span></td><td class="ozcl-num">{{ $a.currency_prefix }}{{ lang.FormatNumberCustom 0 $r.spend }}</td></tr>
+                          {{ end }}
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <div class="ozcl-card-ft ozcl-rise" id="ozcl-cardft">
+                      <span class="ozcl-warn" id="ozcl-warn"><span class="ozcl-dot2"></span><span id="ozcl-warntx" data-applied-status="{{ $a.applied_status }}">{{ $a.pending_status }}</span></span>
+                      <span class="ozcl-ghost">{{ $a.remove_label }}</span>
+                      <span class="ozcl-apply" id="ozcl-apply">
+                        <span class="ozcl-spin ozcl-spin-w" id="ozcl-applysp" style="display:none"></span>
+                        <span id="ozcl-applytx"
+                          data-apply="{{ $a.apply_label }}"
+                          data-apply-one="{{ $a.apply_label_one }}"
+                          data-applying="{{ $a.applying_label }}"
+                          data-applied="{{ $a.applied_label }}">{{ replace $a.apply_label "{n}" (printf "%d" (len $rows)) }}</span>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="ozcl-done ozcl-rise" id="ozcl-done">
+                    <span class="ozcl-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <div>
+                      <b>{{ $a.done_title }}</b>
+                      <p>{{ replaceRE `\*\*(.+?)\*\*` `<strong>$1</strong>` $a.done_text | safeHTML }}</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+            <div class="ozcl-composer">
+              <span class="ozcl-txt ozcl-ph" id="ozcl-ctext">{{ $a.composer_placeholder }}</span>
+              <span class="ozcl-send" id="ozcl-send">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="ozcl-ptr" id="ozcl-ptr">
+            <span class="ozcl-ring"></span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 2.5 19 12l-6.2.9L9.6 19.5z" fill="#fff" stroke="#1a1a18" stroke-width="1.4" stroke-linejoin="round"/>
+            </svg>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    {{ end }}
+
+  </div>
+</section>

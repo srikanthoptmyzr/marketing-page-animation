@@ -1,0 +1,66 @@
+{
+ "component": "amazon-hero",
+ "source": "component-library/components/amazon-hero/",
+ "fields": {
+  "demoBtn": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "url-prefixed"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "hero_image": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/images/homepage/hero-dashboard-2.jpg",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "kicker": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "subtitle": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "text": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Start Trail",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "trialBtn": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "unlisted"
+  },
+  "url": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "#",
+   "inputType": "url",
+   "localization": "url-prefixed"
+  }
+ },
+ "i18nKeys": [],
+ "partials": [
+  "functions/resolve-image-path.html"
+ ]
+}

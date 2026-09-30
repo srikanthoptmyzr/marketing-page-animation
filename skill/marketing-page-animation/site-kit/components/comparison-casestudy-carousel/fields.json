@@ -1,0 +1,24 @@
+{
+ "component": "comparison-casestudy-carousel",
+ "source": "component-library/components/comparison-casestudy-carousel/",
+ "fields": {
+  "heading": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Why PPC Pros Love Optmyzr",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "subtitle": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [],
+ "partials": [
+  "latest-case-studies.html"
+ ]
+}

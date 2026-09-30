@@ -1,0 +1,15 @@
+{
+ "component": "comparison-hero-slim",
+ "source": "component-library/components/comparison-hero-slim/",
+ "fields": {
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Competitor Vs. Optmyzr",
+   "inputType": "text",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

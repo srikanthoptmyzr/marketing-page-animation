@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "content.schema.json",
+  "title": "Scene content layer",
+  "description": "Keyed content for one language. Every entry says how it is translated and how sensitive it was. Values are already the safe (replaced) values.",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "required": [
+      "role",
+      "translate",
+      "sensitivity"
+    ],
+    "properties": {
+      "role": {
+        "enum": [
+          "chrome",
+          "data"
+        ]
+      },
+      "translate": {
+        "oneOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "object",
+            "additionalProperties": {
+              "type": "boolean"
+            }
+          }
+        ]
+      },
+      "sensitivity": {
+        "enum": [
+          "none",
+          "account-id",
+          "campaign-id",
+          "entity-name",
+          "person-name",
+          "email",
+          "phone",
+          "company",
+          "url",
+          "secret",
+          "amount",
+          "address",
+          "search-term",
+          "other-pii"
+        ]
+      },
+      "format": {
+        "type": "object"
+      },
+      "series": {
+        "type": "array"
+      },
+      "rows": {
+        "type": "array"
+      },
+      "columns": {
+        "type": "array"
+      }
+    }
+  }
+}

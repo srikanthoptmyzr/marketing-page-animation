@@ -1,0 +1,43 @@
+{
+ "component": "research-hub-highlights",
+ "source": "component-library/components/research-hub-highlights/",
+ "fields": {
+  "conclusion": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "html",
+   "localization": "unlisted"
+  },
+  "ctaLink": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "url",
+   "localization": "skip"
+  },
+  "ctaText": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "highlights": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "[]",
+   "inputType": "array",
+   "localization": "unlisted"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

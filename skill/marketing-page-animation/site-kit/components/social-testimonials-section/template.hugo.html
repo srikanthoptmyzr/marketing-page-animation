@@ -1,0 +1,105 @@
+{{ $testimonials := (index site.Data site.Language.Lang).testimonialsMain }}
+
+<div class="pb-[528px] md:pb-[264px]">
+  <section id="social-testimonial" class="c-testimonial-section  bg-[#e8e8e8] relative px-lr py-16 ">
+    <div class=" bg-[#e8e8e8] max-w-1440 relative pb-0 mx-auto ">
+      <div data-scroll="fade-slide" class="grid lg:grid-cols-2 gap-8 items-center mb-4 md:mb-10">
+        <div class=" relative self-baseline">
+          <img 
+            src="/images/products/social/testimonial-pattern-1.png" 
+            alt="Decorative background pattern" 
+            class="absolute top-0 left-[8%] xl:top-[100px] z-10 !w-[300px] !h-[300px] opacity-80 object-contain -translate-x-10"
+          />
+  
+          <h1 class="text-mobileHeadlinesH3 md:text-desktopHeadlinesH2 leading-mobileLineHeight5xl 
+            md:leading-desktopLineHeight5xl tracking-mobileLetterSpacingMedium md:tracking-desktopLetterSpacingXl font-bold
+            font-fontFamilyHeadlinesDmSans  relative z-10 xl:w-[73%] xl:translate-x-1/4">
+            {{.heading}}
+          </h1>
+  
+        </div>
+  
+        {{ with $testimonials.main_testimonial }}
+        <div class="bg-white rounded-lg flex flex-col gap-[10px] md:gap-[24px]  p-[24px] shadow-lg z-20 sm:min-h-[357px] ">
+          <div class="flex justify-between items-center ">
+            <img src="{{.image}}" alt="" class="max-w-[78px] max-h-[32px]">
+            <div class="flex items-center">
+              <svg class="w-[16px] h-[16px] md:w-[20px] h-[20px]"  viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.825 20.2734L6.15 12.6734L0 8.27344H7.6L10 0.273438L12.4 8.27344H20L13.85 12.6734L16.175 20.2734L10 15.5734L3.825 20.2734Z" fill="#E17F0E"/>
+              </svg>
+              <span class="ml-1 text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4">{{.stars}}</span>
+            </div>
+          </div>
+          <hr>
+          <div class="flex flex-col gap-[12px]">
+            <h3 class="text-mobileHeadlinesH5 md:text-desktopHeadlinesH5 leading-mobileLineHeightMedium md:leading-desktopLineHeightMedium tracking-mobileLetterSpacingXl md:tracking-desktopLetterSpacingSmall font-semibold font-fontFamilyHeadlinesDmSans">
+              {{.testimonial_title}}
+            </h3>
+  
+            <p class="text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 leading-desktopLineHeightSmall md:leading-desktopLineHeightMedium tracking-desktopLetterSpacingXxl font-semibold font-fontFamilyParagraphsInter">
+              {{.testimonial_first_line}}
+            </p>
+  
+            <p class="text-desktopSubHeadingsP6 md:text-desktopSubHeadingsP5 leading-desktopLineHeightXs md:leading-desktopLineHeightSmall tracking-desktopLetterSpacingXxl text-gray-600 font-medium md:font-normal font-fontFamilyParagraphsInter">
+              {{.testimonial_second_line}}
+            </p>
+  
+          </div>
+          <div class="mt-auto">
+            <p class="font-semibold text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 leading-desktopLineHeightSmall 
+              md:leading-desktopLineHeightMedium">{{.role}}</p>
+            <p class="text-colorSurfaceDarkNormalHover text-mobileBodyB6 md:text-desktopSubHeadingsP6 
+              leading-mobileLineHeightXxs md:leading-desktopLineHeightXs">{{.client_name}}</p>
+  
+          </div>
+        </div>
+        {{ end }}
+      </div>
+  
+      <!-- Testimonials Grid -->
+      <div id="testimonialContainer" 
+        class="h-[215px] testimonials-section grid md:grid-cols-2 lg:grid-cols-3 gap-6 relative overflow-hidden">
+        {{ range $testimonials.additional_testimonials }}
+        <div class="bg-white rounded-lg flex flex-col gap-[10px] md:gap-[15px]  p-[24px] shadow-lg z-20 sm:min-h-[357px] ">
+          <div class="flex justify-between items-center ">
+            <img src="{{.image}}" alt="" class="max-w-[78px] max-h-[32px]">
+            <div class="flex items-center">
+              <svg class="w-[16px] h-[16px] md:w-[20px] h-[20px]"  viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.825 20.2734L6.15 12.6734L0 8.27344H7.6L10 0.273438L12.4 8.27344H20L13.85 12.6734L16.175 20.2734L10 15.5734L3.825 20.2734Z" fill="#E17F0E"/>
+              </svg>
+              <span class="ml-1 text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4">{{.stars}}</span>
+            </div>
+          </div>
+          <hr>
+          <div class="flex flex-col gap-[12px]">
+            <h3 class="text-mobileHeadlinesH5 md:text-desktopHeadlinesH5 leading-mobileLineHeightMedium md:leading-desktopLineHeightMedium tracking-mobileLetterSpacingXl md:tracking-desktopLetterSpacingSmall font-semibold font-fontFamilyHeadlinesDmSans">
+              {{.testimonial_title}}</h3> 
+            <p class="text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 leading-desktopLineHeightSmall md:leading-desktopLineHeightMedium tracking-desktopLetterSpacingXxl font-semibold font-fontFamilyParagraphsInter">
+              {{.testimonial_first_line}}</p>
+            <p class="text-desktopSubHeadingsP6 md:text-desktopSubHeadingsP5 leading-desktopLineHeightXs md:leading-desktopLineHeightSmall tracking-desktopLetterSpacingXxl text-gray-600 font-medium md:font-normal font-fontFamilyParagraphsInter">
+              {{.testimonial_second_line}}</p>
+          </div>
+          <div class="mt-auto">
+            <p class="font-semibold text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 leading-desktopLineHeightSmall 
+              md:leading-desktopLineHeightMedium">{{.role}}</p>
+            <p class="text-colorSurfaceDarkNormalHover text-mobileBodyB6 md:text-desktopSubHeadingsP6 
+              leading-mobileLineHeightXxs md:leading-desktopLineHeightXs">{{.client_name}}</p>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+  </div>
+    <div id="fadeOverlay" class="text-center absolute bottom-0 left-0 w-full h-10%  md:h-[19%] z-[20]">
+        <button id="readMore" class="read-more-button text-[#0B0C0D] text-desktopSubHeadingsP4 font-medium
+        w-[125px] mt-[5.5rem] z-50  mb-4 cursor-pointer text-center inline-block mx-auto">
+        <div class="flex gap-[10px] items-center"> 
+          <span>{{ i18n "read_more" }}</span>
+          <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 6.94996C5.8795 6.94996 5.76734 6.93071 5.6635 6.89221C5.55967 6.85371 5.46092 6.78771 5.36725 6.69421L0.873002 2.19996C0.734669 2.06146 0.663835 1.88738 0.660502 1.67771C0.657335 1.46821 0.728169 1.29096 0.873002 1.14596C1.018 1.00113 1.19367 0.928711 1.4 0.928711C1.60634 0.928711 1.782 1.00113 1.927 1.14596L6 5.21921L10.073 1.14596C10.2115 1.00763 10.3856 0.936794 10.5953 0.933461C10.8048 0.930294 10.982 1.00113 11.127 1.14596C11.2718 1.29096 11.3443 1.46663 11.3443 1.67296C11.3443 1.87929 11.2718 2.05496 11.127 2.19996L6.63275 6.69421C6.53909 6.78771 6.44033 6.85371 6.3365 6.89221C6.23267 6.93071 6.1205 6.94996 6 6.94996Z" fill="#626C7A"/>
+          </svg>
+        </div>
+      </button>
+    </div>
+  </section>
+
+</div>

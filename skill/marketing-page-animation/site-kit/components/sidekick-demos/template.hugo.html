@@ -1,0 +1,133 @@
+{{/* Sidekick demo rows: umbrella heading + N Slack mockups in a plain bordered frame, plus the
+     AI-limitations notice. Page-specific component (like the mcp-* set).
+
+     The mockups are fixed-size, self-contained documents in /static/slack_sidekick/demos/, lazily
+     loaded (data-src -> src on approach) and scaled by JS — see the script at the bottom for the
+     phone/desktop viewport logic and why the two breakpoints must stay in step. */}}
+
+{{ $lang := site.Language.Lang }}
+
+<section class="c-sidekick-demos bg-white py-[64px] md:py-[88px] px-lr">
+  <div class="container mx-auto px-4 lg:px-12 max-w-1440">
+
+    <h2 data-scroll="fade-slide"
+      class="font-dm font-bold text-mobileHeadlinesH3 md:text-desktopHeadlinesH2 leading-mobileLineHeight5xl md:leading-desktopLineHeight5xl tracking-mobileLetterSpacingMedium md:tracking-desktopLetterSpacingXl text-center"
+      style="color:#0b0c0d;">{{ .heading }}</h2>
+
+    <div class="flex flex-col gap-[44px] md:gap-[88px] mt-[40px] md:mt-[56px]">
+      {{ range .rows }}
+      {{/* The coming-soon chip keys off this row's own .status, so ANY number of rows can be
+           marked soon. It previously compared the kicker TEXT to a single soonKicker string,
+           which allowed exactly one row and broke silently if a marketer edited that text. */}}
+      {{ $isSoon := eq .status "soon" }}
+      <div data-scroll="fade-slide" class="flex flex-col items-center gap-[22px] md:gap-[30px]">
+        <div class="flex flex-col items-center text-center gap-[16px] max-w-[780px]">
+          {{ with .kicker }}
+          <span class="inline-flex items-center uppercase font-semibold text-[12.5px] tracking-wide rounded-full py-[6px] px-[14px] border {{ if $isSoon }}text-[#8A4E00] bg-[#FEF5E6] border-[#F6D79A]{{ else }}text-[#2D3A48] bg-[#ECECEC] border-[#DEDEDE]{{ end }}">{{ . }}</span>
+          {{ end }}
+          <h3 class="font-dm font-bold text-[23px] md:text-[30px] leading-tight tracking-[-0.5px]" style="color:#0b0c0d;">{{ .title }}</h3>
+          <p class="text-mobileBodyB3 md:text-[16px] leading-relaxed" style="color:#555;">{{ .body }}</p>
+        </div>
+        <div class="skd-wrap w-full">
+          <div class="skd-window rounded-[12px] overflow-hidden bg-white border border-[#CFD9E2]">
+            <div class="skd-body relative w-full">
+              <iframe data-src="{{ .demo }}?lang={{ $lang }}" title="{{ with .kicker }}{{ . }}{{ else }}{{ .title }}{{ end }} — Slack"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+
+    {{ with .aiNotice }}
+    <p data-scroll="fade-slide" class="max-w-[760px] mx-auto mt-[36px] md:mt-[52px] text-left md:text-center text-desktopSubHeadingsP5 leading-relaxed skd-notice" style="color:#6B7280;">{{ . | safeHTML }}</p>
+    {{ end }}
+  </div>
+</section>
+
+<style>
+  .c-sidekick-demos .skd-window { box-shadow: 0 18px 46px rgba(34,36,40,0.13); }
+  .c-sidekick-demos .skd-notice strong { color: #2D3A48; font-weight: 700; }
+  /* The demo documents are fixed-size and scaled by the script below: 1408x792 on desktop (shown at ~0.78 inside the 1104px window), a
+     390x760 PHONE viewport below a 900px container. aspect-ratio here is only the pre-JS
+     placeholder that reserves space — once JS runs it sets an explicit height, which wins.
+     The placeholder below uses a @container query against .skd-wrap, so it agrees with the
+     script's 900px container threshold by construction. */
+  /* Desktop demo WINDOW is capped at 1104px (.skd-wrap). The demo DOCUMENT is 1408x792 - wider on
+     purpose - and the script shrinks it into the window at ~0.78. That ratio is the point: rendered
+     1:1 (document == window) the Slack UI filled too much of the frame and read as a ~127% zoomed
+     Slack; at 0.78 it reads as a real Slack window at 100%. Both numbers are 16:9 (a 16:9 width
+     must be a multiple of 16). History, all 2026-09-04: 1400x820 in a 1152 cap -> several 1:1
+     rounds (1150, 1000, 1080, 1120, 1184, 1104) -> back to a large canvas by explicit request.
+     If you change the WINDOW, keep the document roughly 1.27x wider; if you change the DOCUMENT,
+     the fixed rail/sidebar/thread columns (65/260/520-540) must still leave the channel column
+     enough room for its header. The fake browser chrome (traffic-light dots + Slack logo + LIVE
+     pill) was removed; the live/coming-soon signal comes only from the amber kicker chip ABOVE
+     each window, driven by each row .status ("soon" = amber) - do not delete that. */
+  .c-sidekick-demos .skd-wrap { max-width: 1104px; margin: 0 auto; container-type: inline-size; }
+  .c-sidekick-demos .skd-body { aspect-ratio: 16 / 9; background: #fff; }
+  .c-sidekick-demos .skd-body iframe { position: absolute; top: 0; left: 0; width: 1408px;
+    height: 792px; border: 0; transform-origin: top left; }
+  /* The pre-JS placeholder switches on the CONTAINER width, so it is exact against the script's
+     900px threshold by construction — no viewport arithmetic to drift. */
+  @container (max-width: 899px) {
+    .c-sidekick-demos .skd-body { aspect-ratio: 390 / 760; background: #1a1d21; }
+  }
+</style>
+
+<script>
+  /* Lazy-load + scale the demo mockups.
+     - Each demo is a self-contained document. Below a 700px-to-900px container it is handed a
+       PHONE viewport (an iframe's width IS its document's viewport, so the demo's own
+       @media (max-width: 560px) block then renders Slack's mobile layout). Scaling the 1408px
+       desktop document down to a phone put Slack's 14px text at ~3.4px; the 390px document at the
+       same width lands near 12px. The phone mock is never scaled ABOVE 1:1.
+     - data-src -> src happens via IntersectionObserver (rootMargin 400px: enough to be loaded
+       before reached, without four 1408x792 documents racing on one flick of the wheel). */
+  (function () {
+    'use strict';
+    var root = document.querySelector('.c-sidekick-demos');
+    if (!root) return;
+    var DESKTOP = { w: 1408, h: 792 };
+    var PHONE = { w: 390, h: 760 };
+    var PHONE_MAX = 900;
+    function scaleFrame(iframe) {
+      var body = iframe.closest('.skd-body');
+      if (!body) return;
+      var w = body.clientWidth;
+      if (!w) return;
+      var phone = w < PHONE_MAX;
+      var dim = phone ? PHONE : DESKTOP;
+      var scale = phone ? Math.min(1, w / dim.w) : w / dim.w;
+      iframe.style.width = dim.w + 'px';
+      iframe.style.height = dim.h + 'px';
+      iframe.style.transform = 'scale(' + scale + ')';
+      iframe.style.left = phone ? Math.max(0, (w - dim.w * scale) / 2) + 'px' : '0px';
+      body.style.height = Math.round(dim.h * scale) + 'px';
+    }
+    function scaleAll() { root.querySelectorAll('.skd-body iframe').forEach(scaleFrame); }
+    function load(iframe) {
+      if (iframe.dataset.loaded === 'true') return;
+      iframe.src = iframe.dataset.src;
+      iframe.dataset.loaded = 'true';
+      scaleFrame(iframe);
+    }
+    scaleAll();
+    window.addEventListener('resize', scaleAll);
+    window.addEventListener('load', scaleAll);
+    if (window.ResizeObserver) {
+      var rz = new ResizeObserver(scaleAll);
+      root.querySelectorAll('.skd-body').forEach(function (b) { rz.observe(b); });
+    }
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { load(e.target); io.unobserve(e.target); }
+        });
+      }, { rootMargin: '400px 0px' });
+      root.querySelectorAll('iframe[data-src]').forEach(function (f) { io.observe(f); });
+    } else {
+      root.querySelectorAll('iframe[data-src]').forEach(load);
+    }
+  })();
+</script>

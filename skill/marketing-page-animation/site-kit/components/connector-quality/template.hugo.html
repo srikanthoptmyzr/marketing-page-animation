@@ -1,0 +1,142 @@
+{{/*
+  connector-quality
+  Trust section: measured reliability figures plus the guardrails that produce
+  them. Keeps the "our data, verified" promise concrete without publishing an
+  internal eval table.
+*/}}
+
+<section class="c-connector-quality py-14 md:py-20 px-4 lg:px-12"
+  style="background-color:#f9f8f6;">
+  <div class="max-w-1440 mx-auto">
+    <div class="cq-head">
+      <h2 data-scroll="fade-slide"
+        class="font-bold font-dm text-mobileHeadlinesH3 md:text-desktopHeadlinesH2 leading-mobileLineHeight5xl md:leading-desktopLineHeight5xl tracking-desktopLetterSpacingXl"
+        style="color:#0b0c0d;">{{ .heading }}</h2>
+      {{ with .subtext }}
+      <p data-scroll="fade-slide" class="text-desktopSubHeadingsP3" style="color:#555; line-height:26px;">{{ . | markdownify }}</p>
+      {{ end }}
+    </div>
+
+    {{ with .stats }}
+    <div data-scroll="fade-slide" class="cq-stats cq-stats--{{ len . }}">
+      {{ range . }}
+      <div class="cq-stat">
+        <span class="cq-figure font-dm">{{ .figure }}</span>
+        <span class="cq-label">{{ .label }}</span>
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
+
+    {{ with .pillars }}
+    <div data-scroll="fade-slide" class="cq-pillars">
+      {{ range . }}
+      <div class="cq-pillar">
+        <span class="cq-check" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <div>
+          <h3 class="font-bold font-dm" style="color:#0b0c0d; font-size:19px; line-height:26px; letter-spacing:-0.3px; margin:0;">{{ .pillar_title }}</h3>
+          <p style="color:#555; font-size:15px; line-height:23px; margin:6px 0 0;">{{ .subtext | markdownify }}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
+
+    {{ with .footnote }}
+    <p data-scroll="fade-slide" class="cq-foot">{{ . | markdownify }}</p>
+    {{ end }}
+  </div>
+</section>
+
+<style>
+.c-connector-quality .cq-head {
+  max-width: 780px;
+  margin: 0 auto 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.c-connector-quality .cq-head h2 { margin: 0; text-wrap: balance; }
+.c-connector-quality .cq-head p { margin: 0; }
+
+.c-connector-quality .cq-stats {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  justify-content: center;
+}
+
+/* Fewer than four figures: keep every card the width it would have in a full
+   four-up row and centre the group, instead of letting two cards sit
+   left-aligned against half a row of empty space. The track width is derived
+   from the container rather than hardcoded -- (100% - 3 gaps) / 4 -- so it
+   stays exact if the 1140px cap or the 16px gap ever changes. Desktop only;
+   the breakpoints below already reflow to 2-up and 1-up. */
+@media (min-width: 1024px) {
+  .c-connector-quality .cq-stats--1 { grid-template-columns: repeat(1, calc((100% - 48px) / 4)); }
+  .c-connector-quality .cq-stats--2 { grid-template-columns: repeat(2, calc((100% - 48px) / 4)); }
+  .c-connector-quality .cq-stats--3 { grid-template-columns: repeat(3, calc((100% - 48px) / 4)); }
+}
+.c-connector-quality .cq-stat {
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 14px;
+  padding: 24px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.c-connector-quality .cq-figure {
+  font-size: 40px;
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: #05747a;
+}
+.c-connector-quality .cq-label {
+  font-size: 14px;
+  line-height: 20px;
+  color: #5f6570;
+}
+
+.c-connector-quality .cq-pillars {
+  max-width: 1140px;
+  margin: 44px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.c-connector-quality .cq-pillar { display: flex; gap: 14px; align-items: flex-start; }
+.c-connector-quality .cq-check {
+  width: 26px; height: 26px; flex: none; margin-top: 2px;
+  border-radius: 50%;
+  background: #dcf5ea;
+  color: #05747a;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.c-connector-quality .cq-check svg { width: 14px; height: 14px; display: block; }
+
+.c-connector-quality .cq-foot {
+  max-width: 900px;
+  margin: 36px auto 0;
+  text-align: center;
+  font-size: 14px;
+  line-height: 22px;
+  color: #5f6570;
+}
+
+@media (max-width: 1023px) {
+  .c-connector-quality .cq-stats { grid-template-columns: repeat(2, 1fr); }
+  .c-connector-quality .cq-pillars { grid-template-columns: 1fr; gap: 22px; }
+}
+@media (max-width: 479px) {
+  .c-connector-quality .cq-stats { grid-template-columns: 1fr; }
+  .c-connector-quality .cq-figure { font-size: 34px; }
+}
+</style>

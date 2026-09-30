@@ -1,0 +1,36 @@
+{
+ "component": "comparison-migration-section",
+ "source": "component-library/components/comparison-migration-section/",
+ "fields": {
+  "anchor_url": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": null,
+   "localization": "url-prefixed"
+  },
+  "link_text": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": null,
+   "localization": "translatable"
+  },
+  "text": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": null,
+   "localization": "translatable"
+  },
+  "toc_label": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Migration service",
+   "inputType": "text",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

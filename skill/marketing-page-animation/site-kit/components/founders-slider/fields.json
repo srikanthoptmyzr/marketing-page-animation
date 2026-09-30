@@ -1,0 +1,55 @@
+{
+ "component": "founders-slider",
+ "source": "component-library/components/founders-slider/",
+ "fields": {
+  "image": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "/forestry/fred-vallaeys.jpg",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "job_title": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "CEO",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "mediumBio": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": ">-",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "name": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Frederick Vallaeys",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "shortBio": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Frederick was Google's AdWords Evangelist.",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "team": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  }
+ },
+ "i18nKeys": [
+  "next_founder",
+  "previous_founder"
+ ],
+ "partials": [
+  "image.html"
+ ]
+}

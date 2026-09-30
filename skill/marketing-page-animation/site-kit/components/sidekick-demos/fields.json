@@ -1,0 +1,64 @@
+{
+ "component": "sidekick-demos",
+ "source": "component-library/components/sidekick-demos/",
+ "fields": {
+  "aiNotice": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "html",
+   "localization": "unlisted"
+  },
+  "body": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Drop a question in any channel by tagging Optmyzr.",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "demo": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/slack_sidekick/demos/mention.html",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Ask Optmyzr, right where you work",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "kicker": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Threaded reply",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "rows": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "status": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "live",
+   "inputType": "select",
+   "localization": "unlisted"
+  },
+  "title": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Just @optmyzr and ask.",
+   "inputType": "text",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

@@ -1,0 +1,84 @@
+{{/* "What each tool is built for" — two profile cards (Optmyzr card teal-bordered) each with a
+     "Best for" footer. Dedicated comparison-page component; the older comparison pages use the
+     separate teal-band `hero-comparison-indv` hero instead. */}}
+{{- $tocId := anchorize (or .toc_label .section_heading) -}}
+<section class="c-comparison-built-for py-[24px] md:py-[40px] bg-white scroll-mt-[120px]"{{ with $tocId }} id="{{ . }}"{{ end }}>
+  <div class="mx-auto w-full">
+    <div class="mb-[24px] md:mb-[32px]">
+      <h2 class="text-left font-dm font-bold text-mobileHeadlinesH3 md:text-desktopHeadlinesH3
+        leading-mobileLineHeight5xl md:leading-desktopLineHeight4xl tracking-desktopLetterSpacingMedium
+        text-colorSurfaceDarkDarkActive">{{ .section_heading }}</h2>
+      {{ with .subtitle }}
+      <p class="mt-[8px] text-mobileBodyB3 md:text-desktopSubHeadingsP4 text-colorSurfaceDarkNormalActive
+        leading-desktopLineHeightXxl">{{ . }}</p>
+      {{ end }}
+    </div>
+
+    <!-- Two cards share a subgrid so the body rows and the "Best for" footer rows line up to equal heights -->
+    <div class="what-each-cards grid grid-cols-1 lg:grid-cols-2 gap-[20px] lg:gap-[24px]">
+      <!-- Optmyzr card (highlighted with teal border) -->
+      <div class="what-each-card bg-white border border-colorPrimaryTealNormal rounded-[12px] overflow-hidden">
+        <div class="what-each-card-body p-[24px] xl:p-[32px]">
+          <div class="flex items-center gap-[12px] mb-[16px]">
+            <div class="w-[40px] h-[40px] flex-shrink-0 rounded-[8px] bg-colorPrimaryTealLight flex items-center justify-center p-[7px]">
+              <img src="{{.optmyzr_logo}}" alt="Optmyzr" class="w-full h-full object-contain">
+            </div>
+            <h3 class="text-mobileHeadlinesH5 md:text-desktopHeadlinesH5 font-bold font-dm
+              tracking-desktopLetterSpacingSmall text-colorSurfaceDarkDarkActive">{{.vs_title_1}}</h3>
+            {{ with .optmyzr_badge }}
+            <span class="ml-1 px-[10px] py-[3px] text-[11px] font-semibold text-colorSecondaryLimeDarker
+              bg-colorSecondaryLimeLightActive rounded-full whitespace-nowrap">{{ . }}</span>
+            {{ end }}
+          </div>
+          <div class="what-each-desc text-mobileBodyB2 md:text-desktopSubHeadingsP4 leading-desktopLineHeightXxl
+            text-colorSurfaceDarkNormalActive">{{ .vs_desc_1 | safeHTML }}</div>
+        </div>
+        {{ with .best_for_1 }}
+        <div class="what-each-card-foot bg-colorSurfaceLightWhiteHover px-[24px] xl:px-[32px] py-[16px] md:py-[20px]">
+          <p class="text-mobileBodyB3 md:text-desktopSubHeadingsP4 leading-desktopLineHeightXxl text-colorSurfaceDarkNormalActive">
+            <span class="font-bold text-colorSurfaceDarkDarkActive">{{ i18n "bestFor" }}</span> {{ . }}
+          </p>
+        </div>
+        {{ end }}
+      </div>
+
+      <!-- Competitor card -->
+      <div class="what-each-card bg-white border border-colorSurfaceLightNormal rounded-[12px] overflow-hidden">
+        <div class="what-each-card-body p-[24px] xl:p-[32px]">
+          <div class="flex items-center gap-[12px] mb-[16px]">
+            <div class="w-[40px] h-[40px] flex-shrink-0 rounded-[8px] bg-colorSurfaceLightWhiteHover flex items-center justify-center p-[7px]">
+              <img src="{{.competitor_logo}}" alt="{{.vs_title_2}}" class="w-full h-full object-contain">
+            </div>
+            <h3 class="text-mobileHeadlinesH5 md:text-desktopHeadlinesH5 font-bold font-dm
+              tracking-desktopLetterSpacingSmall text-colorSurfaceDarkDarkActive">{{.vs_title_2}}</h3>
+          </div>
+          <div class="what-each-desc text-mobileBodyB2 md:text-desktopSubHeadingsP4 leading-desktopLineHeightXxl
+            text-colorSurfaceDarkNormalActive">{{ .vs_desc_2 | safeHTML }}</div>
+        </div>
+        {{ with .best_for_2 }}
+        <div class="what-each-card-foot bg-colorSurfaceLightWhiteHover px-[24px] xl:px-[32px] py-[16px] md:py-[20px]">
+          <p class="text-mobileBodyB3 md:text-desktopSubHeadingsP4 leading-desktopLineHeightXxl text-colorSurfaceDarkNormalActive">
+            <span class="font-bold text-colorSurfaceDarkDarkActive">{{ i18n "bestFor" }}</span> {{ . }}
+          </p>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* "What each tool is built for" cards: share a subgrid on lg+ so both card bodies
+   and both "Best for" footers resolve to equal heights (consistent structure). */
+@media (min-width: 1024px) {
+  .what-each-cards { grid-template-rows: 1fr auto; }
+  .what-each-cards > .what-each-card {
+    grid-row: span 2;
+    display: grid;
+    grid-template-rows: subgrid;
+  }
+}
+/* vs_desc_1/vs_desc_2 are rich-text fields — font size/line-height/color come from the
+   what-each-desc wrapper via inheritance, this just spaces out multiple <p> paragraphs. */
+.what-each-desc p + p { margin-top: 12px; }
+</style>

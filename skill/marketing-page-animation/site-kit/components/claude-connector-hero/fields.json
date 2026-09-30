@@ -1,0 +1,372 @@
+{
+ "component": "claude-connector-hero",
+ "source": "component-library/components/claude-connector-hero/",
+ "fields": {
+  "Animation": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "a marketer asks Claude to find wasted spend, Optmyzr stages six",
+   "inputType": null,
+   "localization": "unlisted"
+  },
+  "animation": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "unlisted"
+  },
+  "animation_alt": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": ">-",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "applied_label": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Applied",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "applied_status": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "{n} negatives live \u00b7 ${sum}/mo blocked",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "apply_label": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Apply {n} keywords",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "apply_label_one": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Apply {n} keyword",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "applying_label": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Applying\u2026",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "card_meta": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "2 days ago",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "card_title": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Q3 budget pacing review across all accounts",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "chat_chip": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Google Ads &middot; Running Shoes",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "chat_title": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Shopping campaign cleanup",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "col_keyword": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Negative keyword",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "col_match": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Match",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "col_spend": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Wasted spend",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "col_term": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Search term",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "composer_placeholder": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Reply to Claude\u2026",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "connected_label": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "connected",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "currency_prefix": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "$",
+   "inputType": "text",
+   "localization": "skip"
+  },
+  "done_text": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": ">-",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "done_title": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "4 negative keywords applied to Shopping | Running Shoes",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "eyebrow": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Listed in the Anthropic connector directory",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "eyebrow_url": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "https://claude.ai/directory/optmyzr-mcp",
+   "inputType": "url",
+   "localization": "url-prefixed"
+  },
+  "greeting": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Ready to optimize some PPC?",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Live Google Ads data in Claude.",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "keyword": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "free",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "match": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "phrase",
+   "inputType": "select",
+   "localization": "skip"
+  },
+  "match_exact": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Exact",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "match_phrase": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Phrase",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "new_chat": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "New chat",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "pending_status": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "No account changes have been applied yet",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "preview_label": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Keyword preview &middot; Human review required",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "preview_pill": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Review before Apply",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "primaryBtn": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "unlisted"
+  },
+  "prompt": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": ">-",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "recent_cards": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "recent_chats": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "translatable"
+  },
+  "recents_label": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Recents",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "remove_label": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Remove selected",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "reply_text": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": ">-",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "rows": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "secondaryBtn": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "unlisted"
+  },
+  "show_animation": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "true",
+   "inputType": "checkbox",
+   "localization": "unlisted"
+  },
+  "spend": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "412",
+   "inputType": "number",
+   "localization": "skip"
+  },
+  "staged_label": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "{n} negative keywords staged",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "staged_scope": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Shopping | Running Shoes",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "subtext": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": ">-",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "term": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "free running shoes",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "text": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Add Optmyzr to Claude",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "trustLine": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Takes about a minute to set up. No code, no API keys to manage.",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "uncheck": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "true",
+   "inputType": "checkbox",
+   "localization": "skip"
+  },
+  "url": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "https://claude.ai/directory/optmyzr-mcp",
+   "inputType": "url",
+   "localization": "url-prefixed"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

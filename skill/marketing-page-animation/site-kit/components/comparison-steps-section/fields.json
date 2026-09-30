@@ -1,0 +1,57 @@
+{
+ "component": "comparison-steps-section",
+ "source": "component-library/components/comparison-steps-section/",
+ "fields": {
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "image": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "/images/homepage/steps-facebook.png",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "name": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Facebook Ads",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "number": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "1",
+   "inputType": "number",
+   "localization": "unlisted"
+  },
+  "platforms": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "steps": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "translatable"
+  },
+  "text": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Efficient Automation Capabilities",
+   "inputType": "text",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

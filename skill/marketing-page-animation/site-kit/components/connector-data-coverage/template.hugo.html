@@ -1,0 +1,109 @@
+{{/*
+  connector-data-coverage
+  "One connector, everything a PPC advertiser needs" — a card grid naming each
+  body of data the connector exposes. Icons are inline SVG keyed off `icon`,
+  so the component needs no image assets.
+*/}}
+
+<section class="c-connector-data-coverage py-14 md:py-20 px-4 lg:px-12" style="background-color:#ffffff;">
+  <div class="max-w-1440 mx-auto">
+    <div class="cdc-head">
+      <h2 data-scroll="fade-slide"
+        class="font-bold font-dm text-mobileHeadlinesH3 md:text-desktopHeadlinesH2 leading-mobileLineHeight5xl md:leading-desktopLineHeight5xl tracking-desktopLetterSpacingXl"
+        style="color:#0b0c0d;">{{ .heading }}</h2>
+      {{ with .subtext }}
+      <p data-scroll="fade-slide" class="text-desktopSubHeadingsP3" style="color:#555; line-height:26px;">{{ . | markdownify }}</p>
+      {{ end }}
+    </div>
+
+    <div data-scroll="fade-slide" class="cdc-grid">
+      {{ range .items }}
+      <div class="cdc-card">
+        <span class="cdc-ico" aria-hidden="true">
+          {{ if eq .icon "google-ads" }}
+            <svg viewBox="0 0 24 24" fill="none"><path d="M3 20h4V9H3v11ZM10 20h4V4h-4v16ZM17 20h4v-7h-4v7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          {{ else if eq .icon "analytics" }}
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 16.5 9.5 11l3.5 3.5L20 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 7h5v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          {{ else if eq .icon "optmyzr" }}
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.2" stroke="currentColor" stroke-width="1.8"/><path d="m8.6 12.2 2.3 2.3 4.5-4.7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          {{ else if eq .icon "benchmark" }}
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 20a8 8 0 1 1 8-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="m12 12 5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
+          {{ else if eq .icon "competitor" }}
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.2" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3.6" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          {{ else }}
+            <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="4" stroke="currentColor" stroke-width="1.8"/></svg>
+          {{ end }}
+        </span>
+        <h3 class="font-bold font-dm text-mobileHeadlinesH5 md:text-desktopHeadlinesH5" style="color:#0b0c0d; letter-spacing:-0.4px;">{{ .item_title }}</h3>
+        <p style="color:#555; font-size:16px; line-height:24px;">{{ .subtext | markdownify }}</p>
+      </div>
+      {{ end }}
+    </div>
+
+    {{ with .footnote }}
+    <p data-scroll="fade-slide" class="cdc-foot">{{ . | markdownify }}</p>
+    {{ end }}
+  </div>
+</section>
+
+<style>
+.c-connector-data-coverage .cdc-head {
+  max-width: 780px;
+  margin: 0 auto 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.c-connector-data-coverage .cdc-head h2 { margin: 0; text-wrap: balance; }
+.c-connector-data-coverage .cdc-head p { margin: 0; }
+
+.c-connector-data-coverage .cdc-grid {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.c-connector-data-coverage .cdc-card {
+  background: #f9f8f6;
+  border: 1px solid #e8e8e8;
+  border-radius: 14px;
+  padding: 26px 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.c-connector-data-coverage .cdc-card h3 { margin: 0; }
+.c-connector-data-coverage .cdc-card p { margin: 0; }
+
+.c-connector-data-coverage .cdc-ico {
+  width: 42px; height: 42px; flex: none;
+  border-radius: 10px;
+  background: #dcf5ea;
+  color: #05747a;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+.c-connector-data-coverage .cdc-ico svg { width: 22px; height: 22px; display: block; }
+
+.c-connector-data-coverage .cdc-foot {
+  max-width: 1140px;
+  margin: 28px auto 0;
+  text-align: center;
+  font-size: 15px;
+  line-height: 23px;
+  color: #5f6570;
+}
+.c-connector-data-coverage .cdc-foot a { color: #05747a; text-decoration: underline; }
+
+@media (max-width: 1023px) {
+  .c-connector-data-coverage .cdc-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 639px) {
+  .c-connector-data-coverage .cdc-grid { grid-template-columns: 1fr; gap: 16px; }
+  .c-connector-data-coverage .cdc-card { padding: 22px 20px 24px; }
+}
+</style>

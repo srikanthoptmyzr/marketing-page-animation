@@ -1,0 +1,83 @@
+{
+ "component": "features-section",
+ "source": "component-library/components/features-section/",
+ "fields": {
+  "anchor_text": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Learn More",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "benefit_1": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "benefit_2": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "benefit_3": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "feature_title": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Real Time Campaign Monitoring",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "features": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "translatable"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Hello World!",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "image": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "/images/homepage/features-1.png",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "subtext": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Focus on strategy, testing and creative while Optmyzr monitors your accounts and lets you know when intervention is needed.",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "url": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "url",
+   "localization": "url-prefixed"
+  }
+ },
+ "i18nKeys": [
+  "alert_delivery_options"
+ ],
+ "partials": [
+  "functions/resolve-image-path.html",
+  "image.html"
+ ]
+}

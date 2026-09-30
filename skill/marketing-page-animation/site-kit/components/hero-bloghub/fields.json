@@ -1,0 +1,38 @@
+{
+ "component": "hero-bloghub",
+ "source": "component-library/components/hero-bloghub/",
+ "fields": {
+  "heading": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "heroBloghub": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": null,
+   "localization": "unlisted"
+  },
+  "input_placeholder": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "subtext": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "textarea",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [
+  "search_our_catalog_of_great_campaign_management"
+ ],
+ "partials": []
+}

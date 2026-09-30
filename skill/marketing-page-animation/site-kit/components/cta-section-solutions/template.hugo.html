@@ -1,0 +1,65 @@
+{{$isAmazonPage := eq .product_type "Amazon"}}
+{{$isSocialPage := eq .product_type "Social"}}
+
+{{$primaryButtonColorString := "bg-teal hover:bg-colorPrimaryTealNormalHover" }}
+{{$secondaryButtonColorString := "bg-teal-dark-active  hover:bg-colorPrimaryTealDarkHover" }}
+{{$primaryTextString := "text-colorSurfaceLightWhite"}}
+{{$secondaryTextString := "text-colorSurfaceLightWhite" }}
+
+{{if $isAmazonPage }}
+
+  {{$primaryButtonColorString = "bg-colorSecondaryYellowNormal hover:bg-colorSecondaryYellowNormalHover" }}
+  {{$secondaryButtonColorString = "bg-colorSecondaryYellowLight hover:bg-colorSecondaryYellowLightHover" }}
+  {{$primaryTextString = "text-colorSurfaceDarkDarkActive"}}
+  {{$secondaryTextString = "text-colorSecondaryYellowDarker"}}
+
+{{else if $isSocialPage}}
+
+  {{$primaryButtonColorString = "bg-colorSecondaryBlueNormal hover:bg-colorSecondaryBlueNormalHover" }}
+  {{$secondaryButtonColorString = "bg-colorSecondaryBlueDarkActive hover:bg-colorSecondaryBlueDarkHover" }}
+  {{$primaryTextString = "text-colorSurfaceLightWhite"}}
+  {{$secondaryTextString = "text-colorSurfaceLightWhite"}}
+
+{{end}}
+
+<section class="c-cta-section-solutions bg-surface-dark-darker-hover py-[40px] lg:py-[130px] px-lr " style="background-image: url('/images/homepage/cta-section-1-pattern.png'); background-size: cover; background-position: center;">
+  <div class="flex flex-col max-w-[1440px] mx-auto bg-surface-dark-dark
+    border-surface-dark-active rounded-lg border overflow-hidden">
+    <!-- Main content wrapper -->
+    <div class="relative w-full flex flex-col lg:flex-row items-baseline lg:items-center justify-between
+      pt-[40px] pr-0 px-[40px] lg:py-[110px] min-h-[460px]">
+      <!-- Left image - hidden on mobile -->
+      <div class="hidden lg:block lg:absolute bottom-0 left-0">
+        <img class="rounded-lg max-w-[450px] min-h-[411px] object-cover" src="{{.left_image}}" alt="left illustration">
+      </div>
+      <!-- Center content -->
+      <div class="w-[84%]  lg:w-1/2 lg:mx-auto z-10 text-left md:text-center lg:pr-[50px]">
+        <p data-scroll="fade-slide" class="text-mobileHeadlinesH3 md:text-desktopHeadlinesH2 text-colorSurfaceLightWhite font-dm 
+          tracking-mobileLetterSpacingMedium md:tracking-desktopLetterSpacingXl 
+          leading-mobileLineHeight5xl md:leading-desktopLineHeight5xl font-extrabold">
+          {{.heading}}
+        </p>
+        <p class="text-mobileBodyB4 md:text-desktopSubHeadingsP4 text-colorSurfaceLightWhiteHover py-[24px] md:py-[32px]">{{.subtext}}</p>
+        <div class="flex lg:justify-center gap-3">
+          {{with .trialBtn}}
+            <a href="{{.url}}" class="rounded-lg font-semibold text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 w-[127px] sm:w-[207px] py-3 text-center capitalize {{$primaryButtonColorString}} {{$primaryTextString}} ">
+              {{.text}}
+            </a>
+          {{end}}
+          {{with .demoBtn}}
+          <a href="{{.url}}" class="rounded-lg font-semibold text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4   
+            w-[127px] sm:w-[207px] py-3 text-center capitalize {{$secondaryButtonColorString}} {{$secondaryTextString}}">
+            {{.text}}
+          </a>
+          {{end}}
+        </div>
+      </div>
+      <!-- Right image -->
+      <div class="w-full lg:w-auto mt-8 lg:mt-0 lg:absolute lg:bottom-0 lg:right-0">
+        <img class="rounded-tr-lg rounded-tl-lg lg:rounded-lg w-full md:w-full h-[330px] md:h-[390px] 
+          lg:max-w-[450px] lg:min-h-[411px] object-cover
+          lg:h-auto" src="{{.right_image}}" alt="">
+      </div>
+    </div>
+  </div>
+</section>

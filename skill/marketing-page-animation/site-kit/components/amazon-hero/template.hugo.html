@@ -1,0 +1,101 @@
+<section id="content" class="c-amazon-hero px-lr lg:mt-[135px] amazon-bg relative bg-solution">
+  <div data-scroll="fade-slide" class="w-full mx-auto grid grid-cols-4 lg:grid-cols-12 gap-[8px]
+        lg:gap-16 justify-items-center items-center">
+    <!-- hero -->
+    <div class="col-span-4 lg:col-span-12 justify-items-center pt-[48px] md:pt-[5px] xl:pt-[50px]" >
+      <div class="below-360:w-[290px] md:w-10/12 md:mx-auto text-center lg:text-center">
+        <!--kicker -->
+        <div class="flex md:justify-center gap-[8px] mb-[24px] text-surface-dark-active">
+          <img src="/images/products/amazon-ppc/hero-checkmark.svg" 
+               alt="checkmark" 
+               width="24" 
+               height="24"
+               loading="eager">
+          <p class="font-semibold text-[18px] md:text-[20px]">{{.kicker}}</p>
+        </div>
+        <!-- heading -->
+        <h1 class="xl:w-[90%] mx-auto font-dm text-left md:text-center text-[38px] lg:text-5xl xl:text-[63px] font-semibold 
+              lg:font-extrabold leading-[112%] tracking-[-2%] ">
+          {{ .heading }}
+        </h1>
+        <!-- subtitle -->
+        <p class="pt-[24px] text-left md:text-center text-[18px] md:text-md lg:text-lg xl:text-[20px] 
+          text-[#22262B] mx-auto w-full xl:w-[50%] tracking-[-2%] leading-[140%]">
+          {{ .subtitle | markdownify}}
+        </p>
+        <!-- action buttons -->
+        <div class="flex flex-row items-center flex-start md:justify-center mt-[24px] md:mt-[32px] gap-[12px]">
+          {{with .trialBtn}}
+          <a href="{{.url}}" class=" rounded-lg font-bold text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4
+            bg-colorSecondaryYellowNormal hover:bg-colorSecondaryYellowNormalHover hover:text-white py-3 px-8 w-[167px]  md:w-[207px] 
+            whitespace-nowrap capitalize sm:flex-1 md:flex-none 
+            text-surface-dark-darker-active  ">{{.text}}</a>
+          {{end}}
+          {{with .demoBtn}}
+          <a href="{{.url}}" class="text-yellow-darker rounded-lg font-bold text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4
+            bg-colorSecondaryYellowLight  py-3 px-8 w-[167px]  md:w-[207px] 
+            whitespace-nowrap capitalize  lg:mt-0 sm:flex-1 md:flex-none hover:bg-colorSecondaryYellowNormalHover
+            hover:text-white">{{.text}}</a>
+          {{end}}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <section class="md:mx-auto md:mt-[96px] text-center"> 
+    <div class="flex items-center mt-[3vh] lg:mt-[2vh] justify-center"> 
+      {{ $image := .hero_image }}
+      {{ if eq (printf "%T" .hero_image) "string" }}
+        {{ $resolvedPath := partial "functions/resolve-image-path.html" .hero_image }}
+        {{ $image = resources.Get (strings.TrimPrefix "/" $resolvedPath) }}
+      {{ end }}
+      
+      <div class="w-full max-w-[1034px] aspect-[1034/710] flex items-center justify-center">
+        
+        {{ if and $image $image.MediaType (ne $image.MediaType.SubType "svg") }}
+          {{ $large := $image.Resize "1034x710 webp q90" }}
+          {{ $medium := $image.Resize "800x550 webp q85" }}
+          {{ $small := $image.Resize "600x400 webp q85" }}
+          
+          <img 
+            class="w-full h-full object-contain xl:max-h-[710px] xl:min-w-[1034px]" 
+            src="{{ $large.RelPermalink }}"
+            srcset="{{ $small.RelPermalink }} 600w,
+                    {{ $medium.RelPermalink }} 800w,
+                    {{ $large.RelPermalink }} 1034w"
+            sizes="(max-width: 768px) 600px, (max-width: 1024px) 800px, 1034px"
+            alt="Amazon platform"
+            width="1034"
+            height="710"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          /> 
+          
+        {{ else if and $image (eq $image.MediaType.SubType "svg") }}
+          <img 
+            class="w-full h-full object-contain xl:max-h-[710px] xl:min-w-[1034px]" 
+            src="{{ $image.RelPermalink }}"
+            alt="Amazon platform"
+            width="1034"
+            height="710"
+            loading="eager"
+            fetchpriority="high"
+          /> 
+          
+        {{ else }}
+          <img 
+            class="w-full h-full object-contain xl:max-h-[710px] xl:min-w-[1034px]" 
+            src="{{ .hero_image }}"
+            alt="Amazon platform"
+            width="1034"
+            height="710"
+            loading="eager"
+            fetchpriority="high"
+          /> 
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  <div class="bg-colorSurfaceLightWhiteHover h-[40px] md:h-[190px] w-full absolute bottom-0 left-0 right-0 -z-10"></div>
+</section>

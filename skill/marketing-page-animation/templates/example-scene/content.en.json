@@ -1,0 +1,71 @@
+{
+  "q1": {
+    "text": "Which campaigns should I scale this week?",
+    "role": "data",
+    "translate": true,
+    "sensitivity": "none"
+  },
+  "a1": {
+    "text": "Two campaigns are ready to scale. Here is the strongest.",
+    "role": "data",
+    "translate": true,
+    "sensitivity": "none"
+  },
+  "m1": {
+    "label": "Conversions",
+    "value": 1240,
+    "delta": 18,
+    "format": {
+      "value": "number",
+      "delta": "percent"
+    },
+    "role": "data",
+    "translate": {
+      "label": true
+    },
+    "sensitivity": "amount"
+  },
+  "rec": {
+    "title": "Increase budget",
+    "rationale": "Strong return with room to grow",
+    "role": "data",
+    "translate": true,
+    "sensitivity": "none"
+  },
+  "chg": {
+    "target": "Campaign A",
+    "before": "50",
+    "after": "65",
+    "role": "data",
+    "translate": {
+      "target": false
+    },
+    "sensitivity": "entity-name"
+  },
+  "appr": {
+    "confirm": "Approve",
+    "dismiss": "Not now",
+    "role": "chrome",
+    "translate": true,
+    "sensitivity": "none"
+  },
+  "composer": {
+    "placeholder": "Ask anything about your accounts",
+    "send": "Send",
+    "role": "chrome",
+    "translate": true,
+    "sensitivity": "none"
+  },
+  "ok": {
+    "message": "Budget updated",
+    "role": "data",
+    "translate": true,
+    "sensitivity": "none"
+  },
+  "note": {
+    "message": "Change applied to 1 campaign",
+    "role": "data",
+    "translate": true,
+    "sensitivity": "none"
+  }
+}

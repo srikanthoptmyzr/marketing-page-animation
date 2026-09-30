@@ -1,0 +1,40 @@
+<section class="c-cta-section-2 bg-surface-dark-darker-hover py-[40px] lg:py-[130px] px-lr " style="background-image: url('/images/homepage/cta-section-1-pattern.png'); background-size: cover; background-position: center;">
+  <div class="flex flex-col max-w-[1440px] mx-auto bg-surface-dark-dark
+    border-surface-dark-active rounded-lg border overflow-hidden">
+    <!-- Main content wrapper -->
+    <div class="relative w-full flex flex-col lg:flex-row items-baseline lg:items-center justify-between
+      pt-[40px] pr-0 px-[40px] lg:py-[110px] min-h-[460px]">
+      <!-- Left image - hidden on mobile -->
+      <div class="hidden lg:block lg:absolute top-auto bottom-auto left-0">
+        <img class="rounded-r-xl max-w-[227px] min-h-[411px] object-cover" src="{{.left_image}}" alt="left illustration">
+      </div>
+      <!-- Center content -->
+      <div class="w-[84%]  lg:w-1/2 lg:mx-auto z-10 text-left lg:pr-5">
+        <p data-scroll="fade-slide" class="text-mobileHeadlinesH3 md:text-desktopHeadlinesH2 xl:text-desktopHeadlinesH2 
+          text-colorSurfaceLightWhite font-fontFamilyHeadlinesDmSans tracking-mobileLetterSpacingMedium 
+          md:tracking-desktopLetterSpacingXl leading-mobileLineHeight5xl md:leading-desktopLineHeight5xl font-extrabold">{{.heading}}</p>
+
+        <div class="flex lg:justify-center gap-3 mt-4 md:mt-8">
+          {{with .trialBtn}}
+            <a href="{{.url}}" class="rounded-lg font-bold text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 bg-teal text-colorSurfaceLightWhite w-[127px] 
+            sm:w-[207px] py-3 text-center capitalize hover:bg-colorPrimaryTealNormalHover">
+              {{.text}}
+            </a>
+          {{end}}
+          {{with .demoBtn}}
+            <a href="{{.url}}" class="rounded-lg font-bold text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 bg-teal-dark-active text-colorSurfaceLightWhite 
+            w-[127px] sm:w-[207px] py-3 text-center capitalize hover:bg-colorPrimaryTealDarkHover ">
+              {{.text}}
+            </a>
+          {{end}}
+        </div>
+      </div>
+      <!-- Right image -->
+      <div class="w-full lg:w-auto mt-8 lg:mt-0 lg:absolute bottom-0 lg:top-auto lg:bottom-auto lg:right-0">
+        <img class="rounded-tl-xl lg:rounded-l-xl w-full h-[410px] md:h-[390px] 
+          lg:max-w-[227px] lg:min-h-[411px] object-cover
+          lg:h-auto" src="{{.right_image}}" alt="">
+      </div>
+    </div>
+  </div>
+</section>

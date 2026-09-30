@@ -1,0 +1,72 @@
+{
+ "component": "mcp-features",
+ "source": "component-library/components/mcp-features/",
+ "fields": {
+  "example_prompt": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": ">-",
+   "inputType": "textarea",
+   "localization": "unlisted"
+  },
+  "feature_title": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Diagnose what's driving campaign performance changes",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "features": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "translatable"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "What you can do with Optmyzr MCP",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "image": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "/forestry/mcp-campaign-performance.webp",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "prompt_cta_text": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "prompt_cta_url": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "https://claude.ai/directory/optmyzr-mcp",
+   "inputType": "url",
+   "localization": "url-prefixed"
+  },
+  "subtext": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": ">-",
+   "inputType": "textarea",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [
+  "copyFailed",
+  "copyPrompt",
+  "promptCopied",
+  "promptLabel",
+  "tryThisPromptHint"
+ ],
+ "partials": [
+  "mcp-prompt-copy.html"
+ ]
+}

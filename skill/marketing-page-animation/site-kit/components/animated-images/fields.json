@@ -1,0 +1,22 @@
+{
+ "component": "animated-images",
+ "source": "component-library/components/animated-images/",
+ "fields": {
+  "image": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "/images/about/animated-image-0.png",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "images": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "skip"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

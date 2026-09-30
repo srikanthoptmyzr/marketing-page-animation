@@ -1,0 +1,134 @@
+<section class="c-timeline-section px-lr pb-[70px] md:pb-[170px] lg:pb-[196px] overflow-x-hidden">
+  <div class="max-w-1440 mx-auto xl:px-[126px]">
+    <h1 class="mx-auto text-center text-mobileHeadlinesH2 md:text-desktopHeadlinesH2 font-dm font-bold w-[70%] md:w-full 
+      mb-[48px] md:mb-[56px] tracking-desktopLetterSpacingXl leading-mobileLineHeight6xl md:leading-desktopLineHeight5xl">
+      {{.heading}}
+    </h1>
+    {{ $totalItems := len .roadTakenList }}
+    {{ range $i := seq $totalItems }}
+      {{ $index := sub $totalItems $i }}
+      {{ $item := index $.roadTakenList $index }}
+      {{ $isEven := eq (mod $index 2) 0 }}
+      
+      <!-- desktop layout -->
+      <div class="hidden lg:flex {{ if not $isEven }}flex-row-reverse{{ end }} gap-[170px] mb-[127px] {{if $item.isTall}} tall-image {{end}} {{if $item.noMargin}} no-margin {{end}}">
+        <!-- image section -->
+        <div class="relative w-1/2">
+          <img src="/images/about/timeline-bg.svg" alt="pattern" class="pattern-bg {{ if not $isEven }}transform scale-x-[-1]{{ end }}" role="presentation" fetchpriority="low">
+          {{ $positionClass := cond $isEven "absolute top-[50px] rounded-[12px] left-[50px]" "absolute top-[50px] rounded-[12px] right-[80px]" }}
+          {{ partial "image.html" (dict "src" $item.image "alt" "" "class" $positionClass "loading" "lazy" "imgClass" "max-h-[500px]") }}
+        </div>
+        
+        <!-- content section -->
+        <div class="flex flex-col w-1/2 justify-center relative">
+          <!-- arrow  -->
+          {{ if lt $index (sub $totalItems 1) }}
+            <span class="lg:absolute lg:w-auto lg:h-full arrow-element {{ if $isEven }}arrow-right{{ else }}arrow-left{{ end }}">
+              <img src="/images/about/arrow.svg" alt="" role="presentation">
+            </span>
+          {{ end }}
+          
+          <!-- heading -->
+          <h2 class="leading-none  md:text-desktopHeadlinesH1 font-dm font-bold 
+                    {{ if $isEven }}translate-x-[-100px]{{ else }}translate-x-[70px] text-right{{ end }}">
+            {{ $item.year }}
+          </h2>
+          
+          <!-- info paragraph -->
+          <p class="md:text-desktopSubHeadingsP2 text-surface-dark-active leading-[140%] mt-12">
+            {{ $item.info }}
+          </p>
+        </div>
+      </div>
+      
+      <!-- mobile/tablet layout -->
+      <div class="flex flex-col lg:hidden mb-[48px] {{if $item.isTall}} tall-image-mobile {{end}}">
+        <!-- Image section with same styling as desktop and alternating left/right pattern -->
+        <div class="relative w-full mb-[20px] timeline-mobile-image">
+          <div class="relative w-[80%] {{ if $isEven }}ml-0{{ else }}ml-auto{{ end }}">
+            <img src="/images/about/timeline-bg.svg" alt="pattern" class="w-full h-[80%] pattern-bg {{ if not $isEven }}transform scale-x-[-1]{{ end }}" role="presentation" fetchpriority="low">
+            {{ $positionClass := cond $isEven "absolute top-[30px] rounded-[12px] w-full timeline-img left-[30px]" "absolute top-[30px] rounded-[12px] w-full timeline-img right-[30px]" }}
+            {{ partial "image.html" (dict "src" $item.image "alt" "" "class" $positionClass "loading" "lazy" "imgClass" "timeline-img") }}
+          </div>
+        </div>
+        
+        <!-- content section -->
+        <div class="flex flex-col justify-center md:px-6">
+          <h2 class="leading-none text-mobileHeadlinesH1 font-dm font-bold mb-[16px] {{ if eq $index 0 }}mt-[30px]{{ end }}">
+            {{ $item.year }}
+          </h2>
+          <p class="text-mobileBodyB2 text-surface-dark-active leading-[140%]">
+            {{ $item.info }}
+          </p>
+        </div>
+      </div>
+    {{ end }}
+  </div>
+</section>
+<style>
+.tall-image {
+  margin-bottom: 220px;
+}
+.no-margin{
+  margin-bottom:127px !important;
+}
+.tall-image-mobile {
+}
+
+.arrow-element {
+  transform: rotateZ(-90deg);
+}
+
+.arrow-right {
+  right: 30%;
+  top: -40%;
+}
+
+.arrow-left {
+  transform: rotateY(180deg) rotateZ(-90deg);
+  left: 24%;
+  top: -36%;
+}
+
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .arrow-right {
+    right: 15%;
+    top: -45%;
+  }
+  
+  .arrow-left {
+    left: 10%;
+    top: -42%;
+  }
+}
+
+@media (min-width: 1441px) {
+  .arrow-right {
+    right: 25%;
+    top: -35%;
+  }
+  
+  .arrow-left {
+    left: 20%;
+    top: -32%;
+  }
+}
+
+@media (max-width: 1023px) {
+  .tall-image-mobile .timeline-mobile-image .timeline-img {
+    max-height: 531px;
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 767px) {
+  .c-timeline-section .max-w-1440 > h1 {
+    margin-bottom: 40px;
+  }
+  
+  .tall-image-mobile .timeline-mobile-image .timeline-img {
+    max-height: 237px;
+    object-fit: contain;
+  }
+}
+</style>

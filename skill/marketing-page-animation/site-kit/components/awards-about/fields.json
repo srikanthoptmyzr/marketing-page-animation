@@ -1,0 +1,43 @@
+{
+ "component": "awards-about",
+ "source": "component-library/components/awards-about/",
+ "fields": {
+  "award_title": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "US Search Awards",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "awards": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Recognition Through the Years",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "image": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/forestry/desktop-us-search-awards-logo.svg",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "years": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

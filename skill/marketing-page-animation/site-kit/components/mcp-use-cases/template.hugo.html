@@ -1,0 +1,79 @@
+{{ $promptCtaUrl := default "https://claude.ai/directory/optmyzr-mcp" .prompt_cta_url }}
+{{ $promptCtaText := default (i18n "tryThisPrompt") .prompt_cta_text }}
+<section class="c-mcp-use-cases relative overflow-hidden pt-16 pb-20 md:pb-28"
+  style="background-color: #191b1f; background-image: url('/images/homepage/teams-pattern.png'); background-size: cover; background-position: center;">
+  <!-- soft glow accents -->
+  <div class="pointer-events-none absolute"
+    style="right:-13rem; top:-8rem; width:900px; height:700px; opacity:.4; background: radial-gradient(closest-side, rgba(78,122,223,0.22), rgba(78,122,223,0));"></div>
+  <div class="pointer-events-none absolute"
+    style="left:-13rem; bottom:0; width:900px; height:700px; opacity:.4; background: radial-gradient(closest-side, rgba(141,66,203,0.20), rgba(141,66,203,0));"></div>
+
+  <div data-scroll="fade-slide" class="container mx-auto px-4 lg:px-12 max-w-1440 relative">
+    <h2 class="text-mobileHeadlinesH3 md:text-desktopHeadlinesH2 font-bold font-dm
+      leading-mobileLineHeight5xl md:leading-desktopLineHeight5xl tracking-desktopLetterSpacingXl
+      text-white md:text-center mb-9 lg:mb-14">
+      {{ .heading }}
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2"
+      style="gap:54px; max-width:1140px; margin-left:auto; margin-right:auto;">
+      {{ range .cards }}
+      {{ $cardTitle := .card_title }}
+      {{ $img := .image }}
+      <div class="mcp-uc-card flex flex-col rounded-xl overflow-hidden"
+        style="background-color:#22262b; border:1px solid #484f59; padding:40px; gap:24px;">
+        <div class="flex flex-col" style="gap:16px;">
+          <h3 class="text-mobileHeadlinesH4 md:text-desktopHeadlinesH3 font-bold font-dm text-white
+            leading-mobileLineHeight2xl md:leading-desktopLineHeight4xl tracking-desktopLetterSpacingMedium">
+            {{ $cardTitle }}
+          </h3>
+          <p class="text-desktopSubHeadingsP4 leading-desktopLineHeightMedium" style="color:#f3f3f3;">
+            {{ .subtext }}
+          </p>
+        </div>
+        {{ with $img }}
+        <img src="{{ . }}" alt="{{ $cardTitle }}" loading="lazy" decoding="async" class="w-full rounded-lg"
+          style="height:180px; object-fit:cover; object-position:top;">
+        {{ end }}
+        {{ with .example_prompt }}
+        <div class="flex flex-col mt-auto" style="gap:14px;">
+          <div class="rounded-2xl" style="background-color:#434343; border:1px solid #8d42cb; padding:14px 16px 14px 16px;">
+            <div class="mcp-prompt-head" style="margin-bottom:10px;">
+              <span class="text-desktopSubHeadingsP7 font-medium leading-desktopLineHeightXxs text-white">{{ i18n "promptLabel" }}</span>
+              <button type="button" class="mcp-copy-btn mcp-copy-btn--dark" data-copy-text="{{ . }}"
+                  data-copied-label="{{ i18n "promptCopied" }}" data-failed-label="{{ i18n "copyFailed" }}"
+                  aria-label="{{ i18n "copyPrompt" }}">
+                  <svg class="mcp-copy-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <rect x="9" y="9" width="11" height="11" rx="2.5" stroke="currentColor" stroke-width="2"/>
+                    <path d="M6.5 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                  <svg class="mcp-copy-ok" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+            </div>
+            <p class="text-desktopSubHeadingsP5 leading-desktopLineHeightSmall" style="color:#d5d5d5;">{{ . }}</p>
+          </div>
+          <a class="mcp-try-btn bg-teal-dark hover:bg-colorPrimaryTealNormalHover text-colorSurfaceLightWhite text-desktopSubHeadingsP5"
+              href="{{ $promptCtaUrl }}" target="_blank" rel="noopener" data-copy-text="{{ . }}"
+              data-copied-label="{{ i18n "promptCopied" }}" data-failed-label="{{ i18n "copyFailed" }}"
+              title="{{ i18n "tryThisPromptHint" }}">
+              <span class="mcp-try-label">{{ $promptCtaText }}</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+        </div>
+        {{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<style>
+@media (max-width: 767px) {
+  .c-mcp-use-cases .mcp-uc-card { padding: 24px !important; gap: 20px !important; }
+}
+</style>
+
+{{ partial "mcp-prompt-copy.html" . }}

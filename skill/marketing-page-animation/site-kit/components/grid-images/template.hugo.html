@@ -1,0 +1,28 @@
+<section class="c-grid-images px-lr lg:pt-[80px] mb-[48px] md:mb-0">
+  <div class="max-w-1440 mx-auto flex flex-col lg:flex-row xl:px-[114px] gap-6 lg:gap-[25px] items-center">
+    <!-- Text content -->
+    <div class="w-full lg:w-1/2 space-y-[25px] lg:space-y-[40px] lg:mb-0">
+      <h1 class="text-mobileHeadlinesH2 md:text-desktopHeadlinesH2 font-dm leading-mobileLineHeight6xl md:leading-desktopLineHeight5xl 
+        font-bold tracking-desktopLetterSpacingXl">{{.heading}}</h1>
+      <p class="text-mobileBodyB2 md:text-desktopSubHeadingsP2 text-surface-dark-active leading-mobileLineHeight3xl 
+        md:leading-desktopLineHeightXxl">{{.subtext_1}}</p>
+      <p class="text-mobileBodyB2 md:text-desktopSubHeadingsP2 text-surface-dark-active leading-mobileLineHeight3xl 
+        md:leading-desktopLineHeightXxl">{{.subtext_2}}</p>
+    </div>
+    <!-- Image grid -->
+    <div class="w-full lg:w-1/2 flex flex-col">
+      <div class="flex gap-[15px] items-baseline">
+        <div class="w-[38%] justify-end flex">
+          <img src="{{.image_1}}" alt="Optmyzr team members collaborating" class="size-[104px]  md:size-[165px]" loading="lazy">
+        </div>
+        <img src="{{.image_2}}" alt="Optmyzr team members collaborating" class="w-[144px] h-[130px]  md:w-[228px] md:h-[207px]" loading="lazy">
+      </div>
+      <div class="flex gap-[15px] mt-[15px] lg:justify-center">
+        <div class="w-[38%] flex justify-end lg:hidden 2xl:flex">
+          <img src="{{.image_3}}" alt="Optmyzr team members collaborating" class="size-[130px] md:size-[207px]" loading="lazy">
+        </div>
+        <img src="{{.image_4}}" alt="Optmyzr team members collaborating" class="size-[202px] md:size-[321px]" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>

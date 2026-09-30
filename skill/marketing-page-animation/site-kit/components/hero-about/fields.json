@@ -1,0 +1,29 @@
+{
+ "component": "hero-about",
+ "source": "component-library/components/hero-about/",
+ "fields": {
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Meet Our Team",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "image": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "/images/about/team-2.jpg",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "subtext": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": ">-",
+   "inputType": "textarea",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

@@ -1,0 +1,25 @@
+<section class="c-optmyzr-alternatives-section px-lr pt-12 pb-[72px] md:pb-[96px] bg-colorSurfaceLightLight">
+  <div class="max-w-1440 mx-auto xl:px-[114px]">
+    <h2 class="font-dm text-center font-bold text-mobileHeadlinesH3 md:text-desktopHeadlinesH3 tracking-desktopLetterSpacingMedium">
+      {{ .heading }}
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[8px] md:gap-[24px] mt-[32px] md:mt-[40px]">
+      {{ range .alternatives }}
+      <a href="{{ .url }}" class="bg-white rounded-xl border border-colorSurfaceLightNormal flex justify-center sm:justify-start">
+        <div class="px-[20px] py-[24px] flex items-center">
+          <div class="flex-shrink-0 mr-4 border border-colorSurfaceLightNormal rounded-full">
+            <img src="{{ .logo }}" alt="{{ .name }} logo" class="w-16 h-16 object-contain rounded-full" loading="lazy">
+          </div>
+          <div>
+            <p class="text-desktopSubHeadingsP7 md:text-desktopSubHeadingsP5 font-semibold
+              font-semibold text-colorSurfaceDarkNormalActive tracking-desktopLetterSpacingXl">{{ i18n "optmyzr_vs" }}</p>
+            <h3 class="font-dm 
+              font-bold text-mobileHeadlinesH4 md:text-desktopHeadlinesH4 
+              tracking-desktopLetterSpacingMedium text-colorSurfaceDarkDark">{{ .name }}</h3>
+          </div>
+        </div>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>

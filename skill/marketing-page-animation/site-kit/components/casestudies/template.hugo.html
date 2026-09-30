@@ -1,0 +1,100 @@
+<section id="applications" class="relative bg-surface-dark-lighter py-16 relative overflow-hidden px-lr" 
+  style=" background-image: url('/images/homepage/casestudies-bg-2.png'); background-size: cover; background-position: center;">
+
+  <img class="absolute -top-[3%] md:-top-[24%] -right-[6%] h-[22%] rotate-[-28deg] md:rotate-0 md:h-auto right-[-13%] md:-right-[6%]" 
+  src="/images/homepage/casestudies-key-3.webp" alt="key illustration"/>
+  <div class="max-w-[1440px] relative mx-auto">
+    <div data-scroll="fade-slide" class="mb-[36px] md:mb-[64px]">
+      <h2 class="text-colorSurfaceDarkDarkActive text-mobileHeadlinesH3 lg:text-desktopHeadlinesH2 leading-mobileLineHeight5xl 
+        lg:leading-desktopLineHeight5xl tracking-mobileLetterSpacingMedium lg:tracking-desktopLetterSpacingXl 
+        w-[80%] md:w-[45%] text-left font-bold font-fontFamilyHeadlinesDmSans mb-4">
+        {{ .heading }}
+      </h2>
+      <p class="text-left text-desktopSubHeadingsP3 md:text-desktopSubHeadingsP2 leading-desktopLineHeightLarge 
+        md:leading-desktopLineHeightXxl tracking-desktopLetterSpacingXxl text-colorSurfaceDarkNormalActive font-medium">{{.subtitle}}</p>
+    </div>
+    <div data-scroll="fade-slide" style="z-index: 4;" class="flex flex-col xl:flex-row 
+      gap-3 md:gap-10  justify-between mt-[36px]  md:p-0">
+      {{ range .casestudies}}
+      <div class="application-box w-full xl:w-11/12 min-h-[232px] xl:min-h-[274px] 
+              bg-white py-[16px] px-[16px] md:p-[24px] text-left hover:-translate-y-1 rounded-xl transform-gpu ease-in-out duration-200">
+        <div class="flex gap-3 justify-between items-center">
+          <div class="flex gap-4 w-full">
+            <img class="rounded-full h-[32px] w-[32px] object-scale-down border-2" src="{{.image}}" alt="application-logo" />
+            <div class="flex flex-col justify-center">
+              <p class="text-colorSurfaceDarkNormalActive text-desktopSubHeadingsP6 md:text-desktopSubHeadingsP5 leading-desktopLineHeightXs
+                md:leading-desktopLineHeightSmall tracking-desktopLetterSpacingXxl"> {{.client}} </p>
+            </div>
+          </div>
+          <a href="{{.anchor_url}}" >
+            <svg class="ml-16 rotate-[-32deg] md:rotate-0" width="30" height="30" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="40" rx="20" fill="#e6f5f6"/>
+            <path d="M12 20H28M28 20L22 14M28 20L22 26" stroke="teal" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+
+          </a>
+        </div>
+        <div class="flex flex-row sm:flex-col mt-[12px]">
+          <div class="flex align-center  items-center gap-3">
+            <p class="text-mobileHeadlinesH3 md:text-desktopHeadlinesH3 leading-mobileLineHeight5xl md:leading-desktopLineHeight4xl 
+              tracking-mobileLetterSpacingMedium md:tracking-desktopLetterSpacingMedium font-semibold font-fontFamilyHeadlinesDmSans">
+              {{.stat}}
+            </p>
+            <p class="text-mobileHeadlinesH4 md:text-desktopHeadlinesH4 leading-mobileLineHeight2xl md:leading-desktopLineHeight2xl 
+              tracking-mobileLetterSpacingLarge md:tracking-desktopLetterSpacingMedium font-bold font-fontFamilyHeadlinesDmSans">
+              {{.text}}
+            </p>
+          </div>
+        </div>
+        <hr class="mt-2">
+        <div class="text-left mt-3">
+          <ul class="text-colorSurfaceDarkNormalActive text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 leading-desktopLineHeightSmall 
+              md:leading-desktopLineHeightMedium   flex flex-col gap-[8px] font-medium">
+
+            {{ with .boost_item_1 }}
+            <li class="flex gap-2">
+              <svg class="h-5 w-5" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.4678 2.1529L9.20228 5.40156C8.84339 5.75623 8.40967 5.93467 7.90111 5.9369C7.39256 5.93901 6.96095 5.76273 6.60628 5.40806L5.82295 4.62473C5.66217 4.46395 5.46706 4.38467 5.23761 4.3869C5.00806 4.38901 4.81295 4.46829 4.65228 4.62473L1.58561 7.6914C1.49339 7.78362 1.37739 7.83084 1.23761 7.83306C1.09784 7.83517 0.97967 7.78795 0.883115 7.6914C0.786559 7.59473 0.738281 7.47762 0.738281 7.34006C0.738281 7.20251 0.786559 7.0854 0.883115 6.98873L3.94978 3.92206C4.30878 3.5674 4.74145 3.38901 5.24778 3.3869C5.75423 3.38479 6.18695 3.56317 6.54595 3.92206L7.31261 4.68873C7.48017 4.85629 7.678 4.93901 7.90611 4.9369C8.13434 4.93479 8.33223 4.85206 8.49978 4.68873L11.7549 1.44006H10.3011C10.1592 1.44006 10.0404 1.39217 9.94462 1.2964C9.84895 1.20073 9.80112 1.08195 9.80112 0.940063C9.80112 0.798175 9.84895 0.679397 9.94462 0.58373C10.0404 0.487952 10.1592 0.440063 10.3011 0.440063H12.8651C13.0369 0.440063 13.1803 0.497563 13.2953 0.612563C13.4103 0.727452 13.4678 0.870786 13.4678 1.04256V3.60673C13.4678 3.74862 13.4199 3.8674 13.3241 3.96306C13.2284 4.05884 13.1097 4.10673 12.9678 4.10673C12.8259 4.10673 12.7071 4.05884 12.6113 3.96306C12.5156 3.8674 12.4678 3.74862 12.4678 3.60673V2.1529Z" fill="#14880C"/>
+              </svg>
+              {{ . }}
+            </li>
+            {{ end }}
+
+            {{ with .boost_item_2 }}
+            <li class="flex gap-2">
+              <svg class="h-5 w-5" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.4678 2.1529L9.20228 5.40156C8.84339 5.75623 8.40967 5.93467 7.90111 5.9369C7.39256 5.93901 6.96095 5.76273 6.60628 5.40806L5.82295 4.62473C5.66217 4.46395 5.46706 4.38467 5.23761 4.3869C5.00806 4.38901 4.81295 4.46829 4.65228 4.62473L1.58561 7.6914C1.49339 7.78362 1.37739 7.83084 1.23761 7.83306C1.09784 7.83517 0.97967 7.78795 0.883115 7.6914C0.786559 7.59473 0.738281 7.47762 0.738281 7.34006C0.738281 7.20251 0.786559 7.0854 0.883115 6.98873L3.94978 3.92206C4.30878 3.5674 4.74145 3.38901 5.24778 3.3869C5.75423 3.38479 6.18695 3.56317 6.54595 3.92206L7.31261 4.68873C7.48017 4.85629 7.678 4.93901 7.90611 4.9369C8.13434 4.93479 8.33223 4.85206 8.49978 4.68873L11.7549 1.44006H10.3011C10.1592 1.44006 10.0404 1.39217 9.94462 1.2964C9.84895 1.20073 9.80112 1.08195 9.80112 0.940063C9.80112 0.798175 9.84895 0.679397 9.94462 0.58373C10.0404 0.487952 10.1592 0.440063 10.3011 0.440063H12.8651C13.0369 0.440063 13.1803 0.497563 13.2953 0.612563C13.4103 0.727452 13.4678 0.870786 13.4678 1.04256V3.60673C13.4678 3.74862 13.4199 3.8674 13.3241 3.96306C13.2284 4.05884 13.1097 4.10673 12.9678 4.10673C12.8259 4.10673 12.7071 4.05884 12.6113 3.96306C12.5156 3.8674 12.4678 3.74862 12.4678 3.60673V2.1529Z" fill="#14880C"/>
+              </svg>
+              {{ . }}
+            </li>
+            {{ end }}
+
+            {{ with .boost_item_3 }}
+            <li class="flex gap-2">
+              <svg class="h-5 w-5" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.4678 2.1529L9.20228 5.40156C8.84339 5.75623 8.40967 5.93467 7.90111 5.9369C7.39256 5.93901 6.96095 5.76273 6.60628 5.40806L5.82295 4.62473C5.66217 4.46395 5.46706 4.38467 5.23761 4.3869C5.00806 4.38901 4.81295 4.46829 4.65228 4.62473L1.58561 7.6914C1.49339 7.78362 1.37739 7.83084 1.23761 7.83306C1.09784 7.83517 0.97967 7.78795 0.883115 7.6914C0.786559 7.59473 0.738281 7.47762 0.738281 7.34006C0.738281 7.20251 0.786559 7.0854 0.883115 6.98873L3.94978 3.92206C4.30878 3.5674 4.74145 3.38901 5.24778 3.3869C5.75423 3.38479 6.18695 3.56317 6.54595 3.92206L7.31261 4.68873C7.48017 4.85629 7.678 4.93901 7.90611 4.9369C8.13434 4.93479 8.33223 4.85206 8.49978 4.68873L11.7549 1.44006H10.3011C10.1592 1.44006 10.0404 1.39217 9.94462 1.2964C9.84895 1.20073 9.80112 1.08195 9.80112 0.940063C9.80112 0.798175 9.84895 0.679397 9.94462 0.58373C10.0404 0.487952 10.1592 0.440063 10.3011 0.440063H12.8651C13.0369 0.440063 13.1803 0.497563 13.2953 0.612563C13.4103 0.727452 13.4678 0.870786 13.4678 1.04256V3.60673C13.4678 3.74862 13.4199 3.8674 13.3241 3.96306C13.2284 4.05884 13.1097 4.10673 12.9678 4.10673C12.8259 4.10673 12.7071 4.05884 12.6113 3.96306C12.5156 3.8674 12.4678 3.74862 12.4678 3.60673V2.1529Z" fill="#14880C"/>
+              </svg>
+              {{ . }}
+            </li>
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+      {{end}}
+    </div>
+    
+  </div>
+  <div class="absolute hidden lg:block bottom-0 -z-10">
+    <svg width="1440" height="511" viewbox="0 0 1440 511" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <mask id="mask0_791_1006" style="mask-type:alpha" maskunits="userSpaceOnUse" x="0" y="0" width="1440" height="511">
+        <rect width="1440" height="511" fill="#F9FAFB" />
+      </mask>
+      <g mask="url(#mask0_791_1006)">
+        <g opacity="0.12">
+          <path d="M312.224 389.103C311.241 390.087 310.935 391.558 311.428 392.858C321.352 419.01 326.785 447.373 326.785 477.004C326.785 608.023 220.573 714.234 89.555 714.234C-41.4634 714.234 -147.675 608.023 -147.675 477.004C-147.675 345.986 -41.4634 239.775 89.555 239.775C122.45 239.775 153.782 246.47 182.261 258.573C183.588 259.136 185.126 258.848 186.145 257.828L284.286 159.687C285.883 158.09 285.574 155.421 283.639 154.255C226.961 120.098 160.552 100.449 89.555 100.449C-118.41 100.449 -287 269.039 -287 477.004C-287 684.97 -118.41 853.559 89.555 853.559C297.52 853.559 466.11 684.97 466.11 477.004C466.11 409.218 448.198 345.615 416.85 290.67C415.714 288.678 412.997 288.331 411.376 289.952L312.224 389.103Z" fill="#FFFFFE" />
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M346.911 135.934L295.144 129.034C291.624 128.566 290.979 123.666 294.255 122.275L547.177 14.8862C550.018 13.6795 552.886 16.5499 551.743 19.4562L450.033 277.918C448.712 281.273 443.87 280.683 443.368 277.104L435.519 221.26L135.297 526.572C123.859 538.205 108.346 544.739 92.1687 544.739C75.9926 544.739 60.4794 538.205 49.0409 526.572L-39.6746 436.352C-63.4939 412.129 -63.4939 372.856 -39.6746 348.633C-15.8562 324.411 22.7626 324.411 46.581 348.633L92.1687 394.994L346.911 135.934Z" fill="#FFFFFE" />
+        </g>
+      </g>
+    </svg>           
+  </div>
+</section>

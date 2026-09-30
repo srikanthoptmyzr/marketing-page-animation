@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "originals.schema.json",
+  "title": "Originals register (PRIVATE)",
+  "description": ".private/originals.json. Never shared, never in preview/, handoff/ or a repo. Used only by the leak scanner.",
+  "type": "object",
+  "required": [
+    "entities"
+  ],
+  "properties": {
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "class",
+          "original"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z]+-\\d+$"
+          },
+          "class": {
+            "enum": [
+              "account-id",
+              "campaign-id",
+              "entity-name",
+              "person-name",
+              "email",
+              "phone",
+              "company",
+              "url",
+              "secret",
+              "amount",
+              "address",
+              "search-term",
+              "other-pii"
+            ]
+          },
+          "original": {
+            "type": "string"
+          },
+          "surfaceForms": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "seen": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "asset id + location or timestamp, never the value"
+          }
+        }
+      }
+    }
+  }
+}

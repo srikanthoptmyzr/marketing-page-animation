@@ -1,0 +1,160 @@
+<section id="leadership" class="c-founders-slider bg-surface-dark-lighter py-[80px] lg:pt-12 px-lr hidden lg:block">
+  <div class="max-w-1440 mx-auto">
+    <div class="rounded overflow-hidden relative" id="about-slider">
+      <div class="swiper team-swiper relative flex ">
+        <!-- founder names column on the left -->
+        <div class="w-1/4 space-y-4 z-10 absolute left-0 top-0 h-full flex flex-col justify-start">
+          {{ range $index, $el := .team }}
+          <div class="
+            founder-name pt-[20px] cursor-pointer {{ if eq $index 0 }}text-textonteallight1 font-bold {{ else }}text-gray-500 opacity-30{{ end }}
+            border-t-2 {{if eq $index 2 }} border-b-2 pb-[20px] {{end}}  border-dashed border-surface-dark-dark" data-index="{{ $index }}">
+            <h1 class="lg:text-desktopHeadlinesH4 xl:text-desktopHeadlinesH3 font-dm font-bold leading-[112%] tracking-desktopLetterSpacingMedium">{{$el.name | safeHTML}}</h1>
+            <h3 class="mt-[8px] text-desktopSubHeadingsP3 text-surface-dark-active">{{$el.job_title | safeHTML}}</h3>
+          </div>
+          {{end}}
+        </div>
+        <!-- slider -->
+        <div class="swiper-wrapper">
+          {{ range $index, $el := .team }}
+          <div class="swiper-slide">
+            <div class="flex items-start w-full justify-between">
+              <!-- div below is just for maintaining layout -->
+              <div class="w-1/4"></div>
+              <!-- bio content -->
+              <div class="w-[49%]">
+                <p class="lg:text-desktopSubHeadingsP5 xl:text-desktopSubHeadingsP3 
+                  2xl:text-desktopSubHeadingsP2 text-surface-dark-active p-[24px] leading-desktopLineHeightXxl 
+                   font-normal">{{$el.mediumBio | safeHTML}}</p>
+              </div>
+              <!-- profile photo -->
+              <div class="h-[384px] w-auto rounded-[12px] overflow-hidden">
+                {{ partial "image.html" (dict "src" $el.image "alt" $el.name "imgClass" "h-full object-cover lg:w-[205px] 2xl:w-[321px]" "loading" "lazy" "width" "205" "height" "384") }}
+              </div>
+            </div>
+          </div>
+          {{end}}
+        </div>
+      </div>
+
+      <div id="controls"  class="hidden lg:flex items-center absolute bottom-0 left-[2%] z-[30]  w-[73%] justify-end">
+        <p class="team-pagination-current  text-desktopSubHeadingsP2 font-bold mr-[28px]"></p>
+        <div style="width: 200px;" class="ml-2 h-[6px] relative rounded overflow-hidden">
+          <div class="team-progress-fill h-full block absolute bg-teal transition-all duration-500"></div>
+        </div>
+        <p class="team-pagination-total text-desktopSubHeadingsP2 font-bold ml-[32px]"></p>
+        <button class="team-button-prev ml-[20px] focus:outline-none outline-none" aria-label="{{ i18n "previous_founder" }}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none">
+            <title>{{ i18n "previous_founder" }}</title>
+            <rect width="32" height="32" fill="#E6F5F6" rx="16" transform="matrix(-1 0 0 1 32 0)"/>
+            <mask id="mask-prev-leadership" width="24" height="24" x="4" y="4" maskUnits="userSpaceOnUse" style="mask-type:alpha">
+              <path fill="#D9D9D9" d="M28 4H4v24h24z"/>
+            </mask>
+            <g mask="url(#mask-prev-leadership)">
+                <path fill="#05747A" d="M11.373 16.75H22.75a.725.725 0 0 0 .535-.215A.725.725 0 0 0 23.5 16a.725.725 0 0 0-.215-.534.725.725 0 0 0-.535-.216H11.373l5.17-5.17a.706.706 0 0 0 .22-.521.744.744 0 0 0-.236-.532.784.784 0 0 0-.527-.225.7.7 0 0 0-.527.225l-6.34 6.34a.827.827 0 0 0-.256.633.828.828 0 0 0 .256.633l6.34 6.34c.138.139.31.21.514.213a.749.749 0 0 0 .54-.213.735.735 0 0 0 .232-.534.735.735 0 0 0-.232-.535l-5.154-5.154Z"/>
+            </g>
+          </svg>
+
+        </button>
+        <button class="team-button-next ml-4 focus:outline-none outline-none" aria-label="{{ i18n "next_founder" }}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none"><title>{{ i18n "next_founder" }}</title><rect width="32" height="32" fill="#E6F5F6" rx="16"/>
+            <mask id="mask-next-leadership" width="24" height="24" x="4" y="4" maskUnits="userSpaceOnUse" style="mask-type:alpha">
+              <path fill="#D9D9D9" d="M4 4h24v24H4z"/>
+            </mask>
+            <g mask="url(#mask-next-leadership)">
+              <path fill="#05747A" d="M20.627 16.75H9.25a.725.725 0 0 1-.534-.215A.725.725 0 0 1 8.5 16c0-.213.072-.391.216-.534a.725.725 0 0 1 .534-.216h11.377l-5.17-5.17a.706.706 0 0 1-.22-.521c.002-.2.081-.377.236-.532A.784.784 0 0 1 16 8.802a.7.7 0 0 1 .527.225l6.34 6.34a.827.827 0 0 1 .256.633.828.828 0 0 1-.256.633l-6.34 6.34a.716.716 0 0 1-.515.213.749.749 0 0 1-.539-.213.735.735 0 0 1-.232-.534c0-.202.077-.38.232-.535l5.154-5.154Z"/>
+            </g>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+window.swiperConfigs = window.swiperConfigs || {};
+window.swiperConfigs['.team-swiper'] = {
+  loop: true,
+  speed: 500,
+  effect: 'fade',
+  fadeEffect: {
+    crossFade: true
+  },
+  observer: true,
+  observeParents: true,
+  watchSlidesProgress: true,
+  on: {
+    init: function() {
+      window.teamSwiperInstance = this;
+
+      const totalSlides = document.querySelectorAll('.team-swiper .swiper-slide').length;
+      const founderNames = document.querySelectorAll('.founder-name');
+
+      const prevButton = document.querySelector('.team-button-prev');
+      const nextButton = document.querySelector('.team-button-next');
+
+      if (prevButton) {
+        prevButton.addEventListener('click', () => this.slidePrev());
+      }
+
+      if (nextButton) {
+        nextButton.addEventListener('click', () => this.slideNext());
+      }
+
+      founderNames.forEach((name, index) => {
+        name.addEventListener('click', function() {
+          const realIndex = parseInt(this.getAttribute('data-index'));
+          window.teamSwiperInstance.slideToLoop(realIndex, 500);
+        });
+      });
+
+      updatePagination(this, totalSlides);
+      updateFounderNames(this);
+    },
+    slideChange: function() {
+      const totalSlides = document.querySelectorAll('.team-swiper .swiper-slide').length;
+      updatePagination(this, totalSlides);
+      updateFounderNames(this);
+    }
+  }
+};
+
+function updatePagination(swiper, totalSlides) {
+  const currentIndex = swiper.realIndex + 1;
+
+  const currentSlideFormatted = currentIndex < 10 ? `0${currentIndex}` : currentIndex;
+  const totalSlidesFormatted = totalSlides < 10 ? `0${totalSlides}` : totalSlides;
+
+  const currentEl = document.querySelector('.team-pagination-current');
+  const totalEl = document.querySelector('.team-pagination-total');
+  const progressFill = document.querySelector('.team-progress-fill');
+
+  if (currentEl) currentEl.textContent = currentSlideFormatted;
+  if (totalEl) totalEl.textContent = totalSlidesFormatted;
+
+  if (progressFill) {
+    let width = '0%';
+    if (currentIndex === 1) {
+      width = '33.33%'; 
+    } else if (currentIndex === 2) {
+      width = '66.66%'; 
+    } else if (currentIndex === 3) {
+      width = '100%'; 
+    }
+    progressFill.style.width = width;
+  }
+}
+
+function updateFounderNames(swiper) {
+  const activeIndex = swiper.realIndex;
+  const founderNames = document.querySelectorAll('.founder-name');
+
+  founderNames.forEach((name, index) => {
+    if (index === activeIndex) {
+      name.classList.remove('text-gray-500', 'opacity-30', 'blur-[0.5px]');
+      name.classList.add('text-textonteallight1', 'font-bold');
+    } else {
+      name.classList.remove('text-textonteallight1', 'font-bold');
+      name.classList.add('text-gray-500', 'opacity-30', 'blur-[0.5px]'); 
+    }
+  });
+}
+</script>

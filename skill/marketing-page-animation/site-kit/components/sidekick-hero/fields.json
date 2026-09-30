@@ -1,0 +1,71 @@
+{
+ "component": "sidekick-hero",
+ "source": "component-library/components/sidekick-hero/",
+ "fields": {
+  "answer": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Spend $4.2k \u00b7 Conv 284 (+8%) \u00b7 CPA $14.83 (-16%). One anomaly flagged.",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Your PPC analyst just joined the channel.",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "primaryBtn": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "unlisted"
+  },
+  "prompts": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "question": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "How did my Google Ads perform yesterday?",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "secondaryBtn": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "unlisted"
+  },
+  "subtext": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Ask @Optmyzr for budget checks, anomaly alerts, or performance data right where your team already talks.",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "text": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Sign in to add to Slack",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "url": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "https://tools.optmyzr.com/settingsv2/slackManagement",
+   "inputType": "url",
+   "localization": "url-prefixed"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

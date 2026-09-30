@@ -1,0 +1,73 @@
+{
+ "component": "connector-testimonial",
+ "source": "component-library/components/connector-testimonial/",
+ "fields": {
+  "cta_text": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Read the Clark St. James case study",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "cta_url": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/case-studies/clark-st-james/",
+   "inputType": "url",
+   "localization": "url-prefixed"
+  },
+  "customer_image": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "/forestry/sean-clark.jpg",
+   "inputType": "image",
+   "localization": "unlisted"
+  },
+  "customer_name": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Sean Clark",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "customer_title": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Founder, Clark St. James",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "heading": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "What it changes day to day.",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "quote": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": ">-",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "video_caption": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "youtubeVideoId": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "zwyJqHAjE8s",
+   "inputType": "text",
+   "localization": "skip"
+  }
+ },
+ "i18nKeys": [],
+ "partials": [
+  "bookshop/shared/hugo/youtube-id.hugo.html"
+ ]
+}

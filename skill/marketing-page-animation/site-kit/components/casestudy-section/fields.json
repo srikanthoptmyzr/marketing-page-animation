@@ -1,0 +1,57 @@
+{
+ "component": "casestudy-section",
+ "source": "component-library/components/casestudy-section/",
+ "fields": {
+  "btn_text": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Learn More",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "btn_url": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "#",
+   "inputType": "url",
+   "localization": "url-prefixed"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Paid media teams trust Optmyzr to speed up PPC analysis",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "image": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/images/solutions/placeholder.png",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "kicker": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Case study",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "product_type": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Search",
+   "inputType": "select",
+   "localization": "skip"
+  },
+  "subtext": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "See how PixelRush used the Quality Score Tracker and Search Terms N-Grams for faster, more efficient monitoring.",
+   "inputType": "textarea",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

@@ -1,0 +1,57 @@
+{
+ "component": "steps-section",
+ "source": "component-library/components/steps-section/",
+ "fields": {
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Getting started takes minutes and is 100% secure.",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "image": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "kicker": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "name": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "platforms": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "steps": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": "array",
+   "localization": "translatable"
+  },
+  "subtext": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Optmyzr is fully SOC2 compliant and takes customer data privacy seriously. We\u2019ll never share your",
+   "inputType": "textarea",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

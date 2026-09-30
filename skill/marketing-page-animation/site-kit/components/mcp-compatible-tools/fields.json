@@ -1,0 +1,71 @@
+{
+ "component": "mcp-compatible-tools",
+ "source": "component-library/components/mcp-compatible-tools/",
+ "fields": {
+  "cta_text": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Use Optmyzr with Claude",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "cta_url": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "https://claude.ai/directory/optmyzr-mcp",
+   "inputType": "url",
+   "localization": "url-prefixed"
+  },
+  "description": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": ">-",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Works with the AI tools you already use",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "logo": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "/images/icons/claude-icon.png",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "name": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Claude",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "note": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "status": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Live",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "tools": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

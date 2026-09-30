@@ -1,0 +1,574 @@
+{
+ "version": 4,
+ "status": "verified",
+ "source": {
+  "repo": "Optmyzr-Engineering/marketing-website",
+  "branch": "main",
+  "commit": "c9ac095442e6126f90ebcd75e6dfac6bbed97c6c",
+  "date": "2026-09-29",
+  "method": "All 80 layout templates classified by authoring model; section sequences for EVERY composed page type derived from the `content_blocks` of every English page; creatable types cross-checked against the 64 CloudCannon collections and 23 creation schemas."
+ },
+ "authoringModels": {
+  "blocks": "The whole page is an ordered content_blocks array of Bookshop components. Any section can be added, removed or reordered by editing front matter. Scenes drop straight in.",
+  "blocks-in-template": "A fixed template (breadcrumb, listing, related items, pricing tables) with a content_blocks region inside it. Blocks can be added, but the surrounding chrome is template-owned and cannot be changed from content.",
+  "hybrid-legacy": "Renders content_blocks when the page has them; otherwise falls back to a hardcoded legacy template driven by heroTitle/benefits/faqList. ALWAYS author the blocks branch. Never author the legacy branch.",
+  "params": "A fixed template driven by named front-matter fields. Structure cannot be changed from content. A new section, or a scene, needs a dev-team template change.",
+  "body": "A markdown body page (plus a few front-matter fields). Prose, not composed sections."
+ },
+ "scenePlacement": {
+  "blocks": "direct — add a scene component block, or put the scene in an existing component's image slot",
+  "blocks-in-template": "direct, inside the blocks region only",
+  "hybrid-legacy": "direct, on the blocks branch only",
+  "params": "NOT directly. The scene can only replace an existing image field, and only if the dev team adds a component. Flag as a kit gap.",
+  "body": "NOT directly. A scene in prose needs a shortcode the dev team must add. Flag as a kit gap."
+ },
+ "howStructureIsDefined": "A composed page's sections are the ordered content_blocks array in its YAML front matter, each entry keyed by _bookshop_name; the layout only renders them. Header, footer and promo banners are never blocks — they come from the base layout (themes/optmyzr-marketing-v2/layouts/_default/baseof.html) and its partials.",
+ "routing": {
+  "note": "Map the user's words to a pageType key. If the brief does not match any row, say so and ask — never invent a page type.",
+  "landing page": "solution",
+  "solution page": "solution",
+  "feature page": "solution",
+  "product page": "product",
+  "comparison / competitor / 'vs' page": "comparison",
+  "resources page / guide / hub": "resource-hub",
+  "blog post / article": "blog-post",
+  "case study / customer story": "case-study",
+  "pricing page": "pricing",
+  "demo request / book a demo": "demo-request",
+  "thank you / confirmation": "thank-you",
+  "webinar / event": "event",
+  "free tool / calculator": "labs",
+  "careers / job opening": "careers",
+  "about / team": "about",
+  "contact": "contact",
+  "homepage": "homepage",
+  "legal / policy / terms": "legal"
+ },
+ "pageTypes": {
+  "solution": {
+   "label": "Solution / feature / landing page",
+   "alsoUseFor": "A generic 'landing page' brief with no conversion form. This is the site's general-purpose marketing page and the default answer unless the brief names something else.",
+   "authoringModel": "blocks",
+   "scenes": "direct — the primary home for animated scenes",
+   "layoutForNewPages": "v4-generic-solutions-page",
+   "otherLayouts": {
+    "v2-generic-solutions-page": "hybrid-legacy, 5 pages",
+    "generic-solutions-page": "hybrid-legacy, 34 pages (18 composed, 16 still on the legacy branch)",
+    "custom-api": "blocks, 2 pages, same section set"
+   },
+   "creationSchema": ".cloudcannon/schemas/v4-solution.md",
+   "contentPath": "content/english/solutions-new/{search|amazon|social|ecommerce}/<page>.md",
+   "urlPattern": "/solutions/<slug>/ via the url front-matter key",
+   "pages": 70,
+   "examples": [
+    "/solutions/monitoring/",
+    "/solutions/optmyzr-ai/",
+    "/solutions/reporting/"
+   ],
+   "sections": [
+    {
+     "id": "hero",
+     "bookshopName": "hero-solution",
+     "class": "c-hero-solution",
+     "order": 1,
+     "required": true,
+     "frequency": "27/29 v4, 18/18 generic, 4/4 v2",
+     "inputs": [
+      "heading",
+      "subtext",
+      "image",
+      "isVerticalImage",
+      "heroIsIllustration"
+     ],
+     "note": "A scene-led page may swap in a bespoke animated hero (sidekick-hero, claude-connector-hero)."
+    },
+    {
+     "id": "breaker",
+     "bookshopName": "animated-trail-banner",
+     "class": "c-animated-trail-banner",
+     "order": 2,
+     "required": true,
+     "frequency": "29/29 v4, 18/18 generic, 4/4 v2 — present on every solution page without exception"
+    },
+    {
+     "id": "features",
+     "bookshopName": "features-section",
+     "class": "c-features-section",
+     "order": 3,
+     "required": true,
+     "frequency": "26/29 v4, 18/18 generic, 4/4 v2",
+     "repeat": "features[] array",
+     "headingLevels": {
+      "section": "h2",
+      "feature": "h3"
+     },
+     "inputs": [
+      "heading",
+      "features[].feature_title",
+      "features[].subtext",
+      "features[].benefit_1..3",
+      "features[].anchor_text",
+      "features[].url",
+      "features[].image"
+     ],
+     "imageSlot": "image-specs.json → feature"
+    },
+    {
+     "id": "case-studies",
+     "bookshopName": "casestudy-section",
+     "class": "c-casestudy-section",
+     "order": 4,
+     "required": false,
+     "frequency": "14/18 generic, 4/4 v2, only 1/29 v4 — being dropped on newer pages",
+     "repeat": "one block per case study, up to 3",
+     "static": true
+    },
+    {
+     "id": "cta",
+     "bookshopName": "cta-section-solutions",
+     "class": "c-cta-section-solutions",
+     "order": 5,
+     "required": true,
+     "frequency": "28/29 v4, 16/18 generic, 4/4 v2"
+    },
+    {
+     "id": "faq",
+     "bookshopName": "faq-section",
+     "class": "c-faq-section",
+     "order": 6,
+     "required": true,
+     "frequency": "29/29 v4, 18/18 generic, 4/4 v2",
+     "repeat": "3-9 items"
+    }
+   ],
+   "optionalExtras": [
+    "values-section",
+    "perks-section",
+    "cta-section-1",
+    "cta-section-2",
+    "casestudies",
+    "comparison-features",
+    "testimonials-solutions-2",
+    "steps-section",
+    "mcp-features",
+    "mcp-use-cases",
+    "mcp-compatible-tools",
+    "sidekick-hero",
+    "sidekick-demos",
+    "sidekick-setup",
+    "claude-connector-hero",
+    "connector-quality",
+    "connector-data-coverage",
+    "connector-testimonial"
+   ]
+  },
+  "comparison": {
+   "label": "Competitor comparison / 'Optmyzr vs X' page",
+   "authoringModel": "blocks",
+   "scenes": "direct",
+   "layout": "compare",
+   "creationSchema": ".cloudcannon/schemas/comparison-template-generic.md",
+   "contentPath": "content/english/compare/<page>.md",
+   "pages": 17,
+   "dominantSequence": [
+    "comparison-hero-slim",
+    "comparison-buyer-fit",
+    "comparison-built-for",
+    "comparison-only-on-optmyzr",
+    "mcp-use-cases",
+    "mcp-compatible-tools",
+    "comparison-pricing-cards",
+    "comparison-migration-section",
+    "comparison-table-accordion",
+    "comparison-casestudy-carousel",
+    "faq-section"
+   ],
+   "alternateSequence": [
+    "hero-comparison-indv",
+    "comparison-benefits",
+    "comparison-pros-cons",
+    "comparison-table",
+    "comparison-testimonial"
+   ],
+   "note": "11 of 17 pages use the dominant sequence, 5 the alternate. Read a sibling page before building. The hub page (compare/list.html) is blocks-in-template."
+  },
+  "homepage": {
+   "label": "Homepage",
+   "authoringModel": "blocks",
+   "scenes": "direct",
+   "layout": "index",
+   "contentPath": "content/english/_index.md",
+   "pages": 1,
+   "note": "15 blocks, one page. Highest-traffic page - changes need site-owner sign-off.",
+   "sections": [
+    "hero",
+    "trail-banner",
+    "products-section",
+    "features-section",
+    "steps-section",
+    "bynumbers-section",
+    "casestudies",
+    "testimonial-section",
+    "reviews-section",
+    "awards-section",
+    "perks-section",
+    "teams-section",
+    "animated-trail-banner",
+    "cta-section-1",
+    "cta-section-solutions"
+   ]
+  },
+  "about": {
+   "label": "About / team page",
+   "authoringModel": "blocks",
+   "scenes": "direct",
+   "layout": "about",
+   "type": "singlepage",
+   "contentPath": "content/english/about/",
+   "pages": 1,
+   "sections": [
+    "hero-about",
+    "team-bynumbers",
+    "founders-section",
+    "founders-slider",
+    "grid-images",
+    "animated-images",
+    "awards-about",
+    "timeline-section"
+   ]
+  },
+  "contact": {
+   "label": "Contact page",
+   "authoringModel": "blocks",
+   "scenes": "direct",
+   "layout": "contact-us",
+   "contentPath": "content/english/company/support/",
+   "pages": 1,
+   "sections": [
+    "hero-contact",
+    "contact-form",
+    "contact-offices-section"
+   ]
+  },
+  "demo-request": {
+   "label": "Demo request / conversion landing page",
+   "authoringModel": "blocks",
+   "scenes": "direct",
+   "layout": "demo-request-v2",
+   "olderLayout": "demo-request (params)",
+   "contentPath": "content/english/demo-request/",
+   "pages": 2,
+   "note": "Carries a form. Never touch form wiring or tracking.",
+   "sections": [
+    "hero-demo",
+    "demo-testimonial",
+    "demo-benefits"
+   ]
+  },
+  "thank-you": {
+   "label": "Thank-you / confirmation page",
+   "authoringModel": "blocks",
+   "scenes": "direct",
+   "layout": "thank-you",
+   "creationSchema": ".cloudcannon/schemas/tracking-pages.md (layout thankyou, params)",
+   "contentPath": "content/english/demo-request/, content/english/trackingPages/",
+   "sections": [
+    {
+     "bookshopName": "thankyou-section",
+     "required": true
+    }
+   ],
+   "pages": 2
+  },
+  "product": {
+   "label": "Product page",
+   "authoringModel": "blocks",
+   "scenes": "direct",
+   "layouts": {
+    "amazon": "blocks",
+    "social": "blocks",
+    "ecommerce": "blocks",
+    "generic-product-page": "params, 26 fields",
+    "ca-product-page": "params, 32 fields",
+    "product-demos": "params"
+   },
+   "creationSchema": ".cloudcannon/schemas/product-page-template.md",
+   "contentPath": "content/english/products/",
+   "pages": 7,
+   "warning": "`product-page-template` in .cloudcannon/schemas declares content_blocks but points at generic-product-page, which never renders them. Starting from that schema silently drops every block. Copy amazon.md or social.md instead. For ecommerce, copy one and set data-product to ecommerce.",
+   "sequences": {
+    "amazon": [
+     "amazon-hero",
+     "amazon-features-section",
+     "amazon-pricing",
+     "ppc-youtube-section",
+     "faq-section"
+    ],
+    "social": [
+     "social-hero",
+     "social-features-section",
+     "cta-section-solutions",
+     "social-testimonials-section",
+     "faq-section"
+    ],
+    "ecommerce": []
+   },
+   "buildable": true,
+   "liveLayouts": {
+    "amazon": "blocks, live at /amazon/",
+    "social": "blocks, live at /social/",
+    "ecommerce": "blocks, live at /products/ecommerce/"
+   },
+   "deprecatedLayouts": {
+    "generic-product-page": "params, 26 fields - every page using it is draft: true",
+    "ca-product-page": "params, 32 fields - draft, url ends in /deprecated",
+    "product-demos": "params - draft"
+   },
+   "note": "Every LIVE product page is block-driven. The three params-driven templates are used only by unpublished drafts, one of which is explicitly named deprecated, so a new product page should follow the amazon or social sequence and never those.",
+   "componentReadiness": "All 10 components across both sequences are captured. amazon-pricing reads 10 fields the blueprint does not default - set them explicitly."
+  },
+  "pricing": {
+   "label": "Pricing page",
+   "authoringModel": "blocks-in-template",
+   "scenes": "inside the blocks region only",
+   "layouts": {
+    "pricing-page-v2": "blocks-in-template, 1372 lines",
+    "headless-pricing-page": "blocks-in-template, 1748 lines",
+    "pricing-page": "params, 44 fields, legacy"
+   },
+   "contentPath": "content/english/pricing/",
+   "pages": 3,
+   "note": "Only two blocks are authorable. Pricing tables, plan logic and currency handling are template-owned - which is why this type is blocks-in-template, not blocks.",
+   "sections": [
+    "testimonial-section",
+    "reviews-section (v2 only)"
+   ]
+  },
+  "resource-hub": {
+   "label": "Resources / guides / hub pages",
+   "authoringModel": "mixed",
+   "variants": {
+    "learn-with-optmyzr": {
+     "hub": "learn-with-optmyzr/list.html — blocks-in-template",
+     "entry": "learn-with-optmyzr/single.html — params + body",
+     "contentPath": "content/english/learn-with-optmyzr/",
+     "pages": 62,
+     "creationSchema": ".cloudcannon/schemas/learn-with-optmyzr.md"
+    },
+    "research-hub": {
+     "hub": "research-hub/list.html — params",
+     "entry": "research-hub/single.html — blocks-in-template",
+     "contentPath": "content/english/research-hub/",
+     "pages": 2,
+     "creationSchema": ".cloudcannon/schemas/research-hub-template.md",
+     "sections": [
+      "research-hub-highlights"
+     ]
+    },
+    "content-hub": {
+     "layout": "content-hub — body page with a table of contents",
+     "contentPath": "content/english/content-hub/",
+     "pages": 4,
+     "creationSchema": ".cloudcannon/schemas/content-page-template.md",
+     "warning": "The schema declares content_blocks but the layout renders only .Content. Blocks are silently dropped — this is a prose page."
+    },
+    "automation-layering-masterclass": {
+     "hub": "blocks-in-template",
+     "entry": "params",
+     "contentPath": "content/english/automation-layering-masterclass/"
+    },
+    "ppc-town-hall": {
+     "hub": "params",
+     "entry": "params",
+     "contentPath": "content/english/ppc-town-hall/",
+     "pages": 140
+    }
+   },
+   "scenes": "only in the blocks regions; a scene in prose is a kit gap"
+  },
+  "blog-post": {
+   "label": "Blog post / article",
+   "authoringModel": "body",
+   "scenes": "kit gap — needs a shortcode the dev team must add",
+   "layout": "post/single.html (params + markdown body)",
+   "hub": "post/list.html — blocks-in-template",
+   "creationSchema": ".cloudcannon/schemas/blog-post-template.md",
+   "contentPath": "content/english/blog/{search|amazon|social|ecommerce}/",
+   "pages": 596,
+   "note": "The largest content set on the site. Prose with front-matter metadata; no composed sections."
+  },
+  "case-study": {
+   "label": "Case study / customer story",
+   "authoringModel": "blocks-in-template",
+   "scenes": "inside the blocks region only",
+   "layout": "company/case-studies/single.html — fixed breadcrumb and related-blogs chrome around a blocks region; no markdown body",
+   "hub": "company/case-studies/list.html — params",
+   "creationSchema": ".cloudcannon/schemas/case-study-template-new.md",
+   "contentPath": "content/english/case-studies/",
+   "type": "company/case-studies",
+   "pages": 40,
+   "note": "As prescriptive as the solution page: all four sections appear on all 40 case studies. The template owns the breadcrumb and the related-blogs strip around the blocks.",
+   "sections": [
+    {
+     "id": "hero",
+     "bookshopName": "case-study-hero",
+     "order": 1,
+     "required": true,
+     "frequency": "40/40",
+     "warning": "Template reads `author` and `customerCompany`, which the blueprint does not default."
+    },
+    {
+     "id": "results",
+     "bookshopName": "results-section",
+     "order": 2,
+     "required": true,
+     "frequency": "40/40"
+    },
+    {
+     "id": "customer",
+     "bookshopName": "about-customer-section",
+     "order": 3,
+     "required": true,
+     "frequency": "40/40",
+     "warning": "Template reads `authorCompany`, which the blueprint does not default."
+    },
+    {
+     "id": "detail",
+     "bookshopName": "result-details-section",
+     "order": 4,
+     "required": true,
+     "frequency": "40/40"
+    }
+   ]
+  },
+  "event": {
+   "label": "Webinar / event page",
+   "authoringModel": "params + body",
+   "scenes": "kit gap",
+   "layout": "company/events/single.html",
+   "hub": "company/events/list.html — blocks",
+   "creationSchema": ".cloudcannon/schemas/event-template.md",
+   "contentPath": "content/english/events/",
+   "type": "company/events",
+   "pages": 47
+  },
+  "labs": {
+   "label": "Free tool / calculator / labs entry",
+   "authoringModel": "blocks (hub) + params (entry)",
+   "scenes": "in the hub blocks",
+   "layouts": {
+    "labs/list.html": "blocks"
+   },
+   "creationSchemas": [
+    ".cloudcannon/schemas/labs-template.md",
+    ".cloudcannon/schemas/free-tools-template.md"
+   ],
+   "contentPath": "content/english/labs/, content/english/optmyzr-free-tools/",
+   "type": "labs",
+   "sections": [
+    "hero-labs",
+    "labs-cards",
+    "cta-section-solutions (optional)",
+    "faq-section (optional)"
+   ]
+  },
+  "careers": {
+   "label": "Careers page / job opening",
+   "authoringModel": "blocks (hub) + params (opening)",
+   "scenes": "in the hub blocks",
+   "layouts": {
+    "careers/list.html": "blocks",
+    "careers/single.html": "params, 15 fields"
+   },
+   "creationSchema": ".cloudcannon/schemas/career-opening-template.md",
+   "contentPath": "content/english/careers/",
+   "type": "careers",
+   "pages": 9,
+   "sections": [
+    "hero-careers (optional)",
+    "comparison-features (3/4 pages)",
+    "values-section (optional)",
+    "perks-section (optional)"
+   ]
+  },
+  "partners": {
+   "label": "Partners page",
+   "authoringModel": "blocks",
+   "scenes": "direct",
+   "layout": "partners/list.html",
+   "creationSchema": ".cloudcannon/schemas/partners-template.md",
+   "contentPath": "content/english/partners/",
+   "type": "partners",
+   "sections": [
+    "hero-partners",
+    "partners-cards"
+   ]
+  },
+  "author": {
+   "label": "Author profile / author hub",
+   "authoringModel": "params",
+   "scenes": "kit gap",
+   "layouts": {
+    "author/single.html": "params",
+    "author/list.html": "params"
+   },
+   "creationSchema": ".cloudcannon/schemas/author-template.md",
+   "contentPath": "content/english/author/"
+  },
+  "capabilities": {
+   "label": "Capability page (one-click-opt, opt-express, data-insights, campaign-automator, slack-integration)",
+   "authoringModel": "params + body",
+   "scenes": "kit gap — each has its own bespoke template",
+   "contentPath": "content/english/capabilities/",
+   "pages": 11,
+   "note": "Five separate hardcoded templates. Treat as legacy; prefer a v4 solution page for anything new."
+  },
+  "legacy-solution": {
+   "label": "Legacy platform pages (google-ads, ms-ads, amazon-ads, fb-ads, yahoo-ads, online-ads, advertisers, data-integrations, custom-solution)",
+   "authoringModel": "params",
+   "scenes": "kit gap",
+   "contentPath": "content/english/solutions/",
+   "pages": 13,
+   "note": "The old /solutions/ tree. Do not build new pages here — use solutions-new with v4."
+  },
+  "legal": {
+   "label": "Legal / policy page (privacy policy, terms, DPA, guest-post guidelines)",
+   "authoringModel": "body",
+   "scenes": "never",
+   "layouts": [
+    "company/privacy-policy.html",
+    "company/dpa.html"
+   ],
+   "contentPath": "content/english/company/",
+   "pages": 6,
+   "note": "Legal text. Out of scope for this skill — route to the dev/legal team."
+  },
+  "misc-one-offs": {
+   "label": "One-off campaign pages",
+   "authoringModel": "params",
+   "scenes": "kit gap",
+   "examples": {
+    "blaze": "content/english/blaze/, 20 fields",
+    "amazon-standlone": "content/english/amazon-standlone/, 8 fields",
+    "optmyzr-vs-wordstream": "content/english/optmyzr-vs-wordstream/, 35 fields",
+    "agency-partner": "content/english/services/, 14 fields",
+    "campaign-automator-demo": "402-line bespoke demo form",
+    "for-ai": "content/english/company/"
+   },
+   "note": "Each is a bespoke template built for one campaign. Never reuse for a new brief; propose a v4 solution page instead."
+  }
+ },
+ "notComposedPages": {
+  "note": "972 of 1117 English files carry no layout key at all — Hugo picks the template from the section or type. These are content entries, not composed pages: 596 blog posts, 41 case studies, 140 PPC Town Hall entries, 47 events, author profiles, archived job roles.",
+  "implication": "A brief for one of these is a writing task with metadata, not a page-composition task."
+ },
+ "counts": {
+  "layoutTemplates": 80,
+  "englishContentFiles": 1117,
+  "filesWithExplicitLayout": 145,
+  "filesComposedFromBlocks": 135,
+  "bookshopComponents": 90,
+  "cloudCannonCollections": 64,
+  "creationSchemas": 23
+ }
+}

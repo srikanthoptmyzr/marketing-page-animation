@@ -1,0 +1,87 @@
+{
+ "component": "comparison-pricing-cards",
+ "source": "component-library/components/comparison-pricing-cards/",
+ "fields": {
+  "competitor": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "unlisted"
+  },
+  "features": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "translatable"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "How each tool charges",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "hide_per_month_suffix": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "false",
+   "inputType": "checkbox",
+   "localization": "unlisted"
+  },
+  "icon": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "/images/comparison/check_circle.svg",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "name": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Optmyzr",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "optmyzr": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "unlisted"
+  },
+  "price": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "$208",
+   "inputType": "text",
+   "localization": "skip"
+  },
+  "subtitle": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "text": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "tiering_text": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": ">-",
+   "inputType": "textarea",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [
+  "per_month"
+ ],
+ "partials": []
+}

@@ -1,0 +1,220 @@
+<style>
+  .hero-heading {
+    min-height: 4rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'DM Sans';
+    text-align: left;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 2.5rem;
+    letter-spacing: -0.01em;
+    width: auto;
+  }
+
+  @media (min-width: 768px) {
+    .hero-heading {
+      text-align: center;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-heading {
+      font-weight: 800;
+      line-height: 4rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .hero-heading {
+      font-size: 3.94rem;
+      width: 95%;
+    }
+  }
+</style>
+
+<section id="content" class="px-lr">
+  <div  class="w-full mx-auto grid grid-cols-4 lg:grid-cols-12 gap-[8px]
+        lg:gap-16 justify-items-center items-center lg:pt-5">
+    <!-- Hero Section Content -->
+    <div class="col-span-4 lg:col-span-12 justify-items-center" >
+      <a href="{{.newsMessageLink}}" tabindex="0" class="flex mt-6 gap-x-3 items-center justify-center w-full lg:w-max mx-auto">
+        <div class="text-mobileBodyB7 text-colorPrimaryTealNormal font-semibold rounded-3xl border-colorPrimaryTealNormal border leading-desktopLineHeightXxs px-4 py-[2px]">
+          {{ i18n "hero_new" }}
+        </div>
+        <p class="text-mobileBodyB6 text-colorSurfaceDarkDarkActive leading-mobileLineHeightXxs font-normal flex-1 lg:text-desktopSubHeadingsP6">
+          {{.newsMessage}}
+        </p>
+        <p class="text-colorPrimaryTealNormal font-medium text-desktopSubHeadingsP7 leading-desktopLineHeightXxs lg:text-desktopSubHeadingsP6" >{{.newsMessageLinkText}}</p>
+      </a>
+      <div class="below-360:max-w-[330px] min-[361px]:max-w-none  pt-[24px] md:w-10/12 md:mx-auto text-center lg:text-center">
+        <!-- Heading -->
+        <h1 class="hero-heading">
+          {{ .heading }}
+        </h1>
+        <!-- Subtitle -->
+        <p class="pt-4 text-left md:text-center text-desktopSubHeadingsP6 md:text-md lg:text-lg xl:text-desktopSubHeadingsP2  
+          text-colorSurfaceDarkNormal mx-auto w-full xl:w-[88%] leading-desktopLineHeightXs md:leading-desktopLineHeightXxl
+          tracking-desktopLetterSpacingXxl">
+          {{ .subtitle }}
+        </p>
+
+        <!-- Features Section -->
+        <div class="mt-5 flex flex-col md:flex-row items-center items-baseline md:items-center justify-center  gap-[16px]">
+          <!-- Feature 1 -->
+          <div class="flex items-center space-x-2">
+            <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.42142 9.16353L6.02725 7.78999C5.91183 7.67471 5.7876 7.61568 5.65454 7.61291C5.52163 7.61027 5.39475 7.6693 5.27392 7.78999C5.15322 7.91082 5.09288 8.03985 5.09288 8.17707C5.09288 8.3143 5.15322 8.44332 5.27392 8.56416L6.95663 10.2469C7.09343 10.3835 7.24836 10.4519 7.42142 10.4519C7.59447 10.4519 7.7494 10.3835 7.88621 10.2469L11.71 6.42311C11.8252 6.3077 11.8843 6.17999 11.887 6.03999C11.8897 5.90013 11.8307 5.76978 11.71 5.64895C11.5891 5.52825 11.4636 5.46791 11.3333 5.46791C11.203 5.46791 11.0775 5.52825 10.9566 5.64895L7.42142 9.16353ZM8.50142 15.5833C7.46197 15.5833 6.48135 15.386 5.55954 14.9912C4.63774 14.5965 3.83093 14.0534 3.13913 13.3619C2.44732 12.6703 1.90392 11.8639 1.50892 10.9425C1.11406 10.0211 0.916626 9.04075 0.916626 8.00145C0.916626 6.94812 1.11399 5.96402 1.50871 5.04916C1.90343 4.13429 2.44656 3.33096 3.13808 2.63916C3.82961 1.94735 4.63607 1.40395 5.55746 1.00895C6.47885 0.614087 7.4592 0.416656 8.4985 0.416656C9.55183 0.416656 10.5359 0.614017 11.4508 1.00874C12.3657 1.40346 13.169 1.94659 13.8608 2.63811C14.5526 3.32964 15.096 4.13263 15.491 5.04707C15.8859 5.96152 16.0833 6.94534 16.0833 7.99853C16.0833 9.03798 15.8859 10.0186 15.4912 10.9404C15.0965 11.8622 14.5534 12.669 13.8618 13.3608C13.1703 14.0526 12.3673 14.596 11.4529 14.991C10.5384 15.3859 9.55461 15.5833 8.50142 15.5833Z" fill="#14880C"/>
+            </svg>
+            <span class="text-colorSurfaceDarkNormalActive text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 font-medium">{{.benefit_1}}</span>
+          </div>
+          <!-- Feature 2 -->
+          <div class="flex items-center space-x-2">
+            <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.42142 9.16353L6.02725 7.78999C5.91183 7.67471 5.7876 7.61568 5.65454 7.61291C5.52163 7.61027 5.39475 7.6693 5.27392 7.78999C5.15322 7.91082 5.09288 8.03985 5.09288 8.17707C5.09288 8.3143 5.15322 8.44332 5.27392 8.56416L6.95663 10.2469C7.09343 10.3835 7.24836 10.4519 7.42142 10.4519C7.59447 10.4519 7.7494 10.3835 7.88621 10.2469L11.71 6.42311C11.8252 6.3077 11.8843 6.17999 11.887 6.03999C11.8897 5.90013 11.8307 5.76978 11.71 5.64895C11.5891 5.52825 11.4636 5.46791 11.3333 5.46791C11.203 5.46791 11.0775 5.52825 10.9566 5.64895L7.42142 9.16353ZM8.50142 15.5833C7.46197 15.5833 6.48135 15.386 5.55954 14.9912C4.63774 14.5965 3.83093 14.0534 3.13913 13.3619C2.44732 12.6703 1.90392 11.8639 1.50892 10.9425C1.11406 10.0211 0.916626 9.04075 0.916626 8.00145C0.916626 6.94812 1.11399 5.96402 1.50871 5.04916C1.90343 4.13429 2.44656 3.33096 3.13808 2.63916C3.82961 1.94735 4.63607 1.40395 5.55746 1.00895C6.47885 0.614087 7.4592 0.416656 8.4985 0.416656C9.55183 0.416656 10.5359 0.614017 11.4508 1.00874C12.3657 1.40346 13.169 1.94659 13.8608 2.63811C14.5526 3.32964 15.096 4.13263 15.491 5.04707C15.8859 5.96152 16.0833 6.94534 16.0833 7.99853C16.0833 9.03798 15.8859 10.0186 15.4912 10.9404C15.0965 11.8622 14.5534 12.669 13.8618 13.3608C13.1703 14.0526 12.3673 14.596 11.4529 14.991C10.5384 15.3859 9.55461 15.5833 8.50142 15.5833Z" fill="#14880C"/>
+            </svg>
+            <span class="text-colorSurfaceDarkNormalActive text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 font-medium">{{.benefit_2}}</span>
+          </div>
+          <!-- Feature 3 -->
+          <div class="flex items-center space-x-2">
+            <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.42142 9.16353L6.02725 7.78999C5.91183 7.67471 5.7876 7.61568 5.65454 7.61291C5.52163 7.61027 5.39475 7.6693 5.27392 7.78999C5.15322 7.91082 5.09288 8.03985 5.09288 8.17707C5.09288 8.3143 5.15322 8.44332 5.27392 8.56416L6.95663 10.2469C7.09343 10.3835 7.24836 10.4519 7.42142 10.4519C7.59447 10.4519 7.7494 10.3835 7.88621 10.2469L11.71 6.42311C11.8252 6.3077 11.8843 6.17999 11.887 6.03999C11.8897 5.90013 11.8307 5.76978 11.71 5.64895C11.5891 5.52825 11.4636 5.46791 11.3333 5.46791C11.203 5.46791 11.0775 5.52825 10.9566 5.64895L7.42142 9.16353ZM8.50142 15.5833C7.46197 15.5833 6.48135 15.386 5.55954 14.9912C4.63774 14.5965 3.83093 14.0534 3.13913 13.3619C2.44732 12.6703 1.90392 11.8639 1.50892 10.9425C1.11406 10.0211 0.916626 9.04075 0.916626 8.00145C0.916626 6.94812 1.11399 5.96402 1.50871 5.04916C1.90343 4.13429 2.44656 3.33096 3.13808 2.63916C3.82961 1.94735 4.63607 1.40395 5.55746 1.00895C6.47885 0.614087 7.4592 0.416656 8.4985 0.416656C9.55183 0.416656 10.5359 0.614017 11.4508 1.00874C12.3657 1.40346 13.169 1.94659 13.8608 2.63811C14.5526 3.32964 15.096 4.13263 15.491 5.04707C15.8859 5.96152 16.0833 6.94534 16.0833 7.99853C16.0833 9.03798 15.8859 10.0186 15.4912 10.9404C15.0965 11.8622 14.5534 12.669 13.8618 13.3608C13.1703 14.0526 12.3673 14.596 11.4529 14.991C10.5384 15.3859 9.55461 15.5833 8.50142 15.5833Z" fill="#14880C"/>
+            </svg>
+            <span class="text-colorSurfaceDarkNormalActive text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 font-medium">{{.benefit_3}}</span>
+          </div>
+        </div>
+        <!-- Action Buttons -->
+        <div class="flex flex-row items-center flex-start md:justify-center mt-[19px] md:mt-[40px] gap-[20px]">
+          {{with .trialBtn}}
+          <a href="{{.url}}" class="hover:bg-colorPrimaryTealNormalHover rounded-lg font-bold text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 bg-teal-dark text-textonteal 
+            py-3 px-8 w-[167px]  md:w-[207px] h-[48px] whitespace-nowrap capitalize">{{.text}}</a>
+          {{end}}
+          {{with .demoBtn}}
+          <a href="{{.url}}" class="text-teal-dark rounded-lg font-bold text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 bg-teal-light py-3 px-8 w-[167px] md:w-[207px] h-[48px] 
+            whitespace-nowrap capitalize lg:mt-0 transition-transform duration-200 ease-in-out hover:bg-colorPrimaryTealLightHover
+            "> {{.text}} </a>
+          {{end}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="mx-auto mb-[24px] md:mb-[0px] mt-[58px] text-center">
+  <!-- HERO IMAGES ROW -->
+  <div class="flex items-center mt-[2vh] justify-center gap-4">
+    {{ $hero1Path := partial "functions/resolve-image-path.html" .hero_image_1 }}
+    {{ with resources.Get (strings.TrimPrefix "/" $hero1Path) }}
+      <img
+        class="w-[20%] md:w-[28%] h-[120px] md:h-[50%] object-contain"
+        src="{{ .RelPermalink }}"
+        alt="{{ $.hero_image_1_alt | default "Hero image 1" }}"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+    {{ end }}
+
+    {{ $hero2Path := partial "functions/resolve-image-path.html" .hero_image_2 }}
+    {{ with resources.Get (strings.TrimPrefix "/" $hero2Path) }}
+      <!-- middle image is too big for mobile so it wont affect the lcp -->
+      {{ $mobileWebP := .Resize "300x200 webp q95" }}
+      <picture class="w-[60%] md:w-[44%] h-auto object-contain">
+        <!-- small raster for mobile -->
+        <source media="(max-width: 767px)" srcset="{{ $mobileWebP.RelPermalink }}" type="image/webp" />
+        <!-- vector for tablet+desktop -->
+        <source srcset="{{ .RelPermalink }}" type="image/svg+xml" />
+        <!-- fallback -->
+        <img
+          class="w-full h-full object-contain"
+          src="{{ $mobileWebP.RelPermalink }}"
+          alt="{{ $.hero_image_2_alt | default "Main hero image" }}"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          width="{{ $mobileWebP.Width }}"
+          height="{{ $mobileWebP.Height }}"
+        />
+      </picture>
+    {{ end }}
+
+    {{ $hero3Path := partial "functions/resolve-image-path.html" .hero_image_3 }}
+    {{ with resources.Get (strings.TrimPrefix "/" $hero3Path) }}
+      <img
+        class="w-[20%] md:w-[28%] h-[120px] md:h-[50%] object-contain"
+        src="{{ .RelPermalink }}"
+        alt="{{ $.hero_image_3_alt | default "Hero image 3" }}"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+    {{ end }}
+
+  </div>
+
+  <!-- PARTNER LOGOS -->
+  <div
+    class="bg-white px-4 lg:px-[48px] mt-[24px] h-[104px] md:py-0 flex flex-col md:flex-row items-center justify-center z-10 bottom-sticky" >
+    <div class="bg-white w-10/12 md:w-[38%] xl:w-[23%] text-center md:text-left mb-4 md:mb-0">
+      <p
+        class="text-mobileBodyB6 lg:text-desktopSubHeadingsP5
+               leading-mobileLineHeightXxs lg:leading-desktopLineHeightSmall
+               mt-[18px] mb-[20px] text-colorSurfaceDarkNormal"
+      >
+        {{ .trustedPartnerTitle }}
+      </p>
+    </div>
+
+    <div class="w-full md:w-3/4 md:flex md:items-center">
+      <!-- Mobile logo carousel -->
+      <div class="partner-logos-container block md:hidden w-full overflow-hidden">
+        <div class="partner-logos-scroll flex gap-4">
+          {{ range $logo := .partnerLogos }}
+            <div class="min-w-[33%] flex-shrink-0">
+              {{ with resources.Get $logo.image }}
+                <img
+                  class="h-[24px] w-auto object-contain"
+                  src="{{ .RelPermalink }}"
+                  alt="{{ $logo.alt | default "Partner logo" }}"
+                  loading="lazy"
+                  decoding="async"
+                />
+              {{ end }}
+            </div>
+          {{ end }}
+          {{/* duplicate for seamless loop */}}
+          {{ range $logo := .partnerLogos }}
+            <div class="min-w-[33%] flex-shrink-0">
+              {{ with resources.Get $logo.image }}
+                <img
+                  class="h-[24px] w-auto object-contain"
+                  src="{{ .RelPermalink }}"
+                  alt="{{ $logo.alt | default "Partner logo" }}"
+                  loading="lazy"
+                  decoding="async"
+                />
+              {{ end }}
+            </div>
+          {{ end }}
+        </div>
+      </div>
+
+      <!-- Desktop logos -->
+      <div class="hidden md:flex md:items-center gap-8 w-full">
+        {{ range $logo := .partnerLogos }}
+          <div class="flex-1">
+            {{ with resources.Get $logo.image }}
+              <img
+                class="h-[24px] w-auto object-contain mx-auto"
+                src="{{ .RelPermalink }}"
+                alt="{{ $logo.alt | default "Partner logo" }}"
+                loading="lazy"
+                decoding="async"
+              />
+            {{ end }}
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+</section>

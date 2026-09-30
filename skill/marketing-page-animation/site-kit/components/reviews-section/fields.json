@@ -1,0 +1,73 @@
+{
+ "component": "reviews-section",
+ "source": "component-library/components/reviews-section/",
+ "fields": {
+  "displayBadge": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "/images/icons/high-performer-medal.svg",
+   "inputType": "image",
+   "localization": "unlisted"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Read More Reviews",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "image": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/images/homepage/review-g2.png",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "rating": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "5",
+   "inputType": "number",
+   "localization": "unlisted"
+  },
+  "review_1": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "unlisted"
+  },
+  "review_2": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "unlisted"
+  },
+  "review_title": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "G2",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "subtext": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Business Software and Services Reviews",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "url": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "#",
+   "inputType": "url",
+   "localization": "url-prefixed"
+  }
+ },
+ "i18nKeys": [
+  "view_all_reviews"
+ ],
+ "partials": []
+}

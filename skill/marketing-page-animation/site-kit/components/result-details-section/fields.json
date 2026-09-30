@@ -1,0 +1,50 @@
+{
+ "component": "result-details-section",
+ "source": "component-library/components/result-details-section/",
+ "fields": {
+  "challenge_desc": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "challenge_heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "result_desc": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "result_heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "solution_desc": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "solution_heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

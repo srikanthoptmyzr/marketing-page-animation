@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "privacy-map.schema.json",
+  "title": "Privacy map (replacements only)",
+  "description": "spec/privacy-map.json. Safe replacement per entity. MUST NOT contain any original value. Joins to .private/originals.json by entity id only. Authority: references/privacy-masking.md.",
+  "type": "object",
+  "required": [
+    "entities"
+  ],
+  "properties": {
+    "version": {
+      "type": "integer"
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "class",
+          "replacement"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z]+-\\d+$"
+          },
+          "class": {
+            "enum": [
+              "account-id",
+              "campaign-id",
+              "entity-name",
+              "person-name",
+              "email",
+              "phone",
+              "company",
+              "url",
+              "secret",
+              "amount",
+              "address",
+              "search-term",
+              "other-pii"
+            ]
+          },
+          "format": {
+            "type": "object",
+            "description": "Shape only: length, grouping, character classes, prefix/separator templates",
+            "properties": {
+              "length": {
+                "type": "integer"
+              },
+              "groups": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              },
+              "alphabet": {
+                "type": "string"
+              },
+              "template": {
+                "type": "string"
+              }
+            }
+          },
+          "replacement": {
+            "type": "string"
+          },
+          "forms": {
+            "type": "object",
+            "description": "Surface form template -> replacement text, e.g. \"Campaign_{id}\"",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "approved": {
+            "type": "boolean",
+            "description": "true only for an approved reference customer that is kept as is"
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

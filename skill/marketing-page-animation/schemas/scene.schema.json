@@ -1,0 +1,450 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "scene.schema.json",
+  "title": "UI scene definition",
+  "description": "One entry of spec/scenes.json. Structure and timeline only; text lives in the content layer. Authority: references/ui-scene-system.md. Semantic checks (id resolution, one final state, timeline references) are done by scripts/validate/validate_scene.py.",
+  "type": "object",
+  "required": [
+    "id",
+    "version",
+    "claim",
+    "components",
+    "states",
+    "timeline",
+    "responsive",
+    "accessibility"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "claim": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "object",
+      "description": "Traceability (video ranges, screenshot ids). Never shipped."
+    },
+    "theme": {
+      "type": "string"
+    },
+    "stage": {
+      "type": "object",
+      "properties": {
+        "aspectRatio": {
+          "type": "string"
+        },
+        "designWidth": {
+          "type": "number"
+        }
+      }
+    },
+    "components": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/component"
+      }
+    },
+    "content": {
+      "description": "Either a path to a content file, or the inline content layer for the source language.",
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "description": "Inline content layer; entries follow content.schema.json"
+        }
+      ]
+    },
+    "states": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "visible"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "visible": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "props": {
+            "type": "object"
+          },
+          "final": {
+            "type": "boolean"
+          },
+          "basis": {
+            "enum": [
+              "observed",
+              "inferred",
+              "assumed"
+            ]
+          }
+        }
+      }
+    },
+    "timeline": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "do"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "at": {
+            "type": "number",
+            "minimum": 0
+          },
+          "after": {
+            "type": "string"
+          },
+          "with": {
+            "type": "string"
+          },
+          "delay": {
+            "type": "number",
+            "minimum": 0
+          },
+          "do": {
+            "enum": [
+              "reveal",
+              "hide",
+              "stagger",
+              "count",
+              "type",
+              "stream",
+              "draw",
+              "highlight",
+              "expand",
+              "collapse",
+              "press",
+              "move",
+              "wait",
+              "loop",
+              "enter-state",
+              "user-types",
+              "cursor-moves",
+              "click",
+              "hover",
+              "select",
+              "switch-tab",
+              "scroll",
+              "system-processes",
+              "response-streams",
+              "notification-arrives",
+              "recommendation-appears",
+              "approval-clicked",
+              "success-state",
+              "data-updates"
+            ]
+          },
+          "target": {
+            "type": [
+              "string",
+              "array"
+            ]
+          },
+          "state": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "duration": {
+            "type": "number",
+            "minimum": 0
+          },
+          "effect": {
+            "enum": [
+              "fade",
+              "fade-up",
+              "slide",
+              "scale"
+            ]
+          },
+          "easing": {
+            "enum": [
+              "out",
+              "in",
+              "in-out",
+              "linear"
+            ]
+          },
+          "unit": {
+            "enum": [
+              "char",
+              "word",
+              "chunk"
+            ]
+          },
+          "cps": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "to": {
+            "type": "string"
+          },
+          "from": {
+            "type": "string"
+          },
+          "count": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "essential": {
+            "type": "boolean"
+          },
+          "basis": {
+            "enum": [
+              "observed",
+              "inferred",
+              "assumed"
+            ]
+          }
+        },
+        "anyOf": [
+          {
+            "required": [
+              "at"
+            ]
+          },
+          {
+            "required": [
+              "after"
+            ]
+          },
+          {
+            "required": [
+              "with"
+            ]
+          }
+        ]
+      }
+    },
+    "responsive": {
+      "type": "object",
+      "required": [
+        "designWidth",
+        "minTextPx",
+        "variants"
+      ],
+      "properties": {
+        "designWidth": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "minTextPx": {
+          "type": "number",
+          "minimum": 11
+        },
+        "variants": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "below",
+              "strategy"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "below": {
+                "type": "number"
+              },
+              "strategy": {
+                "enum": [
+                  "scale",
+                  "crop",
+                  "stack",
+                  "simplify",
+                  "shorten",
+                  "swap"
+                ]
+              },
+              "hide": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "timeline": {
+                "type": "string"
+              },
+              "aspectRatio": {
+                "type": "string"
+              },
+              "maxHeight": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
+    },
+    "accessibility": {
+      "type": "object",
+      "required": [
+        "name",
+        "description"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "controls": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "play",
+              "pause",
+              "replay",
+              "next",
+              "prev"
+            ]
+          }
+        }
+      }
+    },
+    "approximations": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "uncertainties": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "$defs": {
+    "component": {
+      "type": "object",
+      "required": [
+        "id",
+        "type"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        },
+        "type": {
+          "enum": [
+            "approval",
+            "avatar",
+            "badge",
+            "button",
+            "card",
+            "change-request",
+            "chart",
+            "chat",
+            "chip",
+            "composer",
+            "cursor",
+            "custom",
+            "dashboard",
+            "empty-state",
+            "frame",
+            "header",
+            "icon",
+            "image",
+            "input",
+            "list",
+            "list-item",
+            "loading-state",
+            "menu",
+            "message",
+            "metric",
+            "modal",
+            "notification",
+            "recommendation",
+            "sidebar",
+            "status",
+            "success-state",
+            "table",
+            "tabs",
+            "text",
+            "toggle",
+            "tooltip"
+          ]
+        },
+        "variant": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string",
+          "description": "Required when type is custom"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/component"
+          }
+        },
+        "content": {
+          "type": "string",
+          "description": "Key into the content layer. Never literal text."
+        },
+        "props": {
+          "type": "object"
+        },
+        "role": {
+          "type": "string"
+        },
+        "priority": {
+          "enum": [
+            "essential",
+            "normal",
+            "optional"
+          ]
+        },
+        "a11y": {
+          "type": "object"
+        }
+      },
+      "if": {
+        "properties": {
+          "type": {
+            "const": "custom"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "description"
+        ]
+      }
+    }
+  }
+}

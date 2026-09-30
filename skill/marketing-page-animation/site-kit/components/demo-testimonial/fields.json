@@ -1,0 +1,71 @@
+{
+ "component": "demo-testimonial",
+ "source": "component-library/components/demo-testimonial/",
+ "fields": {
+  "client_name": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Senior Interactive Marketing Specialist, MedStar Health",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Trusted by performance marketers across agencies and brands worldwide.",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "image": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/images/demo-request/MedStar_Health_logo.png",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "main_testimonial": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "translatable"
+  },
+  "role": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Eron Cohen",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "stars": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "4.9",
+   "inputType": "number",
+   "localization": "unlisted"
+  },
+  "testimonial_first_line": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": ">-",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "testimonial_second_line": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": ">-",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "testimonial_title": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Loads of great tools for every aspect of a Google Ads account.",
+   "inputType": "text",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

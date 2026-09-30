@@ -1,0 +1,243 @@
+{
+  "id": "assistant-recommendation-approval",
+  "version": "1.0.0",
+  "claim": "Ask in plain language, review a proposed change, and approve it in one click",
+  "theme": "theme.json",
+  "stage": {
+    "aspectRatio": "4 / 3"
+  },
+  "components": [
+    {
+      "id": "chat",
+      "type": "chat",
+      "children": [
+        {
+          "id": "q1",
+          "type": "message",
+          "variant": "user",
+          "content": "q1"
+        },
+        {
+          "id": "load",
+          "type": "loading-state",
+          "variant": "dots"
+        },
+        {
+          "id": "a1",
+          "type": "message",
+          "variant": "assistant",
+          "content": "a1",
+          "children": [
+            {
+              "id": "m1",
+              "type": "metric",
+              "content": "m1",
+              "variant": "trend-up"
+            },
+            {
+              "id": "rec",
+              "type": "recommendation",
+              "content": "rec",
+              "children": [
+                {
+                  "id": "chg",
+                  "type": "change-request",
+                  "content": "chg"
+                },
+                {
+                  "id": "appr",
+                  "type": "approval",
+                  "content": "appr"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "composer",
+      "type": "composer",
+      "content": "composer"
+    },
+    {
+      "id": "ok",
+      "type": "success-state",
+      "content": "ok"
+    },
+    {
+      "id": "note",
+      "type": "notification",
+      "content": "note"
+    },
+    {
+      "id": "cur",
+      "type": "cursor"
+    }
+  ],
+  "states": [
+    {
+      "id": "initial",
+      "visible": [
+        "composer"
+      ]
+    },
+    {
+      "id": "asked",
+      "visible": [
+        "composer",
+        "q1"
+      ]
+    },
+    {
+      "id": "loading",
+      "visible": [
+        "q1",
+        "load"
+      ]
+    },
+    {
+      "id": "answered",
+      "visible": [
+        "q1",
+        "a1",
+        "m1"
+      ]
+    },
+    {
+      "id": "proposed",
+      "visible": [
+        "q1",
+        "a1",
+        "m1",
+        "rec",
+        "chg",
+        "appr"
+      ]
+    },
+    {
+      "id": "approved",
+      "visible": [
+        "q1",
+        "a1",
+        "m1",
+        "rec",
+        "chg",
+        "ok",
+        "note"
+      ],
+      "final": true
+    }
+  ],
+  "timeline": [
+    {
+      "id": "t1",
+      "at": 400,
+      "do": "type",
+      "target": "composer",
+      "source": "q1"
+    },
+    {
+      "id": "t2",
+      "after": "t1",
+      "delay": 300,
+      "do": "click",
+      "target": "composer.send"
+    },
+    {
+      "id": "t3",
+      "after": "t2",
+      "do": "enter-state",
+      "state": "asked"
+    },
+    {
+      "id": "t4",
+      "after": "t3",
+      "delay": 200,
+      "do": "enter-state",
+      "state": "loading"
+    },
+    {
+      "id": "t5",
+      "after": "t4",
+      "delay": 1000,
+      "do": "enter-state",
+      "state": "answered"
+    },
+    {
+      "id": "t6",
+      "with": "t5",
+      "delay": 100,
+      "do": "stream",
+      "target": "a1",
+      "unit": "word",
+      "duration": 1400
+    },
+    {
+      "id": "t7",
+      "after": "t6",
+      "do": "count",
+      "target": "m1"
+    },
+    {
+      "id": "t8",
+      "after": "t7",
+      "delay": 400,
+      "do": "enter-state",
+      "state": "proposed"
+    },
+    {
+      "id": "t9",
+      "after": "t8",
+      "delay": 700,
+      "do": "cursor-moves",
+      "to": "appr.confirm",
+      "duration": 700
+    },
+    {
+      "id": "t10",
+      "after": "t9",
+      "do": "click",
+      "target": "appr.confirm"
+    },
+    {
+      "id": "t11",
+      "after": "t10",
+      "do": "enter-state",
+      "state": "approved"
+    },
+    {
+      "id": "t12",
+      "after": "t11",
+      "delay": 3000,
+      "do": "loop"
+    }
+  ],
+  "responsive": {
+    "designWidth": 720,
+    "minTextPx": 11,
+    "variants": [
+      {
+        "name": "compact",
+        "below": 520,
+        "strategy": "simplify",
+        "hide": [
+          "note",
+          "cur"
+        ],
+        "timeline": "default"
+      }
+    ]
+  },
+  "accessibility": {
+    "name": "Assistant recommendation demo",
+    "description": "A user asks a question. The assistant answers with a metric and a recommended change, and the user approves it.",
+    "controls": [
+      "play",
+      "pause",
+      "replay"
+    ]
+  },
+  "approximations": [],
+  "uncertainties": []
+}

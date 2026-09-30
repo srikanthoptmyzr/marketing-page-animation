@@ -1,0 +1,142 @@
+{{/* Opt-in FAQPage structured data (emitFaqSchema: true), generated from the same .faqs this
+     section renders so it can never drift from the visible copy. Default OFF - the existing
+     pages using this component are unchanged. NOTE safeJS, not safeHTML: inside a <script>
+     element Go's html/template applies JS escaping, and safeHTML would emit the object as a
+     quoted JSON *string* - still valid JSON, so nothing errors, but Google reads a string
+     instead of an FAQPage and the markup is silently useless. */}}
+{{ if .emitFaqSchema }}
+{{ $qa := slice }}
+{{ range .faqs }}
+  {{ $answer := .answer | replaceRE "<br\\s*/?>" " " | plainify | htmlUnescape | replaceRE "\\s+" " " | chomp }}
+  {{ $qa = $qa | append (dict "@type" "Question" "name" (.question | plainify | htmlUnescape) "acceptedAnswer" (dict "@type" "Answer" "text" $answer)) }}
+{{ end }}
+<script type="application/ld+json">
+  {{ (dict "@context" "https://schema.org" "@type" "FAQPage" "mainEntity" $qa) | jsonify | safeJS }}
+</script>
+{{ end }}
+{{/* addExtraBottomPadding reserves room for the site footer's CTA card, which is translated UP over
+     this section's tail (footer.html: -translate-y-[60px] on mobile, -translate-y-1/2 from md). The
+     mobile value was 528px against a footer that now only rises 60px, leaving a ~516px empty band
+     on every phone (visible on /solutions/optmyzr-mcp/ too). 130px keeps ~118px of visible air
+     under the FAQ card, in proportion to the ~160px desktop gap. Desktop (md:) is unchanged. */}}
+<section class="c-faq-section bg-[#F0EFEF]  {{if .addExtraBottomPadding}} pb-[130px] md:pb-[264px] {{else}} pb-[50px] md:pb-[128px] {{end}} relative overflow-hidden">
+  <div class="absolute bottom-0 w-full">
+    <img src="/images/products/amazon-ppc/faq-bg.png" class="w-full" alt="">
+  </div>
+  <div class="mx-auto py-[48px] md:py-[48px] lg:w-[890px] px-[16px] relative z-10">
+    {{/* Opt-in heading level (headingLevel: h2) for pages that already carry their own <h1>.
+         Default h1 - the existing pages using this component are unchanged. Literal tags in
+         both branches: html/template rejects a template action in tag-name position. */}}
+    {{ if eq .headingLevel "h2" }}
+    <h2 class="text-mobileHeadlinesH3 md:text-desktopHeadlinesH2 leading-mobileLineHeight5xl md:leading-desktopLineHeight5xl
+      tracking-desktopLetterSpacingXl font-dm font-bold text-left md:text-center mb-[24px] md:mb-[48px] md:w-full">{{ .faq_title }}</h2>
+    {{ else }}
+    <h1 class="text-mobileHeadlinesH3 md:text-desktopHeadlinesH2 leading-mobileLineHeight5xl md:leading-desktopLineHeight5xl
+      tracking-desktopLetterSpacingXl font-dm font-bold text-left md:text-center mb-[24px] md:mb-[48px] md:w-full">{{ .faq_title }}</h1>
+    {{ end }}
+    <div class="bg-white rounded-[12px] shadow-sm py-[16px] px-[16px] md:py-[40px] md:px-[24px]">
+      <div class="">
+        {{ range $index, $faq := .faqs }}
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <button class="flex justify-between items-center w-full text-left" >
+              <!-- Added a wrapper div for the question text -->
+              <div class="flex-1 pr-4">
+              <span class="text-desktopSubHeadingsP4 md:text-desktopSubHeadingsP3 leading-desktopLineHeightMedium 
+                md:leading-desktopLineHeightLarge tracking-desktopLetterSpacingXxl font-medium">{{ $faq.question }}</span>
+              </div>
+              <!-- Fixed size for chevron with min-width to prevent shrinking -->
+              <svg 
+                class="chevron flex-shrink-0"
+                width="20"
+                height="20"
+                fill="none" 
+                stroke="#626C7A" 
+                viewBox="0 0 24 24"
+                style="min-width: 20px;"
+              >
+                <path 
+                  stroke-linecap="round" 
+                  stroke-linejoin="round" 
+                  stroke-width="2" 
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+            
+          <div class="faq-content overflow-hidden" style="height: 0;">
+            <div class="text-mobileBodyB5 md:text-desktopSubHeadingsP5 leading-mobileLineHeightSmall md:leading-desktopLineHeightSmall
+              tracking-desktopLetterSpacingXxl text-colorSurfaceDarkNormal pt-[12px] w-full lg:w-10/12">
+              {{ $faq.answer | safeHTML }}
+            </div>
+          </div>
+            
+            {{ if ne (add $index 1) (len $.faqs) }}
+              <div class="mx-auto py-[24px]">
+                <hr class="border-gray-200">
+              </div>
+            {{ end }}
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script>
+  // Initialize the first FAQ item as open - unless the page opts out (startClosed: true)
+  {{ if not .startClosed }}
+  document.addEventListener('DOMContentLoaded', () => {
+    const firstFaq = document.querySelector('.faq-item');
+    if (firstFaq) {
+      toggleFaq(firstFaq.querySelector('button'));
+    }
+  });
+  {{ end }}
+
+  function toggleFaq(button) {
+    const item = button.closest('.faq-item');
+    const content = item.querySelector('.faq-content');
+    const chevron = item.querySelector('.chevron');
+    const contentInner = content.querySelector('div');
+    
+    // Get the natural height of the content
+    const naturalHeight = contentInner.offsetHeight;
+    
+    // Check if the item is currently open
+    const isOpen = content.style.height !== '0px';
+    
+    // Close any open FAQs except the current one
+    document.querySelectorAll('.faq-item').forEach(otherItem => {
+      if (otherItem !== item && otherItem.querySelector('.faq-content').style.height !== '0px') {
+        const otherContent = otherItem.querySelector('.faq-content');
+        const otherChevron = otherItem.querySelector('.chevron');
+        
+        gsap.to(otherContent, {
+          height: 0,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+        
+        gsap.to(otherChevron, {
+          rotation: 0,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      }
+    });
+    
+    // Toggle the current FAQ
+    gsap.to(content, {
+      height: isOpen ? 0 : naturalHeight,
+      duration: 0.3,
+      ease: 'power2.out'
+    });
+    
+    gsap.to(chevron, {
+      rotation: isOpen ? 0 : 180,
+      duration: 0.3,
+      ease: 'power2.out'
+    });
+  }
+</script>

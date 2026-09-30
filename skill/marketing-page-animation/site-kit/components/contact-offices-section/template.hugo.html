@@ -1,0 +1,63 @@
+<section class="c-contact-offices-section px-lr md:pb-[184px] py-[64px] lg:pt-[116px] lg:pb-[184px]">
+  <div class="mx-auto max-w-1440 lg:px-[113px]">
+    <h2 class="text-mobileHeadlinesH3 md:text-desktopHeadlinesH3 font-dm font-bold text-surface-dark-darker-active mb-[40px] leading-mobileLineHeight5xl md:leading-desktopLineHeight4xl tracking-desktopLetterSpacingMedium">
+      {{ .heading }}
+    </h2>
+
+    {{ range $index, $office := .officeList }}
+      {{ $counter := add $index 1 }}
+      <div class="mx-auto grid grid-cols-1 md:grid-cols-2 items-center mb-[40px] md:mb-[96px]">
+        {{ if eq (mod $counter 2) 0 }}
+          <div class="flex flex-col justify-center order-1">
+            <svg class="mb-[8px]" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="48" height="48" rx="24" fill="#F2FCE6"/>
+              <mask id="mask0_1702_291764" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="9" y="9" width="30" height="30">
+                <rect x="9" y="9" width="30" height="30" fill="#D9D9D9"/>
+              </mask>
+              <g mask="url(#mask0_1702_291764)">
+                <path d="M24.0021 23.8316C24.624 23.8316 25.1557 23.6101 25.5971 23.1672C26.0388 22.7243 26.2596 22.1919 26.2596 21.57C26.2596 20.9481 26.0382 20.4164 25.5953 19.9747C25.1523 19.5332 24.6198 19.3125 23.9978 19.3125C23.3759 19.3125 22.8442 19.534 22.4028 19.9769C21.9611 20.4198 21.7403 20.9523 21.7403 21.5744C21.7403 22.1962 21.9617 22.7279 22.4046 23.1694C22.8475 23.6108 23.38 23.8316 24.0021 23.8316ZM23.9999 33.3919C26.4454 31.2027 28.3167 29.1029 29.614 27.0925C30.9113 25.0821 31.5599 23.3212 31.5599 21.81C31.5599 19.5312 30.836 17.6579 29.3881 16.19C27.9401 14.7221 26.1441 13.9881 23.9999 13.9881C21.8558 13.9881 20.0597 14.7221 18.6118 16.19C17.1639 17.6579 16.4399 19.5312 16.4399 21.81C16.4399 23.3212 17.0886 25.0821 18.3859 27.0925C19.6832 29.1029 21.5545 31.2027 23.9999 33.3919ZM23.9999 35.8869C20.8541 33.161 18.4951 30.6243 16.9231 28.2766C15.351 25.9286 14.5649 23.7731 14.5649 21.81C14.5649 18.9254 15.498 16.5901 17.364 14.8041C19.2303 13.018 21.4422 12.125 23.9999 12.125C26.5576 12.125 28.7696 13.018 30.6359 14.8041C32.5019 16.5901 33.4349 18.9254 33.4349 21.81C33.4349 23.7731 32.6489 25.9286 31.0768 28.2766C29.5047 30.6243 27.1458 33.161 23.9999 35.8869Z" fill="#5FA705"/>
+              </g>
+            </svg>
+            <p class="font-medium leading-mobileLineHeight3xl md:leading-mobileLineHeight4xl text-mobileBodyB2 md:text-mobileBodyB1 w-full md:w-[75%] text-surface-dark-darker-active mb-[8px]">
+              {{ $office.first_paragraph }}
+            </p>
+            <p class="font-medium leading-mobileLineHeight3xl md:leading-mobileLineHeight4xl text-mobileBodyB2 md:text-mobileBodyB1 w-full md:w-[75%] text-surface-dark-darker-active mb-[16px] md:mb-[24px]">
+              {{ $office.second_paragraph }}
+            </p>
+            <a href="{{ $office.link_url }}&hl={{ .Site.Language.Lang }}" target="_blank" rel="noopener noreferrer" class="inline-block font-medium text-teal-dark mb-[24px] md:mb-0 text-desktopSubHeadingsP3 md:text-desktopSubHeadingsP2 leading-desktopLineHeightLarge md:leading-desktopLineHeightXxl">
+              {{ $office.link_text }}
+            </a>
+          </div>
+          <div class="flex gap-[10px] md:gap-[20px] justify-end order-2">
+            {{ partial "image.html" (dict "src" $office.image_one "alt" "Map preview" "class" "basis-1/2 min-w-0 h-auto rounded-[4px] object-cover max-w-[321px]" "loading" "lazy") }}
+            {{ partial "image.html" (dict "src" $office.image_two "alt" "Office building" "class" "basis-1/2 min-w-0 h-auto rounded-[4px] object-cover max-w-[321px]" "loading" "lazy") }}
+          </div>
+        {{ else }}
+          <div class="flex flex-col justify-center order-1 md:order-2 md:ml-[20px]">
+            <svg class="mb-[8px]" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="48" height="48" rx="24" fill="#F2FCE6"/>
+              <mask id="mask0_1702_291764" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="9" y="9" width="30" height="30">
+                <rect x="9" y="9" width="30" height="30" fill="#D9D9D9"/>
+              </mask>
+              <g mask="url(#mask0_1702_291764)">
+                <path d="M24.0021 23.8316C24.624 23.8316 25.1557 23.6101 25.5971 23.1672C26.0388 22.7243 26.2596 22.1919 26.2596 21.57C26.2596 20.9481 26.0382 20.4164 25.5953 19.9747C25.1523 19.5332 24.6198 19.3125 23.9978 19.3125C23.3759 19.3125 22.8442 19.534 22.4028 19.9769C21.9611 20.4198 21.7403 20.9523 21.7403 21.5744C21.7403 22.1962 21.9617 22.7279 22.4046 23.1694C22.8475 23.6108 23.38 23.8316 24.0021 23.8316ZM23.9999 33.3919C26.4454 31.2027 28.3167 29.1029 29.614 27.0925C30.9113 25.0821 31.5599 23.3212 31.5599 21.81C31.5599 19.5312 30.836 17.6579 29.3881 16.19C27.9401 14.7221 26.1441 13.9881 23.9999 13.9881C21.8558 13.9881 20.0597 14.7221 18.6118 16.19C17.1639 17.6579 16.4399 19.5312 16.4399 21.81C16.4399 23.3212 17.0886 25.0821 18.3859 27.0925C19.6832 29.1029 21.5545 31.2027 23.9999 33.3919ZM23.9999 35.8869C20.8541 33.161 18.4951 30.6243 16.9231 28.2766C15.351 25.9286 14.5649 23.7731 14.5649 21.81C14.5649 18.9254 15.498 16.5901 17.364 14.8041C19.2303 13.018 21.4422 12.125 23.9999 12.125C26.5576 12.125 28.7696 13.018 30.6359 14.8041C32.5019 16.5901 33.4349 18.9254 33.4349 21.81C33.4349 23.7731 32.6489 25.9286 31.0768 28.2766C29.5047 30.6243 27.1458 33.161 23.9999 35.8869Z" fill="#5FA705"/>
+            </svg>
+            <p class="font-medium leading-mobileLineHeight3xl md:leading-mobileLineHeight4xl text-mobileBodyB2 md:text-mobileBodyB1 w-full md:w-[75%] text-surface-dark-darker-active mb-[8px]">
+              {{ $office.first_paragraph }}
+            </p>
+            <p class="font-medium leading-mobileLineHeight3xl md:leading-mobileLineHeight4xl text-mobileBodyB2 md:text-mobileBodyB1 w-full md:w-[75%] text-surface-dark-darker-active mb-[16px] md:mb-[24px]">
+              {{ $office.second_paragraph }}
+            </p>
+            <a href="{{ $office.link_url }}&hl={{ .Site.Language.Lang }}" target="_blank" rel="noopener noreferrer" class="inline-block font-medium text-teal-dark
+                mb-[24px] md:mb-0 text-desktopSubHeadingsP3 md:text-desktopSubHeadingsP2 leading-desktopLineHeightLarge md:leading-desktopLineHeightXxl"> {{ $office.link_text }}
+            </a>
+          </div>
+          <div class="flex gap-[10px] md:gap-[20px] order-2 md:order-1">
+            {{ partial "image.html" (dict "src" $office.image_one "alt" "Map preview" "class" "basis-1/2 min-w-0 h-auto rounded-[4px] object-cover max-w-[321px]" "loading" "lazy") }}
+            {{ partial "image.html" (dict "src" $office.image_two "alt" "Office building" "class" "basis-1/2 min-w-0 h-auto rounded-[4px] object-cover max-w-[321px]" "loading" "lazy") }}
+          </div>
+        {{ end }}
+      </div>
+    {{ end }}
+  </div>
+</section>

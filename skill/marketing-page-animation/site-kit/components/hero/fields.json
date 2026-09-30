@@ -1,0 +1,152 @@
+{
+ "component": "hero",
+ "source": "component-library/components/hero/",
+ "fields": {
+  "RelPermalink": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": null,
+   "localization": "unlisted"
+  },
+  "alt": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Driva",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "benefit_1": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Google Search & Shopping",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "benefit_2": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Performance Max",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "benefit_3": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Microsoft Ads",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "demoBtn": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "url-prefixed"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "hero_image_1": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "/images/homepage/hero-dashboard-1.jpg",
+   "inputType": "image",
+   "localization": "unlisted"
+  },
+  "hero_image_2": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "/images/homepage/hero-dashboard-2.jpg",
+   "inputType": "image",
+   "localization": "unlisted"
+  },
+  "hero_image_3": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "/images/homepage/hero-dashboard-3.jpg",
+   "inputType": "image",
+   "localization": "unlisted"
+  },
+  "image": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "/images/partner-logos/driva-logo.png",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "newsMessage": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Ecommerce PPC experts reveal thebiggest mistakes holding you back in 2025",
+   "inputType": null,
+   "localization": "translatable"
+  },
+  "newsMessageLink": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "#",
+   "inputType": null,
+   "localization": "unlisted"
+  },
+  "newsMessageLinkText": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Read Now",
+   "inputType": null,
+   "localization": "unlisted"
+  },
+  "partnerLogos": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "subtitle": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "text": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Start Trail",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "trialBtn": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "unlisted"
+  },
+  "trustedPartnerTitle": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Paid media and digital marketing teams use Optmyzr",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "url": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "#",
+   "inputType": "url",
+   "localization": "url-prefixed"
+  }
+ },
+ "i18nKeys": [
+  "hero_new"
+ ],
+ "partials": [
+  "functions/resolve-image-path.html"
+ ]
+}

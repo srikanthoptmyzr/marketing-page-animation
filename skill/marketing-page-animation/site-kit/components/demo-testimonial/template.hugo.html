@@ -1,0 +1,51 @@
+{{ $testimonials := (index site.Data site.Language.Lang).testimonialsMain }}
+<section class="c-demo-testimonial bg-[#e8e8e8] relative px-lr py-[60px] md:py-[96px]">
+  <div class="bg-[#e8e8e8] max-w-1440 relative pb-0 mx-auto">
+    <div data-scroll="fade-slide" class="flex flex-col lg:flex-row gap-8 items-start">
+      <div class="relative self-baseline w-full lg:w-[45%]">
+        <img 
+          src="/images/homepage/testimonial-pattern-1.webp" 
+          alt="Decorative background pattern" 
+          class="absolute top-[-52px] lg:top-0 left-[8%] xl:top-[100px] z-10 size-[120px] md:size-[300px] opacity-80 object-contain -translate-x-10"
+          loading="lazy"
+          width="300"
+          height="300"
+
+        />
+        <h1 class="text-mobileHeadlinesH3 md:text-desktopHeadlinesH2 leading-mobileLineHeight5xl 
+          md:leading-desktopLineHeight5xl tracking-mobileLetterSpacingMedium md:tracking-desktopLetterSpacingXl 
+          font-dm xl:w-[80%] font-bold relative z-10 xl:translate-x-1/4">{{.heading}}</h1>
+      </div>
+      {{ with $testimonials.main_testimonial }}
+      <div class="bg-white rounded-lg flex flex-col gap-[10px] md:gap-[24px] p-[24px] shadow-lg z-20 sm:min-h-[357px] w-full lg:w-[55%]">
+        <div class="flex justify-between items-center">
+          <img src="{{.image}}" alt="" class="max-w-[176px] max-h-[38px]" loading="lazy" width="176" height="38">
+          <div class="flex items-center">
+            <svg class="w-[16px] h-[16px] md:w-[20px] md:h-[20px]" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3.825 20.2734L6.15 12.6734L0 8.27344H7.6L10 0.273438L12.4 8.27344H20L13.85 12.6734L16.175 20.2734L10 15.5734L3.825 20.2734Z" fill="#E17F0E"/>
+            </svg>
+            <span class="ml-1 text-mobileSubHeadingsP4 md:text-desktopSubHeadingsP4">{{.stars}}</span>
+          </div>
+        </div>
+        <hr class="my-[10px] md:my-0"/>
+        <div class="flex flex-col gap-[12px]">
+          <h3 class="text-mobileHeadlinesH5 md:text-desktopHeadlinesH5 leading-mobileLineHeightMedium md:leading-desktopLineHeightMedium tracking-mobileLetterSpacingXl md:tracking-desktopLetterSpacingSmall font-semibold font-fontFamilyHeadlinesDmSans"> {{.testimonial_title}}
+          </h3>
+          <p class="text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 leading-desktopLineHeightSmall md:leading-desktopLineHeightMedium tracking-desktopLetterSpacingXxl font-semibold font-fontFamilyParagraphsInter">
+            {{.testimonial_first_line}}
+          </p>
+          <p class="text-desktopSubHeadingsP6 md:text-desktopSubHeadingsP5 leading-desktopLineHeightXs md:leading-desktopLineHeightSmall tracking-desktopLetterSpacingXxl text-gray-600 font-medium md:font-normal font-fontFamilyParagraphsInter">
+            {{.testimonial_second_line}}
+          </p>
+        </div>
+        <div class="mt-auto">
+          <p class="font-semibold text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 leading-desktopLineHeightSmall 
+            md:leading-desktopLineHeightMedium">{{.role}}</p>
+          <p class="text-colorSurfaceDarkNormalHover text-mobileBodyB6 md:text-desktopSubHeadingsP6 
+            leading-mobileLineHeightXxs md:leading-desktopLineHeightXs">{{.client_name}}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>

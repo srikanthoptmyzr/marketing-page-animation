@@ -1,0 +1,57 @@
+<section class="c-alm-newsletter w-full py-[32px] lg:py-[56px] bg-colorSurfaceLightWhiteHover px-lr">
+  <div class="mx-auto xl:px-[161px] max-w-1440">
+    <div class="mx-auto text-center">
+      <h2 class="text-mobileHeadlinesH3 md:text-desktopHeadlinesH3 font-semibold mb-6 font-dm 
+        leading-mobileLineHeight5xl md:leading-desktopLineHeight4xl">
+          {{.newsletterHeading}}
+      </h2>
+      <form action="#" method="POST" class="flex flex-col md:flex-row items-center gap-3">
+        <input
+          type="email"
+          name="email"
+          placeholder="{{.emailPlaceholderText}}"
+          required
+          class="flex-1 h-12 w-full px-4 py-[10px] lg:py-0 pr-10 rounded-lg border border-colorSurfaceLightLightActive bg-white placeholder-colorSurfaceDarkLighter focus:outline-none text-desktopBodyB4"
+        />
+
+        <div class="w-full lg:flex-1 relative md:w-[40%] lg:w-full">
+            <select 
+              id="companyTypeSelect"
+              name="companyType" 
+              required
+              class="h-12 w-full text-desktopBodyB4 px-4 pr-10 rounded-lg border border-gray-300 bg-white 
+              text-gray-700 focus:outline-none appearance-none"
+              aria-required="true">
+              <option value="" disabled selected>{{.selectPlaceholderText}}</option>
+              {{ range .companyTypes }}
+              <option value="{{ .value }}">{{ .label }}</option>
+              {{ end }}
+            </select>
+          <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
+            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+        </div>
+
+        <button type="submit" class="w-[126px] md:w-[168px] sm:w-auto px-[24px] py-[12px] 
+          text-white font-medium rounded-lg bg-teal flex items-center justify-center text-desktopSubHeadingsP4 md:text-desktopSubHeadingsP5 hover:bg-colorPrimaryTealNormalHover">
+          {{.submitBtnTxt}}
+          <svg
+            class="ml-2 w-[13px] h-[11px] md:w-auto md:h-auto"
+            width="17"
+            height="14"
+            viewBox="0 0 17 14"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M15.723 7.83851L1.7655 13.723C1.46417 13.8435 1.17792 13.8176 0.90675 13.6453C0.635583 13.4728 0.5 13.2224 0.5 12.8943V1.10576C0.5 0.777597 0.635583 0.527265 0.90675 0.354765C1.17792 0.182431 1.46417 0.156515 1.7655 0.277015L15.723 6.16152C16.0948 6.32568 16.2807 6.60518 16.2807 7.00001C16.2807 7.39485 16.0948 7.67435 15.723 7.83851ZM2 12L13.85 7.00001L2 2.00001V5.69226L7.423 7.00001L2 8.30777V12Z"
+              fill="white"
+            />
+          </svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

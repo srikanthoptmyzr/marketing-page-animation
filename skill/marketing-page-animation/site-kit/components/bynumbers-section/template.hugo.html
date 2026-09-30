@@ -1,0 +1,107 @@
+<section class="c-bynumbers-section mt-[8rem] lg:mt-12 px-lr bg-surface-dark-lighter" style="background-image: url('/images/homepage/casestudies-bg.svg'); background-size: cover; background-position: center;">
+    <div class="relative">
+      <div data-scroll="fade-slide" class="bg-colorSurfaceDarkDark text-colorSurfaceLightWhite 
+          py-[48px] px-[40px] md:p-[48px] absolute top-[-15rem] md:top-[-10rem] lg:top-[-9rem] xl:top-[-6rem] left-1/2 
+            -translate-x-1/2 rounded-xl  partner-width z-10">
+        <div class="mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+
+          <div class="text-left flex-1">
+            <h2 class="text-mobileHeadlinesH3 xl:text-desktopHeadlinesH3 text-colorSurfaceLightWhite font-bold mb-2 md:mb-4 tracking-mobileLetterSpacingMedium md:tracking-desktopLetterSpacingMedium font-fontFamilyHeadlinesDmSans leading-mobileLineHeight5xl xl:leading-desktopLineHeight4xl">
+              {{.heading}}
+            </h2>
+          <p class="text-gray-300 w-full md:w-3/4 text-mobileBodyB4 md:text-desktopSubHeadingsP4 leading-mobileLineHeightLarge md:leading-desktopLineHeightMedium tracking-mobileLetterSpacingXxl md:tracking-desktopLetterSpacingXxl">{{.subtext}}</p>
+          </div>
+          <div class="flex-1 flex flex-col w-full justify-start lg:justify-end items-center gap-4 lg:max-w-80" style="max-height: 160px;">
+            <div class="flex justify-start lg:justify-end w-full items-center gap-4">
+              {{range $index, $element := .partner_images}}
+                {{if lt $index 2}}
+                  <div class="flex items-center justify-center bg-white rounded overflow-hidden">
+                    <img src="{{$element}}" alt="Partner Logos" class="max-h-[72px] object-contain">
+                  </div>
+                {{end}}
+              {{end}}
+            </div>
+
+            <div class="flex justify-start lg:justify-end w-full items-center gap-4">
+              {{range $index, $element := .partner_images}}
+                {{if and (ge $index 2) (lt $index 4)}}
+                  <div class="flex items-center justify-center bg-white rounded overflow-hidden">
+                    <img src="{{$element}}" alt="Partner Logos" class="max-h-[72px] object-contain">
+                  </div>
+                {{end}}
+              {{end}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div class="pt-[12rem]  md:pt-[13rem] pb-[5rem] md:pb-[10rem] relative" >
+      <div class="max-w-1440 mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-1 items-baseline">
+          <!-- Left side text content -->
+          <div class="lg:col-span-5">
+            <h2 class="mt-10 md:mt-0 text-mobileHeadlinesH3 md:text-desktopHeadlinesH2 font-fontFamilyHeadlinesDmSans font-semibold 
+              mb-[24px] md:mb-[48px] w-10/12 leading-mobileLineHeight5xl md:leading-desktopLineHeight5xl tracking-mobileLetterSpacingMedium md:tracking-desktopLetterSpacingXl">
+              {{.number_title}}
+            </h2>
+            <div class="text-[#00B2A9] text-mobileHeadlinesH1 md:text-desktopHeadlinesH1 font-fontFamilyHeadlinesDmSans font-bold mb-[12px] leading-mobileLineHeight7xl md:leading-desktopLineHeight6xl tracking-mobileLetterSpacingXs md:tracking-desktopLetterSpacingXs">
+              {{.figure}}
+            </div>
+            <p class="text-[#22262B] text-desktopSubHeadingsP4 md:text-desktopSubHeadingsP3 leading-desktopLineHeightMedium md:leading-desktopLineHeightLarge tracking-desktopLetterSpacingXxl md:mb-4 lg:mb-0">
+              {{.figure_text}}
+            </p>
+          </div>
+          <!-- Right side stats grid -->
+          <div class="lg:col-span-7">
+            <div class="grid grid-cols-2 gap-[8px] md:gap-[24px]">
+              <!-- Stats Card 1 -->
+                {{with .card_1}}
+                <div class="rounded-xl border bg-card bg-white text-card-foreground  py-[24px] px-[16px] md:py-[40px] md:px-[24px] ">
+                  <div class="text-mobileHeadlinesH3 md:text-desktopHeadlinesH3 font-bold font-fontFamilyHeadlinesDmSans tracking-mobileLetterSpacingMedium md:tracking-desktopLetterSpacingMedium
+                  leading-mobileLineHeight5xl md:leading-desktopLineHeight4xl text-gray-900 mb-2 md:mb-[12px]">
+                    {{.figure}}
+                  </div>
+                <p class="text-gray-600 text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 font-medium leading-desktopLineHeightSmall md:leading-desktopLineHeightMedium tracking-desktopLetterSpacingXxl">{{.subtext}}</p>
+                </div>
+                {{end}}
+              <!-- Stats Card 2 -->
+                {{with .card_2}}
+                <div class="rounded-xl border bg-card bg-white text-card-foreground  py-[24px] px-[16px] md:py-[40px] md:px-[24px]  ">
+                  <div class="text-mobileHeadlinesH3 md:text-desktopHeadlinesH3 font-bold font-fontFamilyHeadlinesDmSans tracking-mobileLetterSpacingMedium md:tracking-desktopLetterSpacingMedium
+                  leading-mobileLineHeight5xl md:leading-desktopLineHeight4xl text-gray-900 mb-2 md:mb-[12px]">
+                    {{.figure}}
+                  </div>
+                  <p class="text-gray-600 text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 font-medium leading-desktopLineHeightSmall md:leading-desktopLineHeightMedium tracking-desktopLetterSpacingXxl">{{.subtext}}</p>
+                </div>
+                {{end}}
+              <!-- Stats Card 3 -->
+              {{with .card_3}}
+              <div class="rounded-xl border bg-card bg-white text-card-foreground  py-[24px] px-[16px] md:py-[40px] md:px-[24px]  ">
+                <div class="text-mobileHeadlinesH3 md:text-desktopHeadlinesH3 font-bold font-fontFamilyHeadlinesDmSans tracking-mobileLetterSpacingMedium md:tracking-desktopLetterSpacingMedium
+                  leading-mobileLineHeight5xl md:leading-desktopLineHeight4xl text-gray-900 mb-2 md:mb-[12px]">
+                  {{.figure}}
+                </div>
+                <p class="text-gray-600 text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 font-medium leading-desktopLineHeightSmall md:leading-desktopLineHeightMedium tracking-desktopLetterSpacingXxl">{{.subtext}}</p>
+              </div>
+              {{end}}
+
+              <!-- Stats Card 4 -->
+              {{with .card_4}}
+              <div class="rounded-xl border bg-card bg-white text-card-foreground  py-[24px] px-[16px] md:py-[40px] md:px-[24px] ">
+                <div class="text-mobileHeadlinesH3 md:text-desktopHeadlinesH3 font-bold font-fontFamilyHeadlinesDmSans tracking-mobileLetterSpacingMedium md:tracking-desktopLetterSpacingMedium
+                  leading-mobileLineHeight5xl md:leading-desktopLineHeight4xl text-gray-900 mb-2 md:mb-[12px]">
+                  {{.figure}}
+                </div>
+                <p class="text-gray-600 text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 font-medium leading-desktopLineHeightSmall md:leading-desktopLineHeightMedium tracking-desktopLetterSpacingXxl">{{.subtext}}</p>
+              </div>
+              {{end}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="absolute inset-0 grid grid-cols-12 gap-4 pointer-events-none opacity-10">
+        <div class="w-1 h-1 bg-gray-400 rounded-full"></div>
+      </div>
+    </div>
+    </div>
+</section>

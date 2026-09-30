@@ -1,0 +1,45 @@
+<section class="bg-colorPrimaryTealDarker px-6 py-24 relative lg:py-24">
+    <div class="mx-auto lg:max-w-[1345px]">
+        <h5 class="text-colorSurfaceLightWhite font-bold font-dm text-mobileHeadlinesH3 leading-mobileLineHeight5xl tracking-mobileLetterSpacingMedium text-center lg:text-desktopHeadlinesH3 lg:leading-desktopLineHeight4xl">{{.heading}}</h5>
+        <ul class="flex flex-col space-y-6 mt-16 lg:grid lg:grid-cols-2 lg:gap-x-6 lg:gap-y-8 lg:space-y-0">
+            {{range .highlights}}
+            <li class="rounded overflow-hidden">
+                <div style="border: 2px solid; border-image-slice: 1;
+                    border-image-source: linear-gradient(152deg, #7FDE06 0%, transparent 30%, #484F59 70%);" class="flex items-start space-x-3 p-6 bg-colorPrimaryTealDarkActive rounded h-full">
+                    <span class="w-8 h-8 p-1">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_333_195728)">
+                            <path d="M22.001 11.0801V12.0001C21.9997 14.1565 21.3015 16.2548 20.0103 17.9819C18.7191 19.7091 16.9043 20.9726 14.8363 21.584C12.7684 22.1954 10.5582 22.122 8.53545 21.3747C6.51266 20.6274 4.78563 19.2462 3.61194 17.4372C2.43824 15.6281 1.88077 13.4882 2.02265 11.3364C2.16454 9.18467 2.99818 7.13643 4.39926 5.49718C5.80033 3.85793 7.69376 2.71549 9.79716 2.24025C11.9006 1.76502 14.1012 1.98245 16.071 2.86011" stroke="#7FDE06" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M22 3.99976L12 14.0098L9 11.0098" stroke="#7FDE06" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_333_195728">
+                            <rect width="24" height="24" fill="white"/>
+                            </clipPath>
+                            </defs>
+                        </svg>
+                    </span>
+                    <p class="text-colorSurfaceLightWhite font-fontFamilyParagraphsInter text-mobileBodyB2 leading-mobileLineHeight3xl tracking-normal font-normal text-left lg:text-desktopSubHeadingsP2 lg:leading-desktopLineHeightXxl">
+                        {{.}}
+                    </p>
+                </div>
+
+            </li>
+            {{end}}
+        </ul>
+    </div>
+    <div id="cta-section" class="z-10 relative flex items-center flex-col space-y-6 mt-16 mx-auto lg:max-w-[1345px]">
+        <span class="font-inter text-colorSurfaceLightWhite text-mobileBodyB2 leading-mobileLineHeight3xl tracking-normal text-center lg:w-3/4 lg:text-desktopSubHeadingsP2 lg:leading-desktopLineHeightXxl">
+            {{.conclusion | safeHTML}}
+        </span>
+        <a href="#get-copy-form" class="bg-colorPrimaryTealNormal rounded-xl font-bold text-desktopSubHeadingsP4 text-center text-colorSurfaceLightWhite py-3 px-5 whitespace-nowrap capitalize hover:bg-colorPrimaryTealNormalHover ">
+            {{.ctaText}}
+        </a>
+    </div>
+    <div class="absolute top-0 left-0">
+        <img src="/images/research-hub/top-left-dots.svg" alt="">
+    </div>
+    <div class="absolute bottom-0 right-0">
+        <img src="/images/research-hub/bottom-right-dots.svg" alt="">
+    </div>
+</section>

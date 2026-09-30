@@ -1,0 +1,102 @@
+/* Scene player base styles. Mechanics only: no colors, fonts or sizes that belong to a product theme. */
+
+.product-ui { position: relative; }
+
+/* Anything not visible in the scene's current state. Layout space stays reserved. */
+.product-ui [data-hidden] {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Typed / streamed text: unrevealed characters keep their space, so nothing shifts. */
+.pu-t-h { visibility: hidden; }
+.pu-caret {
+  display: inline-block;
+  inline-size: 1px;
+  block-size: 1em;
+  background: currentColor;
+  vertical-align: text-bottom;
+}
+
+/* Pointer that stands in for a user. Positioned by the player with transform only. */
+.pu-cursor {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Emphasis ring created by the `highlight` verb. */
+.pu-ring {
+  position: absolute;
+  inset: -3px;
+  border: 2px solid var(--product-accent, currentColor);
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Fade used when a looping scene resets. */
+.product-ui.pu-resetting { opacity: 0; transition: opacity 200ms linear; }
+
+/* Loading indicator: only animates while the step marks it active. */
+.pu-loading[data-active] .pu-dot { animation: pu-dot 900ms ease-in-out infinite; }
+.pu-loading[data-active] .pu-dot:nth-child(2) { animation-delay: 150ms; }
+.pu-loading[data-active] .pu-dot:nth-child(3) { animation-delay: 300ms; }
+@keyframes pu-dot { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+/* Controls: step controls only make sense with reduced motion, play controls only without. */
+.product-ui:not(.pu-reduced) [data-action="next"],
+.product-ui:not(.pu-reduced) [data-action="prev"] { display: none; }
+.product-ui.pu-reduced [data-action="play"],
+.product-ui.pu-reduced [data-action="pause"],
+.product-ui.pu-reduced [data-action="toggle"],
+.product-ui.pu-reduced [data-action="replay"] { display: none; }
+
+/* Screen-reader-only text, for the scene description. */
+.pu-sr-only {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pu-loading[data-active] .pu-dot { animation: none; }
+  .product-ui.pu-resetting { transition: none; }
+}
+
+/* Camera layer for zoom steps: compositor-only transform, origin top-left. */
+.pu-cam { position: relative; transform-origin: 0 0; backface-visibility: hidden; }
+
+/* Stable glyph metrics when a stage is scaled or zoomed: no hinting jumps between sizes.
+   `geometricPrecision` keeps advance widths proportional so text does not reflow as the
+   scale changes. It is NOT a legibility aid: it disables hinting, so at small sizes glyphs
+   get softer, and forcing `antialiased` on top thins the stems further. Both are applied
+   only while a stage is actually being scaled, and only above the size where hinting still
+   helps. A scene that needs a scale far below 1 is too wide for its slot - recompose it
+   (references/responsive.md), do not try to fix it here. */
+.product-ui .pu-stage { text-rendering: optimizeLegibility; }
+.product-ui .pu-stage[data-scaled] { text-rendering: geometricPrecision; }
+
+/* With JS, a stage stays hidden until the player has set its first frame, so the final state never flashes. Without JS it is simply visible. */
+.pu-js .product-ui:not(.pu-ready) .pu-stage { visibility: hidden; }
+
+/* Section reveal on scroll: fade up once, compositor-only. */
+.pu-rv-pending { opacity: 0; transform: translate3d(0, 28px, 0); }
+.pu-rv-in { opacity: 1; transform: none; transition: opacity 600ms cubic-bezier(0.2, 0, 0, 1), transform 600ms cubic-bezier(0.2, 0, 0, 1); }
+@media (prefers-reduced-motion: reduce) { .pu-rv-pending { opacity: 1; transform: none; } }
+
+/* A scene marked data-no-controls ships without playback controls at all: the page
+   owner chose an uninterrupted loop. Note this is a deliberate WCAG 2.2.2 exception
+   (no mechanism to pause motion lasting over five seconds) and must be listed in the
+   handoff so a reviewer sees it. Everything else - reduced motion, keyboard access,
+   the complete no-JS final state - is unchanged. */
+.product-ui[data-no-controls] .pu-ctl { display: none !important; }

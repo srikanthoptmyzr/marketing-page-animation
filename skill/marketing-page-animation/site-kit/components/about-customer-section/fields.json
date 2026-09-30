@@ -1,0 +1,52 @@
+{
+ "component": "about-customer-section",
+ "source": "component-library/components/about-customer-section/",
+ "fields": {
+  "aboutCompany": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "authorCompany": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": null,
+   "localization": "translatable"
+  },
+  "companyWebsite": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "url",
+   "localization": "unlisted"
+  },
+  "customerCompany": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "headquarters": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "unlisted"
+  }
+ },
+ "i18nKeys": [
+  "visit_customer_website"
+ ],
+ "partials": []
+}

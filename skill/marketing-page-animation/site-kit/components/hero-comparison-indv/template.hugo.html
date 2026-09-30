@@ -1,0 +1,72 @@
+{{$links := site.Data.links}}
+<!-- hero starts -->
+<section class="c-hero-comparison-indv lg:flex flex-col  relative bg-colorSurfaceLightWhiteHover">
+  <div class="w-full h-[30%] md:h-[75%] lg:h-[60%] -z-10 bg-surface-dark-darker-hover absolute top-0 compare-bg z-10 "></div>
+  <div class="text-center max-w-1440 mx-auto  flex flex-col items-center px-[16px] py-[48px] md:py-[75px] z-20 relative">
+    <p class="text-white font-dm text-mobileHeadlinesH2 md:text-desktopHeadlinesH1 font-bold mb-[24px] md:mb-[16px] 
+      leading-mobileLineHeight6xl md:leading-desktopLineHeight6xl tracking-desktopLetterSpacingXs text-center">{{.heading_1}}</p>
+    <p class="text-white font-dm text-mobileHeadlinesH2 md:text-desktopHeadlinesH1 font-bold mb-[24px] md:mb-[16px] 
+      leading-mobileLineHeight6xl md:leading-desktopLineHeight6xl tracking-desktopLetterSpacingXs text-center">{{.heading_2}}</p>
+  </div>   
+
+  <!-- vs card starts -->
+  <div class="px-[16px] xl:px-[162px]">
+    <section class="mx-auto bg-white border border-colorSurfaceLightNormal rounded-[12px] 
+                    px-[16px] py-[24px]  xl:px-[113px] xl:py-[64px] z-20 relative">
+      <!-- Optmyzr Section -->
+      <div class="mb-8 pb-6 border-b border-colorSurfaceLightNormal">
+        <div class="flex flex-col md:flex-row items-center space-y-[20px] md:space-y-0 md:space-x-[20px]">
+          <div class="flex-shrink-0">
+            <div class="w-[90px] h-[90px] border border-colorSurfaceLightNormal rounded-[12px] flex items-center justify-center p-2">
+              <img src="{{.optmyzr_logo}}"  alt="optmyzr logo">
+            </div>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-start  ">
+              <h2 class="text-mobileHeadlinesH4 md:text-desktopHeadlinesH5 font-bold 
+                font-dm  tracking-desktopLetterSpacingSmall mb-[12px]">{{.vs_title_1}}</h2>
+              <span class="below-360:px-[10px] min-[361px]:px-[12px] ml-3 py-[4px] below-360:text-[10px] min-[361px]:text-[11px] font-semibold text-colorSecondaryLimeDarker  mt-[4px]
+                bg-colorSecondaryLimeLightActive rounded-full">{{.optmyzr_badge}}</span>
+            </div>
+            <p class="text-mobileBodyB2 md:text-desktopSubHeadingsP2 leading-desktopLineHeightXxl
+              tracking-spacingXxl text-colorSurfaceDarkNormalActive">{{.vs_desc_1}}</p>
+          </div>
+        </div>
+      </div>
+      <!-- Acquisio Section -->
+      <div>
+        <div class="flex flex-col md:flex-row items-center space-y-[20px] md:space-y-0 md:space-x-[20px]">
+          <div class="flex-shrink-0">
+            <div class="w-[90px] h-[90px] border border-colorSurfaceLightNormal rounded-[12px] flex items-center justify-center p-2">
+              <img src="{{.competitor_logo}}"  alt="competitor logo">
+            </div>
+          </div>
+          <div class="flex-1">
+            <h2 class="text-mobileHeadlinesH4 md:text-desktopHeadlinesH5 font-bold font-dm  
+              tracking-desktopLetterSpacingSmall mb-[12px]">{{.vs_title_2}}</h2>
+            <p class="text-mobileBodyB2 md:text-desktopSubHeadingsP2 leading-desktopLineHeightXxl 
+              tracking-spacingXxl text-colorSurfaceDarkNormalActive">{{.vs_desc_2}}</p>
+          </div>
+        </div>
+      </div>
+    </section>    
+  </div>
+</section>
+
+<style>
+.compare-bg{
+  background-image: url('/images/comparison/compare-bg.svg'); 
+  background-size: cover; 
+  background-position: 17%;
+}
+
+@media (max-width: 768px) {
+  .compare-bg{
+  background-image: url('/images/comparison/compare-bg-mobile.svg'); 
+    background-size: cover;
+    background-position: bottom center;
+    background-repeat:no-repeat;
+  }
+}
+</style>
+

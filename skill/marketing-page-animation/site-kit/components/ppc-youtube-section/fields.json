@@ -1,0 +1,38 @@
+{
+ "component": "ppc-youtube-section",
+ "source": "component-library/components/ppc-youtube-section/",
+ "fields": {
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "kicker": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "subtext": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "youtubeVideoId": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "skip"
+  }
+ },
+ "i18nKeys": [],
+ "partials": [
+  "bookshop/shared/hugo/youtube-id.hugo.html"
+ ]
+}

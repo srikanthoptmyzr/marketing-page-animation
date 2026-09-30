@@ -1,0 +1,57 @@
+{
+ "component": "hero-careers",
+ "source": "component-library/components/hero-careers/",
+ "fields": {
+  "alt": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Optmyzr Careers",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "heroImages": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "heroTitle": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Be part of the Optmyzr journey \u2013 11 years and counting!",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "image": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/images/careers/careers-1.jpg",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "openRolesButtonLink": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "#open-roles",
+   "inputType": "url",
+   "localization": "translatable"
+  },
+  "openRolesButtonText": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "See Open Roles",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "subTitle": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": ">-",
+   "inputType": "textarea",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

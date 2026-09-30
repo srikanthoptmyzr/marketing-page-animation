@@ -1,0 +1,83 @@
+{
+ "component": "social-features-section",
+ "source": "component-library/components/social-features-section/",
+ "fields": {
+  "anchor_text": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Learn More",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "deliveryOptions": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "false",
+   "inputType": "boolean",
+   "localization": "unlisted"
+  },
+  "feature_title": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Access performance and campaign data. Any time.",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "features": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "translatable"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Paid social optimizations and automation\\Lto complement your growth team.",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "https": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "//help.optmyzr.com/en/articles/11092900-social-campaign-manager-user-guide",
+   "inputType": null,
+   "localization": "unlisted"
+  },
+  "image": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "/forestry/access-performance-and-campaign-data-any-time-1-1.webp",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "kicker": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Reliable, Complete Reporting",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "subtext": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": ">-",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "url": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": ">-",
+   "inputType": "url",
+   "localization": "url-prefixed"
+  }
+ },
+ "i18nKeys": [
+  "alert_delivery_options"
+ ],
+ "partials": [
+  "functions/resolve-image-path.html",
+  "image.html"
+ ]
+}

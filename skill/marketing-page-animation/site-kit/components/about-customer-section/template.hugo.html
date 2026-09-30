@@ -1,0 +1,40 @@
+<section class="c-about-customer-section px-lr bg-colorSurfaceLightWhiteHover py-[32px] md:py-[56px] my-[48px] md:my-[64px] relative z-10">
+  <div class="w-full flex flex-col lg:flex-col mx-auto max-w-1440">
+    <div class="lg:px-[114px]">
+      <div class="">
+        <h3 class="font-bold font-dm text-mobileHeadlinesH4 md:text-desktopHeadlinesH4 leading-mobileLineHeight2xl md:leading-desktopLineHeight2xl">
+          {{.heading}}
+        </h3>
+
+        <div class="mt-4">
+          <h3 class="text-xl font-medium">{{ .authorCompany | safeHTML }}</h3>
+          <div class="mt-2 text-mobileBodyB3 md:text-desktopSubHeadingsP3 text-colorSurfaceDarkDark leading-mobileLineHeightXxl md:leading-desktopLineHeightLarge">
+            {{ .aboutCompany | safeHTML }}
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row gap-[16px] md:gap-[32px] mt-6">
+          <div class=" flex items-center gap-[12px]">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <mask id="mask0_889_39963" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                <rect width="24" height="24" fill="#999FA9"/>
+              </mask>
+              <g mask="url(#mask0_889_39963)">
+                <path d="M12 20C12.3 20 12.5875 19.9833 12.8625 19.95C13.1375 19.9167 13.4167 19.8667 13.7 19.8L12.5 18H9V17C9 16.45 9.19583 15.9792 9.5875 15.5875C9.97917 15.1958 10.45 15 11 15H13V12H11C10.7167 12 10.4792 11.9042 10.2875 11.7125C10.0958 11.5208 10 11.2833 10 11V9H9.55C9.11667 9 8.75 8.85417 8.45 8.5625C8.15 8.27083 8 7.90833 8 7.475C8 7.325 8.02083 7.175 8.0625 7.025C8.10417 6.875 8.16667 6.73333 8.25 6.6L9.8 4.325C8.11667 4.80833 6.72917 5.75 5.6375 7.15C4.54583 8.55 4 10.1667 4 12H5V11C5 10.7167 5.09583 10.4792 5.2875 10.2875C5.47917 10.0958 5.71667 10 6 10H8C8.28333 10 8.52083 10.0958 8.7125 10.2875C8.90417 10.4792 9 10.7167 9 11V12C9 12.2833 8.90417 12.5208 8.7125 12.7125C8.52083 12.9042 8.28333 13 8 13V14C8 14.55 7.80417 15.0208 7.4125 15.4125C7.02083 15.8042 6.55 16 6 16H5.075C5.775 17.2 6.73333 18.1667 7.95 18.9C9.16667 19.6333 10.5167 20 12 20ZM19.6 14.45C19.7333 14.0667 19.8333 13.6708 19.9 13.2625C19.9667 12.8542 20 12.4333 20 12C20 10.1333 19.4333 8.4875 18.3 7.0625C17.1667 5.6375 15.7333 4.7 14 4.25V7C14.55 7 15.0208 7.19583 15.4125 7.5875C15.8042 7.97917 16 8.45 16 9V11C16.3167 11 16.6 11.0375 16.85 11.1125C17.1 11.1875 17.3417 11.3417 17.575 11.575L19.6 14.45ZM12 22C10.6167 22 9.31667 21.7375 8.1 21.2125C6.88333 20.6875 5.825 19.975 4.925 19.075C4.025 18.175 3.3125 17.1167 2.7875 15.9C2.2625 14.6833 2 13.3833 2 12C2 10.6167 2.2625 9.31667 2.7875 8.1C3.3125 6.88333 4.025 5.825 4.925 4.925C5.825 4.025 6.88333 3.3125 8.1 2.7875C9.31667 2.2625 10.6167 2 12 2C13.3833 2 14.6833 2.2625 15.9 2.7875C17.1167 3.3125 18.175 4.025 19.075 4.925C19.975 5.825 20.6875 6.88333 21.2125 8.1C21.7375 9.31667 22 10.6167 22 12C22 13.3833 21.7375 14.6833 21.2125 15.9C20.6875 17.1167 19.975 18.175 19.075 19.075C18.175 19.975 17.1167 20.6875 15.9 21.2125C14.6833 21.7375 13.3833 22 12 22Z" fill="#999FA9"/>
+              </g>
+            </svg>
+            <div class="text-base text-colorSurfaceDarkNormal font-medium">{{ .headquarters | safeHTML }}</div>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <svg width="20" height="11" viewBox="0 0 20 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 10.5H5C3.61667 10.5 2.4375 10.0125 1.4625 9.0375C0.4875 8.0625 0 6.88333 0 5.5C0 4.11667 0.4875 2.9375 1.4625 1.9625C2.4375 0.9875 3.61667 0.5 5 0.5H9V2.5H5C4.16667 2.5 3.45833 2.79167 2.875 3.375C2.29167 3.95833 2 4.66667 2 5.5C2 6.33333 2.29167 7.04167 2.875 7.625C3.45833 8.20833 4.16667 8.5 5 8.5H9V10.5ZM6 6.5V4.5H14V6.5H6ZM11 10.5V8.5H15C15.8333 8.5 16.5417 8.20833 17.125 7.625C17.7083 7.04167 18 6.33333 18 5.5C18 4.66667 17.7083 3.95833 17.125 3.375C16.5417 2.79167 15.8333 2.5 15 2.5H11V0.5H15C16.3833 0.5 17.5625 0.9875 18.5375 1.9625C19.5125 2.9375 20 4.11667 20 5.5C20 6.88333 19.5125 8.0625 18.5375 9.0375C17.5625 10.0125 16.3833 10.5 15 10.5H11Z" fill="#999FA9"/>
+            </svg>
+            <a href="{{ .companyWebsite }}" class="flex">
+              <div class="text-colorPrimaryTealNormal text-base">{{ i18n "visit_customer_website" (dict "Company" .customerCompany) }}</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

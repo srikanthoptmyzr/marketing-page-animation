@@ -1,0 +1,57 @@
+{
+ "component": "grid-images",
+ "source": "component-library/components/grid-images/",
+ "fields": {
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": null,
+   "localization": "translatable"
+  },
+  "image_1": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": "\"image\"",
+   "localization": "unlisted"
+  },
+  "image_2": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": "\"image\"",
+   "localization": "unlisted"
+  },
+  "image_3": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": "\"image\"",
+   "localization": "unlisted"
+  },
+  "image_4": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": "\"image\"",
+   "localization": "unlisted"
+  },
+  "subtext_1": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": null,
+   "localization": "translatable"
+  },
+  "subtext_2": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": null,
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

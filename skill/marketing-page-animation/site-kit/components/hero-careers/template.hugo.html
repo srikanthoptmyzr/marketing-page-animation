@@ -1,0 +1,93 @@
+<section class="c-hero-careers px-lr pb-[64px] py-[20px] lg:pb-[100px] lg:pt-[60px] xl:pt-[60px] xl:pb-[96px]" id="main">
+    <div class="hidden md:flex max-w-1440 flex-col md:flex-row gap-[20px] mx-auto">
+    <div class="flex flex-col basis-[100%] xl:basis-[76%] gap-y-[20px]">
+      <div class="top-3-divs min-h-[281px] flex gap-[20px]">
+        <div class="h-full bg-surface-dark-lighter rounded-[12px] flex-[2_0_0%] xl:max-h-[207px] xl:min-w-[321px]">
+          <img src="{{ index .heroImages 0 "image" }}" alt="{{ index .heroImages 0 "alt" }}" class="w-full h-full object-cover rounded-[12px]">
+        </div> 
+        <div class="h-full bg-surface-dark-lighter rounded-[12px] flex-[1.3_0_0%] xl:min-w-[207px]">
+          <img src="{{ index .heroImages 1 "image" }}" alt="{{ index .heroImages 1 "alt" }}" class="w-full h-full object-cover rounded-[12px]">
+        </div> 
+        <div class="h-full bg-surface-dark-lighter rounded-[12px] flex-[2.9_0_0%] xl:min-w-[435px]">
+          <img src="{{ index .heroImages 2 "image" }}" alt="{{ index .heroImages 2 "alt" }}" class="w-full h-full object-cover rounded-[12px]">
+        </div> 
+      </div>
+      <div class="flex h-full max-h-[414px] gap-[20px]">
+        <div class="flex flex-col items-start flex-1 mt-[13px]">
+          <h1 class="md:text-desktopHeadlinesH2 lg:text-desktopHeadlinesH1 leading-desktopLineHeight6xl tracking-desktopLetterSpacingXs 
+            font-dm font-bold capitalize">{{.heroTitle}}</h1>
+          <p class="text-desktopSubHeadingsP2 leading-desktopLineHeightXxl tracking-desktopLetterSpacingXl mt-[16px] 
+            text-surface-dark-active">{{.subTitle}}</p>
+          <div class="mt-[24px]">
+            <a href="{{.openRolesButtonLink}}" class="bg-teal-dark hover:bg-colorPrimaryTealNormalHover  w-[203px] h-[41px] 
+              md:h-[48px] md:w-[210px] text-colorSurfaceLightWhite py-3 text-desktopSubHeadingsP4 font-semibold rounded-xl 
+              text-center inline-flex items-center justify-center gap-[10px]">{{.openRolesButtonText}}
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.33358 5.53176L3.99343 0.191706C3.86992 0.068097 3.70504 0 3.52924 0C3.35343 0 3.18856 0.068097 3.06504 0.191706L2.67178 0.584873C2.41588 0.841066 2.41588 1.25745 2.67178 1.51326L7.15604 5.99751L2.6668 10.4867C2.54329 10.6104 2.4751 10.7751 2.4751 10.9508C2.4751 11.1267 2.54329 11.2915 2.6668 11.4152L3.06007 11.8083C3.18368 11.9319 3.34846 12 3.52426 12C3.70006 12 3.86494 11.9319 3.98845 11.8083L9.33358 6.46336C9.45738 6.33936 9.52538 6.1738 9.52499 5.99781C9.52538 5.82112 9.45738 5.65566 9.33358 5.53176Z" fill="white"/>
+              </svg>
+            </a>
+          </div>
+        </div> 
+        <div class="imgx-md bg-surface-dark-lighter rounded-[12px] w-[32%] h-full">
+          <img src="{{ index .heroImages 6 "image" }}" alt="{{ index .heroImages 6 "alt" }}" class="w-full h-full object-cover rounded-[12px]">
+        </div>
+      </div>
+    </div>
+      <div class="basis-[24%] flex-col gap-[20px] hidden xl:flex">
+        <div class="bg-surface-dark-lighter rounded-[12px] min-h-[207px]">
+          <img src="{{ index .heroImages 3 "image" }}" alt="{{ index .heroImages 3 "alt" }}" class="w-full h-full object-cover rounded-[12px]">
+        </div>      
+        <div class="bg-surface-dark-lighter rounded-[12px] min-h-[321px]">
+          <img src="{{ index .heroImages 4 "image" }}" alt="{{ index .heroImages 4 "alt" }}" class="w-full h-full object-cover rounded-[12px]">
+        </div>      
+        <div class="bg-surface-dark-lighter rounded-[12px] min-h-[207px]">
+          <img src="{{ index .heroImages 5 "image" }}" alt="{{ index .heroImages 5 "alt" }}" class="w-full h-full object-cover rounded-[12px]">
+      </div>      
+      </div>
+    </div>
+   <!--MOBILE ONLY -->
+  <div class="max-w-1440 flex flex-col md:hidden gap-[20px] mx-auto">
+    <div class="overflow-hidden relative w-full">
+      <div class="flex items-center animate-marquee space-x-5">
+        {{ range .heroImages }}
+        <img src="{{ .image }}" alt="{{ .alt }}" class="h-[180px] w-auto rounded-lg">
+        {{ end }}
+      </div>
+    </div>
+
+    <div class="flex flex-col items-start flex-1 mt-[13px]">
+      <h1 class="text-mobileHeadlinesH1 lg:text-desktopHeadlinesH1 leading-mobileLineHeight7xl 
+        lg:leading-desktopLineHeight6xl tracking-desktopLetterSpacingXs font-dm font-bold capitalize">{{.heroTitle}}</h1>
+      <p class="text-mobileBodyB2 lg:text-desktopSubHeadingsP2 leading-mobileLineHeight3xl 
+        lg:leading-desktopLineHeightXxl tracking-desktopLetterSpacingXxl mt-[16px] text-surface-dark-active">{{.subTitle}}</p>
+
+      <div class="mt-[24px]">
+        <a href="{{.openRolesButtonLink}}" class="bg-teal-dark w-[210px] h-[46px] text-colorSurfaceLightWhite py-3 
+          text-desktopSubHeadingsP5 md:text-base font-semibold rounded-xl 
+          text-center inline-flex items-center justify-center gap-[10px]">{{.openRolesButtonText}}
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.33358 5.53176L3.99343 0.191706C3.86992 0.068097 3.70504 0 3.52924 0C3.35343 0 3.18856 0.068097 3.06504 0.191706L2.67178 0.584873C2.41588 0.841066 2.41588 1.25745 2.67178 1.51326L7.15604 5.99751L2.6668 10.4867C2.54329 10.6104 2.4751 10.7751 2.4751 10.9508C2.4751 11.1267 2.54329 11.2915 2.6668 11.4152L3.06007 11.8083C3.18368 11.9319 3.34846 12 3.52426 12C3.70006 12 3.86494 11.9319 3.98845 11.8083L9.33358 6.46336C9.45738 6.33936 9.52538 6.1738 9.52499 5.99781C9.52538 5.82112 9.45738 5.65566 9.33358 5.53176Z" fill="white"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  animation: marquee 60s linear infinite;
+  width: max-content;
+}
+</style>
+

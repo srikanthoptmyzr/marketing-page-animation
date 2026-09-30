@@ -1,0 +1,80 @@
+{
+ "component": "case-study-hero",
+ "source": "component-library/components/case-study-hero/",
+ "fields": {
+  "author": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": null,
+   "localization": "skip"
+  },
+  "customer": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "customerCompany": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": null,
+   "localization": "unlisted"
+  },
+  "customerImg": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "customerTitle": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "hasYouTubeLink": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "checkbox",
+   "localization": "skip"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "subTitle": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "thumbnail": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "youtubeVideoId": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "skip"
+  }
+ },
+ "i18nKeys": [],
+ "partials": [
+  "bookshop/shared/hugo/youtube-id.hugo.html"
+ ]
+}

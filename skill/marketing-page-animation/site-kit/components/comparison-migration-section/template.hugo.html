@@ -1,0 +1,102 @@
+{{/* Migration-service section. Its content is SHARED across every comparison page and lives in the
+     per-language string bundle (data/<lang>/language.yml → comparisonMigration), so it translates with
+     the site; it falls back to English when a language hasn't translated it yet. The block itself only
+     carries an optional toc_label used for the sidebar anchor. */}}
+{{- $m := (index site.Data site.Language.Lang).language.comparisonMigration -}}
+{{- if not $m -}}{{- $m = site.Data.en.language.comparisonMigration -}}{{- end -}}
+{{- $tocId := anchorize (or .toc_label "Migration service") -}}
+<section class="c-comparison-migration-section py-[24px] md:py-[40px] bg-white scroll-mt-[120px]"{{ with $tocId }} id="{{ . }}"{{ end }}>
+  <div class="w-full mx-auto">
+    <!-- Top row: text (left) + illustration (right) -->
+    <div class="flex flex-col lg:flex-row items-center gap-[32px] lg:gap-[40px]">
+      <!-- Left: heading, intro, numbered steps, note -->
+      <div class="w-full lg:basis-[46%] lg:shrink-0">
+        <h2 class="font-dm font-bold text-mobileHeadlinesH3 md:text-desktopHeadlinesH3
+          leading-mobileLineHeight5xl md:leading-desktopLineHeight4xl tracking-desktopLetterSpacingMedium
+          text-colorSurfaceDarkDarkActive">{{ $m.heading }}</h2>
+        {{ with $m.intro_text }}
+        <p class="mt-[12px] md:mt-[16px] text-mobileBodyB3 md:text-desktopSubHeadingsP4 font-normal
+          text-colorSurfaceDarkNormalActive leading-desktopLineHeightXxl">{{ . }}</p>
+        {{ end }}
+
+        <ol class="mt-[24px] md:mt-[28px] flex flex-col gap-[16px]">
+          {{ range $index, $step := $m.steps }}
+          <li class="flex items-start gap-[12px]">
+            <span class="flex-shrink-0 mt-[2px] w-[24px] h-[24px] rounded-full bg-colorPrimaryTealNormal
+              text-white text-[12px] font-bold flex items-center justify-center leading-none">{{ add $index 1 }}</span>
+            <p class="text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 leading-desktopLineHeightXxl">
+              <span class="font-semibold text-colorSurfaceDarkDarkActive">{{ $step.title }}</span><span
+                class="text-colorSurfaceDarkNormalActive">{{ with $step.description }} — {{ . }}{{ end }}</span>
+            </p>
+          </li>
+          {{ end }}
+        </ol>
+
+        {{ with $m.disclaimer_text }}
+        <p class="mt-[24px] text-mobileBodyB3 md:text-desktopSubHeadingsP4 text-colorSurfaceDarkNormalActive
+          leading-desktopLineHeightXxl">{{ . }}</p>
+        {{ end }}
+        {{ if $m.disclaimer_link_text }}
+        <a href="{{ $m.disclaimer_link_url | default "#" }}" class="inline-flex items-center gap-1 mt-[4px]
+          text-mobileBodyB3 md:text-desktopSubHeadingsP4 font-medium text-colorPrimaryTealNormal underline">
+          {{ $m.disclaimer_link_text }}
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M4.16669 10H15.8334M15.8334 10L10 4.16669M15.8334 10L10 15.8334" stroke="currentColor"
+              stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        {{ end }}
+      </div>
+
+      <!-- Right: illustration -->
+      {{ with $m.image }}
+      <div class="w-full lg:basis-[54%] lg:shrink-0 flex items-center justify-center">
+        <img src="{{ . }}" alt="" class="w-full h-auto" loading="lazy">
+      </div>
+      {{ end }}
+    </div>
+
+    <!-- "What's included" card -->
+    {{ with $m.included }}
+    <div class="mt-[40px] md:mt-[48px] bg-white border border-colorSurfaceLightNormal rounded-[12px] overflow-hidden">
+      <!-- Header bar -->
+      <div class="bg-colorSurfaceLightWhiteHover py-[16px] md:py-[20px] px-[24px] text-center">
+        {{ with .kicker }}
+        <p class="text-[12px] md:text-desktopSubHeadingsP6 font-medium text-colorSurfaceDarkNormalActive">{{ . }}</p>
+        {{ end }}
+        {{ with .heading }}
+        <h3 class="mt-[2px] font-dm font-semibold text-mobileHeadlinesH5 md:text-desktopHeadlinesH5
+          text-colorSurfaceDarkDarkActive">{{ . }}</h3>
+        {{ end }}
+      </div>
+      <!-- Body: 4 checked items + CTA -->
+      <div class="px-[24px] py-[24px] md:py-[32px]">
+        {{ with .features }}
+        <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[16px] md:gap-x-[24px]">
+          {{ range . }}
+          <li class="flex items-center gap-[10px]">
+            <img src="/images/comparison/check-included.svg" width="16" height="16"
+              class="flex-shrink-0 w-[16px] h-[16px]" alt="" loading="lazy">
+            <span class="text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 font-normal
+              text-colorSurfaceDarkNormalActive leading-desktopLineHeightMedium">{{ .text }}</span>
+          </li>
+          {{ end }}
+        </ul>
+        {{ end }}
+        {{ if .link_text }}
+        <div class="mt-[24px] md:mt-[28px] text-center">
+          <a href="{{ .anchor_url | default "#" }}" class="inline-flex items-center gap-2
+            text-desktopSubHeadingsP4 font-semibold text-colorPrimaryTealDark underline">
+            {{ .link_text }}
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M4.16669 10H15.8334M15.8334 10L10 4.16669M15.8334 10L10 15.8334" stroke="currentColor"
+                stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</section>

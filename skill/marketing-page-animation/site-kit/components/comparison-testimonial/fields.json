@@ -1,0 +1,80 @@
+{
+ "component": "comparison-testimonial",
+ "source": "component-library/components/comparison-testimonial/",
+ "fields": {
+  "additional_testimonials": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "translatable"
+  },
+  "client_name": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Alexandr S",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Insert Heading!",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "image": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/images/homepage/testimonials-client.png",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "main_testimonial": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "translatable"
+  },
+  "role": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "PPC Manager, Peak Ace AG",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "stars": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "4.9",
+   "inputType": "number",
+   "localization": "unlisted"
+  },
+  "testimonial_first_line": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": ">-",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "testimonial_second_line": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": ">-",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "testimonial_title": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Optmyzr\u2019s interface is easy to use and thanks",
+   "inputType": "text",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [
+  "read_more"
+ ],
+ "partials": []
+}

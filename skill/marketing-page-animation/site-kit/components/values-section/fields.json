@@ -1,0 +1,66 @@
+{
+ "component": "values-section",
+ "source": "component-library/components/values-section/",
+ "fields": {
+  "cultureAndValueDescription": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": ">",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "cultureAndValueTitle": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Optmyzr Culture & Core Values",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "cultureAndValues": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "translatable"
+  },
+  "right_image_1": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "/images/careers/careers-4.jpg",
+   "inputType": "image",
+   "localization": "unlisted"
+  },
+  "right_image_2": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "/images/about/animated-image-3.png",
+   "inputType": "image",
+   "localization": "unlisted"
+  },
+  "right_image_3": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "/images/careers/careers-5.jpg",
+   "inputType": "image",
+   "localization": "unlisted"
+  },
+  "value_description": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "For our customers, for your teammates, for the business.",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "value_title": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Do The Right Thing",
+   "inputType": "text",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [],
+ "partials": [
+  "image.html"
+ ]
+}

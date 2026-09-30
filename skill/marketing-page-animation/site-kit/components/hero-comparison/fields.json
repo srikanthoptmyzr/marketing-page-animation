@@ -1,0 +1,50 @@
+{
+ "component": "hero-comparison",
+ "source": "component-library/components/hero-comparison/",
+ "fields": {
+  "demoBtn": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "url-prefixed"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Optmyzr vs. Other Platforms Find Your Best Fit",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "subtitle": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "See how Optmyzr compares with other PPC Management tools in the market and understand which one fits you best.",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "text": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Start Trail",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "trialBtn": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "unlisted"
+  },
+  "url": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "https://tools.optmyzr.com/info/signup",
+   "inputType": "url",
+   "localization": "url-prefixed"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

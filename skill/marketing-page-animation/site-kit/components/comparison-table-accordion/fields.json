@@ -1,0 +1,108 @@
+{
+ "component": "comparison-table-accordion",
+ "source": "component-library/components/comparison-table-accordion/",
+ "fields": {
+  "cells": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "characteristicLabel": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Platform Support",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "competitors": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "default_open": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "true",
+   "inputType": "checkbox",
+   "localization": "skip"
+  },
+  "description": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "image": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "/images/comparison/alternatives/optmyzr.png",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "name": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Optmyzr",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "rows": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "status_color": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "teal",
+   "inputType": "select",
+   "localization": "skip"
+  },
+  "status_text": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Full support",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "subtitle": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "table_title": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "tables": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "toc_label": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Optmyzr vs. competitor",
+   "inputType": "text",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [
+  "feature"
+ ],
+ "partials": []
+}

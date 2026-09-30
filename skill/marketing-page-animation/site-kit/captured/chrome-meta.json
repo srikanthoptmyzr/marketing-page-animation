@@ -1,0 +1,55 @@
+{
+ "page": "https://www.optmyzr.com/solutions/monitoring/",
+ "origin": "https://www.optmyzr.com",
+ "captured": "2026-09-29T15:21:39+00:00",
+ "note": "Rendered chrome copied verbatim from the live site. Refresh with scripts/capture_chrome.py.",
+ "parts": {
+  "header": {
+   "bytes": 62079,
+   "hasAlpine": true,
+   "hasLanguagePicker": true,
+   "hasMobileMenu": true
+  },
+  "footer": {
+   "bytes": 25065,
+   "hasAlpine": true,
+   "hasLanguagePicker": true,
+   "hasMobileMenu": true,
+   "refreshed": "2026-09-30",
+   "refreshNote": "Re-captured from a live Ecommerce solution page. The 2026-09-29 capture predated the Ecommerce product line, so its Products column listed only Search, Amazon Ads and Social, and every page built from it shipped a footer missing a whole product. Previous file kept as footer.stale-2026-09-29.html.bak."
+  },
+  "extras": {
+   "count": 1
+  },
+  "banner": {
+   "bytes": 1971
+  },
+  "headLinks": {
+   "kept": 4,
+   "excludedTracking": 3,
+   "alpineFound": true
+  },
+  "chromeScripts": {
+   "blocks": 13,
+   "defines": [
+    "drives: bfcm-banner, header",
+    "getAmazonResourcesData",
+    "getAmazonSolutionsData",
+    "getCompanyData",
+    "getMobileMenuData",
+    "getProductsData",
+    "getSearchResourcesData",
+    "getSearchSolutionsData",
+    "getSocialResourcesData",
+    "getSocialSolutionsData",
+    "handleMenuClick",
+    "handleProductDropdownClick",
+    "init",
+    "languagePicker",
+    "productSwitcherMixin",
+    "showSection",
+    "toString"
+   ]
+  }
+ }
+}

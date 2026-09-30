@@ -1,0 +1,89 @@
+{
+ "component": "amazon-pricing",
+ "source": "component-library/components/amazon-pricing/",
+ "fields": {
+  "accountsAdSpendArray": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": null,
+   "localization": "unlisted"
+  },
+  "adSpend": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": null,
+   "localization": "unlisted"
+  },
+  "enterprise": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": null,
+   "localization": "unlisted"
+  },
+  "heroTitle": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": null,
+   "localization": "translatable"
+  },
+  "heroTitleEur": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": null,
+   "localization": "translatable"
+  },
+  "pricingPeriod": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": null,
+   "localization": "unlisted"
+  },
+  "savings": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": null,
+   "localization": "translatable"
+  },
+  "subTitle": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": null,
+   "localization": "translatable"
+  },
+  "title": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": null,
+   "localization": "translatable"
+  },
+  "value": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": null,
+   "localization": "skip"
+  }
+ },
+ "i18nKeys": [
+  "all_prices_are_in",
+  "all_prices_for_amazon_advertising_accounts_only",
+  "custom",
+  "enterprise",
+  "full_suite_pricing_available_for_multi_platform_advertisers",
+  "on_sale",
+  "only_at",
+  "per_month_short",
+  "terms_and_conditions",
+  "whats_your_monthly_ad_spend"
+ ],
+ "partials": []
+}

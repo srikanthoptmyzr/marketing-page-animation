@@ -1,0 +1,7 @@
+{
+ "url": "https://www.optmyzr.com/websitecss/styles.min.f31bd2a0c02babd14c3298899003ed059af5d7922b1036df845c82645533f81b.css",
+ "seen": "2026-09-30T16:12:37+00:00",
+ "site": "https://www.optmyzr.com",
+ "note": "Generated Tailwind stylesheet. The hash changes on every deploy; never hardcode this URL in a page generator. Re-run scripts/resolve_site_css.py before each build.",
+ "previous": null
+}

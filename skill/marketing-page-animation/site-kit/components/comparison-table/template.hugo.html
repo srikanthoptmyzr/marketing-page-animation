@@ -1,0 +1,327 @@
+<section id="comparison-table" x-data="{ 
+  active: 0,
+  open: Array({{ len .tables }}).fill(true),
+  competitors: {{ .competitors | jsonify }},
+  tables: {{ .tables | jsonify }},
+  hideCommon: false,
+  highlightDiff: false,
+  
+  init() {
+    this.$watch('hideCommon', value => {
+      if (value) this.highlightDiff = false;
+    });
+    this.$watch('highlightDiff', value => {
+      if (value) this.hideCommon = false;
+    });
+  },
+  
+  isCommonRow(values) {
+    const firstValue = values[0];
+    return values.every(val => 
+      (val === firstValue) || 
+      (val === 'check' && firstValue === 'check') ||
+      (val === 'x' && firstValue === 'x') ||
+      (val.includes('|check') && firstValue.includes('|check')) ||
+      (val.includes('|highlight') && firstValue.includes('|highlight') && 
+       val.split('|')[0] === firstValue.split('|')[0])
+    );
+  },
+  
+  hasDifferences(values) {
+    return !this.isCommonRow(values)
+  },
+  
+  findFirstVisibleRowWithDiff(section) {
+    if (this.hideCommon) {
+      for (let i = 0; i < section.rows.length; i++) {
+        if (!this.isCommonRow(section.rows[i].values) && 
+            this.hasDifferences(section.rows[i].values)) {
+          return true;
+        }
+      }
+      return false;
+    }
+    return section.rows.length > 0 && this.hasDifferences(section.rows[0].values);
+  },
+  
+  findNextVisibleRowIndex(section, currentIndex) {
+    for (let i = currentIndex + 1; i < section.rows.length; i++) {
+      if (!this.hideCommon || !this.isCommonRow(section.rows[i].values)) {
+        return i;
+      }
+    }
+    return -1;
+  },
+  
+  shouldHighlightSeparator(section, currentRow, nextIndex) {
+    if (!this.highlightDiff) return false;
+    
+    const currentRowHighlighted = this.hasDifferences(currentRow.values);
+    
+    if (this.hideCommon) {
+      const nextRowHighlighted = nextIndex !== -1 && 
+                               this.hasDifferences(section.rows[nextIndex].values);
+      return currentRowHighlighted || nextRowHighlighted;
+    }
+    
+    return currentRowHighlighted || 
+           (nextIndex !== -1 && this.hasDifferences(section.rows[nextIndex].values));
+  }
+}" 
+x-init="init()"
+class="px-lr py-8 bg-colorSurfaceLightWhiteHover lg:py-24">
+
+  <div class="max-w-1440 mx-auto xl:px-[150px]">
+
+    <!-- Title -->
+    <div class="md:flex md:justify-between mb-6">
+      <div>
+        <h2 class="font-dm font-bold text-mobileHeadlinesH3 leading-mobileLineHeight5xl 
+          text-colorSurfaceDarkDarkActive tracking-mobileLetterSpacingMedium">{{ .table_title }}</h2>
+        {{ with .subtitle }}
+        <p class="text-colorSurfaceDarkNormalActive mt-4 text-mobileBodyB3 md:text-desktopSubHeadingsP2 
+          leading-mobileLineHeightXxl md:leading-desktopLineHeightXxl">{{ . }}</p>
+        {{ end }}
+      </div>
+
+      <!-- desktop filter options -->
+      <div class="hidden md:flex space-x-6 items-center bg-white 
+        border-[0.5px] border-colorSurfaceLightNormal rounded-[12px] p-[20px] mb-[30px]">
+        <label class="inline-flex items-center space-x-2">
+          <input
+            type="checkbox"
+            class="h-4 w-4 text-colorPrimaryTealDark border-colorSurfaceDarkLighter rounded" 
+            x-model="hideCommon"
+          />
+          <span class="text-desktopSubHeadingsP4 font-medium text-colorSurfaceDarkDarkActive">{{ i18n "hide_common_features" }}</span>
+        </label>
+
+        <label class="inline-flex items-center space-x-2">
+          <input
+            type="checkbox"
+            class="h-4 w-4 text-colorPrimaryTealDark border-colorSurfaceDarkLighter rounded"
+            x-model="highlightDiff"
+          />
+          <span class="text-desktopSubHeadingsP4 font-medium text-colorSurfaceDarkDarkActive">{{ i18n "highlight_differences" }}</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- mobile tabs -->
+    <div class="mt-6 flex sm:hidden overflow-x-auto mb-[10px]">
+      <template x-for="(comp,i) in competitors" :key="i">
+        <button
+          @click="active = i"
+          class="flex w-full justify-center items-center px-4 py-2 text-desktopSubHeadingsP5 tracking-desktopLetterSpacingXl  
+          font-semibold whitespace-nowrap transition gap-[8px] text-colorSurfaceDarkDarkActive"
+          :class="[ active === i ? 'bg-colorPrimaryTealLight border-[0.5px] border-colorPrimaryTealDark'
+          : 'bg-white border border-colorSurfaceLightNormal',
+          i === 0 ? 'rounded-tl-[4px]' : i === competitors.length - 1 ? 'rounded-tr-[4px]' : '' ]" >
+          <div class="border-colorSurfaceLightNormal border rounded-full p-1 bg-white">
+            <img :src="comp.image" alt="comp.name" class="max-h-[17px]" />
+          </div>
+          <span x-text="comp.name"></span>
+        </button>
+      </template>
+    </div>
+
+    <!-- desktop tables -->
+    <div class="hidden sm:block">
+      <div class="relative ">
+        <!-- continuous highlight overlay -->
+        <div
+          class="absolute -top-4 -bottom-4 pointer-events-none z-10"
+          :style="`left: calc(33.333% + 4px); right: calc(33.333% + 4px);`" >
+          <div
+            class="h-full w-full bg-colorPrimaryTealLight border rounded-[12px] border-colorPrimaryTealDark opacity-60"
+          ></div>
+        </div>
+
+        <!-- each section -->
+        <template x-for="(section, si) in tables" :key="si">
+          <div 
+            :class="open[si] 
+            ? 'border border-colorSurfaceDarkLighter bg-white' 
+            : 'border-b-[1px] border-colorSurfaceLightLightHover bg-none rounded-none'"
+            class="rounded-[12px] overflow-hidden relative mb-4"
+          >
+            <!-- header row -->
+            <div 
+              class="grid grid-cols-3 cursor-pointer" 
+              :class="open[si] ? 'bg-white' : 'bg-transparent'"
+              @click="open[si] = !open[si]" 
+            >
+              <div class="flex items-center gap-4 px-4 py-[16px] z-10 relative">
+                <svg
+                  :class="open[si] ? '' : 'transform -rotate-90'"
+                  class="h-4 w-4 text-gray-600 transition-transform"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19 9l-7 7-7-7"/>
+                </svg>
+                <span x-text="section.characteristicLabel" class="text-desktopSubHeadingsP4 font-semibold"></span>
+              </div>
+
+              <template x-for="(comp,ci) in competitors" :key="ci">
+                <div
+                  class="px-4 py-2 text-center z-10 relative flex items-center justify-center"
+                  :class="comp.name==='Optmyzr'
+                  ? 'text-teal-800 font-medium'
+                  : (open[si] ? 'bg-white' : 'bg-transparent') + ' text-gray-800'"
+                >
+                  <span x-text="comp.name" class="text-[16px] font-semibold text-colorSurfaceDarkDarkActive"></span>
+                </div>
+              </template>
+            </div>
+
+            <!-- custom separator after header -->
+            <div x-show="open[si]"
+                 :class="{
+                   'ml-12': !(highlightDiff && findFirstVisibleRowWithDiff(section)),
+                   'bg-[#9CB181]': highlightDiff && findFirstVisibleRowWithDiff(section),
+                   'bg-colorSurfaceDarkLighter': !(highlightDiff && findFirstVisibleRowWithDiff(section))
+                 }"
+                 class="h-[1px] w-full z-20 relative"></div>
+
+            <!-- body rows -->
+            <div x-show="open[si]" x-collapse class="flex flex-col">
+              <template x-for="(row,ri) in section.rows" :key="ri">
+                <div x-show="!hideCommon || !isCommonRow(row.values)"
+                     x-init="$nextTick(() => { row._isShown = true; })"
+                     x-effect="row._isShown = !hideCommon || !isCommonRow(row.values)">
+                  <div class="grid grid-cols-3 items-center"
+                       :class="highlightDiff && hasDifferences(row.values) ? 'bg-[#F5FDEC]' : 'bg-white'">
+                    <div class="pl-[48px] py-[16px]">
+                      <div class="flex items-center gap-2">
+                        <div class="border-colorSurfaceLightNormal border rounded-full p-1" x-show="row.icon">
+                          <img :src="row.icon" :alt="row.name" />
+                        </div>
+                        <span x-text="row.name"
+                          class="text-[14px] text-colorSurfaceDarkNormalActive font-medium">
+                        </span>
+                      </div>
+                    </div>
+
+                    <template x-for="(val,ci) in row.values" :key="ci">
+                      <div class="px-4 py-2 text-center relative z-10 text-desktopSubHeadingsP6  text-colorSurfaceDarkNormalActive">
+                        <template x-if="val.includes('|highlight')">
+                          <span
+                            class="mx-auto flex justify-center font-medium"
+                            :class="ci===0?'text-colorPrimaryTealDark':'text-colorSecondaryOrangeNormal'"
+                            x-html="val.split('|')[0]"
+                          ></span>
+                        </template>
+                        <template x-if="!val.includes('|highlight')">
+                          <span
+                            class="mx-auto grid place-items-center font-medium text-[13px]"
+                            x-html="
+                              val==='check'
+                                ? '<img src=\'/images/comparison/check_circle.svg\'>'
+                                : val==='x'
+                                  ? '<img src=\'/images/comparison/cancel.svg\'>'
+                                  : val.includes('|check')
+                                    ? '<img src=\'/images/comparison/check_circle.svg\'>' + val.replace('|check','')
+                                    : val
+                            ">
+                          </span>
+                        </template>
+                      </div>
+                    </template>
+                  </div>
+
+                  <div x-show="findNextVisibleRowIndex(section, ri)!==-1"
+                       :class="{
+                         'ml-12': !shouldHighlightSeparator(section, row, findNextVisibleRowIndex(section, ri)),
+                         'bg-[#9CB181]': shouldHighlightSeparator(section, row, findNextVisibleRowIndex(section, ri)),
+                         'bg-[#B8BDC3]': !shouldHighlightSeparator(section, row, findNextVisibleRowIndex(section, ri))
+                       }"
+                       class="h-[1px] w-full z-20 relative"></div>
+                </div>
+              </template>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+    <!-- mobile stacked -->
+    <div class="sm:hidden">
+      <template x-for="(section, si) in tables" :key="si">
+        <div 
+          :class="open[si] 
+          ? 'bg-white' 
+          : 'border-b-[1px] border-colorSurfaceLightLightHover bg-none rounded-none'"
+          class="rounded-[4px] overflow-hidden relative"
+        >
+          <div 
+            class="flex items-center justify-between py-2 cursor-pointer"
+            :class="open[si] ? 'bg-gray-100' : 'bg-transparent'"
+            @click="open[si] = !open[si]"
+          >
+            <div class="flex items-center gap-4 py-2 z-10 relative">
+              <svg
+                :class="open[si] ? '' : 'transform -rotate-90'"
+                class="h-4 w-4 translate-x-[6px] text-gray-600 transition-transform"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none" viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M19 9l-7 7-7-7"/>
+              </svg>
+              <span x-text="section.characteristicLabel" class="text-desktopSubHeadingsP5 font-semibold text-colorSurfaceDarkDarkActive"></span>
+            </div>
+          </div>
+
+          <div x-show="open[si]" x-collapse class="flex flex-col border-[0.5px] border-colorSurfaceLightLightHover rounded-[4px]">
+            <template x-for="(row,ri) in section.rows" :key="ri">
+              <div class="rounded-[4px]">
+                <div class="px-3 py-3 rounded-[4px] bg-white">
+                  <div class="flex items-center gap-2">
+                    <div class="border-colorSurfaceLightNormal border rounded-full p-1" x-show="row.icon">
+                      <img :src="row.icon" :alt="row.name" />
+                    </div>
+                    <span x-text="row.name" class="text-desktopSubHeadingsP7 text-colorSurfaceDarkNormalActive font-semibold"></span>
+                  </div>
+                </div>
+
+                <div class="flex rounded bg-white">
+                  <template x-for="(comp,ci) in competitors" :key="ci">
+                    <div
+                      class="flex-1 px-1 py-2 text-center relative z-10 items-center border-colorSurfaceLightLightHover border-[0.5px] min-h-[48px] flex justify-center text-colorSurfaceDarkNormalActive"
+                      :class="ci===active ? 'bg-colorPrimaryTealLight border !border-colorPrimaryTealDark' : 'bg-white'"
+                    >
+                      <template x-if="row.values[ci].includes('|highlight')">
+                        <span
+                          class="mx-auto flex justify-center font-medium text-desktopSubHeadingsP7"
+                          :class="comp.name==='Optmyzr'?'text-colorPrimaryTealDark':'text-colorSecondaryOrangeNormal'"
+                          x-html="row.values[ci].split('|')[0]"
+                        ></span>
+                      </template>
+                      <template x-if="!row.values[ci].includes('|highlight')">
+                        <span class="mx-auto grid place-items-center font-medium text-desktopSubHeadingsP7"
+                          x-html="
+                            row.values[ci]==='check'
+                              ? '<img src=\'/images/comparison/check_circle.svg\'>'
+                              : row.values[ci]==='x'
+                                ? '<img src=\'/images/comparison/cancel.svg\'>'
+                                : row.values[ci].includes('|check')
+                                  ? '<img src=\'/images/comparison/check_circle.svg\'>' + row.values[ci].replace('|check','')
+                                  : row.values[ci]
+                          ">
+                        </span>
+                      </template>
+                    </div>
+                  </template>
+                </div>
+                <div x-show="ri < section.rows.length - 1" class="h-[2px]"></div>
+              </div>
+            </template>
+          </div>
+        </div>
+      </template>
+    </div>
+  </div>
+</section>

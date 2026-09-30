@@ -1,0 +1,54 @@
+{
+ "component": "newsletter",
+ "source": "component-library/components/newsletter/",
+ "fields": {
+  "authorPageNewsletterTitle": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Stay Updated with Optmyzr",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "bottomKicker": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "You may opt out at any time. Check out our",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "buttonText": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Send",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "image": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "/images/blog-hub/newsletter.png",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "privacyUrl": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/information/privacy-policy",
+   "inputType": "url",
+   "localization": "url-prefixed"
+  },
+  "subtext": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": ">-",
+   "inputType": "textarea",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [
+  "privacy_policy"
+ ],
+ "partials": [
+  "newsletter-blog.html"
+ ]
+}

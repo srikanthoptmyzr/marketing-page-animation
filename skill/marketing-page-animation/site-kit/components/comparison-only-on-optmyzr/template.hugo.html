@@ -1,0 +1,46 @@
+{{- $tocId := anchorize (or .toc_label .heading) -}}
+<!-- "Only on Optmyzr" — zigzag feature showcase: icon-tile + title + text on one side, product mockup on the other -->
+<section class="c-comparison-only-on-optmyzr py-[24px] md:py-[40px] bg-white scroll-mt-[120px]"{{ with $tocId }} id="{{ . }}"{{ end }}>
+  <div class="w-full mx-auto">
+    <div class="mb-[32px] md:mb-[56px]">
+      <h2 class="font-dm text-mobileHeadlinesH2 md:text-desktopHeadlinesH2 font-bold text-left
+        text-colorSurfaceDarkDarkActive tracking-desktopLetterSpacingXl">{{ .heading }}</h2>
+      {{ with .subtitle }}
+      <p class="mt-[12px] text-mobileBodyB3 md:text-desktopSubHeadingsP4 text-colorSurfaceDarkNormalActive
+        leading-desktopLineHeightXxl">{{ . }}</p>
+      {{ end }}
+    </div>
+    <div class="flex flex-col gap-y-[48px] lg:gap-y-[64px]">
+      {{ range $index, $row := .rows }}
+      {{ $isEven := eq (mod $index 2) 0 }}
+      <div class="flex flex-col lg:items-center gap-y-[24px] lg:gap-x-[40px]
+        {{ if $isEven }}lg:flex-row{{ else }}lg:flex-row-reverse {{ end }}">
+        <!-- Text side -->
+        <div class="w-full lg:w-[42%] lg:flex-shrink-0 flex flex-col gap-[16px]">
+          <div class="flex items-center gap-[16px]">
+            {{ with $row.icon }}
+            <div class="flex-shrink-0 w-[42px] h-[42px] rounded-[10px] flex items-center justify-center
+              {{ if eq $row.tile_color "blue" }}bg-[rgba(59,130,246,0.15)]
+              {{ else if eq $row.tile_color "purple" }}bg-[rgba(139,92,246,0.15)]
+              {{ else }}bg-[rgba(249,115,22,0.15)]{{ end }}">
+              <img src="{{ . }}" width="19" height="19" class="w-[19px] h-[19px]" alt="" loading="lazy">
+            </div>
+            {{ end }}
+            <h3 class="font-semibold text-desktopSubHeadingsP3 text-colorSurfaceDarkNormalActive
+              leading-desktopLineHeightLarge">{{ $row.title }}</h3>
+          </div>
+          <p class="text-colorSurfaceDarkNormalActive text-mobileBodyB3 md:text-desktopSubHeadingsP5
+            leading-mobileLineHeight3xl md:leading-desktopLineHeightXxl">{{ $row.description }}</p>
+        </div>
+        <!-- Mockup side (image inside a light-gray rounded container) -->
+        {{ with $row.image }}
+        <div class="w-full lg:w-[56%] lg:flex-shrink-0 bg-colorSurfaceLightWhiteHover rounded-[8px]
+          p-[16px] md:p-[24px] flex items-center justify-center">
+          {{ partial "image.html" (dict "src" . "alt" $row.title "class" "w-full h-auto rounded-[8px]" "loading" "lazy") }}
+        </div>
+        {{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>

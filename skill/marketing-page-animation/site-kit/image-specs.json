@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "status": "observed",
+  "source": "Measured on the live /solutions/monitoring/ page at 1440px and 390px viewports. Repo-confirmed values replace these after repo access.",
+  "widths": [128, 256, 512, 767, 1023, 1470],
+  "format": "webp",
+  "quality": 82,
+  "rule": "Uploaded image size is never used. Every image is cropped/fitted to its slot and exported at the slot's widths.",
+  "slots": {
+    "feature": {
+      "description": "Image beside a feature row (c-features-section > feature-row)",
+      "fit": "contain",
+      "aspect_min": 1.2,
+      "aspect_max": 2.0,
+      "max_render_px": [515, 400],
+      "mobile_render_px": [276, null],
+      "export_widths": [256, 512, 767],
+      "sizes": "(max-width: 767px) 100vw, 515px",
+      "background": "transparent",
+      "notes": "Shown object-contain inside a p-4 box, lg:h-[400px]. Not cropped unless outside the aspect range; padded instead."
+    },
+    "hero-visual": {
+      "description": "Optional secondary visual in the solution hero",
+      "fit": "contain",
+      "aspect_min": 1.0,
+      "aspect_max": 2.0,
+      "export_widths": [512, 767],
+      "sizes": "(max-width: 767px) 100vw, 767px",
+      "format": "webp",
+      "notes": "Unverified: monitoring page hero is text-led; confirm slot with the repo."
+    },
+    "case-study-thumb": {
+      "description": "Case-study card thumbnail (static, not animated)",
+      "fit": "cover",
+      "aspect": [16, 9],
+      "render_px": [542, 305],
+      "mobile_render_px": [358, 201],
+      "export_widths": [542, 1084],
+      "sizes": "(max-width: 767px) 358px, 542px",
+      "notes": "2x export for retina. Center crop unless a focus point is given."
+    },
+    "cta-side": {
+      "description": "Decorative side image in the CTA section",
+      "fit": "cover",
+      "aspect": [321, 412],
+      "render_px": [321, 412],
+      "export_widths": [321, 642],
+      "sizes": "321px",
+      "notes": "Portrait card."
+    }
+  }
+}

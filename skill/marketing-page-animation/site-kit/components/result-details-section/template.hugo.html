@@ -1,0 +1,16 @@
+<section class="c-result-details-section px-lr relative z-10">
+  <div class="max-w-1440 mx-auto lg:px-[180px]">
+    <div class="mt-[24px] md:mt-[48px]">
+      <h3 class="text-mobileHeadlinesH4 md:text-desktopHeadlinesH4 font-bold tracking-desktopLetterSpacingLarge">{{.challenge_heading}}</h3>
+      <div class="mt-2 text-mobileBodyB3 md:text-desktopBodyB3 text-colorSurfaceDarkNormalActive">{{ .challenge_desc | safeHTML }}</div>
+    </div>
+    <div class="mt-[24px] md:mt-[48px]">
+      <h3 class="text-mobileHeadlinesH4 md:text-desktopHeadlinesH4 font-bold tracking-desktopLetterSpacingLarge">{{.solution_heading}}</h3>
+      <div class="mt-2 text-mobileBodyB3 md:text-desktopBodyB3 text-colorSurfaceDarkNormalActive">{{ .solution_desc | safeHTML }}</div>
+    </div>
+    <div class="mt-[24px] md:mt-[48px]">
+      <h3 class="text-mobileHeadlinesH4 md:text-desktopHeadlinesH4 font-bold tracking-desktopLetterSpacingLarge">{{.result_heading}}</h3>
+      <div class="mt-2 text-mobileBodyB3 md:text-desktopBodyB3 text-colorSurfaceDarkNormalActive">{{ .result_desc | safeHTML }}</div>
+    </div>
+  </div>
+</section>

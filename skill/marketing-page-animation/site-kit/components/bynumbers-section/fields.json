@@ -1,0 +1,78 @@
+{
+ "component": "bynumbers-section",
+ "source": "component-library/components/bynumbers-section/",
+ "fields": {
+  "card_1": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "unlisted"
+  },
+  "card_2": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "unlisted"
+  },
+  "card_3": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "unlisted"
+  },
+  "card_4": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "unlisted"
+  },
+  "figure": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "$5.27 Billion",
+   "inputType": "text",
+   "localization": "skip"
+  },
+  "figure_text": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Lifetime Managed Ad Spend",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Partnering up with the best",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "number_title": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Optmyzr By The Numbers",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "partner_images": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": null,
+   "localization": "unlisted"
+  },
+  "subtext": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "We leverage your marketing team's skill and team it with our world class partners.",
+   "inputType": "textarea",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

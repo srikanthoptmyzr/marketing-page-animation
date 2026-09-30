@@ -1,0 +1,82 @@
+{{/* Sidekick setup: three white step cards (numbered, the first one links out with an
+     external-link arrow) plus the "Platforms We Support" row. Page-specific component — the
+     shared steps-section was tried here and rejected in review of the page: this section keeps
+     the page's own card design. Same conventions as the other sidekick-* components: Tailwind +
+     tokens for layout/type, one small scoped <style> for what utilities can't express. */}}
+
+<section class="c-sidekick-setup py-[64px] md:py-[80px] px-lr" style="background-color:#f9f8f6; background-image: radial-gradient(circle at 12% 18%, rgba(127,222,6,0.05), transparent 42%), radial-gradient(circle at 88% 28%, rgba(6,155,162,0.05), transparent 42%);">
+  <div class="container mx-auto px-4 lg:px-12 max-w-1440">
+
+    <div data-scroll="fade-slide" class="max-w-[720px] mx-auto text-center">
+      <h2 class="font-dm font-bold text-mobileHeadlinesH3 md:text-[44px] leading-mobileLineHeight5xl md:leading-[1.08] tracking-mobileLetterSpacingMedium md:tracking-[-1px] mb-[14px]" style="color:#0b0c0d;">{{ .heading }}</h2>
+      <p class="text-mobileBodyB3 md:text-[16px] leading-relaxed" style="color:#555;">{{ .subtext }}</p>
+    </div>
+
+    <div data-scroll="fade-slide" class="skp-grid grid lg:grid-cols-3 mt-[44px] mx-auto w-full">
+      {{ range $idx, $step := .steps }}
+        {{ if eq $idx 0 }}
+        <a class="skp-card bg-white border border-[#E8E8E8] rounded-[14px] p-[24px] min-h-[186px] flex flex-col no-underline text-inherit" target="_blank" rel="noopener" href="{{ $.linkUrl }}">
+          <div class="flex items-center justify-between min-h-[40px] mb-[18px]">
+            <span class="w-[40px] h-[40px] rounded-[12px] bg-[#E6F5F6] text-[#05747A] font-dm font-bold text-[18px] flex items-center justify-center flex-shrink-0">1</span>
+            {{/* diagonal external-link arrow: this is the only card that leaves the site, in a new tab */}}
+            <span class="skp-arrow inline-flex" aria-hidden="true">
+              <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="20" fill="#e6f5f6"/><path d="M14 26L26 14M26 14H18M26 14V22" stroke="#069ba2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <h3 class="font-dm font-bold text-[19px] mb-[8px]" style="color:#0b0c0d;">{{ $step.title }}</h3>
+          <p class="text-[14.5px] leading-relaxed" style="color:#555;">{{ $step.text }}</p>
+        </a>
+        {{ else }}
+        <div class="bg-white border border-[#E8E8E8] rounded-[14px] p-[24px] min-h-[186px] flex flex-col">
+          <div class="flex items-center justify-between min-h-[40px] mb-[18px]">
+            <span class="w-[40px] h-[40px] rounded-[12px] bg-[#E6F5F6] text-[#05747A] font-dm font-bold text-[18px] flex items-center justify-center flex-shrink-0">{{ add $idx 1 }}</span>
+          </div>
+          <h3 class="font-dm font-bold text-[19px] mb-[8px]" style="color:#0b0c0d;">{{ $step.title }}</h3>
+          <p class="text-[14.5px] leading-relaxed" style="color:#555;">{{ $step.text }}</p>
+        </div>
+        {{ end }}
+      {{ end }}
+    </div>
+
+    {{ if .platforms }}
+    <div data-scroll="fade-slide" class="mt-[40px] md:mt-[50px] text-center">
+      <p class="text-[15px] font-semibold mb-[22px]" style="color:#2D3A48;">{{ .platformsLabel }}</p>
+      <div class="skp-logos flex flex-wrap justify-center">
+        {{ range .platforms }}
+        <div class="skp-p flex flex-col items-center gap-[10px]">
+          <span class="skp-ring rounded-full border border-[#CFD9E2] bg-white flex items-center justify-center shadow-sm">
+            <img src="{{ .image }}" alt="{{ .name }}" loading="lazy" class="w-full h-full object-contain">
+          </span>
+          <span class="text-[14px] font-medium" style="color:#2D3A48;">{{ .name }}</span>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</section>
+
+<style>
+  /* Geometry lives here rather than in arbitrary Tailwind classes: Hugo's postCSS pipe caches on
+     styles.css's own content, so NEW template classes don't reach a long-running dev server until
+     that file changes. Scoped rules have no such dependency. */
+  .c-sidekick-setup .skp-grid { gap: 22px; max-width: 440px; }
+  @media (min-width: 1024px) { .c-sidekick-setup .skp-grid { max-width: 1040px; } }
+  .c-sidekick-setup .skp-logos { gap: 22px 44px; }
+  .c-sidekick-setup .skp-ring { width: 54px; height: 54px; padding: 12px; }
+  /* hover: the arrow pill fills teal — the card's only hover cue (no lift, no shadow, per the
+     design review of this page) */
+  .c-sidekick-setup .skp-card { transition: border-color 0.2s ease; }
+  .c-sidekick-setup .skp-card:hover { border-color: #D5ECEE; }
+  .c-sidekick-setup .skp-arrow rect { transition: fill 0.2s ease; }
+  .c-sidekick-setup .skp-arrow path { transition: stroke 0.2s ease; }
+  .c-sidekick-setup .skp-card:hover .skp-arrow rect { fill: #069BA2; }
+  .c-sidekick-setup .skp-card:hover .skp-arrow path { stroke: #fff; }
+  /* mobile: the four platform logos are informational, not clickable — one row */
+  @media (max-width: 640px) {
+    .c-sidekick-setup .skp-logos { flex-wrap: nowrap; gap: 10px; }
+    .c-sidekick-setup .skp-p { flex: 1 1 0; min-width: 0; gap: 8px; }
+    .c-sidekick-setup .skp-ring { width: 44px; height: 44px; padding: 9px; }
+    .c-sidekick-setup .skp-p span:last-child { font-size: 11.5px; line-height: 1.25; text-align: center; }
+  }
+</style>

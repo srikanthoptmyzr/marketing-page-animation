@@ -1,0 +1,83 @@
+{
+ "component": "teams-section",
+ "source": "component-library/components/teams-section/",
+ "fields": {
+  "button_text": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Learn More",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "button_url": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "#",
+   "inputType": "url",
+   "localization": "url-prefixed"
+  },
+  "card_1": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "unlisted"
+  },
+  "card_2": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "unlisted"
+  },
+  "card_3": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "unlisted"
+  },
+  "card_4": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "unlisted"
+  },
+  "card_title": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "PPC & Digital Agencies",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Learn How Different Teams Use Optmyzr",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "image": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/images/homepage/teams-img-1.png",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "subtext": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "See how Optmyzr helps agencies around the world manage their books of business, improve results and service delivery, and keep clients informed and happy. Our comprehensive toolkit enables agencies to ",
+   "inputType": "textarea",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [
+  "teams_alt_agencies",
+  "teams_alt_enterprise",
+  "teams_alt_freelancers",
+  "teams_alt_in_house"
+ ],
+ "partials": []
+}

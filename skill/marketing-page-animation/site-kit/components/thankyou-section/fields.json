@@ -1,0 +1,22 @@
+{
+ "component": "thankyou-section",
+ "source": "component-library/components/thankyou-section/",
+ "fields": {
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Thank you",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "subtext": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Your response is submitted successfully",
+   "inputType": "textarea",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

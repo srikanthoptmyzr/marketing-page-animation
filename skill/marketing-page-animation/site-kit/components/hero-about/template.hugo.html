@@ -1,0 +1,41 @@
+<div class="relative">
+  <div class="w-full h-[75%] lg:h-[60%] -z-10 bg-teal-light absolute top-0 "></div>
+  <section class="c-hero-about  px-lr py-[32px] lg:pt-[100px] lg:pb-[80px]">
+    <div class="max-w-1140 mx-auto">
+      <div class="text-center text-textonteallight1 xl:text-center flex flex-col gap-[16px] md:gap-[24px]">
+        <h1 class="text-mobileHeadlinesH1 md:text-desktopHeadlinesH1 tracking-desktopLetterSpacingXs font-bold font-dm
+          leading-mobileLineHeight7xl md:leading-desktopLineHeight6xl text-center">{{.heading}}</h1>
+        <p class="md:w-3/4 mx-auto text-mobileBodyB2 md:text-desktopSubHeadingsP2 leading-mobileLineHeight3xl 
+          md:leading-desktopLineHeightXxl text-surface-dark-active text-center">{{.subtext}}</p>
+      </div>
+      <div class="xl:px-[114px] mx-auto w-full mt-[32px] lg:mt-[80px]">
+        {{ $originalImage := resources.Get .image }}
+        {{ if $originalImage }}
+          {{ $mobileImage := $originalImage.Resize "600x webp q95" }}
+          {{ $desktopImage := $originalImage.Resize "1300x webp q95" }}
+
+          <picture>
+            <source
+              media="(max-width: 600px)"
+              srcset="{{ $mobileImage.RelPermalink }}"
+              type="image/webp">
+            <source
+              media="(min-width: 601px)"
+              srcset="{{ $desktopImage.RelPermalink }}"
+              type="image/webp">
+
+            <img
+              src="{{ $desktopImage.RelPermalink }}"
+              width="{{ $desktopImage.Width }}"
+              height="{{ $desktopImage.Height }}"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+              class="w-full rounded"
+              alt="team picture"
+            />
+          </picture>
+        {{ end }}
+    </div>
+  </section>
+</div>

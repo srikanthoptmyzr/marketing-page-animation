@@ -1,0 +1,26 @@
+<section class="c-cta-section-1  bg-surface-dark-darker-hover py-[64px] lg:py-[106px]  px-lr "  style="background-image: url('/images/homepage/cta-section-1-pattern.png'); background-size: cover; background-position: center;">
+  <div class="relative flex flex-col lg:flex-row max-w-1440  bg-surface-dark-dark mx-auto
+    border-surface-dark-active rounded-lg border pl-[40px] pt-[40px]  xl:p-[110px]">
+    <div class="flex flex-col w-full flex w-1/2 pr-[40px] md:p-0 justify-center">
+      <p data-scroll="fade-slide" class="text-mobileHeadlinesH3 lg:text-desktopHeadlinesH2 text-colorSurfaceLightWhite 
+        leading-mobileLineHeight5xl lg:leading-desktopLineHeight5xl tracking-mobileLetterSpacingMedium lg:tracking-desktopLetterSpacingXl
+        font-extrabold font-fontFamilyHeadlinesDmSans w-full md:w-10/12 xl:w-[73%]"> {{ .heading }} </p>
+
+      <div class="flex flex-row gap-[15px] lg:gap-0 lg:space-x-[20px] mt-8 ">
+        {{with .trialBtn}}
+        <a href="{{.url}}" class="rounded-lg font-bold text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 
+          bg-teal hover:bg-colorPrimaryTealNormalHover text-colorSurfaceLightWhite w-[127px] md:w-[207px] lg:w-[170px] xl:!w-[207px]  py-2.5  text-center  capitalize">{{.text}}</a>
+        {{end}}
+        {{with .demoBtn}}
+        <a href="{{.url}}" class="text-colorSurfaceLightWhite rounded-lg font-bold text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4  hover:bg-colorPrimaryTealDarkHover
+          bg-teal-dark-active  w-[127px] md:w-[207px] lg:w-[170px] xl:!w-[207px]  py-2.5  text-center capitalize  ">{{.text}}</a>
+        {{end}}
+      </div>
+    </div>
+    <div class="w-full xl:w-1/2">
+    <img src="{{.image}}" class="xl:hidden w-full rounded-lg mt-[23px] h-[345px] object-cover" alt="">
+    </div>
+    <img src="{{.image}}" class="hidden xl:block absolute h-[85%] md:w-[40%] 
+      md:object-cover  right-0 bottom-0 rounded-lg" alt="">
+  </div>
+</section>

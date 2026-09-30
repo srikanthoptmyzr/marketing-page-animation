@@ -1,0 +1,78 @@
+{
+ "component": "sidekick-setup",
+ "source": "component-library/components/sidekick-setup/",
+ "fields": {
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Plug it in. Start asking.",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "image": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/images/comparison/platforms/google-ads.svg",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "linkUrl": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "https://tools.optmyzr.com/settingsv2/slackManagement",
+   "inputType": "url",
+   "localization": "unlisted"
+  },
+  "name": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Google Ads",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "platforms": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "platformsLabel": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Platforms We Support",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "steps": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "translatable"
+  },
+  "subtext": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "No setup docs. No IT ticket. No configuration.",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "text": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Head over to the Slack Management page inside your Optmyzr account.",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "title": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Open Slack Management",
+   "inputType": "text",
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

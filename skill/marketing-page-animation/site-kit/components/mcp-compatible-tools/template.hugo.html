@@ -1,0 +1,69 @@
+<section class="c-mcp-compatible-tools relative py-16 md:py-24 bg-no-repeat bg-right-top"
+  style="background-color: #F9F8F6; background-image: url('/images/mcp/ai-tools-bg.svg'); background-size: cover; background-position: center;">
+  <div class="container mx-auto px-4 lg:px-12 max-w-1440 relative">
+    <h2 data-scroll="fade-slide"
+      class="text-mobileHeadlinesH3 md:text-desktopHeadlinesH2 font-bold font-dm
+      leading-mobileLineHeight5xl md:leading-desktopLineHeight5xl tracking-desktopLetterSpacingXl mb-10 lg:mb-14"
+      style="color:#0b0c0d;">
+      {{ .heading }}
+    </h2>
+    <div data-scroll="fade-slide" class="grid grid-cols-1 md:grid-cols-3 gap-6" style="grid-auto-rows:1fr;">
+      {{ range .tools }}
+      {{ $toolName := .name }}
+      {{ $status := .status }}
+      <div class="flex flex-col bg-white rounded-xl"
+        style="border:1px solid #e8e8e8; padding:24px 24px 32px 24px; gap:16px;">
+        <div class="flex items-center justify-between" style="gap:8px;">
+          <div class="flex items-center min-w-0" style="gap:8px;">
+            {{ with .logo }}
+            <img src="{{ . }}" alt="" loading="lazy" decoding="async" class="object-contain flex-shrink-0" style="width:24px; height:24px;">
+            {{ end }}
+            <h3 class="font-bold font-dm"
+              style="color:#0b0c0d; font-size:27px; line-height:1.12; letter-spacing:-0.54px;">
+              {{ $toolName }}
+            </h3>
+          </div>
+          {{ with $status }}
+          <span class="flex items-center rounded-full flex-shrink-0"
+            style="background-color:#e9fff4; border:1px solid #9bd9b2; gap:8px; padding:4px 8px;">
+            <span style="width:8px; height:8px; border-radius:4px; background-color:#06a03f;"></span>
+            <span class="font-medium" style="color:#06a03f; font-size:11px; line-height:15px;">{{ . }}</span>
+          </span>
+          {{ end }}
+        </div>
+        <div style="border-top:1px solid #e8e8e8; width:100%;"></div>
+        <p style="color:#6b7280; font-size:18px; line-height:25px;">{{ .description }}</p>
+        <div class="flex flex-col mt-auto" style="gap:16px;">
+          {{ with .note }}
+          <div class="inline-flex items-center rounded-full"
+            style="border:1px solid #626c7a; padding:4px 8px; width:fit-content;">
+            <span style="color:#535c68; font-size:11px; line-height:15px;">{{ . }}</span>
+          </div>
+          {{ end }}
+          {{ if and .cta_text .cta_url }}
+          <a href="{{ .cta_url }}" target="_blank" rel="noopener"
+            class="mcp-tool-cta inline-flex items-center rounded-lg font-bold font-dm text-desktopSubHeadingsP5"
+            style="background-color:#0b0c0d; color:#ffffff; padding:10px 20px; gap:8px; width:fit-content;">
+            {{ .cta_text }}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="flex-shrink-0">
+              <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<style>
+.c-mcp-compatible-tools .mcp-tool-cta { transition: background-color .2s ease; }
+.c-mcp-compatible-tools .mcp-tool-cta:hover { background-color: #2c2c2e; }
+
+@media (max-width: 767px) {
+  .c-mcp-compatible-tools {
+    background-image: none !important;
+  }
+}
+</style>

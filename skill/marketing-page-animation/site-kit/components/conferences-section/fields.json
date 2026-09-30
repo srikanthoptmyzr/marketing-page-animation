@@ -1,0 +1,29 @@
+{
+ "component": "conferences-section",
+ "source": "component-library/components/conferences-section/",
+ "fields": {
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Our voice at top-tier digital marketing conferences",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "images": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "skip"
+  },
+  "src": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "/images/events/hero-conf.svg",
+   "inputType": "image",
+   "localization": "unlisted"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

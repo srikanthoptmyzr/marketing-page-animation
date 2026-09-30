@@ -1,0 +1,147 @@
+<section id="open-roles" class="relative c-open-roles-section bg-[#F0EFEF] pb-[50px] md:pb-[128px]">
+  <div class="absolute bottom-0 w-full">
+    <img src="/images/products/amazon-ppc/faq-bg.png" class="w-full" alt="">
+  </div>
+  <div class="mx-auto max-w-1440 py-[40px] md:py-[64px] lg:py-[96px] xl:px-[114px] relative z-10">
+    <h1 class="text-mobileHeadlinesH2 md:text-desktopHeadlinesH2 leading-mobileLineHeight6xl md:leading-desktopLineHeight5xl
+      tracking-desktopLetterSpacingXl font-dm font-bold text-left md:text-center">
+      {{.openRolesTitle}}
+    </h1>
+
+    <p class="text-left md:text-center text-surface-dark-active my-[24px] md:my-[32px] text-mobileBodyB2 md:text-desktopSubHeadingsP2
+      leading-mobileLineHeight3xl md:leading-desktopLineHeightXxl">
+      {{.openRolesDescription}}
+    </p>
+    <div class="bg-white rounded-[12px] py-[40px] px-[16px] sm:px-[24px]">
+        {{ $unsortedPages := .pageList | default slice }}
+
+        {{/* Order every role by location first, then by role name, so openings in the same
+             city sit next to each other inside their team section. Sorting once here (rather
+             than per section) works because both `where` and the grouping below preserve the
+             order they are given. A single combined sort key is used because Hugo's `sort`
+             takes one key and gives no guarantee that a second pass keeps the first order. */}}
+        {{ $sortable := slice }}
+        {{ range $unsortedPages }}
+          {{ $sortable = $sortable | append (dict
+              "sortKey" (printf "%s|%s" (.Params.location | default "") (.Params.role | default ""))
+              "page" .) }}
+        {{ end }}
+        {{ $pageList := slice }}
+        {{ range sort $sortable "sortKey" }}
+          {{ $pageList = $pageList | append .page }}
+        {{ end }}
+
+        {{/* Team categories, in the order they appear on the page. A role opts into one
+             via its `teamCategory` front-matter value; the heading text is translated
+             through i18n so every language shows the same sections in the same order. */}}
+        {{ $categoryOrder := slice "ad-management" "customer-success" "people-operations" }}
+        {{ $categoryLabels := dict
+            "ad-management"     "career_category_ad_management"
+            "customer-success"  "career_category_customer_success"
+            "people-operations" "career_category_people_operations" }}
+
+        {{/* Roles are collected into $byLabel, keyed by the heading text that will be
+             printed, with $order holding the emit sequence: the team categories in their
+             declared order, then any remaining department headings alphabetically.
+
+             Keying by the rendered heading is what keeps one title from being printed
+             twice. A department value can be word-for-word identical to a translated
+             category label — three archived roles carry `department: Customer Success`
+             while `career_category_customer_success` is also "Customer Success" in every
+             language but Japanese — and grouping those independently emitted two adjacent
+             sections under one title. A colliding role now joins the section that already
+             carries its heading instead of opening a second one. */}}
+        {{ $byLabel := dict }}
+        {{ $order   := slice }}
+
+        {{ range $categoryOrder }}
+          {{ $categoryKey := . }}
+          {{ with where $pageList "Params.teamCategory" $categoryKey }}
+            {{ $label := i18n (index $categoryLabels $categoryKey) }}
+            {{ $acc := index $byLabel $label | default slice }}
+            {{ range . }}
+              {{ $acc = $acc | append . }}
+            {{ end }}
+            {{ $byLabel = merge $byLabel (dict $label $acc) }}
+            {{ if not (in $order $label) }}{{ $order = $order | append $label }}{{ end }}
+          {{ end }}
+        {{ end }}
+
+        {{/* Anything without a recognised category still shows up — grouped under its own
+             department so a newly added role can never silently disappear from the list.
+             Built by hand rather than with `where … "not in" …`, because that filter drops
+             pages whose `teamCategory` is missing entirely — exactly the ones we must keep.
+             Collected into a separate order list so these headings stay alphabetical and
+             always follow the categories, matching the previous map-range behaviour. */}}
+        {{ $deptOrder := slice }}
+        {{ range $pageList }}
+          {{ if not (in $categoryOrder (.Params.teamCategory | default "")) }}
+            {{ $heading := .Params.department | default (i18n "career_category_other") }}
+            {{ $byLabel = merge $byLabel (dict $heading (index $byLabel $heading | default slice | append .)) }}
+            {{ if and (not (in $order $heading)) (not (in $deptOrder $heading)) }}
+              {{ $deptOrder = $deptOrder | append $heading }}
+            {{ end }}
+          {{ end }}
+        {{ end }}
+        {{ range sort $deptOrder }}
+          {{ $order = $order | append . }}
+        {{ end }}
+
+        {{ range $groupIndex, $label := $order }}
+          {{ $rolesInGroup := index $byLabel $label }}
+          <div class="{{ if gt $groupIndex 0 }}mt-[40px] pt-[40px] border-t-2 border-gray-200{{ end }}">
+            <h2 class="uppercase text-desktopSubHeadingsP7 font-bold text-surface-dark
+              tracking-desktopLetterSpacingXxl mb-[24px]">
+              {{ $label }}
+            </h2>
+            {{ $roleCount := len $rolesInGroup }}
+            {{ range $roleIndex, $role := $rolesInGroup }}
+            <div class="flex flex-col sm:flex-row justify-between items-start ">
+              <div class="flex-1 w-full">
+                <h3 class="text-mobileHeadlinesH5 lg:text-desktopHeadlinesH5 font-bold  tracking-desktopLetterSpacingSmall">
+                  {{$role.Params.role}}
+                </h3>
+                <p class="text-surface-dark-active text-mobileBodyB5 md:text-desktopSubHeadingsP5
+                  tracking-desktopLetterSpacingXxl mt-[8px]">
+                  {{$role.Params.location}}
+                </p>
+                {{ with $role.Params.shiftNote }}
+                <p class="text-teal-dark font-semibold text-desktopSubHeadingsP7
+                  tracking-desktopLetterSpacingXxl mt-[6px]">
+                  {{ . }}
+                </p>
+                {{ end }}
+                <div class="flex flex-wrap gap-2 mt-[8px]">
+                  {{range $role.Params.tags}}
+                    <span class="bg-[#F9F9F6] text-surface-dark-active border border-[#F2F0EB]
+                      px-[8px] py-[4px] text-desktopSubHeadingsP7 rounded-[4px]">{{.}}</span>
+                  {{end}}
+                </div>
+              </div>
+
+              <div class="w-full sm:w-auto sm:ml-4 flex-shrink-0 mt-[16px] sm:mt-0">
+                <a
+                  href="{{$role.RelPermalink}}"
+                  class="text-center sm:text-left text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 w-[148px] md:w-[162px]  inline-flex
+                      items-center justify-center sm:justify-start gap-[10px] bg-teal-light text-teal-dark px-[24px]
+                        py-3 rounded-[12px] font-semibold whitespace-nowrap hover:bg-colorPrimaryTealLightHover">
+                <span>{{ i18n "view_role" }}</span>
+                <svg class="w-[10px] h-[10px] md:w-[12px] md:h-[12px]" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8.12621 2.60283L1.42225 9.30679C1.29683 9.43221 1.14952 9.49487 0.980304 9.49477C0.811089 9.49487 0.663775 9.43221 0.538362 9.30679C0.412949 9.18138 0.350291 9.03407 0.350389 8.86485C0.350291 8.69564 0.412949 8.54832 0.538362 8.42291L7.24232 1.71895L1.1503 1.71895C0.975098 1.71895 0.829307 1.65968 0.712929 1.54114C0.596649 1.4225 0.538461 1.2718 0.538363 1.08904C0.544452 0.912258 0.60377 0.764552 0.716318 0.645915C0.828866 0.527278 0.976572 0.46796 1.15944 0.46796L8.63149 0.467959C8.74188 0.467959 8.83896 0.487258 8.92273 0.525854C9.0066 0.564352 9.08404 0.619104 9.15505 0.690109C9.22605 0.761114 9.2808 0.838552 9.3193 0.922423C9.3579 1.0062 9.3772 1.10327 9.3772 1.21366L9.3772 8.68572C9.3772 8.84894 9.31788 8.99174 9.19924 9.11411C9.08061 9.23648 8.9329 9.30071 8.75612 9.30679C8.57335 9.3067 8.4227 9.24738 8.30416 9.12884C8.18553 9.0102 8.12616 8.8595 8.12606 8.67673L8.12621 2.60283Z" fill="#05747A"/>
+                </svg>
+                </a>
+              </div>
+            </div>
+            {{ if ne (add $roleIndex 1) $roleCount }}
+            <div class="border-t border-gray-200 my-[24px]"></div>
+            {{ end }}
+            {{ end }}
+          </div>
+        {{ else }}
+          <div class="py-8 text-center">
+            <p class="text-gray-600 text-desktopSubHeadingsP4">{{ i18n "currently_no_open_roles" }}</p>
+          </div>
+        {{ end }}
+    </div>
+  </div>
+</section>

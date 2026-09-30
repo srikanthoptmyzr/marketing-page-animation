@@ -1,0 +1,169 @@
+<section class="c-reviews-section text-center pt-12 pb-12 md:pt-10 px-lr ">
+  <!-- Heading -->
+  <div class="mx-auto max-w-1440 width-sm-screen">
+  <h2 class="text-mobileHeadlinesH3 md:text-desktopHeadlinesH3 font-bold  font-fontFamilyHeadlinesDmSans 
+      leading-mobileLineHeight5xl md:leading-desktopLineHeight4xl tracking-mobileLetterSpacingMedium 
+      md:tracking-desktopLetterSpacingMedium">{{.heading}}</h2>
+<!-- Review Links -->
+  <div class="flex flex-col md:flex-row justify-between gap-3 md:gap-5 mt-8 lg:mt-12">
+    {{with .review_1}}
+    <!-- G2 Review Card -->
+    <a href="{{.url}}" target="_blank" rel="noreferrer" class="relative flex items-center justify-between bg-colorSurfaceLightWhiteHover p-6 border border-solid border-colorSurfaceLightNormal
+      rounded-xl  w-full hover:bg-gray-200 transition">
+      <div class="flex gap-3 w-full flex-col">
+        <div class="flex justify-between w-full">
+          <div class="flex gap-4 items-center">
+              <div class="flex bg-white flex-col pt-[6px]  h-[32px] w-[32px] items-center space-y-2  border rounded-full">
+              <img src="{{.image}}" alt="Ad Platform" class="w-[18px] h-[18px] ">
+              </div>
+              <p class="font-bold text-mobileHeadlinesH4 md:text-desktopHeadlinesH4 font-fontFamilyHeadlinesDmSans
+                text-colorSurfaceDarkDarkActive leading-mobileLineHeight2xl md:leading-desktopLineHeight2xl 
+                tracking-mobileLetterSpacingLarge md:tracking-desktopLetterSpacingMedium">{{.review_title}}</p>
+
+          </div>
+          <svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect y="0.273438" width="32" height="32" rx="16" fill="#E6F5F6"/>
+            <mask id="mask0_1_43872" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="4" y="4" width="24" height="25">
+              <rect x="4" y="4.27344" width="24" height="24" fill="#D9D9D9"/>
+            </mask>
+            <g mask="url(#mask0_1_43872)">
+              <path d="M20.9999 12.3272L10.0807 23.2464C9.94219 23.3849 9.76819 23.4558 9.55869 23.4589C9.34903 23.4621 9.17178 23.3913 9.02694 23.2464C8.88211 23.1016 8.80969 22.926 8.80969 22.7197C8.80969 22.5132 8.88211 22.3375 9.02694 22.1927L19.9462 11.2734H13.7499C13.5374 11.2734 13.3593 11.2015 13.2154 11.0577C13.0718 10.9139 12.9999 10.7357 12.9999 10.5232C12.9999 10.3105 13.0718 10.1324 13.2154 9.98894C13.3593 9.84527 13.5374 9.77344 13.7499 9.77344H21.5959C21.8521 9.77344 22.0668 9.8601 22.2399 10.0334C22.4133 10.2066 22.4999 10.4213 22.4999 10.6774V18.5234C22.4999 18.7359 22.428 18.9141 22.2842 19.0579C22.1404 19.2016 21.9622 19.2734 21.7497 19.2734C21.537 19.2734 21.3589 19.2016 21.2154 19.0579C21.0718 18.9141 20.9999 18.7359 20.9999 18.5234V12.3272Z" fill="#05747A"/>
+            </g>
+          </svg>
+        </div>
+        {{with .displayBadge}}
+        <div style="height: calc(100% - 48px);" class="hidden absolute lg:block top-auto bottom-auto right-[23%]">
+          <img src="{{.}}" class="h-full w-auto">
+        </div>
+        {{end}}
+        <div class="flex">
+          <div class="flex items-start flex-col">
+            <div class="flex items-center justify-between space-x-2">
+              <div class="relative flex-shrink-0 ">
+                  <div class="flex">
+                      {{range $index, $num := (seq 5)}}
+                      {{if eq $index 0}}
+                      <div class=" grayscale"><img src="/images/icons/star-filled.svg" alt="" class="w-auto h-full"></div>
+                      {{else}}
+                      <div class="ml-1  grayscale"><img src="/images/icons/star-filled.svg" alt="" class="w-auto h-full"></div>
+                      {{end}}
+                      {{end}}
+                  </div>
+                  {{$round := int (math.Floor (float .rating))}}
+                  <div style="width: calc(({{.rating}}/5)*100% + ({{$round}}*0.25px));" class="absolute flex top-0 left-0 overflow-hidden">
+                      {{range $index, $e := (seq 5)}}
+                        {{if eq $index 0}}
+                        <div class="flex-shrink-0 "><img src="/images/icons/star-filled.svg" alt="" class="w-auto h-full"></div>
+                        {{else}}
+                        <div class="ml-1 flex-shrink-0 "><img src="/images/icons/star-filled.svg" alt="" class="w-auto h-full"></div>
+                      {{end}}
+                  {{end}}
+                  </div>
+              </div>
+              <span>&middot;</span>
+              <div>
+                <p class="ml-1 text-desktopSubHeadingsP6 md:text-sm font-medium text-colorSurfaceDarkNormalActive leading-desktopLineHeightXs tracking-normal">{{.subtext}}</p>
+              </div>
+            </div>
+            <div class="text-button -ml-6 -mb-3 lg:-ml-3">
+              {{i18n "view_all_reviews"}}
+            </div>
+          </div>
+          {{with .displayBadge}}
+          <div class="ml-auto flex-shrink-0 lg:hidden">
+            <img src="{{.}}" class="h-full w-auto">  
+          </div>
+          {{end}}
+        </div>
+
+      </div>
+    </a>
+
+    {{end}}
+
+    {{with .review_2}}
+    <!-- Capterra Review Card -->
+    <a href="{{.url}}" target="_blank" rel="noreferrer" class="relative flex items-center justify-between bg-gray-100 p-6  border border-solid border-[#E8E8E8]
+      rounded-xl  w-full hover:bg-gray-200 transition">
+      <div class="flex gap-3 w-full flex-col">
+        <div class="flex justify-between w-full">
+          <div class="flex gap-4 items-center">
+              <div class="flex bg-white flex-col pt-[6px] pr-[3px]  h-[32px] w-[32px] items-center space-y-2  border rounded-full">
+              <img src="{{.image}}" alt="Ad Platform" class="w-[18px] h-[18px] mt-[2px]">
+              </div>
+              <p class="font-bold text-mobileHeadlinesH4 md:text-desktopHeadlinesH4 font-fontFamilyHeadlinesDmSans
+                text-colorSurfaceDarkDarkActive leading-mobileLineHeight2xl md:leading-desktopLineHeight2xl 
+                tracking-mobileLetterSpacingLarge md:tracking-desktopLetterSpacingMedium">{{.review_title}}</p>
+          </div>
+          <svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect y="0.273438" width="32" height="32" rx="16" fill="#E6F5F6"/>
+            <mask id="mask0_1_43872" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="4" y="4" width="24" height="25">
+              <rect x="4" y="4.27344" width="24" height="24" fill="#D9D9D9"/>
+            </mask>
+            <g mask="url(#mask0_1_43872)">
+              <path d="M20.9999 12.3272L10.0807 23.2464C9.94219 23.3849 9.76819 23.4558 9.55869 23.4589C9.34903 23.4621 9.17178 23.3913 9.02694 23.2464C8.88211 23.1016 8.80969 22.926 8.80969 22.7197C8.80969 22.5132 8.88211 22.3375 9.02694 22.1927L19.9462 11.2734H13.7499C13.5374 11.2734 13.3593 11.2015 13.2154 11.0577C13.0718 10.9139 12.9999 10.7357 12.9999 10.5232C12.9999 10.3105 13.0718 10.1324 13.2154 9.98894C13.3593 9.84527 13.5374 9.77344 13.7499 9.77344H21.5959C21.8521 9.77344 22.0668 9.8601 22.2399 10.0334C22.4133 10.2066 22.4999 10.4213 22.4999 10.6774V18.5234C22.4999 18.7359 22.428 18.9141 22.2842 19.0579C22.1404 19.2016 21.9622 19.2734 21.7497 19.2734C21.537 19.2734 21.3589 19.2016 21.2154 19.0579C21.0718 18.9141 20.9999 18.7359 20.9999 18.5234V12.3272Z" fill="#05747A"/>
+            </g>
+          </svg>
+
+        </div>
+        {{with .displayBadge}}
+        <div style="height: calc(100% - 48px);" class="hidden absolute lg:block top-auto bottom-auto right-[23%]">
+          <img src="{{.}}" class="h-full w-auto">
+        </div>
+        {{end}}
+        <div class="flex">
+          <div class="flex items-start flex-col">
+            <div class="flex items-center justify-between space-x-2">
+              <div class="relative flex-shrink-0">
+                  <div class="flex">
+                      {{range $index, $num := (seq 5)}}
+                      {{if eq $index 0}}
+                      <div class=" grayscale"><img src="/images/icons/star-filled.svg" alt="" class="w-auto h-full"></div>
+                      {{else}}
+                      <div class="ml-1  grayscale"><img src="/images/icons/star-filled.svg" alt="" class="w-auto h-full"></div>
+                      {{end}}
+                      {{end}}
+                  </div>
+                  {{$round := int (math.Floor (float .rating))}}
+                  <div style="width: calc(({{.rating}}/5)*100% + ({{$round}}*0.25px));" class="absolute flex top-0 left-0 overflow-hidden">
+                      {{range $index, $e := (seq 5)}}
+                        {{if eq $index 0}}
+                        <div class="flex-shrink-0 "><img src="/images/icons/star-filled.svg" alt="" class="w-auto h-full"></div>
+                        {{else}}
+                        <div class="ml-1 flex-shrink-0 "><img src="/images/icons/star-filled.svg" alt="" class="w-auto h-full"></div>
+                      {{end}}
+                  {{end}}
+                  </div>
+              </div>
+              <span>&middot;</span>
+              <div>
+                <p class="ml-1 text-desktopSubHeadingsP6 md:text-sm font-medium text-colorSurfaceDarkNormalActive leading-desktopLineHeightXs tracking-normal">{{.subtext}}</p>
+              </div>
+            </div>
+            <div class="text-button -ml-6 -mb-3 lg:-ml-3">
+              {{i18n "view_all_reviews"}}
+            </div>
+          </div>
+          {{with .displayBadge}}
+          <div class="ml-auto flex-shrink-0 lg:hidden">
+            <img src="." class="w-[80px] h-auto">  
+          </div>
+          {{end}}
+        </div>
+
+      </div>
+    </a>
+
+    {{end}}
+  </div>  
+  </div>
+  
+</section>
+
+
+
+<script>
+document.getElementById("readMore").addEventListener("click", function(event) {
+    event.preventDefault();
+});
+</script>

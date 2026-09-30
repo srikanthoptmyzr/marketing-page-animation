@@ -1,0 +1,44 @@
+<section class="c-hero-alm relative lg:py-24">
+    <div class="w-11/12 mx-auto lg:max-w-[1345px] flex flex-col gap-6 py-12 lg:py-0 relative z-10 lg:flex-row lg:items-center">
+        <div class="flex flex-col md:flex-row md:basis-1/2 lg:gap-5">
+            <div class="w-full">
+                <h1 class="font-fontFamilyHeadlinesDmSans text-colorSurfaceDarkDarkActive text-mobileHeadlinesH2 leading-mobileLineHeight6xl font-bold lg:text-desktopHeadlinesH2 lg:leading-desktopLineHeight5xl lg:tracking-desktopLetterSpacingXl">
+                    {{ .heroTitle | safeHTML }}
+                </h1>
+                <p class="font-fontFamilyParagraphsInter font-normal text-colorSurfaceDarkDark text-mobileBodyB2 leading-mobileLineHeight3xl tracking-desktopLetterSpacingXl mt-4 lg:text-desktopSubHeadingsP2 lg:leading-desktopLineHeightXxl lg:mt-4">
+                    {{.subTitle | safeHTML}}
+                </p>
+                <br>
+                <h2 class="text-mobileHeadlinesH5 md:text-desktopHeadlinesH5 font-semibold mb-6 font-dm text-left lg:text-left">
+                  {{.newsletterHeading}}
+                </h2>
+                <div id="alm-hub-hubspot-form" class="w-full max-w-md mx-auto lg:mx-0 lg:ml-0">
+                  <script async defer charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+                  <!-- <script>
+                    hbspt.forms.create({
+                      portalId: "19808521",
+                      formId: "15860b93-52e5-4a12-88e0-255339697408",
+                      region: "na1"
+                    });
+                  </script> -->
+                  {{partial "newsletter-alm.html" .}}
+                </div>
+            </div>
+        </div>
+        <div class="w-full md:basis-1/2">
+          <div class="relative w-full  rounded-xl overflow-hidden">
+            {{- $src := .youtubeVideoId -}}
+            {{- if $src -}}
+            {{- $videoid := partial "bookshop/shared/hugo/youtube-id.hugo.html" $src -}}
+
+            <lite-youtube nocookie="true" videoid="{{ $videoid }}" posterloading="eager"></lite-youtube>
+            {{- end -}}
+          </div>
+        </div>
+    </div> 
+    <div class="absolute bottom-0 left-0 right-0 z-0 lg:top-0">
+        <img src="/images/ppc-town-hall/hero.png" class="w-full lg:hidden" alt="">
+
+        <img src="/images/ppc-town-hall/hero-large-screen.png" class="hidden lg:block h-full relative right-0 left-full transform -translate-x-full" alt="">
+    </div>
+</section>

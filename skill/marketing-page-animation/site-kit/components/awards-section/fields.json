@@ -1,0 +1,43 @@
+{
+ "component": "awards-section",
+ "source": "component-library/components/awards-section/",
+ "fields": {
+  "award_title": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Winner Global Search Awards 2023",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "awards": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "10-Time Winner of World\u2019s Best PPC Software",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "image": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/images/homepage/awards-badge.png",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "years": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "[2023, 2022, 2021, 2017]",
+   "inputType": "array",
+   "localization": "unlisted"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

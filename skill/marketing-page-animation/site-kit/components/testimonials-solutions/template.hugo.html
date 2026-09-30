@@ -1,0 +1,48 @@
+{{ $testimonialsSolutions := (index site.Data site.Language.Lang).testimonialsSolutions }}
+<section class="c-testimonials-solutions bg-[#e8e8e8] relative px-lr py-[48px]">
+  <div class=" bg-[#e8e8e8] max-w-1440 relative pb-0 mx-auto">
+    <div data-scroll="fade-slide" class="grid lg:grid-cols-1 gap-8 items-center mb-4 md:mb-[118px] md:mt-[64px]">
+      <div class=" relative self-baseline">
+        <img 
+          src="/images/homepage/testimonial-pattern-1.webp" 
+          alt="Decorative background pattern" 
+          class="static md:absolute top-[-60px] md:top-0 left-0 xl:top-[-90px] z-10 w-[80px] h-[60px] md:size-[300px] mb-[24px] md:mb-0
+          opacity-80 object-contain"/>
+        <h1 class="text-mobileHeadlinesH2 font-dm md:text-desktopHeadlinesH2 leading-desktopLineHeight5xl 
+           xl:w-[83%] font-bold relative z-10 xl:translate-x-[9%] tracking-desktopLetterSpacingXl">{{.heading}}</h1>
+      </div>
+    </div>
+
+    <!-- Testimonials Grid -->
+    <div id="testimonialContainerx" 
+      class="  grid xl:grid-cols-3 gap-6 relative overflow-hidden">
+      {{ range first 3 $testimonialsSolutions.additional_testimonials }}  
+      <div class="bg-white rounded-lg flex flex-col gap-[10px] md:gap-[15px]  p-[24px] shadow-lg z-20 sm:min-h-[357px] ">
+        <div class="flex justify-between items-center ">
+          <img src="{{.image}}" alt="" class="max-w-[78px] max-h-[32px]">
+          <div class="flex items-center">
+            <svg class="w-[16px] h-[16px] md:w-[20px] h-[20px]"  viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3.825 20.2734L6.15 12.6734L0 8.27344H7.6L10 0.273438L12.4 8.27344H20L13.85 12.6734L16.175 20.2734L10 15.5734L3.825 20.2734Z" fill="#E17F0E"/>
+            </svg>
+            <span class="ml-1 text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4">{{.stars}}</span>
+          </div>
+        </div>
+        <hr>
+        <div class="flex flex-col gap-[12px]">
+          <p class="text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 leading-desktopLineHeightXs md:leading-desktopLineHeightSmall 
+            font-medium md:font-normal font-fontFamilyParagraphsInter">
+            {{.testimonial_second_line}}
+          </p>
+        </div>
+        <div class="mt-auto">
+          <p class="font-semibold text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 leading-desktopLineHeightSmall 
+            md:leading-desktopLineHeightMedium">{{.role}}</p>
+          <p class="text-colorSurfaceDarkNormalHover text-mobileBodyB6 md:text-desktopSubHeadingsP6 
+            leading-mobileLineHeightXxs md:leading-desktopLineHeightXs">{{.client_name}}</p>
+        </div>
+      </div>
+
+      {{ end }}
+    </div>
+</div>
+</section>

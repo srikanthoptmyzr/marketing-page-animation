@@ -1,0 +1,157 @@
+{{/* Head-to-head comparison table (Figma redesign): collapsible category accordions with coloured
+     status badges + per-cell descriptions. Self-contained — for the classic values[] table used by
+     the older comparison pages, see the separate `comparison-table` component. */}}
+{{- $openStates := slice -}}
+{{- range $i, $t := .tables -}}
+  {{- if isset . "default_open" -}}
+    {{- $openStates = $openStates | append ($t.default_open | default false) -}}
+  {{- else -}}
+    {{- $openStates = $openStates | append (eq $i 0) -}}
+  {{- end -}}
+{{- end -}}
+{{/* TOC anchor id derived from label. The section id is scoped to this component (not the bare
+     "comparison-table" the older comparison-table component uses) so a page can't end up with two
+     elements sharing an id if it ever renders both. */}}
+{{- $tocId := anchorize (or .toc_label .table_title) -}}
+{{- $wrapToc := and (ne $tocId "") (ne $tocId "comparison-table-accordion") -}}
+{{ if $wrapToc }}<div id="{{ $tocId }}">{{ end }}
+<section id="comparison-table-accordion" x-data="{
+  open: {{ $openStates | jsonify }},
+  competitors: {{ .competitors | jsonify }},
+  tables: {{ .tables | jsonify }},
+  statusConfig: {
+    teal:   { icon: '/images/comparison/check_circle.svg',          text: 'text-colorSecondaryGreenDark' },
+    orange: { icon: '/images/comparison/warning-circle-orange.svg', text: 'text-colorSecondaryOrangeNormalHover' },
+    red:    { icon: '/images/comparison/cancel.svg',                text: 'text-colorSemanticErrorNormal' },
+    gray:   { icon: '',                                             text: 'text-colorSurfaceDarkDarkActive' }
+  },
+  cfg(c) { return this.statusConfig[c] || this.statusConfig.gray; }
+}" class="py-[24px] md:py-[40px] bg-white scroll-mt-[120px]">
+  <div class="w-full">
+    <!-- Title -->
+    <h2 class="text-center md:text-left font-dm font-bold text-mobileHeadlinesH3 md:text-desktopHeadlinesH3
+      text-colorSurfaceDarkDarkActive tracking-desktopLetterSpacingMedium">{{ .table_title }}</h2>
+    {{ with .subtitle }}
+    <p class="text-center md:text-left mt-[8px] text-mobileBodyB3 md:text-desktopSubHeadingsP4 text-colorSurfaceDarkNormalActive">{{ . }}</p>
+    {{ end }}
+
+    <!-- ===================== Desktop table ===================== -->
+    <div class="hidden md:block mt-[24px] md:mt-[32px] rounded-[12px] border border-colorSurfaceLightNormal overflow-hidden">
+      <!-- Column headers -->
+      <div class="ctbl-grid">
+        <div class="px-[24px] py-[18px] bg-colorSurfaceLightWhiteHover">
+          <span class="text-desktopSubHeadingsP4 font-semibold text-colorSurfaceDarkDarkActive">{{ i18n "feature" }}</span>
+        </div>
+        <template x-for="(comp,ci) in competitors" :key="ci">
+          <div class="px-[24px] py-[18px] text-center flex items-center justify-center gap-[8px]"
+            :class="ci===0 ? 'bg-colorPrimaryTealLight border-b-2 border-colorPrimaryTealNormal' : 'bg-colorSurfaceLightWhiteHover'">
+            <img x-show="comp.image" :src="comp.image" alt="" class="h-[18px] w-auto flex-shrink-0">
+            <span class="text-desktopSubHeadingsP4 font-semibold text-colorSurfaceDarkDarkActive" x-text="comp.name"></span>
+          </div>
+        </template>
+      </div>
+
+      <!-- Categories -->
+      <template x-for="(section, si) in tables" :key="si">
+        <div>
+          <!-- Category header (accordion toggle) -->
+          <button type="button" class="ctbl-grid w-full text-left appearance-none cursor-pointer border-t border-colorSurfaceLightNormal"
+            :aria-expanded="open[si]" :aria-controls="'ctbl-panel-d-'+si" @click="open[si] = !open[si]">
+            <div class="flex items-center gap-2 px-[24px] py-[14px] bg-colorSurfaceLightWhiteHover">
+              <svg :class="open[si] ? '' : '-rotate-90'" class="h-4 w-4 text-colorSurfaceDarkNormalActive transition-transform"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+              <span x-text="section.characteristicLabel" class="text-desktopSubHeadingsP4 font-semibold text-colorSurfaceDarkNormalActive"></span>
+            </div>
+            <div class="bg-colorSurfaceLightWhiteHover"></div>
+            <div class="bg-colorSurfaceLightWhiteHover"></div>
+          </button>
+
+          <!-- Feature rows -->
+          <div x-show="open[si]" x-collapse :id="'ctbl-panel-d-'+si">
+            <template x-for="(row,ri) in section.rows" :key="ri">
+              <div class="ctbl-grid border-t border-colorSurfaceLightNormal">
+                <!-- Feature name + description -->
+                <div class="px-[24px] py-[20px]">
+                  <p class="text-desktopSubHeadingsP4 font-semibold text-colorSurfaceDarkDarkActive" x-text="row.name"></p>
+                  <p x-show="row.description" class="mt-[2px] text-desktopSubHeadingsP5 text-colorSurfaceDarkNormalActive leading-desktopLineHeightSmall" x-text="row.description"></p>
+                </div>
+                <!-- Status cells -->
+                <template x-for="(cell,ci) in row.cells" :key="ci">
+                  <div class="px-[24px] py-[20px]" :class="ci===0 ? 'bg-colorPrimaryTealLight' : ''">
+                    <div class="flex items-start gap-[6px]">
+                      <template x-if="cfg(cell.status_color).icon">
+                        <img :src="cfg(cell.status_color).icon" class="w-[16px] h-[16px] mt-[2px] flex-shrink-0" alt="">
+                      </template>
+                      <span class="text-desktopSubHeadingsP4 font-semibold leading-desktopLineHeightMedium"
+                        :class="cfg(cell.status_color).text" x-text="cell.status_text"></span>
+                    </div>
+                    <template x-if="cell.description">
+                      <p class="mt-[6px] text-desktopSubHeadingsP5 text-colorSurfaceDarkNormalActive leading-desktopLineHeightSmall" x-text="cell.description"></p>
+                    </template>
+                  </div>
+                </template>
+              </div>
+            </template>
+          </div>
+        </div>
+      </template>
+    </div>
+
+    <!-- ===================== Mobile table (both competitors side by side per feature) ===================== -->
+    <div class="md:hidden mt-[20px] rounded-[12px] border border-colorSurfaceLightNormal overflow-hidden">
+      <!-- Competitor column headers -->
+      <div class="grid border-b border-colorSurfaceLightNormal" style="grid-template-columns: repeat({{ len .competitors }}, 1fr);">
+        <template x-for="(comp,ci) in competitors" :key="ci">
+          <div class="text-center py-[20px] px-[16px] flex items-center justify-center gap-[6px]"
+            :class="ci===0 ? 'bg-colorPrimaryTealLight border-r border-colorSurfaceLightNormal' : 'bg-colorSurfaceLightWhiteHover'">
+            <img x-show="comp.image" :src="comp.image" alt="" class="h-[16px] w-auto flex-shrink-0">
+            <span class="text-desktopSubHeadingsP4 font-bold text-colorSurfaceDarkDarkActive" x-text="comp.name"></span>
+          </div>
+        </template>
+      </div>
+      <template x-for="(section, si) in tables" :key="si">
+        <div class="border-t border-colorSurfaceLightNormal first:border-t-0">
+          <!-- category header (accordion) -->
+          <button type="button" class="w-full text-left appearance-none flex items-center justify-between px-[16px] py-[12px] bg-colorSurfaceLightWhiteHover cursor-pointer"
+            :aria-expanded="open[si]" :aria-controls="'ctbl-panel-m-'+si" @click="open[si] = !open[si]">
+            <span x-text="section.characteristicLabel" class="text-desktopSubHeadingsP5 font-semibold text-colorSurfaceDarkNormalActive"></span>
+            <svg :class="open[si] ? '' : '-rotate-90'" class="h-4 w-4 text-colorSurfaceDarkNormalActive transition-transform"
+              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <!-- feature rows -->
+          <div x-show="open[si]" x-collapse :id="'ctbl-panel-m-'+si">
+            <template x-for="(row,ri) in section.rows" :key="ri">
+              <div class="px-[12px] py-[16px] border-t border-colorSurfaceLightNormal">
+                <p class="text-center text-desktopSubHeadingsP5 font-semibold text-colorSurfaceDarkDarkActive" x-text="row.name"></p>
+                <p x-show="row.description" class="text-center mt-[2px] text-[12px] text-colorSurfaceDarkNormalActive" x-text="row.description"></p>
+                <div class="grid gap-[8px] mt-[12px]" style="grid-template-columns: repeat({{ len .competitors }}, 1fr);">
+                  <template x-for="(cell,ci) in row.cells" :key="ci">
+                    <div class="rounded-[8px] p-[12px] text-center" :class="ci===0 ? 'bg-colorPrimaryTealLight' : 'bg-colorSurfaceLightWhiteHover'">
+                      <div class="flex flex-col items-center gap-[4px]">
+                        <template x-if="cfg(cell.status_color).icon">
+                          <img :src="cfg(cell.status_color).icon" class="w-[16px] h-[16px] flex-shrink-0" alt="">
+                        </template>
+                        <span class="text-desktopSubHeadingsP6 font-semibold leading-tight" :class="cfg(cell.status_color).text" x-text="cell.status_text"></span>
+                      </div>
+                      <template x-if="cell.description">
+                        <p class="mt-[6px] text-[11px] leading-snug text-colorSurfaceDarkNormalActive" x-text="cell.description"></p>
+                      </template>
+                    </div>
+                  </template>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+      </template>
+    </div>
+  </div>
+</section>
+<style>
+  #comparison-table-accordion .ctbl-grid { display: grid; grid-template-columns: 1.15fr repeat({{ len .competitors }}, 1fr); }
+</style>
+{{ if $wrapToc }}</div>{{ end }}

@@ -1,0 +1,66 @@
+{{ $image := "" }}
+{{ if not (in .thumbnail "https") }}
+{{ $image = .thumbnail }}
+{{ end }}
+<section class="c-case-study-hero bg-white pt-8 pb-[48px] md:py-12 lg:pt-18 lg:pb-[64px]">
+    <div class="w-11/12 mx-auto lg:max-w-[1345px]">
+    <div class="flex flex-col lg:flex-row-reverse md:gap-8 lg:gap-12">
+      <!-- Video Container -->
+      {{ if not .hasYouTubeLink }}
+      <div class="flex-1 relative overflow-hidden mx-auto mb-2 w-full lg:ml-6 z-20">
+        <div class="w-full h-full">
+          <img src="{{$image}}" alt="" class="w-full h-full">
+        </div>
+      </div>
+      {{ else }}
+      <div class="w-full lg:basis-1/2 rounded-2xl overflow-hidden order-1 z-20 max-h-[371px]">
+        {{- $src := .youtubeVideoId -}}
+        {{- if $src -}}
+        {{- $videoid := partial "bookshop/shared/hugo/youtube-id.hugo.html" $src -}}
+
+        <lite-youtube nocookie="true" videoid="{{ $videoid }}" posterloading="eager"></lite-youtube>
+        {{- end -}}
+      </div>
+      {{ end }}
+
+      <!-- Content -->
+      <div class="flex flex-col lg:basis-1/2 order-2 mt-6 md:mt-0 justify-center z-10">
+        <div>
+          <h1 class="font-fontFamilyHeadlinesDmSans text-mobileHeadlinesH2 md:text-desktopHeadlinesH2 leading-mobileLineHeight6xl
+            md:leading-desktopLineHeight5xl tracking-mobileLetterSpacingSmall md:tracking-desktopLetterSpacingXs font-bold text-colorSurfaceDarkDarkActive">
+            {{ .heading | safeHTML }}
+          </h1>
+          <div class="text-colorSurfaceDarkDark text-mobileBodyB2 md:text-desktopBodyB2 tracking-desktopLetterSpacingXl
+            leading-desktopLineHeightXxl font-normal pt-4 md:w-10/12">{{ $.subTitle | safeHTML }}</div>
+        </div>
+
+      <!-- customer section -->
+        {{ if .customer }}
+          <div class="mt-4 lg:mt-6">
+            <div class="flex items-start">
+              <a href="{{ .customer}}" 
+                class="w-[64px] h-[64px] rounded-full border border-bordergrey bg-textonteal overflow-hidden mr-4 flex-shrink-0">
+                <img src="{{with .customerImg}}{{.}}{{else}}/forestry/856-8561030_silhouette-gender-neutral-head-silhouette.webp{{end}}" 
+                  alt="{{.author}}" 
+                  class="w-full h-full object-cover" />
+              </a>
+              <div class="flex flex-col w-full">
+                <div>
+                <div class="font-medium text-desktopSubHeadingsP3 md:text-desktopSubHeadingsP2 text-left leading-desktopLineHeightLarge 
+                  md:leading-desktopLineHeightXxl">{{ .customer | safeHTML }}</div>
+                <div class="text-mobileBodyB3 md:text-desktopSubHeadingsP3 font-normal leading-mobileLineHeightXxl text-colorSurfaceDarkNormal
+                  md:leading-desktopLineHeightLarge">{{ .customerTitle | safeHTML }} {{ .customerCompany | safeHTML }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {{end}}
+
+      </div>
+    </div>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 z-0 md:top-0">
+        <!-- <img src="/images/ppc-town-hall/signle-hero.png" class="w-full md:hidden" alt=""> -->
+        <img src="/images/case-studies/single-hero.png" class="hidden md:block h-full relative right-0 left-full transform -translate-x-full" alt="">
+    </div>
+</section>

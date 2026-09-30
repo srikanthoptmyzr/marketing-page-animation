@@ -1,0 +1,41 @@
+{{ if gt (len .resultHighlights) 0 }}
+<section class="c-results-section px-lr z-20 relative">
+  <div class="max-w-1440 mx-auto">
+    <h2 class="font-bold mb-[24px] md:text-center md:mb-[40px] text-mobileHeadlinesH4 md:text-desktopHeadlinesH4">
+      {{ .heading }}
+    </h2>
+
+    {{ $highlights := .resultHighlights }}
+    {{ if eq (len $highlights) 5 }}
+      <div class="flex gap-[24px] flex-wrap justify-center mb-6">
+        {{ range first 3 $highlights }}
+          {{ template "highlightCard" . }}
+        {{ end }}
+      </div>
+      <div class="flex gap-[24px] flex-wrap justify-center">
+        {{ range last 2 $highlights }}
+          {{ template "highlightCard" . }}
+        {{ end }}
+      </div>
+    {{ else }}
+      <div class="flex gap-[24px] flex-wrap justify-center">
+        {{ range $highlights }}
+          {{ template "highlightCard" . }}
+        {{ end }}
+      </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+{{ define "highlightCard" }}
+  <div class="bg-colorSurfaceLightLight rounded-[12px] border border-colorSurfaceLightNormal 
+              fontFamilyHeadlinesDmSans py-[40px] px-[24px] w-full md:w-[218px] lg:w-[318px]">
+    <div class="text-mobileHeadlinesH3 md:text-desktopHeadlinesH3 font-bold mb-3 
+                tracking-desktopLetterSpacingMedium leading-desktopLineHeight4xl">
+      {{ .stat | safeHTML }}
+    </div>
+    <div class="font-medium text-colorSurfaceDarkNormal text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4">
+      {{ truncate 70 .subTitle | safeHTML }}
+    </div>
+  </div>
+{{ end }}

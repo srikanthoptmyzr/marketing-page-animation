@@ -1,0 +1,48 @@
+<section class="c-animated-images  pb-[48px] md:py-[116px] overflow-hidden">
+  <div class="max-w-1440 mx-auto">
+    <div class="flex animate-marquee">
+      {{ range $index, $image := .images }}
+        <div class="flex-shrink-0 px-[10px] flex {{ if modBool $index 2 }}items-end{{ else }}items-start{{ end }}">
+          <img src="{{ $image.image }}" alt="team image" class="max-w-[300px] md:max-w-none h-auto" loading="lazy" width="300" height="400">
+        </div>
+      {{ end }}
+
+      {{ range $index, $image := .images }}
+        <div class="flex-shrink-0 px-[10px] flex {{ if modBool $index 2 }}items-end{{ else }}items-start{{ end }}">
+          <img src="{{ $image.image }}" alt="team image" class="max-w-[300px] md:max-w-none h-auto" loading="lazy" width="300" height="400">
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+
+<style>
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  display: flex;
+  animation: marquee 20s linear infinite;
+  width: fit-content;
+  will-change: transform;
+}
+@media (max-width: 768px) {
+
+  .c-animated-images .flex > div {
+    height: 300px !important; 
+  }
+}
+.c-animated-images .flex > div {
+  height: 400px; 
+}
+.c-animated-images img {
+  object-fit: cover;
+}
+</style>
+

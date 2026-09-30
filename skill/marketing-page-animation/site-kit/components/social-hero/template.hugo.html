@@ -1,0 +1,190 @@
+<section id="content" class="social-bg">
+  <div class="px-lr">
+    <div data-scroll="fade-slide" class="w-full mx-auto grid grid-cols-4 lg:grid-cols-12 gap-[8px]
+      lg:gap-16 justify-items-center items-center lg:pt-5">
+      <!-- hero -->
+      <div class="col-span-4 lg:col-span-12 justify-items-center" >
+        <div class="below-360:w-[290px] pt-[48px] md:pt-6 md:w-10/12 md:mx-auto text-center lg:text-center">
+          <!-- heading  -->
+          <h1 class="lg:mt-[30px] xl:mt-[92px] xl:w-full mx-auto font-dm text-left md:text-center text-mobileHeadlinesH2 
+            lg:text-desktopHeadlinesH1 font-bold leading-desktopLineHeight6xl tracking-desktopLetterSpacingXs">
+            {{ .heading }}
+          </h1>
+          <!-- subtitle -->
+          <p class="pt-[24px] md:pt-[32px] text-left md:text-center text-mobileSubHeadingsP2 md:text-desktopSubHeadingsP2 text-surface-dark-dark 
+            leading-desktopLineHeightXxl mx-auto w-full xl:w-[88%]">
+            {{ .subtitle }}
+          </p>
+
+          <!-- action buttons -->
+          <div class="flex flex-row items-center flex-start md:justify-center mt-[24px] md:mt-[32px] gap-[12px]">
+            {{with .trialBtn}}
+            <a href="{{.url}}" class="rounded-[12px] font-bold text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 
+              bg-colorSecondaryBlueNormal text-white hover:bg-colorSecondaryBlueNormalHover
+              py-3 px-8 w-[100%] md:w-[207px] whitespace-nowrap capitalize">{{.text}}</a>
+            {{end}}
+            {{with .demoBtn}}
+            <a href="{{.url}}" class="text-blue-darker bg-colorSecondaryBlueLightHover hover:bg-colorSecondaryBlueLightActive
+              rounded-[12px] font-bold text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 py-3 px-8 w-[100%]  
+              md:w-[207px] whitespace-nowrap capitalize  lg:mt-0">{{.text}}</a>
+            {{end}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="mx-auto mb-[24px] md:mb-[0px] mt-[20px] md:mt-[58px] text-center "> 
+    <div class="flex items-center lg:mt-[9vh] xl:mt-[110px]"> 
+      {{ $leftImage := .hero_image_1 }}
+      {{ if eq (printf "%T" .hero_image_1) "string" }}
+        {{ $resolvedPath := partial "functions/resolve-image-path.html" .hero_image_1 }}
+        {{ $leftImage = resources.Get (strings.TrimPrefix "/" $resolvedPath) }}
+      {{ end }}
+      
+      {{ if and $leftImage $leftImage.MediaType (ne $leftImage.MediaType.SubType "svg") }}
+        {{ $leftSmall := $leftImage.Resize "200x webp q85" }}
+        {{ $leftMedium := $leftImage.Resize "400x webp q85" }}
+        <img 
+          src="{{ $leftMedium.RelPermalink }}"
+          srcset="{{ $leftSmall.RelPermalink }} 200w,
+                  {{ $leftMedium.RelPermalink }} 400w"
+          sizes="(max-width: 768px) 20vw, 28vw"
+          alt="Left Hero Image"
+          class="w-[20%] md:w-[28%] h-[120px] md:h-[50%] object-cover object-right md:object-contain md:object-top"
+          width="{{ $leftMedium.Width }}"
+          height="{{ $leftMedium.Height }}"
+          fetchpriority="high"
+          loading="eager"
+          decoding="async">
+      {{ else }}
+        <img 
+          src="{{ if $leftImage }}{{ $leftImage.RelPermalink }}{{ else }}{{ .hero_image_1 }}{{ end }}" 
+          alt="Left Hero Image"
+          class="w-[20%] md:w-[28%] h-[120px] md:h-[50%] object-cover object-right md:object-contain md:object-top"
+          fetchpriority="high"
+          loading="eager"
+          decoding="async">
+      {{ end }}
+
+      {{ $centerImage := .hero_image_2 }}
+      {{ if eq (printf "%T" .hero_image_2) "string" }}
+        {{ $resolvedPath := partial "functions/resolve-image-path.html" .hero_image_2 }}
+        {{ $centerImage = resources.Get (strings.TrimPrefix "/" $resolvedPath) }}
+      {{ end }}
+
+      {{ if and $centerImage $centerImage.MediaType (ne $centerImage.MediaType.SubType "svg") }}
+        {{ $centerSmall := $centerImage.Resize "480x webp q90" }}
+        {{ $centerMedium := $centerImage.Resize "800x webp q90" }}
+        {{ $centerLarge := $centerImage.Resize "1200x webp q90" }}
+        
+        <img 
+          src="{{ $centerMedium.RelPermalink }}"
+          srcset="{{ $centerSmall.RelPermalink }} 480w,
+                  {{ $centerMedium.RelPermalink }} 800w,
+                  {{ $centerLarge.RelPermalink }} 1200w"
+          sizes="(max-width: 768px) 60vw, 44vw"
+          alt="Main Hero Image"
+          class="w-[60%] md:w-[44%] h-[80%] object-contain object-top"
+          width="{{ $centerMedium.Width }}"
+          height="{{ $centerMedium.Height }}"
+          fetchpriority="high"
+          loading="eager"
+          decoding="sync">
+      {{ else }}
+        <img 
+          src="{{ if $centerImage }}{{ $centerImage.RelPermalink }}{{ else }}{{ .hero_image_2 }}{{ end }}" 
+          alt="Main Hero Image"
+          class="w-[60%] md:w-[44%] h-[80%] object-contain object-top"
+          fetchpriority="high"
+          loading="eager"
+          decoding="sync">
+      {{ end }}
+
+      {{ $rightImage := .hero_image_3 }}
+      {{ if eq (printf "%T" .hero_image_3) "string" }}
+        {{ $resolvedPath := partial "functions/resolve-image-path.html" .hero_image_3 }}
+        {{ $rightImage = resources.Get (strings.TrimPrefix "/" $resolvedPath) }}
+      {{ end }}
+      
+      {{ if and $rightImage $rightImage.MediaType (ne $rightImage.MediaType.SubType "svg") }}
+        {{ $rightSmall := $rightImage.Resize "200x webp q85" }}
+        {{ $rightMedium := $rightImage.Resize "400x webp q85" }}
+        <img 
+          src="{{ $rightMedium.RelPermalink }}"
+          srcset="{{ $rightSmall.RelPermalink }} 200w,
+                  {{ $rightMedium.RelPermalink }} 400w"
+          sizes="(max-width: 768px) 20vw, 28vw"
+          alt="Right Hero Image"
+          class="w-[20%] md:w-[28%] h-[120px] md:h-[50%] object-cover object-left md:object-top"
+          width="{{ $rightMedium.Width }}"
+          height="{{ $rightMedium.Height }}"
+          loading="eager"
+          decoding="async">
+      {{ else }}
+        <img 
+          src="{{ if $rightImage }}{{ $rightImage.RelPermalink }}{{ else }}{{ .hero_image_3 }}{{ end }}" 
+          alt="Right Hero Image"
+          class="w-[20%] md:w-[28%] h-[120px] md:h-[50%] object-cover object-left md:object-top"
+          loading="eager"
+          decoding="async">
+      {{ end }}
+    </div> 
+
+    <!-- partner logos -->
+    <div class="bg-white px-4 lg:px-[48px] mt-[24px] h-[104px] md:py-0 flex flex-col md:flex-row
+      items-center justify-center z-10 bottom-sticky">
+      <div class="bg-white w-10/12 md:w-[38%] xl:w-[23%] text-center md:text-left mb-4 md:mb-0">
+        <p class="text-mobileBodyB6 lg:text-desktopSubHeadingsP5 leading-mobileLineHeightXxs lg:leading-desktopLineHeightSmall  
+           mt-[18px] mb-[20px] text-neutral-500">
+          {{ .trustedPartnerTitle}}
+        </p>
+      </div>
+      <div class="w-full md:w-3/4 md:flex md:items-center">
+        <div class="partner-logos-container block md:hidden w-full overflow-hidden">
+          <div class="partner-logos-scroll flex gap-4">
+            {{ range $index, $logo := .partnerLogos }}
+            <div class="min-w-[33%] flex-shrink-0">
+              <div 
+                class="h-[24px]"
+                style="background: url('{{ .image }}');
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;"
+                loading="lazy">
+              </div>
+            </div>
+            {{ end }}
+            <!-- duplicate for seamless loop -->
+            {{ range $index, $logo := .partnerLogos }}
+            <div class="min-w-[33%] flex-shrink-0">
+              <div 
+                class="h-[24px]"
+                style="background: url('{{ .image }}');
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;"
+                loading="lazy">
+              </div>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+        <!-- desktop logos -->
+        <div class="hidden md:flex md:items-center gap-8 w-full">
+          {{ range $index, $logo := .partnerLogos }}
+          <div class="flex-1">
+            <div 
+              class="h-[24px]"
+              style="background: url('{{ .image }}');
+              background-repeat: no-repeat;
+              background-position: center;
+              background-size: contain;"
+              loading="lazy">
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </section>
+</section>

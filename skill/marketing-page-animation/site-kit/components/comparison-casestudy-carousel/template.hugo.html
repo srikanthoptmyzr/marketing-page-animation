@@ -1,0 +1,8 @@
+{{/* Case-study carousel for comparison pages. Content is pulled automatically from the case-studies
+     collection (same on every page) via the shared `latest-case-studies` partial — only the heading
+     (and optional subtitle) are authored per page. */}}
+{{ partial "latest-case-studies.html" (dict
+  "heading"  .heading
+  "subtitle" .subtitle
+  "id"       (anchorize .heading)
+) }}

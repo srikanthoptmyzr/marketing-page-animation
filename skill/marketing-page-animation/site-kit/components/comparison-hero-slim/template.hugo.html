@@ -1,0 +1,25 @@
+<!-- Slim comparison hero: centered heading over a white band with a subtle dot-grid faded toward the top-right -->
+<section class="c-comparison-hero-slim relative bg-white px-lr overflow-hidden">
+  <!-- Decorative dot grid (behind the heading, masked so it concentrates top-right and fades out) -->
+  <div class="compare-hero-slim-dots" aria-hidden="true"></div>
+  <div class="relative z-10 max-w-1440 mx-auto flex flex-col items-center justify-center text-center py-[64px] md:py-[110px]">
+    <h1 class="font-dm font-bold text-colorSurfaceDarkDarkActive text-mobileHeadlinesH2 md:text-desktopHeadlinesH1
+      leading-mobileLineHeight6xl md:leading-desktopLineHeight6xl tracking-desktopLetterSpacingXs">
+      {{ .heading }}
+    </h1>
+  </div>
+</section>
+
+<style>
+.compare-hero-slim-dots {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(#f0f0f0 2.5px, transparent 2.6px);
+  background-size: 15px 15px;
+  background-position: center;
+  -webkit-mask-image: radial-gradient(130% 115% at 88% 18%, #000 22%, transparent 72%);
+  mask-image: radial-gradient(130% 115% at 88% 18%, #000 22%, transparent 72%);
+}
+</style>

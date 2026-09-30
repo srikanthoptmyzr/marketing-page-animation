@@ -1,0 +1,139 @@
+{{ $promptCtaUrl := default "https://claude.ai/directory/optmyzr-mcp" .prompt_cta_url }}
+{{ $promptCtaText := default (i18n "tryThisPrompt") .prompt_cta_text }}
+{{ partial "mcp-prompt-copy.html" . }}
+<section class="c-mcp-features py-10 md:py-14" style="background-color:#fff;">
+  <div class="container mx-auto px-4 lg:px-12 max-w-1440">
+    <div class="mcp-features-inner">
+      <h2 data-scroll="fade-slide"
+        class="font-bold font-dm text-mobileHeadlinesH3 md:text-desktopHeadlinesH3 text-center mb-8 md:mb-10"
+        style="color:#0b0c0d; letter-spacing:-0.5px;">
+        {{ .heading }}
+      </h2>
+      <div class="mcp-features-list">
+        {{ range $i, $f := .features }}
+        <div data-scroll="fade-slide" class="mcp-feature-row {{ if eq (mod $i 2) 0 }}mcp-row-even{{ else }}mcp-row-odd{{ end }}">
+          <!-- Text side -->
+          <div class="mcp-feature-text">
+            <h3 class="font-bold font-dm text-mobileHeadlinesH4 md:text-desktopHeadlinesH4" style="color:#0b0c0d; line-height:30px; letter-spacing:-0.5px;">
+              {{ $f.feature_title }}
+            </h3>
+            <p class="text-desktopSubHeadingsP4" style="color:#555; line-height:22px;">{{ $f.subtext | markdownify }}</p>
+            {{ with $f.example_prompt }}
+            <div class="mcp-example-prompt">
+              <div class="mcp-prompt-head">
+                <span class="text-desktopSubHeadingsP7 font-medium" style="color:#2c2c2e; line-height:15px;">{{ i18n "promptLabel" }}</span>
+                <button type="button" class="mcp-copy-btn" data-copy-text="{{ . }}"
+                  data-copied-label="{{ i18n "promptCopied" }}" data-failed-label="{{ i18n "copyFailed" }}"
+                  aria-label="{{ i18n "copyPrompt" }}">
+                  <svg class="mcp-copy-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <rect x="9" y="9" width="11" height="11" rx="2.5" stroke="currentColor" stroke-width="2"/>
+                    <path d="M6.5 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                  <svg class="mcp-copy-ok" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+              <p class="text-desktopSubHeadingsP5" style="color:#0b0c0d; line-height:20px;">{{ . }}</p>
+            </div>
+            <a class="mcp-try-btn bg-teal-dark hover:bg-colorPrimaryTealNormalHover text-colorSurfaceLightWhite text-desktopSubHeadingsP5"
+              href="{{ $promptCtaUrl }}" target="_blank" rel="noopener" data-copy-text="{{ . }}"
+              data-copied-label="{{ i18n "promptCopied" }}" data-failed-label="{{ i18n "copyFailed" }}"
+              title="{{ i18n "tryThisPromptHint" }}">
+              <span class="mcp-try-label">{{ $promptCtaText }}</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            {{ end }}
+          </div>
+          <!-- Image card -->
+          <div class="mcp-feature-img">
+            <img src="{{ $f.image }}" alt="{{ $f.feature_title }}" loading="lazy" decoding="async" style="max-width:100%; max-height:100%; object-fit:contain; border-radius:4px;">
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* ── Outer container: matches sibling mcp-use-cases (1140px centered) ── */
+.mcp-features-inner {
+  max-width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── List wrapper ── */
+.mcp-features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+/* ── Each row: 2-column grid, fully contained (no bleed) ── */
+.mcp-feature-row {
+  display: grid;
+  align-items: start;
+  gap: 48px;
+}
+
+/* Even rows: text (1fr left) | image (1.4fr right) */
+.mcp-row-even {
+  grid-template-columns: 1fr 1.4fr;
+}
+.mcp-row-even .mcp-feature-text { order: 1; }
+.mcp-row-even .mcp-feature-img  { order: 2; }
+
+/* Odd rows: image (1.4fr left) | text (1fr right) */
+.mcp-row-odd {
+  grid-template-columns: 1.4fr 1fr;
+}
+.mcp-row-odd .mcp-feature-text { order: 2; }
+.mcp-row-odd .mcp-feature-img  { order: 1; }
+
+/* ── Text column ── */
+.mcp-feature-text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Example prompt box ── */
+.mcp-example-prompt {
+  background-color: #f3f3f3;
+  border: 1px solid #8d42cb;
+  border-radius: 16px;
+  padding: 17px 17px 13px 17px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ── Image card: rounded all corners, fully contained ── */
+.mcp-feature-img {
+  height: 370px;
+  background-color: #f3f3f3;
+  border-radius: 8px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mobile: single column, text first, shorter image card */
+@media (max-width: 767px) {
+  .mcp-features-list { gap: 40px; }
+  .mcp-feature-row { gap: 20px; }
+  .mcp-feature-text { gap: 16px; }
+  .mcp-row-even,
+  .mcp-row-odd { grid-template-columns: 1fr; }
+  .mcp-row-even .mcp-feature-text,
+  .mcp-row-odd  .mcp-feature-text { order: 1; }
+  .mcp-row-even .mcp-feature-img,
+  .mcp-row-odd  .mcp-feature-img  { order: 2; height: 220px; padding: 12px; }
+}
+</style>
+

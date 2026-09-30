@@ -1,0 +1,132 @@
+<section id="contact-form" class="c-hero-demo px-lr pt-[40px] lg:pt-[100px]">
+  <div class="max-w-1440 mx-auto grid grid-cols-4 lg:flex lg:justify-center lg:gap-x-[20px]">
+    <div class="col-span-4 lg:w-[55%] lg:flex lg:flex-col">
+      <div>
+        <h2 class="text-mobileHeadlinesH1 md:text-desktopHeadlinesH1 font-dm font-bold tracking-desktopLetterSpacingXs 
+          leading-mobileLineHeight7xl md:leading-desktopLineHeight6xl">{{.heading}}</h2>
+
+        <p class="text-mobileBodyB2 md:text-desktopSubHeadingsP2 leading-mobileLineHeight3xl md:leading-desktopLineHeightXxl 
+          tracking-desktopLetterSpacingXl text-surface--active mt-[16px] mb-[20px] lg:mb-0">{{ .requestDemoDesc }}</p>
+      </div>
+      <div class="lg:block lg:mt-[20px]">
+        <div class="flex flex-row-reverse items-center gap-x-4 bg-surface-dark-dark py-[40px] px-[16px] rounded-[12px] mb-[48px] lg:mb-0">
+          <div class="gap-y-[20px] flex flex-col">
+            <img 
+              src="/images/homepage/testimonial-pattern-1.webp" 
+              alt="Decorative background pattern" 
+              class="w-[94px] h-[70px] opacity-80 object-contain"
+              width="94"
+              height="70"
+            />
+            <h3 class="text-lg normal ">
+              <span class="text-surface-dark-light leading-mobileLineHeightXxl md:leading-desktopLineHeightXxl text-mobileBodyB3
+                md:text-desktopSubHeadingsP2 tracking-desktopLetterSpacingXxl">{{.g2Quote}}</span>
+            </h3> 
+            <div class="flex gap-x-4 ">
+              <div class="flex items-center justify-center lg:justify-start lg:gap-x-14">
+                <div class="flex flex-row gap-x-3 md:gap-x-6">
+                  <div target="_blank" href="https://www.g2.com/products/optmyzr/reviews" class="w-10 h-10 md:w-auto md:h-auto text-2xl light1 font-icon flex-shrink-0">
+                    <img src="{{.image}}" alt="G2 logo" class="h-full" width="140" height="35">
+                  </div>
+                  <div class="flex flex-col items-start flex-shrink-0">
+                    <p class="text-white text-desktopSubHeadingsP2 md:text-desktopSubHeadingsP1">{{.g2Rating}} / 5</p>
+                    <div class="relative flex-shrink-0 h-6">
+                      <div class="flex">
+                        {{range $index, $num := (seq 5)}}
+                        {{if eq $index 0}}
+                        <div class="w-4 h-4 md:w-6 md:h-6"><img src="/images/icons/star-grey.svg" alt="" class="w-auto h-auto" height="24" width="24" role="presentation"></div>
+                        {{else}}
+                        <div class="ml-1 w-4 h-4 md:w-6 md:h-6"><img src="/images/icons/star-grey.svg" alt="" class="w-auto h-auto" width="24" height="24" role="presentation"></div>
+                        {{end}}
+                        {{end}}
+                      </div>
+                      {{$round := int (math.Floor .g2Rating)}}
+                      <div style="width: calc(({{.g2Rating}}/5)*100% + ({{$round}}*0.25px));" class="absolute flex top-0 left-0 overflow-hidden">
+                        {{range $index, $e := (seq 5)}}
+                        {{if eq $index 0}}
+                        <div class="flex-shrink-0 w-4 h-4 md:w-6 md:h-6"><img src="/images/icons/star-filled.svg" alt="" class="w-auto h-auto" height="24" width="24" role="presentation"></div>
+                        {{else}}
+                        <div class="ml-1 flex-shrink-0 w-4 h-4 md:w-6 md:h-6"><img src="/images/icons/star-filled.svg" alt="" class="w-auto h-auto" height="24" width="24" role="presentation"></div>
+                        {{end}}
+                        {{end}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>                            
+        </div>
+      </div>
+    </div>
+    <div class="col-span-4 lg:w-[45%] lg:flex-shrink-0 text-center light1 lg:text-left bg-surface-dark-lighter rounded-[12px] overflow-hidden
+      mx-[-20px] lg:mx-[0] p-4" style="align-self: flex-start;">
+      <div id="hubspot-meet-form" class="meetings-iframe-container mx-auto" style="height: 630px;"></div>
+    </div>
+  </div>
+
+  <section class="mx-auto my-[77px] lg:my-[116px] text-center"> 
+    <div class="bg-white h-[104px] md:py-0 flex flex-col
+      items-center justify-center z-10 bottom-sticky">
+      <div class="bg-white w-[70%] md:w-10/12  text-center mb-4 md:mb-0">
+        <p class="text-mobileHeadlinesH5 md:text-desktopHeadlinesH5 font-bold font-dm mb-[32px] text-surface-dark-active
+          leading-mobileLineHeightMedium md:leading-desktopLineHeightMedium tracking-desktopLetterSpacingSmall text-center">
+          {{.partnersKicker}} </p>
+      </div>
+      <div class="w-full  md:flex md:items-center">
+        <div class="partner-logos-container block md:hidden w-full overflow-hidden">
+          <div class="partner-logos-scroll flex gap-4">
+            {{ range $index, $logo := .partnerLogos }}
+            <div class="min-w-[33%] flex-shrink-0">
+              <div 
+                class="h-[24px]"
+                style="background: url('{{ .image }}');
+                background-repeat: no-repeat;
+                background-position: left;
+                background-size: contain;">
+              </div>
+            </div>
+            {{ end }}
+            <!-- this is here as duplicate for seamless loop do not remove-->
+            {{ range $index, $logo := .partnerLogos }}
+            <div class="min-w-[33%] flex-shrink-0">
+              <div 
+                class="h-[24px]"
+                style="background: url('{{ .image }}');
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;">
+              </div>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+        <!-- for desktop -->
+        <!-- <div class="hidden md:flex md:items-center gap-[75px] w-full">
+          {{ range $index, $logo := .partnerLogos }}
+          <div class="flex-1">
+            <div 
+              class="h-[24px]"
+              style="background: url('{{ .image }}');
+              background-repeat: no-repeat;
+              background-position: center;
+              background-size: contain;">
+            </div>
+          </div>
+          {{ end }}
+        </div> -->
+        <div class="partner-logos hidden md:flex flex-wrap justify-between w-full items-center gap-8 p-5">
+          {{ range $index, $logo := .partnerLogos }}
+          <div class="logo-item flex justify-center items-center flex-1 max-w-[150px]">
+            <img 
+              src="{{ .image }}" 
+              alt="{{ .alt }}" 
+              class="w-full h-[28px] object-contain"
+            />
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </section>
+</section>

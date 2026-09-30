@@ -1,0 +1,57 @@
+{
+ "component": "partners-cards",
+ "source": "component-library/components/partners-cards/",
+ "fields": {
+  "buttonText": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Learn More",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "image": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/images/partners/adthena.jpg",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "ourPartners": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "translatable"
+  },
+  "partnerTitle": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Our Partners",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "partner_description": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Adthena offers unparalleled competitor intelligence that complements Optmyzr\u2019s industry benchmark reports. It provides in-depth insights that drive smarter decisions by revealing competitor strategies and market trends. Adthena works with Optmyzr to inspire strategies that save money and boost performance.",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "partner_title": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Adthena",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "projectLink": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "https://adthena.com",
+   "inputType": "url",
+   "localization": "skip"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

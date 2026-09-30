@@ -1,0 +1,48 @@
+<section id="hero" class="c-hero-comparison compare-bg pb-[45px] lg:pb-[67px] px-lr">
+<div data-scroll="fade-slide" class="w-full mx-auto grid grid-cols-4 lg:grid-cols-12 gap-[8px]
+        lg:gap-16 justify-items-center items-center lg:pt-5">
+    <!-- Hero Section Content -->
+    <div class="col-span-4 lg:col-span-12 justify-items-center" >
+      <div class="below-360:w-[290px] pt-[48px] md:w-10/12 md:mx-auto text-center lg:text-center">
+        <!-- Heading -->
+        <h1 class="xl:w-[86%] mx-auto font-dm text-center text-mobileHeadlinesH2 leading-mobileLineHeight6xl font-bold tracking-mobileLetterSpacingSmall lg:text-desktopHeadlinesH1 lg:tracking-desktopLetterSpacingXs
+        lg:leading-desktopLineHeight6xl lg:font-extrabold text-colorSurfaceDarkDarkActive">
+          {{ .heading }}
+        </h1>
+        <!-- Subtitle -->
+        <p class="pt-6 lg:pt-5 text-center font-normal text-mobileBodyB2 leading-mobileLineHeight3xl lg:text-desktopSubHeadingsP2 lg:leading-desktopLineHeightXxl tracking-desktopLetterSpacingXl 
+           text-colorSurfaceDarkNormalActive mx-auto w-full xl:w-[70%]">
+          {{ .subtitle }}
+        </p>
+        <!-- Action Buttons -->
+        <div class="flex flex-row items-center flex-start md:justify-center mt-6 lg:mt-5  gap-[20px]">
+          {{with .trialBtn}}
+          <a href="{{.url}}" class="hover:bg-colorPrimaryTealNormalHover rounded-lg font-bold text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 bg-teal-dark text-textonteal py-3 px-8 w-[167px]  md:w-[207px] h-[48px] whitespace-nowrap capitalize">{{.text}}</a>
+          {{end}}
+          {{with .demoBtn}}
+          <a href="{{.url}}" class=" text-teal-dark rounded-lg font-bold text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 bg-teal-light  py-3 px-8 w-[167px] 
+            md:w-[207px] h-[48px] whitespace-nowrap capitalize  lg:mt-0 hover:bg-colorPrimaryTealLightHover">{{.text}}</a>
+          {{end}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+
+.compare-bg {
+  position: relative;
+  background-image: url('/images/comparison/hero-left.svg'), url('/images/comparison/hero-right.svg');
+  background-position: left center, right center;
+  background-repeat: no-repeat, no-repeat;
+  background-size: auto, auto; 
+  background-attachment: scroll;
+}
+
+@media (max-width: 768px) {
+  .compare-bg {
+    background:none
+  }
+}
+</style>

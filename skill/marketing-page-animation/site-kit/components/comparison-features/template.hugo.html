@@ -1,0 +1,28 @@
+<section class="c-comparison-features px-lr pt-[64px] lg:pt-[48px] pb-[48px] bg-colorSurfaceLightLight">
+  <div class="max-w-1440 mx-auto xl:px-[114px]">
+    <h2 class="font-dm text-center font-bold text-mobileHeadlinesH3 lg:text-desktopHeadlinesH3 leading-mobileLineHeight5xl lg:leading-desktopLineHeight4xl tracking-mobileLetterSpacingMedium lg:tracking-desktopLetterSpacingMedium text-colorSurfaceDarkDarkActive">{{ .heading }}</h2>
+    <div class="flex flex-col lg:flex-row md:justify-center md:items-stretch gap-[8px] md:gap-[20px] mt-[24px] md:mt-[40px]">
+      {{ range $index, $feature := .features }}
+      <div class="flex-1 bg-white rounded-xl border border-colorSurfaceLightNormal px-[20px] py-[24px] relative flex flex-col">
+        <div class="absolute top-[10px] right-[20px] text-mobileHeadlinesH1 md:text-desktopHeadlinesH1 font-bold text-gray-100">{{ add $index 1 }}</div>
+        <h3 class="font-bold  text-mobileHeadlinesH4 lg:text-desktopHeadlinesH4 leading-mobileLineHeight2xl
+          lg:leading-desktopLineHeight2xl 
+          tracking-mobileLetterSpacingLarge lg:tracking-desktopLetterSpacingMedium font-dm text-colorSurfaceDarkDarkActive w-[72%] md:w-11/12">{{ $feature.card_title | safeHTML }}</h3>
+        <ul class="flex flex-col gap-3 lg:gap-4 mt-3">
+          {{ range $feature.points }}
+          <li class="flex items-baseline gap-2">
+            <svg class=" w-[16px] h-[16px] flex-shrink-0" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.92154 9.16356L5.52737 7.79002C5.41196 7.67474 5.28772 7.61572 5.15466 7.61294C5.02175 7.6103 4.89487 7.66933 4.77404 7.79002C4.65335 7.91085 4.593 8.03988 4.593 8.1771C4.593 8.31433 4.65335 8.44335 4.77404 8.56419L6.45675 10.2469C6.59355 10.3836 6.74848 10.4519 6.92154 10.4519C7.0946 10.4519 7.24953 10.3836 7.38633 10.2469L11.2101 6.42315C11.3254 6.30773 11.3844 6.18002 11.3872 6.04002C11.3898 5.90016 11.3308 5.76981 11.2101 5.64898C11.0892 5.52828 10.9637 5.46794 10.8334 5.46794C10.7031 5.46794 10.5776 5.52828 10.4567 5.64898L6.92154 9.16356ZM8.00154 15.5834C6.9621 15.5834 5.98147 15.386 5.05966 14.9913C4.13786 14.5965 3.33105 14.0534 2.63925 13.3619C1.94744 12.6704 1.40404 11.8639 1.00904 10.9425C0.614178 10.0211 0.416748 9.04078 0.416748 8.00148C0.416748 6.94815 0.614109 5.96405 1.00883 5.04919C1.40355 4.13433 1.94668 3.33099 2.63821 2.63919C3.32973 1.94738 4.13619 1.40398 5.05758 1.00898C5.97897 0.614117 6.95932 0.416687 7.99862 0.416687C9.05196 0.416687 10.0361 0.614048 10.9509 1.00877C11.8658 1.40349 12.6691 1.94662 13.3609 2.63815C14.0527 3.32967 14.5961 4.13266 14.9911 5.0471C15.386 5.96155 15.5834 6.94537 15.5834 7.99856C15.5834 9.03801 15.3861 10.0186 14.9913 10.9404C14.5966 11.8622 14.0535 12.669 13.362 13.3609C12.6704 14.0527 11.8674 14.5961 10.953 14.9911C10.0386 15.3859 9.05474 15.5834 8.00154 15.5834Z" fill="#14880C"/>
+            </svg>
+            <span class="text-colorSurfaceDarkNormal lg:tracking-normal 
+              leading-mobileLineHeightLarge  lg:leading-desktopLineHeightMedium
+              tracking-mobileLetterSpacingXl md:tracking-desktopLetterSpacingXl
+              text-mobileBodyB4 lg:text-desktopSubHeadingsP4">{{ . }}</span>
+          </li>
+          {{ end }}
+        </ul>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>

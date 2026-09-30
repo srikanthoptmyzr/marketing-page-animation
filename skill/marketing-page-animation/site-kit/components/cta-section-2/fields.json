@@ -1,0 +1,57 @@
+{
+ "component": "cta-section-2",
+ "source": "component-library/components/cta-section-2/",
+ "fields": {
+  "demoBtn": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "url-prefixed"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "See how Optmyzr makes your campaigns more efficient and your paid media team happier.",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "left_image": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/images/homepage/cta-section-left.png",
+   "inputType": "image",
+   "localization": "unlisted"
+  },
+  "right_image": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/images/homepage/cta-section-right.png",
+   "inputType": "image",
+   "localization": "unlisted"
+  },
+  "text": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Start Trail",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "trialBtn": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "unlisted"
+  },
+  "url": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "#",
+   "inputType": "url",
+   "localization": "url-prefixed"
+  }
+ },
+ "i18nKeys": [],
+ "partials": []
+}

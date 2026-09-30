@@ -1,0 +1,233 @@
+<section class="c-featured-authors px-lr py-[48px] md:py-[96px]">
+  <div class="w-full bg-white mx-auto max-1440">
+    <div class="mx-auto">
+      <!-- header section -->
+      <div class="text-center">
+        <h2 class="mb-[16px] font-dm text-mobileHeadlinesH3 md:text-desktopHeadlinesH3 font-bold tracking-desktopLetterSpacingMedium leading-mobileLineHeight5xl md:leading-desktopLineHeight4xl text-center">
+          {{ .authorsParams.authorsTitle }}
+        </h2>
+        <p class="text-colorSurfaceDarkDark font-semibold text-desktopSubHeadingsP3 md:text-desktopSubHeadingsP2 leading-desktopLineHeightLarge md:leading-desktopLineHeightXxl tracking-desktopLetterSpacingXl text-center">
+          {{ .authorsParams.authorsSubtext }}
+        </p>
+      </div>
+
+      <div class="authors-container mt-[40px]">
+        <div class="authors-wrapper">
+          <!-- First slide set -->
+          <div class="authors-set">
+            {{ range .authorsParams.featuredAuthors }}
+            <div class="swiper-slide h-[261px] flex flex-col justify-between">  
+              <a href="{{ "/author/" | relLangURL }}{{ .name | lower | urlize }}" class="block h-full">
+                <div class="rounded-lg p-[20px] border border-transparent hover:border-gray-300 hover:bg-[#F3F3F3] transition-all duration-200 h-full flex flex-col group">
+                  <div class="flex-1">
+                    <!-- inlined avatar logic -->
+                    <div class="w-[73px] h-[73px] mb-[20px]">
+                      {{ $raw := .image | default "/forestry/856-8561030_silhouette-gender-neutral-head-silhouette.webp" }}
+                      {{ $path := strings.TrimPrefix "https://www.optmyzr.com" $raw }}
+                      {{ $path = strings.TrimPrefix "/blog" $path }}
+                      {{ if not (hasPrefix $path "/") }}
+                        {{ $path = printf "/%s" $path }}
+                      {{ end }}
+                      {{ $asset := strings.TrimPrefix "/" $path }}
+                      {{ $imgRes := resources.Get $asset }}
+                      {{ if not $imgRes }}
+                        {{ $basePath := strings.TrimSuffix (path.Ext $asset) $asset }}
+                        {{ $extensions := slice "webp" "jpg" "jpeg" "png" }}
+                        {{ range $extensions }}
+                          {{ $testAsset := printf "%s.%s" $basePath . }}
+                          {{ $testRes := resources.Get $testAsset }}
+                          {{ if $testRes }}
+                            {{ $imgRes = $testRes }}
+                            {{ $path = printf "/%s" $testAsset }}
+                            {{ break }}
+                          {{ end }}
+                        {{ end }}
+                      {{ end }}
+                      {{ if not $imgRes }}
+                        {{ $path = "/forestry/856-8561030_silhouette-gender-neutral-head-silhouette.webp" }}
+                        {{ $asset = strings.TrimPrefix "/" $path }}
+                        {{ $imgRes = resources.Get $asset }}
+                      {{ end }}
+
+                      {{ $classes := slice "w-full" "h-full" "object-cover" "object-center" "rounded-full" }}
+                      {{ $classString := delimit $classes " " }}
+
+                      {{ if $imgRes }}
+                        {{ $thumb := $imgRes.Fill "64x64 Center" }}
+                        <img
+                          src="{{ $thumb.Permalink }}"
+                          loading="lazy"
+                          alt="{{ .name }}"
+                          class="{{ $classString }}"
+                        >
+                      {{ else }}
+                        <img
+                          src="{{ $path }}"
+                          loading="lazy"
+                          alt="{{ .name }}"
+                          class="{{ $classString }}"
+                        >
+                      {{ end }}
+                    </div>
+
+                    <p class="text-gray-600 leading-[140%] w-12/12 md:w-10/12 text-[12px] md:text-[14px] line-clamp-3 md:line-clamp-4">
+                      {{ .bio }}
+                    </p>
+                  </div>
+                  <div class="mt-auto">
+                    <div class="flex items-center gap-2">
+                      <span class="font-semibold text-[14px] md:text-[16px] tracking-[-2%] leading-[112%] group-hover:text-teal-600">
+                        {{ .name }}
+                      </span>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-teal-600 opacity-0 group-hover:opacity-100 transition-opacity duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m9 18 6-6-6-6"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            {{ end }}
+          </div>
+
+          <!-- Second slide set (duplicate of first) -->
+          <div class="authors-set">
+            {{ range .authorsParams.featuredAuthors }}
+            <div class="swiper-slide h-[261px] flex flex-col justify-between">  
+              <a href="{{ "/author/" | relLangURL }}{{ .name | lower | urlize }}" class="block h-full">
+                <div class="rounded-lg p-[20px] border border-transparent hover:border-gray-300 hover:bg-[#F3F3F3] transition-all duration-200 h-full flex flex-col group">
+                  <div class="flex-1">
+                    <!-- inlined avatar logic -->
+                    <div class="w-[73px] h-[73px] mb-[20px]">
+                      {{ $raw := .image | default "/forestry/856-8561030_silhouette-gender-neutral-head-silhouette.webp" }}
+                      {{ $path := strings.TrimPrefix "https://www.optmyzr.com" $raw }}
+                      {{ $path = strings.TrimPrefix "/blog" $path }}
+                      {{ if not (hasPrefix $path "/") }}
+                        {{ $path = printf "/%s" $path }}
+                      {{ end }}
+                      {{ $asset := strings.TrimPrefix "/" $path }}
+                      {{ $imgRes := resources.Get $asset }}
+                      {{ if not $imgRes }}
+                        {{ $basePath := strings.TrimSuffix (path.Ext $asset) $asset }}
+                        {{ $extensions := slice "webp" "jpg" "jpeg" "png" }}
+                        {{ range $extensions }}
+                          {{ $testAsset := printf "%s.%s" $basePath . }}
+                          {{ $testRes := resources.Get $testAsset }}
+                          {{ if $testRes }}
+                            {{ $imgRes = $testRes }}
+                            {{ $path = printf "/%s" $testAsset }}
+                            {{ break }}
+                          {{ end }}
+                        {{ end }}
+                      {{ end }}
+                      {{ if not $imgRes }}
+                        {{ $path = "/forestry/856-8561030_silhouette-gender-neutral-head-silhouette.webp" }}
+                        {{ $asset = strings.TrimPrefix "/" $path }}
+                        {{ $imgRes = resources.Get $asset }}
+                      {{ end }}
+
+                      {{ $classes := slice "w-full" "h-full" "object-cover" "object-center" "rounded-full" }}
+                      {{ $classString := delimit $classes " " }}
+
+                      {{ if $imgRes }}
+                        {{ $thumb := $imgRes.Fill "64x64 Center" }}
+                        <img
+                          src="{{ $thumb.Permalink }}"
+                          loading="lazy"
+                          alt="{{ .name }}"
+                          class="{{ $classString }}"
+                        >
+                      {{ else }}
+                        <img
+                          src="{{ $path }}"
+                          loading="lazy"
+                          alt="{{ .name }}"
+                          class="{{ $classString }}"
+                        >
+                      {{ end }}
+                    </div>
+
+                    <p class="text-gray-600 leading-[140%] w-12/12 md:w-10/12 text-[12px] md:text-[14px] line-clamp-3 md:line-clamp-4">
+                      {{ .bio }}
+                    </p>
+                  </div>
+                  <div class="mt-auto">
+                    <div class="flex items-center gap-2">
+                      <span class="font-semibold text-[14px] md:text-[16px] tracking-[-2%] leading-[112%] group-hover:text-teal-600">
+                        {{ .name }}
+                      </span>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-teal-600 opacity-0 group-hover:opacity-100 transition-opacity duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m9 18 6-6-6-6"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            {{ end }}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<style>
+  .authors-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  .authors-wrapper {
+    display: flex;
+    animation: marquee-animation 40s linear infinite;
+    width: max-content;
+  }
+
+  .authors-set {
+    display: flex;
+    gap: 16px;
+  }
+
+  .authors-container:hover .authors-wrapper {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee-animation {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .authors-wrapper .swiper-slide {
+    flex: 0 0 auto;
+    width: calc(100vw / 1.66);
+  }
+
+  @media (min-width: 640px) {
+    .authors-wrapper .swiper-slide {
+      width: calc(100vw / 2);
+    }
+  }
+  @media (min-width: 768px) {
+    .authors-wrapper .swiper-slide {
+      width: calc(100vw / 3.4);
+    }
+  }
+  @media (min-width: 1025px) {
+    .authors-wrapper .swiper-slide {
+      width: calc(100vw / 4.3);
+    }
+  }
+  @media (min-width: 1300px) {
+    .authors-wrapper .swiper-slide {
+      width: calc(100vw / 6.3);
+    }
+  }
+</style>

@@ -1,0 +1,80 @@
+{
+ "component": "language-picker",
+ "source": "component-library/components/language-picker/",
+ "fields": {
+  "_inputs": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": null,
+   "localization": "skip"
+  },
+  "code": {
+   "usedInTemplate": true,
+   "inBlueprint": false,
+   "default": null,
+   "inputType": null,
+   "localization": "unlisted"
+  },
+  "comment": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "The initially selected language",
+   "inputType": null,
+   "localization": "unlisted"
+  },
+  "description": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "A dropdown language selector component with support for multiple languages",
+   "inputType": null,
+   "localization": "translatable"
+  },
+  "icon": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "language",
+   "inputType": null,
+   "localization": "skip"
+  },
+  "label": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Language Picker",
+   "inputType": null,
+   "localization": "translatable"
+  },
+  "options": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": null,
+   "localization": "unlisted"
+  },
+  "selected_language": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": null,
+   "localization": "unlisted"
+  },
+  "type": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "select",
+   "inputType": null,
+   "localization": "skip"
+  },
+  "values": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": null,
+   "localization": "translatable"
+  }
+ },
+ "i18nKeys": [
+  "select_preferred_language"
+ ],
+ "partials": []
+}

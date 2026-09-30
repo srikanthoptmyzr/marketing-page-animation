@@ -1,0 +1,39 @@
+{
+ "component": "hero-alm",
+ "source": "component-library/components/hero-alm/",
+ "fields": {
+  "heroTitle": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Learn how to make automation work for you. <br>Not the ad platforms.",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "newsletterHeading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Sign up now to get notified of new episodes:",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "subTitle": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": ">-",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "youtubeVideoId": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "https://www.youtube.com/embed/Nlni2JiLbRY?si=HQGoMR5Q59075l02",
+   "inputType": "text",
+   "localization": "skip"
+  }
+ },
+ "i18nKeys": [],
+ "partials": [
+  "bookshop/shared/hugo/youtube-id.hugo.html",
+  "newsletter-alm.html"
+ ]
+}

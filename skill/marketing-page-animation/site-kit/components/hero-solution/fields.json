@@ -1,0 +1,81 @@
+{
+ "component": "hero-solution",
+ "source": "component-library/components/hero-solution/",
+ "fields": {
+  "demoBtn": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "url-prefixed"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Make changes that maximize the impact of your ad spend.",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "heroIsIllustration": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "false",
+   "inputType": null,
+   "localization": "unlisted"
+  },
+  "image": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "/images/solutions/hero-img-1.png",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "isVerticalImage": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "false",
+   "inputType": "boolean",
+   "localization": "unlisted"
+  },
+  "product_type": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Search",
+   "inputType": "select",
+   "localization": "skip"
+  },
+  "subtext": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Optimize one account or apply changes across many, all in a few clicks.",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "text": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Start Trial",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "trialBtn": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "unlisted"
+  },
+  "url": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "https://tools.optmyzr.com/info/signup",
+   "inputType": "url",
+   "localization": "url-prefixed"
+  }
+ },
+ "i18nKeys": [],
+ "partials": [
+  "image.html",
+  "trial-link.html"
+ ]
+}

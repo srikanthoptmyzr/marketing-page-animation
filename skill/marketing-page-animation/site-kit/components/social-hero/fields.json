@@ -1,0 +1,122 @@
+{
+ "component": "social-hero",
+ "source": "component-library/components/social-hero/",
+ "fields": {
+  "alt": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Peak ace",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "benefit_1": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Google Search & Shopping",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "benefit_2": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Performance Max",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "benefit_3": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "Microsoft Ads",
+   "inputType": "text",
+   "localization": "unlisted"
+  },
+  "demoBtn": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "url-prefixed"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Manage Meta and LinkedIn campaigns. Reliably and in one place.",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "hero_image_1": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/forestry/frame-1261153859.svg",
+   "inputType": "image",
+   "localization": "unlisted"
+  },
+  "hero_image_2": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/forestry/desktop-4-1.webp",
+   "inputType": "image",
+   "localization": "unlisted"
+  },
+  "hero_image_3": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/forestry/frame-1261153851-1.svg",
+   "inputType": "image",
+   "localization": "unlisted"
+  },
+  "image": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/images/partner-logos/peakace.svg",
+   "inputType": "image",
+   "localization": "skip"
+  },
+  "partnerLogos": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "array",
+   "localization": "unlisted"
+  },
+  "subtitle": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": ">-",
+   "inputType": "textarea",
+   "localization": "translatable"
+  },
+  "text": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Start Trial",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "trialBtn": {
+   "usedInTemplate": false,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": "object",
+   "localization": "unlisted"
+  },
+  "trustedPartnerTitle": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Paid media and digital marketing teams use Optmyzr",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "url": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "https://tools.optmyzr.com/info-social/signup",
+   "inputType": "url",
+   "localization": "url-prefixed"
+  }
+ },
+ "i18nKeys": [],
+ "partials": [
+  "functions/resolve-image-path.html"
+ ]
+}

@@ -1,0 +1,45 @@
+{
+ "component": "optmyzr-alternatives-section",
+ "source": "component-library/components/optmyzr-alternatives-section/",
+ "fields": {
+  "alternatives": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "",
+   "inputType": null,
+   "localization": "unlisted"
+  },
+  "heading": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "All Comparisons",
+   "inputType": "text",
+   "localization": "translatable"
+  },
+  "logo": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/images/comparison/alternatives/1.png",
+   "inputType": null,
+   "localization": "skip"
+  },
+  "name": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "Acquisio",
+   "inputType": null,
+   "localization": "translatable"
+  },
+  "url": {
+   "usedInTemplate": true,
+   "inBlueprint": true,
+   "default": "/compare/optmyzr-vs-acquisio/",
+   "inputType": null,
+   "localization": "url-prefixed"
+  }
+ },
+ "i18nKeys": [
+  "optmyzr_vs"
+ ],
+ "partials": []
+}

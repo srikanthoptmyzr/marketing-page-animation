@@ -1,0 +1,55 @@
+{{$isAmazonPage := eq .product_type "Amazon"}}
+{{$isSocialPage := eq .product_type "Social"}}
+
+{{$primaryButtonColorString := "bg-teal-dark hover:bg-colorPrimaryTealNormalHover" }}
+{{$primaryTextString := "text-colorSurfaceLightWhite"}}
+
+{{if $isAmazonPage }}
+
+  {{$primaryButtonColorString = "bg-colorSecondaryYellowNormal hover:bg-colorSecondaryYellowNormalHover" }}
+  {{$primaryTextString = "text-colorSurfaceDarkDarkActive"}}
+
+{{else if $isSocialPage}}
+
+  {{$primaryButtonColorString = "bg-colorSecondaryBlueNormal hover:bg-colorSecondaryBlueNormalHover" }}
+
+{{end}}
+
+<section class="c-casestudy-section w-full bg-white pb-[57px] lg:pt-[48px] lg:pb-[96px] px-lr">
+  <div class="max-w-1440 mx-auto lg:px-[114px]">
+    <!-- Title -->
+    <h2 class="text-mobileHeadlinesH3 md:text-desktopHeadlinesH2 font-semibold text-left lg:text-center 
+      leading-mobileLineHeight5xl md:leading-desktopLineHeight5xl tracking-mobileLetterSpacingMedium
+      md:tracking-desktopLetterSpacingXl  mb-[24px] lg:mb-[96px] lg:w-10/12 lg:mx-auto">
+      {{.heading}}
+    </h2>
+    <!-- Content Row -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-[32px]">
+      <!-- Text +  CTA -->
+      <div class="h-full flex flex-col">
+        <!-- Tag -->
+        <span class="inline-block w-fit bg-colorSecondaryLimeLightActive text-colorSecondaryLimeDarker 
+          text-desktopSubHeadingsP5 md:desktopSubHeadingsP4 font-semibold px-4 py-[5px] rounded-full mb-[16px]">
+          {{.kicker}}
+        </span>
+        <!-- Description -->
+      <p class="text-desktopSubHeadingsP2 md:text-desktopSubHeadingsP1 
+        text-colorSurfaceDarkNormalActive tracking-desktopLetterSpacingXs 
+          leading-mobileLineHeight3xl md:!leading-desktopLineHeight3xl">{{.subtext}}</p>
+
+        <div class="flex mt-[16px] mb-[26px] lg:mb-0 lg:!mt-auto">
+          <!-- Button -->
+          <a href="{{.btn_url}}" class="rounded-lg font-semibold text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 
+             w-[127px] sm:w-[207px] py-3 text-center capitalize {{$primaryButtonColorString}} {{$primaryTextString}}">
+            {{.btn_text}}
+          </a>
+        </div>
+      </div>
+
+      <!-- Placeholder Image -->
+      <div class="rounded-xl overflow-hidden  flex items-center justify-center text-gray-500 text-xl font-semibold">
+        <img src="{{.image}}" alt="" class="w-full h-full object-cover">
+      </div>
+    </div>
+  </div>
+</section>

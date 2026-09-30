@@ -1,0 +1,38 @@
+<section class="c-founders-section px-lr pb-12 lg:pb-0 lg:pt-20 lg:bg-colorSurfaceLightWhiteHover">
+  <div class="max-w-1440 mx-auto">
+    <h1 class="font-dm font-bold text-mobileHeadlinesH2 md:text-desktopHeadlinesH2 leading-mobileLineHeight6xl 
+      md:leading-desktopLineHeight5xl tracking-desktopLetterSpacingXl text-center">{{.heading}}</h1>
+    <div class="lg:hidden flex flex-col md:flex-row gap-[32px] mt-[32px] md:mt-[56px]">
+      {{ range .team }}
+      <div id="leader-card" class="flex flex-col flex-1 md:border md:border-colorSurfaceLightLightHover md:rounded-[12px]">
+        <div class="w-full bg-transparent md:h-[435px]">
+          <img src="{{.image}}" alt="{{.name}}" class="mx-auto object-cover md:w-full md:h-full 
+            rounded-[12px] md:rounded-b-none md:rounded-t-[12px] bg-transparent" loading="lazy"> 
+        </div>
+        <div class="flex flex-col">
+          <div class="flex items-start justify-between py-[16px]">
+            <div class="md:text-center w-full flex flex-col gap-[8px]">
+              <h3 class="text-mobileHeadlinesH3 md:text-desktopHeadlinesH3 tracking-desktopLetterSpacingMedium font-bold
+                font-dm leading-mobileLineHeight5xl md:leading-desktopLineHeight4xl">
+                {{.name}}
+              </h3>
+              <p class="text-desktopSubHeadingsP4 md:text-desktopSubHeadingsP3 font-medium text-surface-dark-active 
+                leading-desktopLineHeightMedium md:leading-desktopLineHeightLarge tracking-desktopLetterSpacingXl">
+                {{.job_title}}
+              </p>
+
+            </div>
+          </div>
+          <p id="bio" class="text-mobileBodyB2 text-surface-dark-active font-normal leading-mobileLineHeight3xl 
+            tracking-desktopLetterSpacingXxl text-left md:hidden">
+            {{.mediumBio }}
+          </p>
+        </div>
+      </div>
+      {{end}}
+    </div>
+  </div>
+</section>
+
+
+

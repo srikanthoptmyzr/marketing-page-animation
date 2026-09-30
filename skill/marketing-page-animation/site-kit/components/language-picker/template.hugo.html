@@ -1,0 +1,165 @@
+{{ $languages := site.Data.languages.languages }}
+{{ $selectedLanguage := .selected_language | default "en" }}
+{{ $isFooter := .isFooter | default false }}
+{{ $dropdownDirection := .dropdown_direction | default "down" }}
+{{ $selectedLabel := "" }}
+{{ $selectedShort := "" }}
+{{ range $languages }}
+  {{ if eq .code $selectedLanguage }}
+    {{ $selectedLabel = .label }}
+    {{ $selectedShort = .code | upper }}
+  {{ end }}
+{{ end }}
+
+<div class="c-language-picker relative" data-component="language-picker" x-data="languagePicker()" data-selected="{{ $selectedLanguage }}" data-supported-langs='[{{ range $index, $lang := site.Data.languages.languages }}{{ if $index }},{{ end }}"{{ $lang.code }}"{{ end }}]'>
+  <!-- Trigger Button -->
+  <button
+    @click="toggleOpen()"
+    class="flex items-center justify-between bg-white hover:opacity-80 transition-opacity cursor-pointer p-[10px] rounded-[4px] w-auto min-w-[86px]"
+    style="color: #2d3a48 !important;"
+    aria-haspopup="listbox"
+    :aria-expanded="isOpen"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <g clip-path="url(#clip0_58_11)">
+        <path d="M9.99175 1.66669C5.39175 1.66669 1.66675 5.40002 1.66675 10C1.66675 14.6 5.39175 18.3334 9.99175 18.3334C14.6001 18.3334 18.3334 14.6 18.3334 10C18.3334 5.40002 14.6001 1.66669 9.99175 1.66669ZM15.7667 6.66669H13.3084C13.0417 5.62502 12.6584 4.62502 12.1584 3.70002C13.6917 4.22502 14.9667 5.29169 15.7667 6.66669ZM10.0001 3.36669C10.6917 4.36669 11.2334 5.47502 11.5917 6.66669H8.40841C8.76675 5.47502 9.30841 4.36669 10.0001 3.36669ZM3.55008 11.6667C3.41675 11.1334 3.33341 10.575 3.33341 10C3.33341 9.42502 3.41675 8.86669 3.55008 8.33335H6.36675C6.30008 8.88335 6.25008 9.43335 6.25008 10C6.25008 10.5667 6.30008 11.1167 6.36675 11.6667H3.55008ZM4.23341 13.3334H6.69175C6.95841 14.375 7.34175 15.375 7.84175 16.3C6.30841 15.775 5.03341 14.7167 4.23341 13.3334ZM6.69175 6.66669H4.23341C5.03341 5.28335 6.30841 4.22502 7.84175 3.70002C7.34175 4.62502 6.95841 5.62502 6.69175 6.66669ZM10.0001 16.6334C9.30841 15.6334 8.76675 14.525 8.40841 13.3334H11.5917C11.2334 14.525 10.6917 15.6334 10.0001 16.6334ZM11.9501 11.6667H8.05008C7.97508 11.1167 7.91675 10.5667 7.91675 10C7.91675 9.43335 7.97508 8.87502 8.05008 8.33335H11.9501C12.0251 8.87502 12.0834 9.43335 12.0834 10C12.0834 10.5667 12.0251 11.1167 11.9501 11.6667ZM12.1584 16.3C12.6584 15.375 13.0417 14.375 13.3084 13.3334H15.7667C14.9667 14.7084 13.6917 15.775 12.1584 16.3ZM13.6334 11.6667C13.7001 11.1167 13.7501 10.5667 13.7501 10C13.7501 9.43335 13.7001 8.88335 13.6334 8.33335H16.4501C16.5834 8.86669 16.6667 9.42502 16.6667 10C16.6667 10.575 16.5834 11.1334 16.4501 11.6667H13.6334Z" fill="#2D3A48"/>
+      </g>
+      <defs>
+        <clipPath id="clip0_58_11">
+          <rect width="20" height="20" fill="white"/>
+        </clipPath>
+      </defs>
+    </svg>
+    <div class="flex gap-[4px] items-center">
+      {{ if $isFooter }}
+        <span class="font-medium leading-normal text-[14px] ml-2" x-text="selectedLabel">{{ $selectedLanguage }}</span>
+      {{ else }}
+        <span class="uppercase font-medium leading-normal text-[14px]" x-text="selectedShort">{{ $selectedLanguage }} </span>
+      {{ end }}
+    </div>
+    <svg
+      class="w-4 h-4 transition-transform"
+      :class="{ 'rotate-180': isOpen }"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" fill="none"/>
+    </svg>
+  </button>
+
+  <!-- Dropdown Menu -->
+  <div 
+    x-show="isOpen" 
+    @click.outside="isOpen = false"
+    x-transition
+    style="display: none;"
+    class="absolute {{ if eq $dropdownDirection "up" }}bottom-full mb-0{{ else }}top-full mt-0{{ end }} left-0 bg-white rounded-[4px] shadow-lg z-50 w-max"
+    role="listbox"
+  >
+    <div class="p-3">
+      {{ if not $isFooter }}
+      <p class="capitalize font-semibold leading-normal text-[#2d3a48] text-[14px] mb-4">
+        {{ i18n "select_preferred_language" }}
+      </p>
+      {{ end }}
+      
+      <div class="flex flex-col">
+        {{ range $languages }}
+        <button
+          @click="selectLanguage('{{ .code }}', '{{ .label }}', '{{ .code | upper }}')"
+          class="w-full flex items-center justify-between p-3 text-left capitalize font-medium leading-normal text-[#2d3a48] text-[14px] rounded-[4px] transition-colors hover:bg-[#f5f5f5]"
+          :class="{
+            'bg-[#d5ecee]': selected === '{{ .code }}'
+          }"
+          role="option"
+          :aria-selected="selected === '{{ .code }}'"
+        >
+          <span class="whitespace-nowrap">{{ .label }}</span>
+          <svg
+            x-show="selected === '{{ .code }}'"
+            class="w-5 h-5 text-[#069ba2]"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path d="M7.629 14.566l-4.24-4.24a1 1 0 011.415-1.414l3.532 3.533 7.898-7.898a1 1 0 011.414 1.414l-8.605 8.605a1 1 0 01-1.414 0z"/>
+          </svg>
+        </button>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const supportedLangs = [{{ range $index, $lang := site.Data.languages.languages }}{{ if $index }}, {{ end }}'{{ $lang.code }}'{{ end }}];
+      const defaultLang = '{{ site.Data.languages.defaultLanguage | default "en" }}';
+      
+      window.languagePicker = function() {
+        const isFooter = {{ if $isFooter }}true{{ else }}false{{ end }};
+        return {
+          isOpen: false,
+          selected: '{{ $selectedLanguage }}',
+          selectedLabel: '{{ $selectedLabel }}',
+          selectedShort: '{{ $selectedShort }}',
+          
+          toggleOpen() {
+            this.isOpen = !this.isOpen;
+          },
+          
+          selectLanguage(code, label, short) {
+            this.selected = code;
+            this.selectedLabel = label;
+            this.selectedShort = short;
+            this.isOpen = false;
+            
+            // Dispatch custom event for language change
+            this.$dispatch('language-changed', { code: code, label: label });
+            
+            // Integrate with LangPref if available
+            if (typeof window.LangPref !== 'undefined' && window.LangPref.updateLanguage) {
+              window.LangPref.updateLanguage(code);
+            }
+
+            // Store selected language in localStorage
+            if (typeof localStorage !== 'undefined') {
+              var langData = { lang: code, timestamp: Date.now() };
+              localStorage.setItem('optmyzrLang', JSON.stringify(langData));
+            }
+            
+            // Resolve a translation URL to a pathname
+            function resolvePath(url) {
+              try { return new URL(url, window.location.origin).pathname; }
+              catch(e) { return url; }
+            }
+
+            // Redirect to the selected language path
+            const currentPath = window.location.pathname;
+            const map = window.__translationMap || {};
+            let newPath = currentPath;
+            
+            if (map[code]) {
+              newPath = resolvePath(map[code]) + window.location.search;
+            } else if (code !== defaultLang) {
+              // Translation missing — fall back to English version
+              if (map[defaultLang]) {
+                newPath = resolvePath(map[defaultLang]) + window.location.search;
+              } else {
+                const langPattern = new RegExp(`^/(${supportedLangs.join('|')})/`);
+                newPath = currentPath.replace(langPattern, '/');
+              }
+            }
+            
+            if (newPath !== currentPath && newPath !== window.location.pathname + window.location.search) {
+              window.location.href = newPath;
+            } else if (code !== defaultLang && !map[code]) {
+              // No redirect but translation missing — show toast
+              if (typeof window.showLangFallbackToast === 'function') {
+                window.showLangFallbackToast(code);
+              }
+            }
+          }
+        };
+      };
+    })();
+  </script>
+</div>

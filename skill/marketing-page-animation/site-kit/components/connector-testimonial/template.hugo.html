@@ -1,0 +1,193 @@
+{{/*
+  connector-testimonial
+  Customer pull quote paired with the full testimonial video. The quote carries
+  the proof for skimmers; the video is a click-to-load <lite-youtube> facade, so
+  nothing is fetched from YouTube until someone actually presses play.
+
+  NOTE: `<lite-youtube>` only becomes a real player once lite-yt-embed.js has
+  loaded, and partials/head.html decides that per page: it collects this page's
+  `_bookshop_name` values and loads the script when any of them is a component
+  whose template renders a `<lite-youtube>` element. This component is one of
+  them, so nothing needs listing anywhere — but do not remove that check from
+  head.html: `solutions-new` is NOT one of the whole sections it also covers, so
+  the check is the only thing loading the script here. Without it the element
+  never upgrades and the video area renders inert, with no build error.
+*/}}
+
+{{- $vid := partial "bookshop/shared/hugo/youtube-id.hugo.html" .youtubeVideoId -}}
+
+<section class="c-connector-testimonial py-14 md:py-20 px-4 lg:px-12" style="background-color:#ffffff;">
+  <div class="max-w-1440 mx-auto">
+
+    {{ with .heading }}
+    <h2 data-scroll="fade-slide"
+      class="ct-heading font-bold font-dm text-mobileHeadlinesH3 md:text-desktopHeadlinesH2 leading-mobileLineHeight5xl md:leading-desktopLineHeight5xl tracking-desktopLetterSpacingXl"
+      style="color:#0b0c0d;">{{ . }}</h2>
+    {{ end }}
+
+    <div data-scroll="fade-slide" class="ct-grid">
+
+      <!-- Pull quote -->
+      <figure class="ct-quote">
+        <svg class="ct-mark ct-mark-open" viewBox="0 0 32 24" aria-hidden="true">
+          <path d="M13.4 24V13.1C13.4 5.9 17.6 1.2 24.6 0l1.5 3.4c-3.9 1.1-6 3.6-6.2 7.2h5.4V24H13.4Zm-13.4 0V13.1C0 5.9 4.2 1.2 11.2 0l1.5 3.4c-3.9 1.1-6 3.6-6.2 7.2H12V24H0Z" fill="currentColor"/>
+        </svg>
+
+        <blockquote>{{ .quote | markdownify }}</blockquote>
+
+        <svg class="ct-mark ct-mark-close" viewBox="0 0 32 24" aria-hidden="true">
+          <path d="M18.6 0v10.9c0 7.2-4.2 11.9-11.2 13.1l-1.5-3.4c3.9-1.1 6-3.6 6.2-7.2H6.7V0h11.9Zm13.4 0v10.9c0 7.2-4.2 11.9-11.2 13.1l-1.5-3.4c3.9-1.1 6-3.6 6.2-7.2H20V0h12Z" fill="currentColor"/>
+        </svg>
+
+        <figcaption class="ct-person">
+          {{ with .customer_image }}
+          <img src="{{ . }}" alt="{{ $.customer_name }}" loading="lazy" width="56" height="56" class="ct-avatar">
+          {{ end }}
+          <span class="ct-person-text">
+            <b>{{ .customer_name }}</b>
+            {{ with .customer_title }}<span>{{ . }}</span>{{ end }}
+          </span>
+        </figcaption>
+      </figure>
+
+      <!-- Video -->
+      {{ with $vid }}
+      <div class="ct-video">
+        <lite-youtube nocookie="true" videoid="{{ . }}" posterloading="lazy"></lite-youtube>
+        {{ with $.video_caption }}<p class="ct-video-cap">{{ . }}</p>{{ end }}
+      </div>
+      {{ end }}
+
+    </div>
+
+    {{ if and .cta_text .cta_url }}
+    <p data-scroll="fade-slide" class="ct-cta">
+      <a href="{{ .cta_url }}">{{ .cta_text }}
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </p>
+    {{ end }}
+
+  </div>
+</section>
+
+<style>
+.c-connector-testimonial .ct-heading {
+  max-width: 780px;
+  margin: 0 auto 40px;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.c-connector-testimonial .ct-grid {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+/* ── Pull quote card ── */
+.c-connector-testimonial .ct-quote {
+  position: relative;
+  margin: 0;
+  background: #f1f1f1;
+  border-radius: 18px;
+  padding: 32px 34px 28px;
+  display: flex;
+  flex-direction: column;
+}
+.c-connector-testimonial .ct-mark {
+  width: 34px;
+  height: 26px;
+  flex: none;
+  color: #05747a;
+  display: block;
+}
+.c-connector-testimonial .ct-mark-close { align-self: flex-end; margin-top: 14px; }
+
+.c-connector-testimonial .ct-quote blockquote {
+  margin: 16px 0 0;
+  padding: 0;
+  border: 0;
+  font-style: italic;
+  font-size: 19px;
+  line-height: 30px;
+  letter-spacing: -0.2px;
+  color: #1f2124;
+}
+.c-connector-testimonial .ct-quote blockquote p { margin: 0; }
+.c-connector-testimonial .ct-quote blockquote p + p { margin-top: 12px; }
+
+.c-connector-testimonial .ct-person {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+.c-connector-testimonial .ct-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: none;
+  background: #e2e2e2;
+}
+.c-connector-testimonial .ct-person-text { display: flex; flex-direction: column; min-width: 0; }
+.c-connector-testimonial .ct-person-text b {
+  font-size: 18px;
+  line-height: 25px;
+  font-weight: 700;
+  color: #0b0c0d;
+}
+.c-connector-testimonial .ct-person-text span {
+  font-size: 16px;
+  line-height: 23px;
+  color: #5f6570;
+}
+
+/* ── Video ── */
+.c-connector-testimonial .ct-video { min-width: 0; }
+.c-connector-testimonial .ct-video lite-youtube {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(20,20,18,.12);
+}
+.c-connector-testimonial .ct-video-cap {
+  margin: 12px 0 0;
+  font-size: 14px;
+  line-height: 21px;
+  color: #5f6570;
+}
+
+/* ── Case-study link ── */
+.c-connector-testimonial .ct-cta {
+  max-width: 1140px;
+  margin: 28px auto 0;
+  text-align: center;
+}
+.c-connector-testimonial .ct-cta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  color: #05747a;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color .15s ease;
+}
+.c-connector-testimonial .ct-cta a:hover { border-bottom-color: #05747a; }
+
+@media (max-width: 1023px) {
+  .c-connector-testimonial .ct-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 639px) {
+  .c-connector-testimonial .ct-quote { padding: 24px 22px 22px; }
+  .c-connector-testimonial .ct-quote blockquote { font-size: 17px; line-height: 27px; }
+  .c-connector-testimonial .ct-mark { width: 28px; height: 22px; }
+}
+</style>

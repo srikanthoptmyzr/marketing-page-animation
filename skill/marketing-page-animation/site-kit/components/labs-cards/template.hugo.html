@@ -1,0 +1,115 @@
+<section id="new-releases" class="c-labs-cards px-lr pb-[60px] md:pb-[240px] lg:pb-20">
+  <div class="max-w-1440 pt-[80px] lg:mb-30 mx-auto lg:px-[113px]">
+    <div class="flex items-center justify-between">
+      <div id="caseStudyHeading" class="text-mobileHeadlinesH3 md:text-desktopHeadlinesH3 mb-[32px] md:mb-[56px]
+        font-dm font-bold tracking-desktopLetterSpacingMedium leading-mobileLineHeight5xl md:leading-desktopLineHeight4xl">
+        {{ .labTitle }}
+      </div>
+
+    </div>
+    <div id="all-lab-projects" class="scroll-mt-[130px]">
+      <div class="grid grid-cols-4 md:grid-cols-6 gap-y-[32px] md:gap-y-[48px] md:gap-x-10 lg:gap-x-[25px]">
+        
+        <!-- Released Projects -->
+        {{ range $index, $launchedCard := .releasedProjects }}
+        <div class="col-span-4 md:col-span-3">
+          <article class="w-full h-full flex flex-col {{ if .padding }}px-4 lg:px-8{{ end }}">
+            {{ $original := resources.Get $launchedCard.image }}
+            {{ if $original }}
+            {{ $mobile_image := $original.Resize "500x q90 webp" }} 
+            {{ $desktop_image := $original.Resize "1000x q90 webp" }}
+            <a href="{{ $launchedCard.projectLink }}" target="_blank">
+              <div class="relative">
+                <div class="w-full h-full lab-cards">
+                 <picture>
+                  <source media="(max-width: 768px)" srcset="{{ $mobile_image.RelPermalink }}">
+                  <source media="(min-width: 769px)" srcset="{{ $desktop_image.RelPermalink }}">
+                  <img src="{{ $desktop_image.RelPermalink }}" alt="{{ $launchedCard.title }}" class="w-full h-auto object-cover rounded-lg" fetchpriority="high" width="{{ $desktop_image.Width }}" height="{{ $desktop_image.Height }}">
+                </picture>
+                </div>
+              </div>
+              <div class="mt-5 flex flex-col flex-1">
+                <div class="flex-1">
+                  <h1 class="font-bold text-mobileHeadlinesH2 md:text-desktopHeadlinesH3 leading-mobileLineHeight6xl 
+                    md:leading-desktopLineHeight4xl tracking-desktopLetterSpacingMedium">
+                    {{ $launchedCard.project_title }}
+                  </h1>
+                  <p class="text-mobileBodyB2 md:text-desktopSubHeadingsP2 leading-mobileLineHeight3xl md:leading-desktopLineHeightXxl 
+                    tracking-desktopLetterSpacingXl text-surface-dark-active mt-[24px]">
+                    {{ $launchedCard.project_description }}
+                  </p>
+                </div>
+                <div class="flex items-center pt-[24px] mt-auto">
+                  <a href="{{ $launchedCard.projectLink }}" target="_blank" class="bg-teal-light hover:bg-colorPrimaryTealLightHover
+                    w-[203px] h-[41px] md:h-[48px] md:w-[210px] text-teal-dark py-3 text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4
+                    font-semibold rounded-xl text-center inline-flex items-center justify-center gap-[10px]">
+                    {{ $launchedCard.buttonText }}
+                    <svg width="9" height="10" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0.696167 9.14284L0 8.44667L6.56033 1.88001H0.596167V0.880005H8.26283V8.54667H7.26283V2.58251L0.696167 9.14284Z" fill="#05747a"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </a>
+            {{ end }}
+          </article>
+        </div>
+        {{ end }}
+
+        <!-- Coming Soon Projects -->
+        {{ range $index, $comingCard := .comingSoonProjects }}
+        <div class="col-span-4 md:col-span-3">
+          <article class="w-full h-full flex flex-col {{ if .padding }}px-4 lg:px-8{{ end }}">
+            {{ $original := resources.Get $comingCard.image }}
+            {{ if $original }}
+            {{ $mobile_image := $original.Resize "500x q90 webp" }}
+            {{ $desktop_image := $original.Resize "1000x q90 webp" }}
+            <div class="relative">
+              <div class="w-full h-full lab-cards">
+                <picture>
+                  <source media="(max-width: 768px)" srcset="{{ $mobile_image.RelPermalink }}">
+                  <source media="(min-width: 769px)" srcset="{{ $desktop_image.RelPermalink }}">
+                  <img src="{{ $desktop_image.RelPermalink }}" alt="{{ $comingCard.title }}" class="w-full h-auto object-cover rounded-lg" loading="lazy" width="{{ $desktop_image.Width }}" height="{{ $desktop_image.Height }}">
+                </picture>
+              </div>
+            </div>
+            <div class="mt-5 flex flex-col flex-1">
+              <div class="flex-1">
+                  <h1 class="font-bold text-mobileHeadlinesH2 md:text-desktopHeadlinesH3 leading-mobileLineHeight6xl 
+                    md:leading-desktopLineHeight4xl tracking-desktopLetterSpacingMedium">
+                  {{ $comingCard.title }}
+                  </h1>
+                  <p class="text-mobileBodyB2 md:text-desktopSubHeadingsP2 leading-mobileLineHeight3xl md:leading-desktopLineHeightXxl 
+                    tracking-desktopLetterSpacingXl text-surface-dark-active mt-[24px]">
+                  {{ $comingCard.description }}
+                  </p>
+              </div>
+              <div class="flex items-center pt-[24px] mt-auto">
+                <a href="javascript:void(0)" class="bg-gray-200 cursor-not-allowed w-[203px] h-[41px] md:h-[48px] md:w-[210px] text-gray-500 
+                  py-3 text-desktopSubHeadingsP5 md:text-desktopSubHeadingsP4 font-semibold rounded-xl text-center inline-flex items-center justify-center gap-[10px]">
+                  {{.upcomingBtnText}}
+                  <svg width="9" height="10" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.696167 9.14284L0 8.44667L6.56033 1.88001H0.596167V0.880005H8.26283V8.54667H7.26283V2.58251L0.696167 9.14284Z" fill="#6B7280"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+             {{ end }}
+          </article>
+        </div>
+        {{ end }}
+
+        <!-- Empty grid column for layout purposes -->
+        <div class="col-span-4 md:col-span-3"></div>
+        
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+@media (max-width: 768px) {
+  .lab-cards > div {
+    border-radius: 12px !important;
+  }
+}
+</style>

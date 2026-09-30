@@ -1,0 +1,30 @@
+<style>
+.labs-partners-bg{
+  background-image: url('/images/blog-hub/hero-bg.png'); 
+  background-size: cover; 
+  background-position: 17%;
+}
+
+@media (max-width: 768px) {
+  .labs-partners-bg{
+    background-image: url('/images/partners/mobile-bg.png'); 
+    background-size: 100%; 
+    background-position: bottom center;
+    background-repeat:no-repeat;
+  }
+}
+
+</style>
+<section class="c-lwo-hero lg:flex px-lr bg-surface-dark-darker-hover labs-partners-bg">
+  <div class="text-center max-w-1440 mx-auto  flex flex-col items-center py-[48px] md:py-[75px]">
+    <h1 class="text-white font-dm text-mobileHeadlinesH2 md:text-desktopHeadlinesH1 font-bold mb-[24px] md:mb-[16px] 
+      leading-mobileLineHeight6xl md:leading-desktopLineHeight6xl tracking-desktopLetterSpacingXs text-center">
+      {{.heading}}
+    </h1>
+    <p class="text-white text-mobileBodyB2 md:text-desktopSubHeadingsP2 mb-[24px] leading-mobileLineHeight3xl 
+      md:leading-desktopLineHeightXxl tracking-desktopLetterSpacingXxl w-full md:w-[65%] text-center">
+      {{.hero_description}}
+    </p>
+  </div>   
+</section>
+

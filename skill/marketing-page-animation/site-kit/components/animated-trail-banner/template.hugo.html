@@ -1,0 +1,49 @@
+{{$isAmazonPage := eq .product_type "Amazon"}}
+{{$isSocialPage := eq .product_type "Social"}}
+
+<section class="c-animated-trail-banner {{if $isAmazonPage}} bg-colorSecondaryYellowDarker {{else if $isSocialPage}} bg-colorSecondaryBlueDarker {{else}} bg-teal-darker {{end}} py-2">
+  <div class="container mx-auto marquee-container flex">
+    <div class="marquee mx-auto">
+      <ul class="marquee-content flex justify-center gap-2 lg:gap-8">
+        <li class="flex gap-2 md:gap-3 items-center">
+          <svg width="8" height="9" viewBox="0 0 8 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="4" cy="4.27344" r="4" fill="white"/>
+          </svg>
+          <span class="text-colorSurfaceLightWhite text-mobileBodyB2 md:text-desktopSubHeadingsP2 leading-mobileLineHeight3xl md:leading-desktopLineHeightXxl tracking-desktopLetterSpacingXxl">{{.text_1}}</span>
+        </li>
+        <li class="flex gap-1 md:gap-3 items-center">
+          <svg width="8" height="9" viewBox="0 0 8 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="4" cy="4.27344" r="4" fill="white"/>
+          </svg>
+          <span class="text-colorSurfaceLightWhite text-mobileBodyB2 md:text-desktopSubHeadingsP2 leading-mobileLineHeight3xl md:leading-desktopLineHeightXxl tracking-desktopLetterSpacingXxl">{{.text_2}}</span>
+        </li>
+        <li class="flex gap-2 md:gap-3 items-center">
+          <svg width="8" height="9" viewBox="0 0 8 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="4" cy="4.27344" r="4" fill="white"/>
+          </svg>
+          <span class="text-colorSurfaceLightWhite text-mobileBodyB2 md:text-desktopSubHeadingsP2 leading-mobileLineHeight3xl md:leading-desktopLineHeightXxl tracking-desktopLetterSpacingXxl">{{.text_3}}</span>
+        </li>
+      </ul>
+      <ul class="md:hidden marquee-content flex ml-[10px] justify-center gap-2 lg:gap-10">
+        <li class="flex gap-2 md:gap-3 items-center">
+          <svg width="8" height="9" viewBox="0 0 8 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="4" cy="4.27344" r="4" fill="white"/>
+          </svg>
+          <span class="text-colorSurfaceLightWhite text-mobileBodyB2 md:text-desktopSubHeadingsP2 leading-mobileLineHeight3xl md:leading-desktopLineHeightXxl tracking-desktopLetterSpacingXxl">{{.text_1}}</span>
+        </li>
+        <li class="flex gap-1 md:gap-3 items-center">
+          <svg width="8" height="9" viewBox="0 0 8 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="4" cy="4.27344" r="4" fill="white"/>
+          </svg>
+          <span class="text-colorSurfaceLightWhite text-mobileBodyB2 md:text-desktopSubHeadingsP2 leading-mobileLineHeight3xl md:leading-desktopLineHeightXxl tracking-desktopLetterSpacingXxl">{{.text_2}}</span>
+        </li>
+        <li class="flex gap-2 md:gap-3 items-center">
+          <svg width="8" height="9" viewBox="0 0 8 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="4" cy="4.27344" r="4" fill="white"/>
+          </svg>
+          <span class="text-colorSurfaceLightWhite text-mobileBodyB2 md:text-desktopSubHeadingsP2 leading-mobileLineHeight3xl md:leading-desktopLineHeightXxl tracking-desktopLetterSpacingXxl">{{.text_3}}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
